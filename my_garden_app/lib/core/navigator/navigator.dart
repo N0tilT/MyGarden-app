@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_list_page.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({super.key});
@@ -11,6 +12,7 @@ class MainNavigatorWidget extends StatefulWidget {
 class _MainNavigatorWidgetState extends State<MainNavigatorWidget> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
+    const PlantListPage(),
   ];
 
   void _onItemTap(int index) {
@@ -30,11 +32,7 @@ class _MainNavigatorWidgetState extends State<MainNavigatorWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
-            label: "Расписание",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: "Журнал",
+            label: "Мои растения",
           ),
         ],
         currentIndex: _selectedIndex,

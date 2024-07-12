@@ -41,7 +41,7 @@ class _BodyWidget extends StatelessWidget {
             event: () {
               Navigator.of(context).push(
                 MaterialPageRoute<void>(
-                  builder: (context) => const LoginAuthPage(route: scheduleRoute),
+                  builder: (context) => const LoginAuthPage(route: plantListRoute),
                 ),
               );
             },
