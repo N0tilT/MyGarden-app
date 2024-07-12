@@ -219,6 +219,8 @@ abstract class _$$AuthorizedImplCopyWith<$Res> {
       __$$AuthorizedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({TokenModel token});
+
+  $TokenModelCopyWith<$Res> get token;
 }
 
 /// @nodoc
@@ -232,14 +234,22 @@ class __$$AuthorizedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
+    Object? token = null,
   }) {
     return _then(_$AuthorizedImpl(
-      freezed == token
+      null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as TokenModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TokenModelCopyWith<$Res> get token {
+    return $TokenModelCopyWith<$Res>(_value.token, (value) {
+      return _then(_value.copyWith(token: value));
+    });
   }
 }
 
@@ -261,12 +271,11 @@ class _$AuthorizedImpl implements _Authorized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthorizedImpl &&
-            const DeepCollectionEquality().equals(other.token, token));
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(token));
+  int get hashCode => Object.hash(runtimeType, token);
 
   @JsonKey(ignore: true)
   @override
@@ -522,6 +531,8 @@ abstract class _$$TokenSuccessImplCopyWith<$Res> {
       __$$TokenSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({TokenModel token});
+
+  $TokenModelCopyWith<$Res> get token;
 }
 
 /// @nodoc
@@ -535,14 +546,22 @@ class __$$TokenSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
+    Object? token = null,
   }) {
     return _then(_$TokenSuccessImpl(
-      freezed == token
+      null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as TokenModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TokenModelCopyWith<$Res> get token {
+    return $TokenModelCopyWith<$Res>(_value.token, (value) {
+      return _then(_value.copyWith(token: value));
+    });
   }
 }
 
@@ -564,12 +583,11 @@ class _$TokenSuccessImpl implements _TokenSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TokenSuccessImpl &&
-            const DeepCollectionEquality().equals(other.token, token));
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(token));
+  int get hashCode => Object.hash(runtimeType, token);
 
   @JsonKey(ignore: true)
   @override

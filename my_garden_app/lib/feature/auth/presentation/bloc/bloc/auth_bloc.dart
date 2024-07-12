@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:my_garden_app/feature/auth/data/models/security_request_model.dart';
 import 'package:my_garden_app/feature/auth/domain/entities/account_entity.dart';
 import 'package:my_garden_app/feature/auth/domain/usecases/auth.dart';
 

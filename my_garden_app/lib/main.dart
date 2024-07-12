@@ -1,12 +1,8 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:my_garden_app/core/constant_values/routes.dart';
 import 'package:my_garden_app/injection_container.dart' as di;
-import 'package:my_garden_app/injection_container.dart';
 
 void main() async {
   final WidgetsBinding widgetsBinding =

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:studenda_mobile_student/feature/auth/data/models/token_model.dart';
-import 'package:studenda_mobile_student/feature/auth/domain/usecases/get_token.dart';
-import 'package:studenda_mobile_student/feature/auth/domain/usecases/logout.dart';
+import 'package:my_garden_app/feature/auth/data/models/token_model.dart';
+import 'package:my_garden_app/feature/auth/domain/usecases/get_token.dart';
+import 'package:my_garden_app/feature/auth/domain/usecases/logout.dart';
 
 part 'token_cubit.freezed.dart';
 part 'token_state.dart';
