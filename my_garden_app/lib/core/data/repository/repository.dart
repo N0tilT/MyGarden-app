@@ -4,7 +4,7 @@ import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/core/network/network_info.dart';
 
-Future<Either<Failure, ResponseType>> loadStudentData<Local extends LocalDataSource,
+Future<Either<Failure, ResponseType>> loadData<Local extends LocalDataSource,
     Remote extends RemoteDataSource, ResponseType, RequestType>(
   Local localDataSource,
   Remote remoteDataSource,
