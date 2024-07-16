@@ -5,21 +5,21 @@ import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
 
 class PlantLocalDataSource
     extends LocalDataSource<List<PlantModel>, void> {
-  Box<PlantModel> departmentBox;
+  Box<PlantModel> plantBox;
 
-  PlantLocalDataSource({required this.departmentBox});
+  PlantLocalDataSource({required this.plantBox});
 
   @override
   Future<void> add(List<PlantModel> departmentList) async {
     try {
       if (departmentList.isEmpty) {
-        departmentBox.clear();
+        plantBox.clear();
         return;
       }
       await updateBox<PlantModel>(
         {for (final item in departmentList) item.id: item},
-        departmentBox.values.map((e) => e.id).toList(),
-        departmentBox,
+        plantBox.values.map((e) => e.id).toList(),
+        plantBox,
       );
     } catch (e) {
       throw CacheException();
@@ -29,7 +29,7 @@ class PlantLocalDataSource
   @override
   Future<List<PlantModel>> studentLoad(void request) async {
     try {
-      return departmentBox.values.toList();
+      return plantBox.values.toList();
     } catch (e) {
       throw CacheException();
     }

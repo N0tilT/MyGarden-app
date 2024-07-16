@@ -6,7 +6,7 @@ part of 'plant_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CourseModelAdapter extends TypeAdapter<_$PlantModelImpl> {
+class PlantModelAdapter extends TypeAdapter<_$PlantModelImpl> {
   @override
   final int typeId = 1;
 
@@ -71,7 +71,7 @@ class CourseModelAdapter extends TypeAdapter<_$PlantModelImpl> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CourseModelAdapter &&
+      other is PlantModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

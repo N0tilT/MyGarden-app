@@ -7,6 +7,7 @@ class GardenLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset('assets/gif/studenda_loading.apng',width: width, height: height,);
+    return Container();
+    // return Image.asset('assets/gif/studenda_loading.apng',width: width, height: height,);
   }
 }

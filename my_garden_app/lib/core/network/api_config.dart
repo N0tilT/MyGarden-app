@@ -1,2 +1,2 @@
 // ignore: constant_identifier_names
-const BASE_URL = "http://88.210.3.137/api";
+const BASE_URL = "https://localhost:7042/api";
