@@ -31,7 +31,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource{
           userBox.add(
             AccountModel(
               id: response.user.id,
-              groupId: response.user.groupId,
               identityId: response.user.identityId,
               name: response.user.name,
               patronymic: response.user.patronymic,

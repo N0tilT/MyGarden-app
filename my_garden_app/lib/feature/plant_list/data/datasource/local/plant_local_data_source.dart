@@ -10,14 +10,14 @@ class PlantLocalDataSource
   PlantLocalDataSource({required this.plantBox});
 
   @override
-  Future<void> add(List<PlantModel> departmentList) async {
+  Future<void> add(List<PlantModel> plantList) async {
     try {
-      if (departmentList.isEmpty) {
+      if (plantList.isEmpty) {
         plantBox.clear();
         return;
       }
       await updateBox<PlantModel>(
-        {for (final item in departmentList) item.id: item},
+        {for (final item in plantList) item.id: item},
         plantBox.values.map((e) => e.id).toList(),
         plantBox,
       );
@@ -27,7 +27,7 @@ class PlantLocalDataSource
   }
 
   @override
-  Future<List<PlantModel>> studentLoad(void request) async {
+  Future<List<PlantModel>> load(void request) async {
     try {
       return plantBox.values.toList();
     } catch (e) {

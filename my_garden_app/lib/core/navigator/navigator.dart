@@ -13,6 +13,8 @@ class _MainNavigatorWidgetState extends State<MainNavigatorWidget> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     const PlantListPage(),
+    const PlantListPage(),
+    const PlantListPage(),
   ];
 
   void _onItemTap(int index) {
@@ -30,6 +32,14 @@ class _MainNavigatorWidgetState extends State<MainNavigatorWidget> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.schedule),
+            label: "Мои растения",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.schedule),
+            label: "Мои растения",
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
             label: "Мои растения",

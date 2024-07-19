@@ -13,7 +13,7 @@ Future<Either<Failure, ResponseType>> loadData<Local extends LocalDataSource,
   NetworkInfo networkInfo,
 ) async {
   if (!(await networkInfo.isConnected && remote)) {try {
-      return Right(await localDataSource.studentLoad(request) as ResponseType);
+      return Right(await localDataSource.load(request) as ResponseType);
     } on CacheException {
       return const Left(
         CacheFailure(message: "Ошибка локального хранилища"),
@@ -21,9 +21,9 @@ Future<Either<Failure, ResponseType>> loadData<Local extends LocalDataSource,
     }
   } else {
     try {
-      final remoteLoad = await remoteDataSource.studentLoad(request) as ResponseType;
+      final remoteLoad = await remoteDataSource.load(request) as ResponseType;
       await localDataSource.add(remoteLoad);
-      return Right(await localDataSource.studentLoad(request) as ResponseType);
+      return Right(await localDataSource.load(request) as ResponseType);
     } on ServerException {
       return const Left(ServerFailure(message: "Ошибка сервера"));
     } on AuthException {

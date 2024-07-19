@@ -23,20 +23,17 @@ mixin _$AccountModel {
   @JsonKey(name: 'Id')
   @HiveField(0)
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'GroupId')
-  @HiveField(1)
-  int? get groupId => throw _privateConstructorUsedError;
   @JsonKey(name: 'Name')
-  @HiveField(2)
+  @HiveField(1)
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'Surname')
-  @HiveField(3)
+  @HiveField(2)
   String? get surname => throw _privateConstructorUsedError;
   @JsonKey(name: 'Patronymic')
-  @HiveField(4)
+  @HiveField(3)
   String? get patronymic => throw _privateConstructorUsedError;
   @JsonKey(name: 'IdentityId')
-  @HiveField(5)
+  @HiveField(4)
   String? get identityId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,11 +50,10 @@ abstract class $AccountModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'Id') @HiveField(0) int id,
-      @JsonKey(name: 'GroupId') @HiveField(1) int? groupId,
-      @JsonKey(name: 'Name') @HiveField(2) String? name,
-      @JsonKey(name: 'Surname') @HiveField(3) String? surname,
-      @JsonKey(name: 'Patronymic') @HiveField(4) String? patronymic,
-      @JsonKey(name: 'IdentityId') @HiveField(5) String? identityId});
+      @JsonKey(name: 'Name') @HiveField(1) String? name,
+      @JsonKey(name: 'Surname') @HiveField(2) String? surname,
+      @JsonKey(name: 'Patronymic') @HiveField(3) String? patronymic,
+      @JsonKey(name: 'IdentityId') @HiveField(4) String? identityId});
 }
 
 /// @nodoc
@@ -74,7 +70,6 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
   @override
   $Res call({
     Object? id = null,
-    Object? groupId = freezed,
     Object? name = freezed,
     Object? surname = freezed,
     Object? patronymic = freezed,
@@ -85,10 +80,6 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      groupId: freezed == groupId
-          ? _value.groupId
-          : groupId // ignore: cast_nullable_to_non_nullable
-              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -119,11 +110,10 @@ abstract class _$$AccountModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'Id') @HiveField(0) int id,
-      @JsonKey(name: 'GroupId') @HiveField(1) int? groupId,
-      @JsonKey(name: 'Name') @HiveField(2) String? name,
-      @JsonKey(name: 'Surname') @HiveField(3) String? surname,
-      @JsonKey(name: 'Patronymic') @HiveField(4) String? patronymic,
-      @JsonKey(name: 'IdentityId') @HiveField(5) String? identityId});
+      @JsonKey(name: 'Name') @HiveField(1) String? name,
+      @JsonKey(name: 'Surname') @HiveField(2) String? surname,
+      @JsonKey(name: 'Patronymic') @HiveField(3) String? patronymic,
+      @JsonKey(name: 'IdentityId') @HiveField(4) String? identityId});
 }
 
 /// @nodoc
@@ -138,7 +128,6 @@ class __$$AccountModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? groupId = freezed,
     Object? name = freezed,
     Object? surname = freezed,
     Object? patronymic = freezed,
@@ -149,10 +138,6 @@ class __$$AccountModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      groupId: freezed == groupId
-          ? _value.groupId
-          : groupId // ignore: cast_nullable_to_non_nullable
-              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -179,11 +164,10 @@ class __$$AccountModelImplCopyWithImpl<$Res>
 class _$AccountModelImpl extends _AccountModel {
   _$AccountModelImpl(
       {@JsonKey(name: 'Id') @HiveField(0) required this.id,
-      @JsonKey(name: 'GroupId') @HiveField(1) required this.groupId,
-      @JsonKey(name: 'Name') @HiveField(2) required this.name,
-      @JsonKey(name: 'Surname') @HiveField(3) required this.surname,
-      @JsonKey(name: 'Patronymic') @HiveField(4) required this.patronymic,
-      @JsonKey(name: 'IdentityId') @HiveField(5) required this.identityId})
+      @JsonKey(name: 'Name') @HiveField(1) required this.name,
+      @JsonKey(name: 'Surname') @HiveField(2) required this.surname,
+      @JsonKey(name: 'Patronymic') @HiveField(3) required this.patronymic,
+      @JsonKey(name: 'IdentityId') @HiveField(4) required this.identityId})
       : super._();
 
   factory _$AccountModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -194,29 +178,25 @@ class _$AccountModelImpl extends _AccountModel {
   @HiveField(0)
   final int id;
   @override
-  @JsonKey(name: 'GroupId')
-  @HiveField(1)
-  final int? groupId;
-  @override
   @JsonKey(name: 'Name')
-  @HiveField(2)
+  @HiveField(1)
   final String? name;
   @override
   @JsonKey(name: 'Surname')
-  @HiveField(3)
+  @HiveField(2)
   final String? surname;
   @override
   @JsonKey(name: 'Patronymic')
-  @HiveField(4)
+  @HiveField(3)
   final String? patronymic;
   @override
   @JsonKey(name: 'IdentityId')
-  @HiveField(5)
+  @HiveField(4)
   final String? identityId;
 
   @override
   String toString() {
-    return 'AccountModel(id: $id, groupId: $groupId, name: $name, surname: $surname, patronymic: $patronymic, identityId: $identityId)';
+    return 'AccountModel(id: $id, name: $name, surname: $surname, patronymic: $patronymic, identityId: $identityId)';
   }
 
   @override
@@ -225,7 +205,6 @@ class _$AccountModelImpl extends _AccountModel {
         (other.runtimeType == runtimeType &&
             other is _$AccountModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.groupId, groupId) || other.groupId == groupId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.patronymic, patronymic) ||
@@ -236,8 +215,8 @@ class _$AccountModelImpl extends _AccountModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, groupId, name, surname, patronymic, identityId);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, surname, patronymic, identityId);
 
   @JsonKey(ignore: true)
   @override
@@ -256,14 +235,13 @@ class _$AccountModelImpl extends _AccountModel {
 abstract class _AccountModel extends AccountModel {
   factory _AccountModel(
       {@JsonKey(name: 'Id') @HiveField(0) required final int id,
-      @JsonKey(name: 'GroupId') @HiveField(1) required final int? groupId,
-      @JsonKey(name: 'Name') @HiveField(2) required final String? name,
-      @JsonKey(name: 'Surname') @HiveField(3) required final String? surname,
+      @JsonKey(name: 'Name') @HiveField(1) required final String? name,
+      @JsonKey(name: 'Surname') @HiveField(2) required final String? surname,
       @JsonKey(name: 'Patronymic')
-      @HiveField(4)
+      @HiveField(3)
       required final String? patronymic,
       @JsonKey(name: 'IdentityId')
-      @HiveField(5)
+      @HiveField(4)
       required final String? identityId}) = _$AccountModelImpl;
   _AccountModel._() : super._();
 
@@ -275,24 +253,20 @@ abstract class _AccountModel extends AccountModel {
   @HiveField(0)
   int get id;
   @override
-  @JsonKey(name: 'GroupId')
-  @HiveField(1)
-  int? get groupId;
-  @override
   @JsonKey(name: 'Name')
-  @HiveField(2)
+  @HiveField(1)
   String? get name;
   @override
   @JsonKey(name: 'Surname')
-  @HiveField(3)
+  @HiveField(2)
   String? get surname;
   @override
   @JsonKey(name: 'Patronymic')
-  @HiveField(4)
+  @HiveField(3)
   String? get patronymic;
   @override
   @JsonKey(name: 'IdentityId')
-  @HiveField(5)
+  @HiveField(4)
   String? get identityId;
   @override
   @JsonKey(ignore: true)

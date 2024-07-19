@@ -18,29 +18,26 @@ class AccountModelAdapter extends TypeAdapter<_$AccountModelImpl> {
     };
     return _$AccountModelImpl(
       id: fields[0] as int,
-      groupId: fields[1] as int?,
-      name: fields[2] as String?,
-      surname: fields[3] as String?,
-      patronymic: fields[4] as String?,
-      identityId: fields[5] as String?,
+      name: fields[1] as String?,
+      surname: fields[2] as String?,
+      patronymic: fields[3] as String?,
+      identityId: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$AccountModelImpl obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.groupId)
-      ..writeByte(2)
       ..write(obj.name)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.surname)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.patronymic)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.identityId);
   }
 
@@ -62,7 +59,6 @@ class AccountModelAdapter extends TypeAdapter<_$AccountModelImpl> {
 _$AccountModelImpl _$$AccountModelImplFromJson(Map<String, dynamic> json) =>
     _$AccountModelImpl(
       id: (json['Id'] as num).toInt(),
-      groupId: (json['GroupId'] as num?)?.toInt(),
       name: json['Name'] as String?,
       surname: json['Surname'] as String?,
       patronymic: json['Patronymic'] as String?,
@@ -72,7 +68,6 @@ _$AccountModelImpl _$$AccountModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AccountModelImplToJson(_$AccountModelImpl instance) =>
     <String, dynamic>{
       'Id': instance.id,
-      'GroupId': instance.groupId,
       'Name': instance.name,
       'Surname': instance.surname,
       'Patronymic': instance.patronymic,

@@ -8,8 +8,8 @@ import 'package:my_garden_app/core/utils/email_validator.dart';
 import 'package:my_garden_app/feature/auth/data/models/security_request_model.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'package:my_garden_app/feature/auth/presentation/widgets/auth_app_bar_widget.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
 import 'package:my_garden_app/resources/colors.dart';
+
 class LoginAuthPage extends StatefulWidget {
   const LoginAuthPage({super.key, required this.route});
 
@@ -45,21 +45,8 @@ class _LoginAuthPageState extends State<LoginAuthPage> {
             passwordTextController: passwordTextController,
           ),
           authSuccess: (success) {
-            final selectorBloc = context.watch<PlantListCubit>();
-            return selectorBloc.state.when(
-              initial: () => const Center(child: GardenLoadingWidget()),
-              loading: () => const Center(child: GardenLoadingWidget()),
-              success: (plants) {
-                Navigator.of(context).pushReplacementNamed(widget.route);
-                return Container();
-              },
-              fail: (message) {
-                Navigator.of(context).pushReplacementNamed(widget.route);
-                return Container();
-              },
-              localLoadingFail: (message) {return Container();},
-              localLoadingSuccess: (departments) {return Container();},
-            );
+            Navigator.of(context).pushReplacementNamed(widget.route);
+            return null;
           },
           authLoading: () => const Center(
             child: GardenLoadingWidget(),
