@@ -19,6 +19,7 @@ import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_re
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/plant_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/add_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load_plants.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
 
@@ -92,11 +93,17 @@ Future<void> init() async {
   sl.registerFactory(
     () => PlantListCubit(
       loadPlants: sl(),
+      uploadPlant: sl(),
     ),
   );
 
   sl.registerLazySingleton(
     () => LoadPlants(
+      plantRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => UploadPlant(
       plantRepository: sl(),
     ),
   );

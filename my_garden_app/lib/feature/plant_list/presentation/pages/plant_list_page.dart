@@ -4,6 +4,7 @@ import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_adding_page.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:my_garden_app/injection_container.dart';
 
@@ -97,7 +98,11 @@ class _PlantListWrapper extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: FloatingActionButton(
               onPressed: () {
-                // Add your action here for the "+" button
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (context) => const PlantAddingPage(),
+                  ),
+                );
               },
               child: const Text(
                 "+",

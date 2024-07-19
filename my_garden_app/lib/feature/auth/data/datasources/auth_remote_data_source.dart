@@ -76,4 +76,10 @@ class AuthRemoteDataSource
     // TODO: implement load
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> upload(SecurityRequestModel remoteLoad) {
+    // TODO: implement upload
+    throw UnimplementedError();
+  }
 }

@@ -5,6 +5,7 @@ import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/plant_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
 
 class PlantRepositoryImpl implements PlantRepository {
@@ -24,6 +25,18 @@ class PlantRepositoryImpl implements PlantRepository {
     bool remote = true,
   ]) async {
     return await loadData<
+        PlantLocalDataSource,
+        PlantRemoteDataSource,
+        List<PlantModel>,
+        void>(localDataSource, remoteDataSource, remote, request, networkInfo);
+  }
+
+  @override
+  Future<Either<Failure, void>> add(
+    List<PlantModel> request, [
+    bool remote = true,
+  ]) async {
+    return await uploadData<
         PlantLocalDataSource,
         PlantRemoteDataSource,
         List<PlantModel>,

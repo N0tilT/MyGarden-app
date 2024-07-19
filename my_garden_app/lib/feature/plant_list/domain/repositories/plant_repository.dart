@@ -7,4 +7,9 @@ abstract class PlantRepository {
     void request, [
     bool remote = true,
   ]);
+
+  Future<Either<Failure, void>> add(
+    List<PlantModel> request, [
+    bool remote = true,
+  ]);
 }

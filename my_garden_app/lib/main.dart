@@ -8,6 +8,7 @@ import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.dart';
 import 'package:my_garden_app/feature/auth/presentation/pages/main_auth_widget.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_adding_page.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_list_page.dart';
 import 'package:my_garden_app/injection_container.dart' as di;
 import 'package:my_garden_app/injection_container.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           mainRoute: (context) => const MainNavigatorWidget(),
           authRoute: (context) => const MainAuthPage(),
           plantListRoute: (context) => const PlantListPage(),
+          plantAddingRoute: (context) => const PlantAddingPage(),
         },
       ),
     );

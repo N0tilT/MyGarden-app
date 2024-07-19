@@ -7,6 +7,7 @@ abstract class LocalDataSource<ResponseType, RequestType> {
 
 abstract class RemoteDataSource<ResponseType, RequestType> {
   Future<ResponseType> load(RequestType request);
+  Future<void> upload(ResponseType remoteLoad);
 }
 
 Future<void> updateBox<ModelType>(
