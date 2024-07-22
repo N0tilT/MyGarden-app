@@ -31,7 +31,7 @@ class PlantListCubit extends Cubit<PlantListState> {
           lightNeedId: plant.lightNeedId,
           stageId: plant.stageId,
           imageId: plant.imageId,
-          ripeningPeriod: plant.ripeningPeriod)
+          ripeningPeriod: plant.ripeningPeriod,),
     ]);
     plantList.add(plant);
     result.fold(

@@ -5,7 +5,6 @@ import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/plant_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
-import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
 
 class PlantRepositoryImpl implements PlantRepository {

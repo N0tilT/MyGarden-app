@@ -8,7 +8,7 @@ part 'plant_model.g.dart';
 
 @freezed
 class PlantModel extends HiveObject with _$PlantModel {
-  @HiveType(typeId: 1, adapterName: 'CourseModelAdapter')
+  @HiveType(typeId: 1, adapterName: 'PlantModelAdapter')
   factory PlantModel({
     @JsonKey(name: 'id') @HiveField(0) required int id,
     @JsonKey(name: 'title') @HiveField(1) required String? title,

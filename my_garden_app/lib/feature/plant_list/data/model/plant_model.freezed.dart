@@ -280,7 +280,7 @@ class __$$PlantModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 1, adapterName: 'CourseModelAdapter')
+@HiveType(typeId: 1, adapterName: 'PlantModelAdapter')
 class _$PlantModelImpl extends _PlantModel {
   _$PlantModelImpl(
       {@JsonKey(name: 'id') @HiveField(0) required this.id,
