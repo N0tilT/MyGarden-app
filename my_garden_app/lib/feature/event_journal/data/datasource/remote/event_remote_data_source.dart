@@ -57,6 +57,7 @@ class EventRemoteDataSource extends RemoteDataSource<List<EventModel>, void> {
   
   @override
   Future<void> upload(List<EventModel> remoteLoad) {
+    // ignore: void_checks
     return Future.value(remoteLoad);
   }
 }

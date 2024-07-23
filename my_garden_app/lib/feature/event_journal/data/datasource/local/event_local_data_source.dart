@@ -3,23 +3,22 @@ import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart';
 
-class EventLocalDataSource
-    extends LocalDataSource<List<EventModel>, void> {
-  Box<EventModel> EventBox;
+class EventLocalDataSource extends LocalDataSource<List<EventModel>, void> {
+  Box<EventModel> eventBox;
 
-  EventLocalDataSource({required this.EventBox});
+  EventLocalDataSource({required this.eventBox});
 
   @override
-  Future<void> add(List<EventModel> EventList) async {
+  Future<void> add(List<EventModel> eventList) async {
     try {
-      if (EventList.isEmpty) {
-        EventBox.clear();
+      if (eventList.isEmpty) {
+        eventBox.clear();
         return;
       }
       await updateBox<EventModel>(
-        {for (final item in EventList) item.id: item},
-        EventBox.values.map((e) => e.id).toList(),
-        EventBox,
+        {for (final item in eventList) item.id: item},
+        eventBox.values.map((e) => e.id).toList(),
+        eventBox,
       );
     } catch (e) {
       throw CacheException();
@@ -29,10 +28,9 @@ class EventLocalDataSource
   @override
   Future<List<EventModel>> load(void request) async {
     try {
-      return EventBox.values.toList();
+      return eventBox.values.toList();
     } catch (e) {
       throw CacheException();
     }
   }
-  
 }

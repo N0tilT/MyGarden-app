@@ -12,7 +12,8 @@ Future<Either<Failure, ResponseType>> loadData<Local extends LocalDataSource,
   RequestType request,
   NetworkInfo networkInfo,
 ) async {
-  if (!(await networkInfo.isConnected && remote)) {try {
+  if (!(await networkInfo.isConnected && remote)) {
+    try {
       return Right(await localDataSource.load(request) as ResponseType);
     } on CacheException {
       return const Left(
@@ -40,7 +41,8 @@ Future<Either<Failure, ResponseType>> uploadData<Local extends LocalDataSource,
   ResponseType request,
   NetworkInfo networkInfo,
 ) async {
-  if (!(await networkInfo.isConnected && remote)) {try {
+  if (!(await networkInfo.isConnected && remote)) {
+    try {
       return Right(await localDataSource.add(request) as ResponseType);
     } on CacheException {
       return const Left(
@@ -59,4 +61,3 @@ Future<Either<Failure, ResponseType>> uploadData<Local extends LocalDataSource,
     }
   }
 }
-

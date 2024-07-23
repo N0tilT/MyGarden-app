@@ -118,8 +118,8 @@ class _EventAddingWidgetState extends State<_EventAddingWidget> {
                         )
                         .toList();
 
-                    final EventListCubit = context.read<EventCubit>();
-                    EventListCubit.upload(
+                    final eventListCubit = context.read<EventCubit>();
+                    eventListCubit.upload(
                       EventEntity(
                         id: 0,
                         title: inputs[0],

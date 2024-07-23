@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/core/data/repository/repository.dart';
 import 'package:my_garden_app/core/network/network_info.dart';
@@ -40,5 +41,21 @@ class EventRepositoryImpl implements EventRepository {
         EventRemoteDataSource,
         List<EventModel>,
         void>(localDataSource, remoteDataSource, remote, request, networkInfo);
+  }
+
+  @override
+  Future<Either<Failure, List<EventModel>>> loadByPlantId(
+    int request, [
+    bool remote = false,
+  ]) async {
+    try {
+      // ignore: void_checks
+      final x = await localDataSource.load(() {});
+      return Right(x.where((element) => element.plantId == request).toList());
+    } on CacheException {
+      return const Left(
+        CacheFailure(message: "Ошибка локального хранилища"),
+      );
+    }
   }
 }

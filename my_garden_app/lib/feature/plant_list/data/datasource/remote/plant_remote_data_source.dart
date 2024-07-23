@@ -90,9 +90,10 @@ class PlantRemoteDataSource extends RemoteDataSource<List<PlantModel>, void> {
       throw ServerException();
     }
   }
-  
+
   @override
   Future<void> upload(List<PlantModel> remoteLoad) {
+    // ignore: void_checks
     return Future.value(remoteLoad);
   }
 }
