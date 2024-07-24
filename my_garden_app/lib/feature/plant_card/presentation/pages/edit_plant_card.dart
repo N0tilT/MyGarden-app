@@ -5,47 +5,35 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_l
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_form_widget.dart';
 import 'package:my_garden_app/injection_container.dart';
 
-class PlantAddingPage extends StatefulWidget {
-  const PlantAddingPage({super.key});
+class PlantEditingPage extends StatefulWidget {
+  const PlantEditingPage({super.key, required this.plant});
+
+  final PlantEntity plant;
 
   @override
-  _PlantAddingPageState createState() => _PlantAddingPageState();
+  _PlantEditingPageState createState() => _PlantEditingPageState();
 }
 
-class _PlantAddingPageState extends State<PlantAddingPage> {
+class _PlantEditingPageState extends State<PlantEditingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 241, 245),
-      appBar: const PlantAddingAppBarWidget(),
+      appBar: const PlantEditingAppBarWidget(),
       body: BlocProvider<PlantListCubit>(
         create: (context) => sl<PlantListCubit>(),
-        child: const PlantFormWidget(
-          plant: PlantEntity(
-            id: 0,
-            title: "",
-            biologyTitle: "",
-            fertilization: "",
-            toxicity: "",
-            replacing: "",
-            description: "",
-            groupId: 0,
-            wateringNeedId: 0,
-            lightNeedId: 0,
-            stageId: 0,
-            imageId: 0,
-            ripeningPeriod: 0,
-          ),
-          state: PlantFormState.add,
+        child: PlantFormWidget(
+          plant: widget.plant,
+          state: PlantFormState.edit,
         ),
       ),
     );
   }
 }
 
-class PlantAddingAppBarWidget extends StatelessWidget
+class PlantEditingAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
-  const PlantAddingAppBarWidget({
+  const PlantEditingAppBarWidget({
     super.key,
   });
 
@@ -56,7 +44,7 @@ class PlantAddingAppBarWidget extends StatelessWidget
       automaticallyImplyLeading: false,
       centerTitle: true,
       title: const Text(
-        'Новое растение',
+        'Редактирование',
         style: TextStyle(color: Colors.white, fontSize: 25),
       ),
     );

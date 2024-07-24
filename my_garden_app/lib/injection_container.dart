@@ -14,6 +14,17 @@ import 'package:my_garden_app/feature/auth/domain/usecases/get_token.dart';
 import 'package:my_garden_app/feature/auth/domain/usecases/logout.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.dart';
+import 'package:my_garden_app/feature/event_journal/data/datasource/local/event_local_data_source.dart';
+import 'package:my_garden_app/feature/event_journal/data/datasource/remote/event_remote_data_source.dart';
+import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart';
+import 'package:my_garden_app/feature/event_journal/data/repository/event_repository_impl.dart';
+import 'package:my_garden_app/feature/event_journal/domain/repositories/event_repository.dart';
+import 'package:my_garden_app/feature/event_journal/domain/usecases/add_event.dart';
+import 'package:my_garden_app/feature/event_journal/domain/usecases/load_events.dart';
+import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/event_cubit.dart';
+import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_events.dart';
+import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_info.dart';
+import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/plant_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
@@ -28,6 +39,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   const secureStorage = FlutterSecureStorage();
   Hive.registerAdapter(PlantModelAdapter());
+  Hive.registerAdapter(EventModelAdapter());
 
   //! Features
   //! Auth
@@ -129,6 +141,66 @@ Future<void> init() async {
   });
 
   await sl.isReady<PlantLocalDataSource>();
+
+  //! Events
+  sl.registerFactory(
+    () => EventCubit(
+      loadEvents: sl(),
+      uploadEvent: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => LoadEvents(
+      eventRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => UploadEvent(
+      eventRepository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<EventRepository>(
+    () => EventRepositoryImpl(
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<EventRemoteDataSource>(
+    () => EventRemoteDataSource(
+      client: sl(),
+    ),
+  );
+
+  sl.registerLazySingletonAsync<EventLocalDataSource>(() async {
+    return EventLocalDataSource(
+      eventBox: await Hive.openBox<EventModel>('EventBox'),
+    );
+  });
+
+  await sl.isReady<EventLocalDataSource>();
+  //! PlantCard
+  sl.registerFactory(
+    () => PlantCardCubit(
+      loadPlant: sl(),
+      loadPlantEvents: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => LoadPlant(
+      plantRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => LoadPlantEvents(
+      eventRepository: sl(),
+    ),
+  );
+
 //! Core
 
   sl.registerLazySingleton<NetworkInfo>(

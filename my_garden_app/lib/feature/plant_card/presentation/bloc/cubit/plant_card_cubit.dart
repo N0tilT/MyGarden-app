@@ -16,29 +16,24 @@ class PlantCardCubit extends Cubit<PlantCardState> {
   PlantCardCubit({required this.loadPlant, required this.loadPlantEvents})
       : super(const PlantCardState.initial());
 
-  Future<void> loadLocally(int plantId) async {
+  Future<void> load(PlantEntity plant) async {
     emit(const PlantCardState.loading());
-    final plant = await loadPlant(plantId);
-    plant.fold(
+
+    final events = await loadPlantEvents(plant.id);
+    events.fold(
       (error) => emit(PlantCardState.fail(error.message)),
-      (succededPlant) async {
-        final events = await loadPlantEvents(plantId);
-        events.fold(
-          (error) => emit(PlantCardState.fail(error.message)),
-          (succededEvents) => emit(
-            PlantCardState.success(
-              PlantCardEntity(
-                plant: PlantEntity.fromModel(succededPlant),
-                event: succededEvents
-                    .map(
-                      (e) => EventEntity.fromModel(e),
-                    )
-                    .toList(),
-              ),
-            ),
+      (succededEvents) => emit(
+        PlantCardState.success(
+          PlantCardEntity(
+            plant: plant,
+            event: succededEvents
+                .map(
+                  (e) => EventEntity.fromModel(e),
+                )
+                .toList(),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

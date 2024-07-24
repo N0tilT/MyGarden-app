@@ -6,7 +6,9 @@ import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart'
 class EventLocalDataSource extends LocalDataSource<List<EventModel>, void> {
   Box<EventModel> eventBox;
 
-  EventLocalDataSource({required this.eventBox});
+  EventLocalDataSource({
+    required this.eventBox,
+  });
 
   @override
   Future<void> add(List<EventModel> eventList) async {

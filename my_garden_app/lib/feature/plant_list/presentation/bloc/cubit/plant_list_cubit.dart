@@ -72,4 +72,6 @@ class PlantListCubit extends Cubit<PlantListState> {
       },
     );
   }
+
+  void update(PlantEntity plantEntity) {}
 }

@@ -145,7 +145,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 1, adapterName: 'EventModelAdapter')
+@HiveType(typeId: 2, adapterName: 'EventModelAdapter')
 class _$EventModelImpl extends _EventModel {
   _$EventModelImpl(
       {@JsonKey(name: 'id') @HiveField(0) required this.id,

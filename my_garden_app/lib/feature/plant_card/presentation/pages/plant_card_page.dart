@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
+import 'package:my_garden_app/feature/plant_card/presentation/pages/edit_plant_card.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/injection_container.dart';
 
 class PlantCardPage extends StatefulWidget {
-  const PlantCardPage({super.key, required this.plantId});
-  final int plantId;
+  const PlantCardPage({super.key, required this.plant});
+  final PlantEntity plant;
 
   @override
   _PlantCardPageState createState() => _PlantCardPageState();
@@ -19,7 +21,7 @@ class _PlantCardPageState extends State<PlantCardPage> {
       backgroundColor: const Color.fromARGB(255, 240, 241, 245),
       appBar: const PlantCardAppBarWidget(),
       body: BlocProvider<PlantCardCubit>(
-        create: (context) => sl<PlantCardCubit>()..loadLocally(widget.plantId),
+        create: (context) => sl<PlantCardCubit>()..load(widget.plant),
         child: const _PlantCardWidget(),
       ),
     );
@@ -27,7 +29,7 @@ class _PlantCardPageState extends State<PlantCardPage> {
 }
 
 class _PlantCardWidget extends StatefulWidget {
-  const _PlantCardWidget({super.key});
+  const _PlantCardWidget();
 
   @override
   _PlantCardWidgetState createState() => _PlantCardWidgetState();
@@ -49,6 +51,26 @@ class _PlantCardWidgetState extends State<_PlantCardWidget> {
                   (e) => Text(e.title!),
                 )
                 .toList(),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 20),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (context) =>
+                          PlantEditingPage(plant: departments.plant),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "+",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ),
           ),
         ],
       ),

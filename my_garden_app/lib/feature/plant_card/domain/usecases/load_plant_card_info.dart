@@ -1,3 +1,5 @@
+// ignore_for_file: void_checks
+
 import 'package:dartz/dartz.dart';
 import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/core/data/usecases/usecase.dart';
@@ -14,6 +16,17 @@ class LoadPlant extends Usecase<PlantModel, int> {
     int request, [
     bool remote = true,
   ]) async {
-    return await plantRepository.loadByPlantId(request, remote);
+    var plants = await plantRepository.load(() {}, remote);
+    if (plants.length() == 0) {
+      plants = await plantRepository.load(() {}, !remote);
+    }
+    return plants.fold(
+      (error) => Left(error),
+      (succededPlants) => Right(
+        succededPlants.firstWhere(
+          (element) => element.id == request,
+        ),
+      ),
+    );
   }
 }

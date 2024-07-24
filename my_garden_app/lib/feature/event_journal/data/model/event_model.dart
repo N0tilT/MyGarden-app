@@ -8,7 +8,7 @@ part 'event_model.g.dart';
 
 @freezed
 class EventModel extends HiveObject with _$EventModel {
-  @HiveType(typeId: 1, adapterName: 'EventModelAdapter')
+  @HiveType(typeId: 2, adapterName: 'EventModelAdapter')
   factory EventModel({
     @JsonKey(name: 'id') @HiveField(0) required int id,
     @JsonKey(name: 'title') @HiveField(1) required String? title,
