@@ -1,3 +1,4 @@
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -31,22 +32,25 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => sl<TokenCubit>()..getToken()),
         BlocProvider(create: (context) => sl<AuthBloc>()),
       ],
-      child: MaterialApp(
-        title: 'Мой сад',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Color.fromARGB(255, 101, 59, 159),
+      child: CalendarControllerProvider(
+        controller: EventController(),
+        child: MaterialApp(
+          title: 'Мой сад',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Color.fromARGB(255, 101, 59, 159),
+            ),
+            fontFamily: 'Inter',
           ),
-          fontFamily: 'Inter',
+          home: const _SplashScreen(),
+          routes: {
+            mainRoute: (context) => const MainNavigatorWidget(),
+            authRoute: (context) => const MainAuthPage(),
+            plantListRoute: (context) => const PlantListPage(),
+            plantAddingRoute: (context) => const PlantAddingPage(),
+          },
         ),
-        home: const _SplashScreen(),
-        routes: {
-          mainRoute: (context) => const MainNavigatorWidget(),
-          authRoute: (context) => const MainAuthPage(),
-          plantListRoute: (context) => const PlantListPage(),
-          plantAddingRoute: (context) => const PlantAddingPage(),
-        },
       ),
     );
   }

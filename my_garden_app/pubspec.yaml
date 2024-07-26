@@ -11,6 +11,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.2
+  calendar_view: ^1.2.0
   connectivity_plus: ^5.0.2
   dartz: ^0.10.1
   email_validator: ^2.0.1
