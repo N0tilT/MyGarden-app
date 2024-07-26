@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 class GardenVisualPage extends StatefulWidget {
+  
+  const GardenVisualPage({super.key});
+
   @override
   _GardenVisualPageState createState() => _GardenVisualPageState();
 }
