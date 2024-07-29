@@ -11,9 +11,8 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   List<RectangleItem> rectangles = [];
   RectangleItem? currentRectangle;
   Offset offset = Offset.zero;
-  static const double gridSize = 50.0;
 
-  void _addRectangle(RectangleType type) {
+  void _addRectangle(int width, int height) {
     final newPosition = Offset(
       -50.0 * (offset.dx ~/ 50 - 3),
       -50.0 * (offset.dy ~/ 50 - 6),
@@ -21,7 +20,8 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
 
     setState(() {
       currentRectangle = RectangleItem(
-        type: type,
+        width: width,
+        height: height,
         truePosition: newPosition,
         position: newPosition,
         isMoving: true,
@@ -74,9 +74,9 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   Rect _getRotatedBounds(RectangleItem rectangle) {
     final corners = [
       rectangle.position,
-      rectangle.position.translate(rectangle.width, 0),
-      rectangle.position.translate(0, rectangle.height),
-      rectangle.position.translate(rectangle.width, rectangle.height),
+      rectangle.position.translate(rectangle.width * 50, 0),
+      rectangle.position.translate(0, rectangle.height * 50),
+      rectangle.position.translate(rectangle.width * 50, rectangle.height * 50),
     ]
         .map(
           (point) =>
@@ -114,13 +114,11 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
       final deltaY = currentRectangle!.truePosition.dy.round() -
           currentRectangle!.position.dy;
 
-      if (deltaX.abs() >= gridSize) {
-        currentRectangle!.position +=
-            Offset(deltaX >= 0 ? gridSize : -gridSize, 0);
+      if (deltaX.abs() >= 50) {
+        currentRectangle!.position += Offset(deltaX >= 0 ? 50 : -50, 0);
       }
-      if (deltaY.abs() >= gridSize) {
-        currentRectangle!.position +=
-            Offset(0, deltaY >= 0 ? gridSize : -gridSize);
+      if (deltaY.abs() >= 50) {
+        currentRectangle!.position += Offset(0, deltaY >= 0 ? 50 : -50);
       }
     });
   }
@@ -159,7 +157,10 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
         angle: rectangle.rotation * (pi / 180),
         alignment: Alignment.topLeft,
         child: GestureDetector(
-          onTap: () => _toggleMovement(rectangle),
+          onTap: () {
+            _toggleMovement(rectangle);
+            _showRectangleDialog(context, rectangle: rectangle);
+          },
           child: _rectangleContainer(rectangle, Colors.blue),
         ),
       ),
@@ -173,16 +174,23 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
       child: Transform.rotate(
         angle: currentRectangle!.rotation * (pi / 180),
         alignment: Alignment.topLeft,
-        child:
-            _rectangleContainer(currentRectangle!, Colors.red.withOpacity(0.5)),
+        child: GestureDetector(
+          onTap: () {
+            _showRectangleDialog(context, rectangle: currentRectangle);
+          },
+          child: _rectangleContainer(
+            currentRectangle!,
+            Colors.red.withOpacity(0.5),
+          ),
+        ),
       ),
     );
   }
 
   Widget _rectangleContainer(RectangleItem rectangle, Color color) {
     return Container(
-      width: rectangle.width,
-      height: rectangle.height,
+      width: rectangle.width * 50,
+      height: rectangle.height * 50,
       decoration: BoxDecoration(
         color: color,
         border: Border.all(
@@ -191,7 +199,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
           width: 2,
         ),
       ),
-      child: Center(child: Text(rectangle.type.toString().split('.').last)),
+      child: Center(child: Text('${rectangle.width}x${rectangle.height}')),
     );
   }
 
@@ -227,24 +235,65 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  void _showRectangleDialog(BuildContext context) {
+  void _showRectangleDialog(BuildContext context, {RectangleItem? rectangle}) {
+    final widthController =
+        TextEditingController(text: rectangle?.width.toString() ?? '');
+    final heightController =
+        TextEditingController(text: rectangle?.height.toString() ?? '');
+
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Выберите тип прямоугольника'),
+          title: Text(
+            rectangle == null
+                ? 'Введите размеры прямоугольника'
+                : 'Редактировать размеры',
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            children: RectangleType.values.map((type) {
-              return ListTile(
-                title: Text(type.toString().split('.').last),
-                onTap: () {
-                  _addRectangle(type);
-                  Navigator.of(context).pop();
-                },
-              );
-            }).toList(),
+            children: [
+              TextField(
+                controller: widthController,
+                keyboardType: TextInputType.number,
+                decoration:
+                    const InputDecoration(labelText: 'Ширина (кол-во клеток)'),
+              ),
+              TextField(
+                controller: heightController,
+                keyboardType: TextInputType.number,
+                decoration:
+                    const InputDecoration(labelText: 'Высота (кол-во клеток)'),
+              ),
+            ],
           ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                final width = int.tryParse(widthController.text) ?? 0;
+                final height = int.tryParse(heightController.text) ?? 0;
+
+                if (width > 0 && height > 0 && width <= 15 && height <= 15) {
+                  setState(() {
+                    if (rectangle == null) {
+                      _addRectangle(width, height);
+                    } else {
+                      rectangle.width = width;
+                      rectangle.height = height;
+                    }
+                  });
+                  Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Введите натуральное число от 1 до 15.'),
+                    ),
+                  );
+                }
+              },
+              child: const Text('Сохранить'),
+            ),
+          ],
         );
       },
     );
@@ -252,15 +301,17 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
 }
 
 class RectangleItem {
-  final RectangleType type;
+  int width;
+  int height;
   Offset truePosition;
   Offset position;
   bool isMoving;
   double rotation = 0;
 
   RectangleItem({
+    required this.width,
+    required this.height,
     required this.truePosition,
-    required this.type,
     required this.position,
     this.isMoving = false,
   });
@@ -268,31 +319,7 @@ class RectangleItem {
   void rotate() {
     rotation = (rotation + 90) % 360;
   }
-
-  double get width {
-    switch (type) {
-      case RectangleType.oneByOne:
-        return 50;
-      case RectangleType.twoByOne:
-        return 100;
-      case RectangleType.twoByThree:
-        return 100;
-    }
-  }
-
-  double get height {
-    switch (type) {
-      case RectangleType.oneByOne:
-        return 50;
-      case RectangleType.twoByOne:
-        return 50;
-      case RectangleType.twoByThree:
-        return 150;
-    }
-  }
 }
-
-enum RectangleType { oneByOne, twoByOne, twoByThree }
 
 class GridPainter extends CustomPainter {
   final Offset offset;
