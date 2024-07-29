@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_garden_app/core/constant_values/routes.dart';
 import 'package:my_garden_app/core/presentation/button_widget.dart';
 import 'package:my_garden_app/feature/auth/presentation/pages/login_auth_page.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_list_page.dart';
 import 'package:my_garden_app/resources/colors.dart';
 
 class MainAuthPage extends StatefulWidget {

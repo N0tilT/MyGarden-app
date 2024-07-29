@@ -18,7 +18,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
           type: type,
           truePosition: Offset.zero + Offset(50.0 * (offset.dx ~/ 50),50.0 * (offset.dy ~/ 50)),
           position: Offset.zero + Offset(50.0 * (offset.dx ~/ 50),50.0 * (offset.dy ~/ 50)),
-          isMoving: true);
+          isMoving: true,);
     });
   }
 
@@ -82,14 +82,11 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
       appBar: AppBar(title: const Text('Бесконечное клеточное поле')),
       body: GestureDetector(
         onPanUpdate: (details) {
-          print(details.delta);
           if (currentRectangle != null && currentRectangle!.isMoving) {
-            print(currentRectangle!.position);
             _moveRectangle(details.delta);
           } else {
             offset += details.delta;
             setState(() {});
-            print(offset);
           }
         },
         child: Stack(
@@ -115,7 +112,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
                       ),
                     ),
                     child: Center(
-                        child: Text(rectangle.type.toString().split('.').last)),
+                        child: Text(rectangle.type.toString().split('.').last),),
                   ),
                 ),
               );
