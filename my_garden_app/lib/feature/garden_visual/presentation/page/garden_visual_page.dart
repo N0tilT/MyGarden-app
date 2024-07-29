@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class GardenVisualPage extends StatefulWidget {
@@ -27,40 +29,78 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
 
   void _confirmRectangle() {
     if (currentRectangle != null) {
-      // Calculate the bounds of the current rectangle
-      final newRectBounds = Rect.fromLTWH(
-        currentRectangle!.truePosition.dx,
-        currentRectangle!.truePosition.dy,
-        currentRectangle!.width,
-        currentRectangle!.height,
-      );
+      final rectBounds = _getRotatedBounds(currentRectangle!);
 
       // Check for overlaps with existing rectangles
-      final bool overlaps = rectangles.any((rectangle) {
-        final existingRectBounds = Rect.fromLTWH(
-          rectangle.truePosition.dx,
-          rectangle.truePosition.dy,
-          rectangle.width,
-          rectangle.height,
-        );
-        return newRectBounds.overlaps(existingRectBounds);
-      });
+      final List<bool> hasOverlap = rectangles.map((rectangle) {
+        if (rectangle == currentRectangle) return false;
+        final existingBounds = _getRotatedBounds(rectangle);
+        return rectBounds.overlaps(existingBounds);
+      }).toList();
 
-      // Only add rectangle if there are no overlaps
-      if (!overlaps) {
+      if (!hasOverlap.any(
+        (element) => element,
+      )) {
         setState(() {
-          rectangles.add(currentRectangle!);
-          currentRectangle = null;
+          if (!rectangles.any(
+            (element) => currentRectangle! == element,
+          )) {
+            rectangles.add(currentRectangle!);
+          }
+          currentRectangle = null; // Clear the selected rectangle
         });
       } else {
-        // Optionally, show a message to the user
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
+            duration: Durations.long1,
             content: Text('Ошибка: Прямоугольник перекрывает существующий.'),
           ),
         );
       }
     }
+  }
+
+  Offset _rotatePoint(Offset point, Offset center, double angle) {
+    final radians = angle * (3.14159265359 / 180);
+
+    // Translate point to origin
+    final translatedX = point.dx - center.dx;
+    final translatedY = point.dy - center.dy;
+
+    // Rotate point
+    return Offset(
+      translatedX * cos(radians) - translatedY * sin(radians) + center.dx,
+      translatedX * sin(radians) + translatedY * cos(radians) + center.dy,
+    );
+  }
+
+  Rect _getRotatedBounds(RectangleItem rectangle) {
+    final topLeft = rectangle.position.translate(0, 0);
+    final topRight = rectangle.position.translate(rectangle.width, 0);
+    final bottomLeft = rectangle.position.translate(0, rectangle.height);
+    final bottomRight =
+        rectangle.position.translate(rectangle.width, rectangle.height);
+
+    final corners = [topLeft, topRight, bottomLeft, bottomRight].map((point) {
+      return _rotatePoint(point, rectangle.position, rectangle.rotation);
+    }).toList();
+
+    // Determine the bounding box from the rotated corners
+    final minX =
+        corners.map((e) => e.dx).reduce((a, b) => a < b ? a : b).round();
+    final minY =
+        corners.map((e) => e.dy).reduce((a, b) => a < b ? a : b).round();
+    final maxX =
+        corners.map((e) => e.dx).reduce((a, b) => a > b ? a : b).round();
+    final maxY =
+        corners.map((e) => e.dy).reduce((a, b) => a > b ? a : b).round();
+
+    return Rect.fromLTRB(
+      50.0 * (minX ~/ 50),
+      50.0 * (minY ~/ 50),
+      50.0 * (maxX ~/ 50),
+      50.0 * (maxY ~/ 50),
+    );
   }
 
   void _toggleMovement(RectangleItem rectangle) {
@@ -129,22 +169,28 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
               return Positioned(
                 left: rectangle.position.dx + offset.dx,
                 top: rectangle.position.dy + offset.dy,
-                child: GestureDetector(
-                  onTap: () => _toggleMovement(rectangle),
-                  child: Container(
-                    width: rectangle.width,
-                    height: rectangle.height,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      border: Border.all(
-                        color: currentRectangle == rectangle
-                            ? Colors.blue
-                            : Colors.transparent,
-                        width: 2,
+                child: Transform.rotate(
+                  angle: rectangle.rotation *
+                      (3.14159265359 / 180), // Convert to radians
+                  alignment:
+                      Alignment.topLeft, // Rotate around the top-left corner
+                  child: GestureDetector(
+                    onTap: () => _toggleMovement(rectangle),
+                    child: Container(
+                      width: rectangle.width,
+                      height: rectangle.height,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        border: Border.all(
+                          color: currentRectangle == rectangle
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 2,
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(rectangle.type.toString().split('.').last),
+                      child: Center(
+                        child: Text(rectangle.type.toString().split('.').last),
+                      ),
                     ),
                   ),
                 ),
@@ -154,12 +200,18 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
               Positioned(
                 left: currentRectangle!.position.dx + offset.dx,
                 top: currentRectangle!.position.dy + offset.dy,
-                child: Container(
-                  width: currentRectangle!.width,
-                  height: currentRectangle!.height,
-                  decoration: BoxDecoration(
-                    color: Colors.red.withOpacity(0.5),
-                    border: Border.all(color: Colors.blue, width: 2),
+                child: Transform.rotate(
+                  angle: currentRectangle!.rotation *
+                      (3.14159265359 / 180), // Convert to radians
+                  alignment:
+                      Alignment.topLeft, // Rotate around the top-left corner
+                  child: Container(
+                    width: currentRectangle!.width,
+                    height: currentRectangle!.height,
+                    decoration: BoxDecoration(
+                      color: Colors.red.withOpacity(0.5),
+                      border: Border.all(color: Colors.blue, width: 2),
+                    ),
                   ),
                 ),
               ),
@@ -177,6 +229,17 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
           FloatingActionButton(
             onPressed: _confirmRectangle,
             child: const Icon(Icons.check),
+          ),
+          const SizedBox(width: 16),
+          FloatingActionButton(
+            onPressed: () {
+              if (currentRectangle != null) {
+                setState(() {
+                  currentRectangle!.rotate(); // Rotate the current rectangle
+                });
+              }
+            },
+            child: const Icon(Icons.rotate_right),
           ),
         ],
       ),
@@ -216,16 +279,23 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
 
 class RectangleItem {
   final RectangleType type;
-  Offset truePosition = Offset.zero;
-  Offset position = Offset.zero;
+  Offset truePosition;
+  Offset position;
   bool isMoving;
+  double rotation = 0; // New property for rotation
 
   RectangleItem({
     required this.truePosition,
     required this.type,
     required this.position,
     this.isMoving = false,
+    this.rotation = 0, // Initialize rotation
   });
+
+  // Method to rotate rectangle
+  void rotate() {
+    rotation = (rotation + 90) % 360; // Rotate clockwise by 90 degrees
+  }
 
   double get width {
     switch (type) {
