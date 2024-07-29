@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class GardenVisualPage extends StatefulWidget {
@@ -15,85 +14,80 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   static const double gridSize = 50.0;
 
   void _addRectangle(RectangleType type) {
+    final newPosition = Offset(
+      -50.0 * (offset.dx ~/ 50 - 3),
+      -50.0 * (offset.dy ~/ 50 - 6),
+    );
+
     setState(() {
       currentRectangle = RectangleItem(
         type: type,
-        truePosition: Offset.zero -
-            Offset(50.0 * (offset.dx ~/ 50 - 3), 50.0 * (offset.dy ~/ 50 - 6)),
-        position: Offset.zero -
-            Offset(50.0 * (offset.dx ~/ 50 - 3), 50.0 * (offset.dy ~/ 50 - 6)),
+        truePosition: newPosition,
+        position: newPosition,
         isMoving: true,
       );
     });
   }
 
   void _confirmRectangle() {
-    if (currentRectangle != null) {
-      final rectBounds = _getRotatedBounds(currentRectangle!);
+    if (currentRectangle == null) return;
 
-      // Check for overlaps with existing rectangles
-      final List<bool> hasOverlap = rectangles.map((rectangle) {
-        if (rectangle == currentRectangle) return false;
-        final existingBounds = _getRotatedBounds(rectangle);
-        return rectBounds.overlaps(existingBounds);
-      }).toList();
+    final rectBounds = _getRotatedBounds(currentRectangle!);
 
-      if (!hasOverlap.any(
-        (element) => element,
-      )) {
-        setState(() {
-          if (!rectangles.any(
-            (element) => currentRectangle! == element,
-          )) {
-            rectangles.add(currentRectangle!);
-          }
-          currentRectangle = null; // Clear the selected rectangle
-        });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            duration: Durations.long1,
-            content: Text('Ошибка: Прямоугольник перекрывает существующий.'),
-          ),
+    if (rectangles.any(
+      (rectangle) {
+        if (rectangle == currentRectangle!) return false;
+        return rectBounds.overlaps(
+          _getRotatedBounds(rectangle),
         );
-      }
+      },
+    )) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Durations.long1,
+          content: Text('Ошибка: Прямоугольник перекрывает существующий.'),
+        ),
+      );
+      return;
     }
+
+    setState(() {
+      if (!rectangles.any(
+        (element) => element == currentRectangle!,
+      )) {
+        rectangles.add(currentRectangle!);
+      }
+      currentRectangle = null;
+    });
   }
 
   Offset _rotatePoint(Offset point, Offset center, double angle) {
-    final radians = angle * (3.14159265359 / 180);
-
-    // Translate point to origin
-    final translatedX = point.dx - center.dx;
-    final translatedY = point.dy - center.dy;
-
-    // Rotate point
+    final radians = angle * (pi / 180);
+    final x = point.dx - center.dx;
+    final y = point.dy - center.dy;
     return Offset(
-      translatedX * cos(radians) - translatedY * sin(radians) + center.dx,
-      translatedX * sin(radians) + translatedY * cos(radians) + center.dy,
+      x * cos(radians) - y * sin(radians) + center.dx,
+      x * sin(radians) + y * cos(radians) + center.dy,
     );
   }
 
   Rect _getRotatedBounds(RectangleItem rectangle) {
-    final topLeft = rectangle.position.translate(0, 0);
-    final topRight = rectangle.position.translate(rectangle.width, 0);
-    final bottomLeft = rectangle.position.translate(0, rectangle.height);
-    final bottomRight =
-        rectangle.position.translate(rectangle.width, rectangle.height);
+    final corners = [
+      rectangle.position,
+      rectangle.position.translate(rectangle.width, 0),
+      rectangle.position.translate(0, rectangle.height),
+      rectangle.position.translate(rectangle.width, rectangle.height),
+    ]
+        .map(
+          (point) =>
+              _rotatePoint(point, rectangle.position, rectangle.rotation),
+        )
+        .toList();
 
-    final corners = [topLeft, topRight, bottomLeft, bottomRight].map((point) {
-      return _rotatePoint(point, rectangle.position, rectangle.rotation);
-    }).toList();
-
-    // Determine the bounding box from the rotated corners
-    final minX =
-        corners.map((e) => e.dx).reduce((a, b) => a < b ? a : b).round();
-    final minY =
-        corners.map((e) => e.dy).reduce((a, b) => a < b ? a : b).round();
-    final maxX =
-        corners.map((e) => e.dx).reduce((a, b) => a > b ? a : b).round();
-    final maxY =
-        corners.map((e) => e.dy).reduce((a, b) => a > b ? a : b).round();
+    final minX = corners.map((e) => e.dx).reduce(min).round();
+    final minY = corners.map((e) => e.dy).reduce(min).round();
+    final maxX = corners.map((e) => e.dx).reduce(max).round();
+    final maxY = corners.map((e) => e.dy).reduce(max).round();
 
     return Rect.fromLTRB(
       50.0 * (minX ~/ 50),
@@ -106,46 +100,29 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   void _toggleMovement(RectangleItem rectangle) {
     setState(() {
       rectangle.isMoving = !rectangle.isMoving;
-      if (rectangle.isMoving) {
-        currentRectangle = rectangle;
-      } else {
-        currentRectangle = null;
-      }
+      currentRectangle = rectangle.isMoving ? rectangle : null;
     });
   }
 
   void _moveRectangle(Offset delta) {
-    if (currentRectangle != null) {
-      setState(() {
-        currentRectangle!.truePosition += delta;
-        final double deltaX = currentRectangle!.truePosition.dx.round() -
-            currentRectangle!.position.dx;
-        final double deltaY = currentRectangle!.truePosition.dy.round() -
-            currentRectangle!.position.dy;
-        if (deltaX >= 50) {
-          currentRectangle!.position = Offset(
-            currentRectangle!.position.dx + gridSize,
-            currentRectangle!.position.dy,
-          );
-        } else if (deltaX <= -50) {
-          currentRectangle!.position = Offset(
-            currentRectangle!.position.dx - gridSize,
-            currentRectangle!.position.dy,
-          );
-        }
-        if (deltaY >= 50) {
-          currentRectangle!.position = Offset(
-            currentRectangle!.position.dx,
-            currentRectangle!.position.dy + gridSize,
-          );
-        } else if (deltaY <= -50) {
-          currentRectangle!.position = Offset(
-            currentRectangle!.position.dx,
-            currentRectangle!.position.dy - gridSize,
-          );
-        }
-      });
-    }
+    if (currentRectangle == null) return;
+
+    setState(() {
+      currentRectangle!.truePosition += delta;
+      final deltaX = currentRectangle!.truePosition.dx.round() -
+          currentRectangle!.position.dx;
+      final deltaY = currentRectangle!.truePosition.dy.round() -
+          currentRectangle!.position.dy;
+
+      if (deltaX.abs() >= gridSize) {
+        currentRectangle!.position +=
+            Offset(deltaX >= 0 ? gridSize : -gridSize, 0);
+      }
+      if (deltaY.abs() >= gridSize) {
+        currentRectangle!.position +=
+            Offset(0, deltaY >= 0 ? gridSize : -gridSize);
+      }
+    });
   }
 
   @override
@@ -154,7 +131,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
       appBar: AppBar(title: const Text('Бесконечное клеточное поле')),
       body: GestureDetector(
         onPanUpdate: (details) {
-          if (currentRectangle != null && currentRectangle!.isMoving) {
+          if (currentRectangle?.isMoving == true) {
             _moveRectangle(details.delta);
           } else {
             offset += details.delta;
@@ -165,84 +142,56 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
           children: [
             Container(color: Colors.lightGreen[100]),
             _buildGrid(),
-            ...rectangles.map((rectangle) {
-              return Positioned(
-                left: rectangle.position.dx + offset.dx,
-                top: rectangle.position.dy + offset.dy,
-                child: Transform.rotate(
-                  angle: rectangle.rotation *
-                      (3.14159265359 / 180), // Convert to radians
-                  alignment:
-                      Alignment.topLeft, // Rotate around the top-left corner
-                  child: GestureDetector(
-                    onTap: () => _toggleMovement(rectangle),
-                    child: Container(
-                      width: rectangle.width,
-                      height: rectangle.height,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        border: Border.all(
-                          color: currentRectangle == rectangle
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(rectangle.type.toString().split('.').last),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            }),
-            if (currentRectangle != null)
-              Positioned(
-                left: currentRectangle!.position.dx + offset.dx,
-                top: currentRectangle!.position.dy + offset.dy,
-                child: Transform.rotate(
-                  angle: currentRectangle!.rotation *
-                      (3.14159265359 / 180), // Convert to radians
-                  alignment:
-                      Alignment.topLeft, // Rotate around the top-left corner
-                  child: Container(
-                    width: currentRectangle!.width,
-                    height: currentRectangle!.height,
-                    decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.5),
-                      border: Border.all(color: Colors.blue, width: 2),
-                    ),
-                  ),
-                ),
-              ),
+            ...rectangles.map((rectangle) => _buildRectangle(rectangle)),
+            if (currentRectangle != null) _buildCurrentRectangle(),
           ],
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () => _showRectangleDialog(context),
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(width: 16),
-          FloatingActionButton(
-            onPressed: _confirmRectangle,
-            child: const Icon(Icons.check),
-          ),
-          const SizedBox(width: 16),
-          FloatingActionButton(
-            onPressed: () {
-              if (currentRectangle != null) {
-                setState(() {
-                  currentRectangle!.rotate(); // Rotate the current rectangle
-                });
-              }
-            },
-            child: const Icon(Icons.rotate_right),
-          ),
-        ],
+      floatingActionButton: _buildFloatingButtons(),
+    );
+  }
+
+  Widget _buildRectangle(RectangleItem rectangle) {
+    return Positioned(
+      left: rectangle.position.dx + offset.dx,
+      top: rectangle.position.dy + offset.dy,
+      child: Transform.rotate(
+        angle: rectangle.rotation * (pi / 180),
+        alignment: Alignment.topLeft,
+        child: GestureDetector(
+          onTap: () => _toggleMovement(rectangle),
+          child: _rectangleContainer(rectangle, Colors.blue),
+        ),
       ),
+    );
+  }
+
+  Widget _buildCurrentRectangle() {
+    return Positioned(
+      left: currentRectangle!.position.dx + offset.dx,
+      top: currentRectangle!.position.dy + offset.dy,
+      child: Transform.rotate(
+        angle: currentRectangle!.rotation * (pi / 180),
+        alignment: Alignment.topLeft,
+        child:
+            _rectangleContainer(currentRectangle!, Colors.red.withOpacity(0.5)),
+      ),
+    );
+  }
+
+  Widget _rectangleContainer(RectangleItem rectangle, Color color) {
+    return Container(
+      width: rectangle.width,
+      height: rectangle.height,
+      decoration: BoxDecoration(
+        color: color,
+        border: Border.all(
+          color:
+              currentRectangle == rectangle ? Colors.blue : Colors.transparent,
+          width: 2,
+        ),
+      ),
+      child: Center(child: Text(rectangle.type.toString().split('.').last)),
     );
   }
 
@@ -250,6 +199,31 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     return CustomPaint(
       size: Size.infinite,
       painter: GridPainter(offset: offset),
+    );
+  }
+
+  Row _buildFloatingButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FloatingActionButton(
+          onPressed: () => _showRectangleDialog(context),
+          child: const Icon(Icons.add),
+        ),
+        const SizedBox(width: 16),
+        FloatingActionButton(
+          onPressed: _confirmRectangle,
+          child: const Icon(Icons.check),
+        ),
+        const SizedBox(width: 16),
+        FloatingActionButton(
+          onPressed: () {
+            currentRectangle?.rotate();
+            setState(() {});
+          },
+          child: const Icon(Icons.rotate_right),
+        ),
+      ],
     );
   }
 
@@ -261,7 +235,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
           title: const Text('Выберите тип прямоугольника'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            children: RectangleType.values.map((RectangleType type) {
+            children: RectangleType.values.map((type) {
               return ListTile(
                 title: Text(type.toString().split('.').last),
                 onTap: () {
@@ -282,19 +256,17 @@ class RectangleItem {
   Offset truePosition;
   Offset position;
   bool isMoving;
-  double rotation = 0; // New property for rotation
+  double rotation = 0;
 
   RectangleItem({
     required this.truePosition,
     required this.type,
     required this.position,
     this.isMoving = false,
-    this.rotation = 0, // Initialize rotation
   });
 
-  // Method to rotate rectangle
   void rotate() {
-    rotation = (rotation + 90) % 360; // Rotate clockwise by 90 degrees
+    rotation = (rotation + 90) % 360;
   }
 
   double get width {
@@ -305,8 +277,6 @@ class RectangleItem {
         return 100;
       case RectangleType.twoByThree:
         return 100;
-      default:
-        return 50;
     }
   }
 
@@ -318,8 +288,6 @@ class RectangleItem {
         return 50;
       case RectangleType.twoByThree:
         return 150;
-      default:
-        return 50;
     }
   }
 }
@@ -327,7 +295,7 @@ class RectangleItem {
 enum RectangleType { oneByOne, twoByOne, twoByThree }
 
 class GridPainter extends CustomPainter {
-  Offset offset;
+  final Offset offset;
 
   GridPainter({required this.offset});
 
@@ -344,7 +312,6 @@ class GridPainter extends CustomPainter {
         paint,
       );
     }
-
     for (double i = 0; i < size.height; i += 50) {
       canvas.drawLine(
         Offset(0, i + offset.dy),
