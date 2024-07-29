@@ -240,6 +240,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
         TextEditingController(text: rectangle?.width.toString() ?? '');
     final heightController =
         TextEditingController(text: rectangle?.height.toString() ?? '');
+    String? errorMessage;
 
     showDialog(
       context: context,
@@ -265,15 +266,33 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
                 decoration:
                     const InputDecoration(labelText: 'Высота (кол-во клеток)'),
               ),
+              if (errorMessage != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    errorMessage ?? "",
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
             ],
           ),
           actions: [
+            if (rectangle != null)
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    _removeRectangle(rectangle);
+                  });
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Удалить'),
+              ),
             TextButton(
               onPressed: () {
                 final width = int.tryParse(widthController.text) ?? 0;
                 final height = int.tryParse(heightController.text) ?? 0;
 
-                if (width > 0 && height > 0 && width <= 15 && height <= 15) {
+                if (width > 0 && height > 0) {
                   setState(() {
                     if (rectangle == null) {
                       _addRectangle(width, height);
@@ -284,11 +303,9 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
                   });
                   Navigator.of(context).pop();
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Введите натуральное число от 1 до 15.'),
-                    ),
-                  );
+                  setState(() {
+                    errorMessage = 'Введите натуральное число больше 0.';
+                  });
                 }
               },
               child: const Text('Сохранить'),
@@ -297,6 +314,10 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
         );
       },
     );
+  }
+
+  void _removeRectangle(RectangleItem rectangle) {
+    rectangles.remove(rectangle);
   }
 }
 
