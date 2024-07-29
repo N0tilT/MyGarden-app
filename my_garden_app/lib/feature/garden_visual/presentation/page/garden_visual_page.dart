@@ -15,19 +15,51 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   void _addRectangle(RectangleType type) {
     setState(() {
       currentRectangle = RectangleItem(
-          type: type,
-          truePosition: Offset.zero + Offset(50.0 * (offset.dx ~/ 50),50.0 * (offset.dy ~/ 50)),
-          position: Offset.zero + Offset(50.0 * (offset.dx ~/ 50),50.0 * (offset.dy ~/ 50)),
-          isMoving: true,);
+        type: type,
+        truePosition: Offset.zero -
+            Offset(50.0 * (offset.dx ~/ 50 - 3), 50.0 * (offset.dy ~/ 50 - 6)),
+        position: Offset.zero -
+            Offset(50.0 * (offset.dx ~/ 50 - 3), 50.0 * (offset.dy ~/ 50 - 6)),
+        isMoving: true,
+      );
     });
   }
 
   void _confirmRectangle() {
     if (currentRectangle != null) {
-      setState(() {
-        rectangles.add(currentRectangle!);
-        currentRectangle = null;
+      // Calculate the bounds of the current rectangle
+      final newRectBounds = Rect.fromLTWH(
+        currentRectangle!.truePosition.dx,
+        currentRectangle!.truePosition.dy,
+        currentRectangle!.width,
+        currentRectangle!.height,
+      );
+
+      // Check for overlaps with existing rectangles
+      final bool overlaps = rectangles.any((rectangle) {
+        final existingRectBounds = Rect.fromLTWH(
+          rectangle.truePosition.dx,
+          rectangle.truePosition.dy,
+          rectangle.width,
+          rectangle.height,
+        );
+        return newRectBounds.overlaps(existingRectBounds);
       });
+
+      // Only add rectangle if there are no overlaps
+      if (!overlaps) {
+        setState(() {
+          rectangles.add(currentRectangle!);
+          currentRectangle = null;
+        });
+      } else {
+        // Optionally, show a message to the user
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Ошибка: Прямоугольник перекрывает существующий.'),
+          ),
+        );
+      }
     }
   }
 
@@ -35,9 +67,9 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     setState(() {
       rectangle.isMoving = !rectangle.isMoving;
       if (rectangle.isMoving) {
-        currentRectangle = rectangle; // Устанавливаем текущий прямоугольник
+        currentRectangle = rectangle;
       } else {
-        currentRectangle = null; // Сбрасываем если движение остановлено
+        currentRectangle = null;
       }
     });
   }
@@ -112,7 +144,8 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
                       ),
                     ),
                     child: Center(
-                        child: Text(rectangle.type.toString().split('.').last),),
+                      child: Text(rectangle.type.toString().split('.').last),
+                    ),
                   ),
                 ),
               );
