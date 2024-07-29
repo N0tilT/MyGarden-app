@@ -12,6 +12,9 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   RectangleItem? currentRectangle;
   Offset offset = Offset.zero;
 
+  int selectedWidth = 1;
+  int selectedHeight = 1;
+
   void _addRectangle(int width, int height) {
     final newPosition = Offset(
       -50.0 * (offset.dx ~/ 50 - 3),
@@ -236,12 +239,10 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   }
 
   void _showRectangleDialog(BuildContext context, {RectangleItem? rectangle}) {
-    final widthController =
-        TextEditingController(text: rectangle?.width.toString() ?? '');
-    final heightController =
-        TextEditingController(text: rectangle?.height.toString() ?? '');
-    String? errorMessage;
-
+    final List<int> values = List.generate(
+      15,
+      (index) => index + 1,
+    );
     showDialog(
       context: context,
       builder: (context) {
@@ -254,26 +255,30 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
-                controller: widthController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Ширина (кол-во клеток)'),
+              DropdownButtonFormField<int>(
+                value: rectangle != null ? rectangle.width : values.first,
+                items: values
+                    .map(
+                      (e) => DropdownMenuItem<int>(
+                        value: e,
+                        child: Text(e.toString()),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) => selectedWidth = value ?? 1,
               ),
-              TextField(
-                controller: heightController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    const InputDecoration(labelText: 'Высота (кол-во клеток)'),
+              DropdownButtonFormField<int>(
+                value: rectangle != null ? rectangle.height : values.first,
+                items: values
+                    .map(
+                      (e) => DropdownMenuItem<int>(
+                        value: e,
+                        child: Text(e.toString()),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) => selectedHeight = value ?? 1,
               ),
-              if (errorMessage != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    errorMessage ?? "",
-                    style: const TextStyle(color: Colors.red),
-                  ),
-                ),
             ],
           ),
           actions: [
@@ -289,23 +294,27 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
               ),
             TextButton(
               onPressed: () {
-                final width = int.tryParse(widthController.text) ?? 0;
-                final height = int.tryParse(heightController.text) ?? 0;
-
-                if (width > 0 && height > 0) {
+                if (selectedWidth > 0 &&
+                    selectedHeight > 0 &&
+                    selectedWidth < 16 &&
+                    selectedHeight < 16) {
                   setState(() {
                     if (rectangle == null) {
-                      _addRectangle(width, height);
+                      _addRectangle(selectedWidth, selectedHeight);
                     } else {
-                      rectangle.width = width;
-                      rectangle.height = height;
+                      rectangle.width = selectedWidth;
+                      rectangle.height = selectedHeight;
                     }
                   });
                   Navigator.of(context).pop();
                 } else {
-                  setState(() {
-                    errorMessage = 'Введите натуральное число больше 0.';
-                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      duration: Durations.long1,
+                      content: Text(
+                          'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.'),
+                    ),
+                  );
                 }
               },
               child: const Text('Сохранить'),
@@ -318,6 +327,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
 
   void _removeRectangle(RectangleItem rectangle) {
     rectangles.remove(rectangle);
+    currentRectangle = null;
   }
 }
 
