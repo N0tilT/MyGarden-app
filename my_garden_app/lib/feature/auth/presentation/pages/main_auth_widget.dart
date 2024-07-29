@@ -41,20 +41,7 @@ class _BodyWidget extends StatelessWidget {
             event: () {
               Navigator.of(context).push(
                 MaterialPageRoute<void>(
-                  builder: (context) => const LoginAuthPage(route: plantListRoute),
-                ),
-              );
-            },
-          ),
-          const SizedBox(
-            height: 34,
-          ),
-          GardenButton(
-            title: "Войти как гость",
-            event: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => const PlantListPage(),
+                  builder: (context) => const LoginAuthPage(route: mainRoute),
                 ),
               );
             },

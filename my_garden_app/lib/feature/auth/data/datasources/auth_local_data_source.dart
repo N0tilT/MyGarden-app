@@ -4,14 +4,15 @@ import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/feature/auth/data/models/security_response_model.dart';
 import 'package:my_garden_app/feature/auth/data/models/token_model.dart';
 import 'package:my_garden_app/feature/auth/data/models/user_model/account_model.dart';
-abstract class AuthLocalDataSource{
+
+abstract class AuthLocalDataSource {
   Future<TokenModel> loadToken();
   Future<void> updateToken(TokenModel token);
   Future<void> add(SecurityResponseModel remoteLoad);
   Future<void> logout();
 }
 
-class AuthLocalDataSourceImpl implements AuthLocalDataSource{
+class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   FlutterSecureStorage tokenStorage;
   Box<AccountModel> userBox;
 
@@ -21,11 +22,11 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource{
   Future<void> add(SecurityResponseModel response) async {
     try {
       await tokenStorage.write(key: 'jwt_access_token', value: response.token);
-      final alreadyExists = userBox.values.firstWhere(
-        (element) => element.id == response.user.id,
-      );
-
-      // ignore: unrelated_type_equality_checks
+      if (userBox.isNotEmpty) {
+        final alreadyExists = userBox.values.firstWhere(
+          (element) => element.id == response.user.id,
+        );
+        // ignore: unrelated_type_equality_checks
       if (alreadyExists == -1) {
         try {
           userBox.add(
@@ -41,6 +42,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource{
           throw CacheException();
         }
       }
+      }
+      
     } catch (e) {
       throw CacheException();
     }
@@ -54,20 +57,22 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource{
       throw CacheException();
     }
   }
-  
+
   @override
   Future<TokenModel> loadToken() async {
     try {
       final token = await tokenStorage.read(key: 'jwt_access_token');
-      return TokenModel(token: token??"", );
+      return TokenModel(
+        token: token ?? "",
+      );
     } catch (e) {
       throw CacheException();
     }
   }
-  
+
   @override
   Future<void> logout() async {
-      await tokenStorage.delete(key: 'jwt_access_token');
-      userBox.clear();
+    await tokenStorage.delete(key: 'jwt_access_token');
+    userBox.clear();
   }
 }

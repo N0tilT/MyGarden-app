@@ -45,8 +45,10 @@ class _LoginAuthPageState extends State<LoginAuthPage> {
             passwordTextController: passwordTextController,
           ),
           authSuccess: (success) {
-            Navigator.of(context).pushReplacementNamed(widget.route);
-            return null;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.of(context).pushReplacementNamed(widget.route);
+            });
+            return Container(); // Return an empty container to avoid return null.
           },
           authLoading: () => const Center(
             child: GardenLoadingWidget(),
