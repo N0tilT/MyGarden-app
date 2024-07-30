@@ -22,6 +22,13 @@ import 'package:my_garden_app/feature/event_journal/domain/repositories/event_re
 import 'package:my_garden_app/feature/event_journal/domain/usecases/add_event.dart';
 import 'package:my_garden_app/feature/event_journal/domain/usecases/load_events.dart';
 import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/event_cubit.dart';
+import 'package:my_garden_app/feature/garden_visual/data/datasource/flower_bed_local_data_source.dart';
+import 'package:my_garden_app/feature/garden_visual/data/model/flower_bed_model.dart';
+import 'package:my_garden_app/feature/garden_visual/data/repository/flower_bed_repository_impl.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/repositories/flower_bed_repository.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_flower_beds.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_flower_bed.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_events.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_info.dart';
 import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
@@ -182,6 +189,41 @@ Future<void> init() async {
   });
 
   await sl.isReady<EventLocalDataSource>();
+
+//! FlowerBeds
+  sl.registerFactory(
+    () => FlowerBedCubit(
+      loadFlowerBeds: sl(),
+      uploadFlowerBed: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => LoadFlowerBeds(
+      flowerBedRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => UploadFlowerBed(
+      flowerBedRepository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<FlowerBedRepository>(
+    () => FlowerBedRepositoryImpl(
+      localDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  sl.registerLazySingletonAsync<FlowerBedLocalDataSource>(() async {
+    return FlowerBedLocalDataSource(
+      flowerBedBox: await Hive.openBox<FlowerBedModel>('EventBox'),
+    );
+  });
+
+  await sl.isReady<FlowerBedLocalDataSource>();
+
   //! PlantCard
   sl.registerFactory(
     () => PlantCardCubit(

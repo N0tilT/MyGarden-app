@@ -17,15 +17,15 @@ class EventCubit extends Cubit<EventState> {
       : super(const EventState.initial());
 
   Future<void> upload(EventEntity event) async {
-    final result = await uploadEvent([
-      EventModel(
-        id: event.id,
-        title: event.title,
-        date: event.date,
-        plantId: event.plantId,
-      ),
-    ]);
     eventList.add(event);
+    final result = await uploadEvent( eventList.map((e) => 
+      EventModel(
+        id: e.id,
+        title: e.title,
+        date: e.date,
+        plantId: e.plantId,
+      ),
+    ).toList());
     result.fold(
       (error) => emit(EventState.fail(error.message)),
       (success) => emit(EventState.success(eventList)),

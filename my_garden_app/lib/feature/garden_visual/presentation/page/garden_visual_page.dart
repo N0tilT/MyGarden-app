@@ -1,15 +1,37 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/entities/flower_bed_entity.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
+import 'package:my_garden_app/injection_container.dart';
 
 class GardenVisualPage extends StatefulWidget {
-  const GardenVisualPage();
+  const GardenVisualPage({super.key});
+
   @override
   _GardenVisualPageState createState() => _GardenVisualPageState();
 }
 
 class _GardenVisualPageState extends State<GardenVisualPage> {
-  List<RectangleItem> rectangles = [];
-  RectangleItem? currentRectangle;
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<FlowerBedCubit>(
+      create: (context) => sl<FlowerBedCubit>()..load(),
+      child: const _GardenVisualPageWidget(),
+    );
+  }
+}
+
+class _GardenVisualPageWidget extends StatefulWidget {
+  const _GardenVisualPageWidget();
+
+  @override
+  _GardenVisualPageWidgetState createState() => _GardenVisualPageWidgetState();
+}
+
+class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
+  List<FlowerBedEntity> rectangles = [];
+  FlowerBedEntity? currentRectangle;
   Offset offset = Offset.zero;
 
   int selectedWidth = 1;
@@ -22,12 +44,15 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
 
     setState(() {
-      currentRectangle = RectangleItem(
+      currentRectangle = FlowerBedEntity(
+        id: -1,
         width: width,
         height: height,
         truePosition: newPosition,
         position: newPosition,
         isMoving: true,
+        rotation: 0,
+        plantIds: [],
       );
     });
   }
@@ -74,7 +99,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  Rect _getRotatedBounds(RectangleItem rectangle) {
+  Rect _getRotatedBounds(FlowerBedEntity rectangle) {
     final corners = [
       rectangle.position,
       rectangle.position.translate(rectangle.width * 50, 0),
@@ -100,7 +125,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  void _toggleMovement(RectangleItem rectangle) {
+  void _toggleMovement(FlowerBedEntity rectangle) {
     setState(() {
       rectangle.isMoving = !rectangle.isMoving;
       currentRectangle = rectangle.isMoving ? rectangle : null;
@@ -128,8 +153,10 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
 
   @override
   Widget build(BuildContext context) {
+    final eventCubit = context.watch<FlowerBedCubit>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Бесконечное клеточное поле')),
+      backgroundColor: const Color.fromARGB(255, 240, 241, 245),
+      appBar: const GardenVisualAppBarWidget(),
       body: GestureDetector(
         onPanUpdate: (details) {
           if (currentRectangle?.isMoving == true) {
@@ -152,7 +179,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  Widget _buildRectangle(RectangleItem rectangle) {
+  Widget _buildRectangle(FlowerBedEntity rectangle) {
     return Positioned(
       left: rectangle.position.dx + offset.dx,
       top: rectangle.position.dy + offset.dy,
@@ -160,7 +187,8 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
         angle: rectangle.rotation * (pi / 180),
         alignment: Alignment.topLeft,
         child: GestureDetector(
-          onTap: () {
+          onTap: () {},
+          onLongPress: () {
             _toggleMovement(rectangle);
             _showRectangleDialog(context, rectangle: rectangle);
           },
@@ -190,7 +218,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  Widget _rectangleContainer(RectangleItem rectangle, Color color) {
+  Widget _rectangleContainer(FlowerBedEntity rectangle, Color color) {
     return Container(
       width: rectangle.width * 50,
       height: rectangle.height * 50,
@@ -209,7 +237,7 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
   Widget _buildGrid() {
     return CustomPaint(
       size: Size.infinite,
-      painter: GridPainter(offset: offset),
+      painter: _GridPainter(offset: offset),
     );
   }
 
@@ -229,7 +257,8 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
         const SizedBox(width: 16),
         FloatingActionButton(
           onPressed: () {
-            currentRectangle?.rotate();
+            currentRectangle?.rotation =
+                (currentRectangle!.rotation + 90) % 360;
             setState(() {});
           },
           child: const Icon(Icons.rotate_right),
@@ -238,7 +267,10 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  void _showRectangleDialog(BuildContext context, {RectangleItem? rectangle}) {
+  void _showRectangleDialog(
+    BuildContext context, {
+    FlowerBedEntity? rectangle,
+  }) {
     final List<int> values = List.generate(
       15,
       (index) => index + 1,
@@ -312,7 +344,8 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
                     const SnackBar(
                       duration: Durations.long1,
                       content: Text(
-                          'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.'),
+                        'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.',
+                      ),
                     ),
                   );
                 }
@@ -325,37 +358,16 @@ class _GardenVisualPageState extends State<GardenVisualPage> {
     );
   }
 
-  void _removeRectangle(RectangleItem rectangle) {
+  void _removeRectangle(FlowerBedEntity rectangle) {
     rectangles.remove(rectangle);
     currentRectangle = null;
   }
 }
 
-class RectangleItem {
-  int width;
-  int height;
-  Offset truePosition;
-  Offset position;
-  bool isMoving;
-  double rotation = 0;
-
-  RectangleItem({
-    required this.width,
-    required this.height,
-    required this.truePosition,
-    required this.position,
-    this.isMoving = false,
-  });
-
-  void rotate() {
-    rotation = (rotation + 90) % 360;
-  }
-}
-
-class GridPainter extends CustomPainter {
+class _GridPainter extends CustomPainter {
   final Offset offset;
 
-  GridPainter({required this.offset});
+  _GridPainter({required this.offset});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -381,4 +393,27 @@ class GridPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+class GardenVisualAppBarWidget extends StatelessWidget
+    implements PreferredSizeWidget {
+  const GardenVisualAppBarWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      titleSpacing: 0,
+      automaticallyImplyLeading: false,
+      centerTitle: true,
+      title: const Text(
+        'Мои грядки',
+        style: TextStyle(color: Colors.white, fontSize: 25),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
