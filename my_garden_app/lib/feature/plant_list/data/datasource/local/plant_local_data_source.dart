@@ -10,7 +10,7 @@ class PlantLocalDataSource
   PlantLocalDataSource({required this.plantBox});
 
   @override
-  Future<void> add(List<PlantModel> plantList) async {
+  Future<void> update(List<PlantModel> plantList) async {
     try {
       if (plantList.isEmpty) {
         plantBox.clear();

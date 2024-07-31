@@ -27,6 +27,7 @@ import 'package:my_garden_app/feature/garden_visual/data/model/flower_bed_model.
 import 'package:my_garden_app/feature/garden_visual/data/repository/flower_bed_repository_impl.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/repositories/flower_bed_repository.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_flower_beds.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/remove_flower_bed.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_flower_bed.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_events.dart';
@@ -47,6 +48,7 @@ Future<void> init() async {
   const secureStorage = FlutterSecureStorage();
   Hive.registerAdapter(PlantModelAdapter());
   Hive.registerAdapter(EventModelAdapter());
+  Hive.registerAdapter(FlowerBedModelAdapter());
 
   //! Features
   //! Auth
@@ -193,6 +195,7 @@ Future<void> init() async {
 //! FlowerBeds
   sl.registerFactory(
     () => FlowerBedCubit(
+      removeFlowerBed: sl(),
       loadFlowerBeds: sl(),
       uploadFlowerBed: sl(),
     ),
@@ -208,6 +211,11 @@ Future<void> init() async {
       flowerBedRepository: sl(),
     ),
   );
+  sl.registerLazySingleton(
+    () => RemoveFlowerBed(
+      flowerBedRepository: sl(),
+    ),
+  );
 
   sl.registerLazySingleton<FlowerBedRepository>(
     () => FlowerBedRepositoryImpl(
@@ -218,7 +226,7 @@ Future<void> init() async {
 
   sl.registerLazySingletonAsync<FlowerBedLocalDataSource>(() async {
     return FlowerBedLocalDataSource(
-      flowerBedBox: await Hive.openBox<FlowerBedModel>('EventBox'),
+      flowerBedBox: await Hive.openBox<FlowerBedModel>('FlowerBedBox'),
     );
   });
 

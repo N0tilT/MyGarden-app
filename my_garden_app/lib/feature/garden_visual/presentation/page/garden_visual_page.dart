@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/entities/flower_bed_entity.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
 import 'package:my_garden_app/injection_container.dart';
@@ -30,7 +31,6 @@ class _GardenVisualPageWidget extends StatefulWidget {
 }
 
 class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
-  List<FlowerBedEntity> rectangles = [];
   FlowerBedEntity? currentRectangle;
   Offset offset = Offset.zero;
 
@@ -54,38 +54,6 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
         rotation: 0,
         plantIds: [],
       );
-    });
-  }
-
-  void _confirmRectangle() {
-    if (currentRectangle == null) return;
-
-    final rectBounds = _getRotatedBounds(currentRectangle!);
-
-    if (rectangles.any(
-      (rectangle) {
-        if (rectangle == currentRectangle!) return false;
-        return rectBounds.overlaps(
-          _getRotatedBounds(rectangle),
-        );
-      },
-    )) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          duration: Durations.long1,
-          content: Text('Ошибка: Прямоугольник перекрывает существующий.'),
-        ),
-      );
-      return;
-    }
-
-    setState(() {
-      if (!rectangles.any(
-        (element) => element == currentRectangle!,
-      )) {
-        rectangles.add(currentRectangle!);
-      }
-      currentRectangle = null;
     });
   }
 
@@ -153,68 +121,402 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final eventCubit = context.watch<FlowerBedCubit>();
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 241, 245),
-      appBar: const GardenVisualAppBarWidget(),
-      body: GestureDetector(
-        onPanUpdate: (details) {
-          if (currentRectangle?.isMoving == true) {
-            _moveRectangle(details.delta);
-          } else {
-            offset += details.delta;
-            setState(() {});
-          }
-        },
-        child: Stack(
+    final flowerBedCubit = context.watch<FlowerBedCubit>();
+    return flowerBedCubit.state.when(
+      initial: () => GardenLoadingWidget(),
+      loading: () => GardenLoadingWidget(),
+      success: (rectangles) => Scaffold(
+        backgroundColor: const Color.fromARGB(255, 240, 241, 245),
+        appBar: const GardenVisualAppBarWidget(),
+        body: GestureDetector(
+          onPanUpdate: (details) {
+            if (currentRectangle?.isMoving == true) {
+              _moveRectangle(details.delta);
+            } else {
+              offset += details.delta;
+              setState(() {});
+            }
+          },
+          child: Stack(
+            children: [
+              Container(color: Colors.lightGreen[100]),
+              _buildGrid(),
+              ...rectangles.map((rectangle) => Positioned(
+                    left: rectangle.position.dx + offset.dx,
+                    top: rectangle.position.dy + offset.dy,
+                    child: Transform.rotate(
+                      angle: rectangle.rotation * (pi / 180),
+                      alignment: Alignment.topLeft,
+                      child: GestureDetector(
+                        onTap: () {},
+                        onLongPress: () {
+                          _toggleMovement(rectangle);
+                          final List<int> values = List.generate(
+                            15,
+                            (index) => index + 1,
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                  currentRectangle == null
+                                      ? 'Введите размеры прямоугольника'
+                                      : 'Редактировать размеры',
+                                ),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    DropdownButtonFormField<int>(
+                                      value: currentRectangle != null
+                                          ? currentRectangle!.width
+                                          : values.first,
+                                      items: values
+                                          .map(
+                                            (e) => DropdownMenuItem<int>(
+                                              value: e,
+                                              child: Text(e.toString()),
+                                            ),
+                                          )
+                                          .toList(),
+                                      onChanged: (value) =>
+                                          selectedWidth = value ?? 1,
+                                    ),
+                                    DropdownButtonFormField<int>(
+                                      value: currentRectangle != null
+                                          ? currentRectangle!.height
+                                          : values.first,
+                                      items: values
+                                          .map(
+                                            (e) => DropdownMenuItem<int>(
+                                              value: e,
+                                              child: Text(e.toString()),
+                                            ),
+                                          )
+                                          .toList(),
+                                      onChanged: (value) =>
+                                          selectedHeight = value ?? 1,
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  if (currentRectangle != null)
+                                    TextButton(
+                                      onPressed: () {
+                                        flowerBedCubit
+                                            .remove(currentRectangle!);
+                                        currentRectangle = null;
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Удалить'),
+                                    ),
+                                  TextButton(
+                                    onPressed: () {
+                                      if (selectedWidth > 0 &&
+                                          selectedHeight > 0 &&
+                                          selectedWidth < 16 &&
+                                          selectedHeight < 16) {
+                                        setState(() {
+                                          if (currentRectangle == null) {
+                                            _addRectangle(
+                                                selectedWidth, selectedHeight);
+                                          } else {
+                                            currentRectangle!.width =
+                                                selectedWidth;
+                                            currentRectangle!.height =
+                                                selectedHeight;
+                                          }
+                                        });
+                                        Navigator.of(context).pop();
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            duration: Durations.long1,
+                                            content: Text(
+                                              'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    child: const Text('Сохранить'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: _rectangleContainer(rectangle, Colors.blue),
+                      ),
+                    ),
+                  )),
+              if (currentRectangle != null)
+                Positioned(
+                  left: currentRectangle!.position.dx + offset.dx,
+                  top: currentRectangle!.position.dy + offset.dy,
+                  child: Transform.rotate(
+                    angle: currentRectangle!.rotation * (pi / 180),
+                    alignment: Alignment.topLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        final List<int> values = List.generate(
+                          15,
+                          (index) => index + 1,
+                        );
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            final flowerBedCubit =
+                                context.watch<FlowerBedCubit>();
+                            return AlertDialog(
+                              title: Text(
+                                currentRectangle == null
+                                    ? 'Введите размеры прямоугольника'
+                                    : 'Редактировать размеры',
+                              ),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  DropdownButtonFormField<int>(
+                                    value: currentRectangle != null
+                                        ? currentRectangle!.width
+                                        : values.first,
+                                    items: values
+                                        .map(
+                                          (e) => DropdownMenuItem<int>(
+                                            value: e,
+                                            child: Text(e.toString()),
+                                          ),
+                                        )
+                                        .toList(),
+                                    onChanged: (value) =>
+                                        selectedWidth = value ?? 1,
+                                  ),
+                                  DropdownButtonFormField<int>(
+                                    value: currentRectangle != null
+                                        ? currentRectangle!.height
+                                        : values.first,
+                                    items: values
+                                        .map(
+                                          (e) => DropdownMenuItem<int>(
+                                            value: e,
+                                            child: Text(e.toString()),
+                                          ),
+                                        )
+                                        .toList(),
+                                    onChanged: (value) =>
+                                        selectedHeight = value ?? 1,
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                if (currentRectangle != null)
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        flowerBedCubit
+                                            .remove(currentRectangle!);
+                                        currentRectangle = null;
+                                        Navigator.of(context).pop();
+                                      });
+                                    },
+                                    child: const Text('Удалить'),
+                                  ),
+                                TextButton(
+                                  onPressed: () {
+                                    if (selectedWidth > 0 &&
+                                        selectedHeight > 0 &&
+                                        selectedWidth < 16 &&
+                                        selectedHeight < 16) {
+                                      setState(() {
+                                        if (currentRectangle == null) {
+                                          _addRectangle(
+                                              selectedWidth, selectedHeight);
+                                        } else {
+                                          currentRectangle!.width =
+                                              selectedWidth;
+                                          currentRectangle!.height =
+                                              selectedHeight;
+                                        }
+                                      });
+                                      Navigator.of(context).pop();
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          duration: Durations.long1,
+                                          content: Text(
+                                            'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.',
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: const Text('Сохранить'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: _rectangleContainer(
+                        currentRectangle!,
+                        Colors.red.withOpacity(0.5),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Container(color: Colors.lightGreen[100]),
-            _buildGrid(),
-            ...rectangles.map((rectangle) => _buildRectangle(rectangle)),
-            if (currentRectangle != null) _buildCurrentRectangle(),
+            FloatingActionButton(
+              onPressed: () {
+                final List<int> values = List.generate(
+                  15,
+                  (index) => index + 1,
+                );
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(
+                        currentRectangle == null
+                            ? 'Введите размеры прямоугольника'
+                            : 'Редактировать размеры',
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          DropdownButtonFormField<int>(
+                            value: currentRectangle != null
+                                ? currentRectangle!.width
+                                : values.first,
+                            items: values
+                                .map(
+                                  (e) => DropdownMenuItem<int>(
+                                    value: e,
+                                    child: Text(e.toString()),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) => selectedWidth = value ?? 1,
+                          ),
+                          DropdownButtonFormField<int>(
+                            value: currentRectangle != null
+                                ? currentRectangle!.height
+                                : values.first,
+                            items: values
+                                .map(
+                                  (e) => DropdownMenuItem<int>(
+                                    value: e,
+                                    child: Text(e.toString()),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) => selectedHeight = value ?? 1,
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        if (currentRectangle != null)
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                flowerBedCubit.remove(currentRectangle!);
+                                currentRectangle = null;
+                                Navigator.of(context).pop();
+                              });
+                            },
+                            child: const Text('Удалить'),
+                          ),
+                        TextButton(
+                          onPressed: () {
+                            if (selectedWidth > 0 &&
+                                selectedHeight > 0 &&
+                                selectedWidth < 16 &&
+                                selectedHeight < 16) {
+                              setState(() {
+                                if (currentRectangle == null) {
+                                  _addRectangle(selectedWidth, selectedHeight);
+                                } else {
+                                  currentRectangle!.width = selectedWidth;
+                                  currentRectangle!.height = selectedHeight;
+                                }
+                              });
+                              Navigator.of(context).pop();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  duration: Durations.long1,
+                                  content: Text(
+                                    'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.',
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('Сохранить'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Icon(Icons.add),
+            ),
+            const SizedBox(width: 16),
+            FloatingActionButton(
+              onPressed: () {
+                if (currentRectangle == null) return;
+
+                final rectBounds = _getRotatedBounds(currentRectangle!);
+
+                if (rectangles.any(
+                  (rectangle) {
+                    if (rectangle == currentRectangle!) return false;
+                    return rectBounds.overlaps(
+                      _getRotatedBounds(rectangle),
+                    );
+                  },
+                )) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      duration: Durations.long1,
+                      content: Text(
+                          'Ошибка: Прямоугольник перекрывает существующий.'),
+                    ),
+                  );
+                  return;
+                }
+
+                setState(() {
+                  if (!rectangles.any(
+                    (element) => element == currentRectangle!,
+                  )) {
+                    flowerBedCubit.upload(currentRectangle!);
+                  }
+                });
+                currentRectangle = null;
+              },
+              child: const Icon(Icons.check),
+            ),
+            const SizedBox(width: 16),
+            FloatingActionButton(
+              onPressed: () {
+                currentRectangle?.rotation =
+                    (currentRectangle!.rotation + 90) % 360;
+                setState(() {});
+              },
+              child: const Icon(Icons.rotate_right),
+            ),
           ],
         ),
       ),
-      floatingActionButton: _buildFloatingButtons(),
-    );
-  }
-
-  Widget _buildRectangle(FlowerBedEntity rectangle) {
-    return Positioned(
-      left: rectangle.position.dx + offset.dx,
-      top: rectangle.position.dy + offset.dy,
-      child: Transform.rotate(
-        angle: rectangle.rotation * (pi / 180),
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          onTap: () {},
-          onLongPress: () {
-            _toggleMovement(rectangle);
-            _showRectangleDialog(context, rectangle: rectangle);
-          },
-          child: _rectangleContainer(rectangle, Colors.blue),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCurrentRectangle() {
-    return Positioned(
-      left: currentRectangle!.position.dx + offset.dx,
-      top: currentRectangle!.position.dy + offset.dy,
-      child: Transform.rotate(
-        angle: currentRectangle!.rotation * (pi / 180),
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          onTap: () {
-            _showRectangleDialog(context, rectangle: currentRectangle);
-          },
-          child: _rectangleContainer(
-            currentRectangle!,
-            Colors.red.withOpacity(0.5),
-          ),
-        ),
-      ),
+      fail: (message) => Text(message),
     );
   }
 
@@ -239,128 +541,6 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
       size: Size.infinite,
       painter: _GridPainter(offset: offset),
     );
-  }
-
-  Row _buildFloatingButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        FloatingActionButton(
-          onPressed: () => _showRectangleDialog(context),
-          child: const Icon(Icons.add),
-        ),
-        const SizedBox(width: 16),
-        FloatingActionButton(
-          onPressed: _confirmRectangle,
-          child: const Icon(Icons.check),
-        ),
-        const SizedBox(width: 16),
-        FloatingActionButton(
-          onPressed: () {
-            currentRectangle?.rotation =
-                (currentRectangle!.rotation + 90) % 360;
-            setState(() {});
-          },
-          child: const Icon(Icons.rotate_right),
-        ),
-      ],
-    );
-  }
-
-  void _showRectangleDialog(
-    BuildContext context, {
-    FlowerBedEntity? rectangle,
-  }) {
-    final List<int> values = List.generate(
-      15,
-      (index) => index + 1,
-    );
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(
-            rectangle == null
-                ? 'Введите размеры прямоугольника'
-                : 'Редактировать размеры',
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DropdownButtonFormField<int>(
-                value: rectangle != null ? rectangle.width : values.first,
-                items: values
-                    .map(
-                      (e) => DropdownMenuItem<int>(
-                        value: e,
-                        child: Text(e.toString()),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) => selectedWidth = value ?? 1,
-              ),
-              DropdownButtonFormField<int>(
-                value: rectangle != null ? rectangle.height : values.first,
-                items: values
-                    .map(
-                      (e) => DropdownMenuItem<int>(
-                        value: e,
-                        child: Text(e.toString()),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) => selectedHeight = value ?? 1,
-              ),
-            ],
-          ),
-          actions: [
-            if (rectangle != null)
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    _removeRectangle(rectangle);
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Удалить'),
-              ),
-            TextButton(
-              onPressed: () {
-                if (selectedWidth > 0 &&
-                    selectedHeight > 0 &&
-                    selectedWidth < 16 &&
-                    selectedHeight < 16) {
-                  setState(() {
-                    if (rectangle == null) {
-                      _addRectangle(selectedWidth, selectedHeight);
-                    } else {
-                      rectangle.width = selectedWidth;
-                      rectangle.height = selectedHeight;
-                    }
-                  });
-                  Navigator.of(context).pop();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      duration: Durations.long1,
-                      content: Text(
-                        'Ошибка: Размеры прямоугольника должны быть натуральным числом от 1 до 15.',
-                      ),
-                    ),
-                  );
-                }
-              },
-              child: const Text('Сохранить'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _removeRectangle(FlowerBedEntity rectangle) {
-    rectangles.remove(rectangle);
-    currentRectangle = null;
   }
 }
 

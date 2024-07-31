@@ -9,8 +9,9 @@ abstract class FlowerBedRepository {
     bool remote = true,
   ]);
 
-  Future<Either<Failure, void>> add(
+  Future<Either<Failure, void>> update(
     List<FlowerBedModel> request, [
     bool remote = true,
   ]);
+
 }

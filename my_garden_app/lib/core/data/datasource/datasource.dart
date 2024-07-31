@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 abstract class LocalDataSource<ResponseType, RequestType> {
   Future<ResponseType> load(RequestType request);
-  Future<void> add(ResponseType remoteLoad);
+  Future<void> update(ResponseType remoteLoad);
 }
 
 abstract class RemoteDataSource<ResponseType, RequestType> {

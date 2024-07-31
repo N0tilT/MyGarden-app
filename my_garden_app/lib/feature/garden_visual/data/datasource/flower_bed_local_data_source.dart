@@ -3,7 +3,8 @@ import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/flower_bed_model.dart';
 
-class FlowerBedLocalDataSource extends LocalDataSource<List<FlowerBedModel>, void> {
+class FlowerBedLocalDataSource
+    extends LocalDataSource<List<FlowerBedModel>, void> {
   Box<FlowerBedModel> flowerBedBox;
 
   FlowerBedLocalDataSource({
@@ -11,7 +12,7 @@ class FlowerBedLocalDataSource extends LocalDataSource<List<FlowerBedModel>, voi
   });
 
   @override
-  Future<void> add(List<FlowerBedModel> flowerBedList) async {
+  Future<void> update(List<FlowerBedModel> flowerBedList) async {
     try {
       if (flowerBedList.isEmpty) {
         flowerBedBox.clear();
@@ -35,4 +36,5 @@ class FlowerBedLocalDataSource extends LocalDataSource<List<FlowerBedModel>, voi
       throw CacheException();
     }
   }
+
 }

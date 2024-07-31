@@ -35,12 +35,12 @@ class FlowerBedRepositoryImpl implements FlowerBedRepository {
   }
 
   @override
-  Future<Either<Failure, void>> add(
+  Future<Either<Failure, void>> update(
     List<FlowerBedModel> request, [
     bool remote = true,
   ]) async {
     try {
-      return Right(await localDataSource.add(request));
+      return Right(await localDataSource.update(request));
     } on CacheException {
       return const Left(
         CacheFailure(message: "Ошибка локального хранилища"),

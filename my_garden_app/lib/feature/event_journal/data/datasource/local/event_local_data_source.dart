@@ -11,7 +11,7 @@ class EventLocalDataSource extends LocalDataSource<List<EventModel>, void> {
   });
 
   @override
-  Future<void> add(List<EventModel> eventList) async {
+  Future<void> update(List<EventModel> eventList) async {
     try {
       if (eventList.isEmpty) {
         eventBox.clear();
