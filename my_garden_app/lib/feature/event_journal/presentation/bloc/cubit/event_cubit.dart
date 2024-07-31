@@ -25,7 +25,7 @@ class EventCubit extends Cubit<EventState> {
         date: e.date,
         plantId: e.plantId,
       ),
-    ).toList());
+    ).toList(),);
     result.fold(
       (error) => emit(EventState.fail(error.message)),
       (success) => emit(EventState.success(eventList)),

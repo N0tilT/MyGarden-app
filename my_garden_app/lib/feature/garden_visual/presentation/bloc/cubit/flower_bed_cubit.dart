@@ -20,11 +20,11 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
   FlowerBedCubit(
       {required this.removeFlowerBed,
       required this.loadFlowerBeds,
-      required this.uploadFlowerBed})
+      required this.uploadFlowerBed,})
       : super(const FlowerBedState.initial());
 
   Future<void> upload(FlowerBedEntity flowerBed) async {
-    int nextId =
+    final int nextId =
         flowerBeds.isEmpty ? 1 : (flowerBeds.map((e) => e.id).reduce(max) + 1);
     flowerBed.id = nextId;
     flowerBeds.add(flowerBed);
@@ -42,7 +42,7 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
             plantIds: e.plantIds,
           ),
         )
-        .toList());
+        .toList(),);
     result.fold(
       (error) => emit(FlowerBedState.fail(error.message)),
       (success) => emit(FlowerBedState.success(flowerBeds)),
@@ -83,7 +83,7 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
             plantIds: e.plantIds,
           ),
         )
-        .toList());
+        .toList(),);
     result.fold(
       (error) => emit(FlowerBedState.fail(error.message)),
       (success) => emit(FlowerBedState.success(flowerBeds)),
