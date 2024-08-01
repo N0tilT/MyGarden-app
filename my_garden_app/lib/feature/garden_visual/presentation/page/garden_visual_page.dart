@@ -1,9 +1,14 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/entities/flower_bed_entity.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/widgets/grid_painter.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:my_garden_app/injection_container.dart';
 
 class GardenVisualPage extends StatelessWidget {
@@ -11,21 +16,28 @@ class GardenVisualPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FlowerBedCubit>(
-      create: (context) => sl<FlowerBedCubit>()..load(),
-      child: const _GardenVisualPageWidget(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FlowerBedCubit>(
+          create: (context) => sl<FlowerBedCubit>()..load(),
+        ),
+        BlocProvider(
+          create: (context) => sl<PlantListCubit>()..load(),
+        ),
+      ],
+      child: const _GardenVisualPageBody(),
     );
   }
 }
 
-class _GardenVisualPageWidget extends StatefulWidget {
-  const _GardenVisualPageWidget();
+class _GardenVisualPageBody extends StatefulWidget {
+  const _GardenVisualPageBody();
 
   @override
-  _GardenVisualPageWidgetState createState() => _GardenVisualPageWidgetState();
+  _GardenVisualPageBodyState createState() => _GardenVisualPageBodyState();
 }
 
-class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
+class _GardenVisualPageBodyState extends State<_GardenVisualPageBody> {
   FlowerBedEntity? currentRectangle;
   Offset offset = Offset.zero;
   int selectedWidth = 1;
@@ -71,6 +83,162 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
         (currentRectangle!.truePosition.dy ~/ 50) * 50,
       );
     });
+  }
+
+  Future<void> _showFlowerBedDialog(BuildContext context) async {
+    final TextEditingController titleController = TextEditingController();
+    final plantListCubit = context.read<PlantListCubit>();
+    await showDialog(
+      context: context,
+      builder: (context) {
+        List<PlantEntity> plantList = plantListCubit.state.maybeWhen(
+          success: (plants) => plants,
+          orElse: () => <PlantEntity>[],
+        );
+        plantList = plantList
+            .where(
+              (element) => currentRectangle!.plantIds.contains(element.id),
+            )
+            .toList();
+
+        return AlertDialog(
+          title: const Text('Редактировать грядку'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Название'),
+              ),
+              const SizedBox(height: 10),
+              const Text('Растения в грядке:'),
+              SingleChildScrollView(
+                child: Column(
+                  children: plantList
+                      .map(
+                        (e) => PlantListItem(
+                          plant: e,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 20),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      _showPlantSelectionDialog(
+                        context,
+                        plantListCubit.state.maybeWhen(
+                          success: (plants) => plants,
+                          orElse: () => <PlantEntity>[],
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "+",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+
+              // You can add more UI elements here to display plants
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  currentRectangle!.isMoving = true;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Icon(Icons.edit),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+
+                currentRectangle!.isMoving = true;
+                _showDimensionDialog(context);
+              },
+              child: const Text('Изменить размеры'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showPlantSelectionDialog(
+    BuildContext context,
+    List<PlantEntity> plantList,
+  ) {
+    int? selectedPlantId; // Variable to hold selected plant ID
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Выберите растение'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Dropdown for selecting a new plant
+                DropdownButton<int>(
+                  value: selectedPlantId,
+                  hint: const Text('Выберите растение'),
+                  items: plantList.map((plant) {
+                    return DropdownMenuItem<int>(
+                      value: plant.id,
+                      child: Text(
+                        plant.title ?? "",
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    selectedPlantId = value;
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (selectedPlantId != null) {
+                  setState(() {
+                    final updatedPlantIds =
+                        List<int>.from(currentRectangle!.plantIds);
+                    updatedPlantIds.add(selectedPlantId!);
+                    currentRectangle!.plantIds = updatedPlantIds;
+                  });
+                  Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Выберите растение для добавления.'),
+                    ),
+                  );
+                }
+              },
+              child: const Text('Добавить'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close plant selection dialog
+              },
+              child: const Text('Закрыть'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> _showDimensionDialog(BuildContext context) async {
@@ -227,9 +395,9 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
           child: Stack(
             children: [
               Container(color: Colors.lightGreen[100]),
-              _buildGrid(),
+              GardenVisualGrid(offset: offset),
               ...rectangles.map((rectangle) => _buildRectangle(rectangle)),
-              if (currentRectangle != null)
+              if (currentRectangle != null && currentRectangle!.isMoving)
                 _buildResizingRectangle(currentRectangle!),
             ],
           ),
@@ -248,7 +416,10 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
         angle: rectangle.rotation * (pi / 180),
         alignment: Alignment.topLeft,
         child: GestureDetector(
-          onTap: () => _showDimensionDialog(context),
+          onTap: () {
+            currentRectangle = rectangle;
+            _showFlowerBedDialog(context);
+          },
           onLongPress: () => _toggleMovement(rectangle),
           child: _rectangleContainer(rectangle, Colors.blue),
         ),
@@ -318,43 +489,6 @@ class _GardenVisualPageWidgetState extends State<_GardenVisualPageWidget> {
       child: Center(child: Text('${rectangle.width}x${rectangle.height}')),
     );
   }
-
-  Widget _buildGrid() {
-    return CustomPaint(
-      size: Size.infinite,
-      painter: _GridPainter(offset: offset),
-    );
-  }
-}
-
-class _GridPainter extends CustomPainter {
-  final Offset offset;
-
-  _GridPainter({required this.offset});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white
-      ..strokeWidth = 0.5;
-    for (double i = 0; i < size.width; i += 50) {
-      canvas.drawLine(
-        Offset(i + offset.dx, 0),
-        Offset(i + offset.dx, size.height),
-        paint,
-      );
-    }
-    for (double i = 0; i < size.height; i += 50) {
-      canvas.drawLine(
-        Offset(0, i + offset.dy),
-        Offset(size.width, i + offset.dy),
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
 class _GardenVisualAppBarWidget extends StatelessWidget

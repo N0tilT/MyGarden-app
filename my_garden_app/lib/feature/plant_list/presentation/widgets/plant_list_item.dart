@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_garden_app/feature/plant_card/presentation/pages/plant_card_page.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 
 class PlantListItem extends StatelessWidget {
@@ -10,13 +9,13 @@ class PlantListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (context) => PlantCardPage(
-            plant: plant,
-          ),
-        ),
-      ),
+      // onTap: () => Navigator.of(context).push(
+      //   MaterialPageRoute<void>(
+      //     builder: (context) => PlantCardPage(
+      //       plant: plant,
+      //     ),
+      //   ),
+      // ),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(),
