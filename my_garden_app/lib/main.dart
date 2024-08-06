@@ -100,15 +100,17 @@ class _InitializerState extends State<Initializer> {
 
   @override
   Widget build(BuildContext context) {
-    final tokenCubit = context.watch<TokenCubit>();
-    return tokenCubit.state.when(
-      initial: () => const Center(child: GardenLoadingWidget()),
-      authorized: (token) => const Center(child: GardenLoadingWidget()),
-      fail: (l) => const MainAuthPage(),
-      unauthorized: () => const MainAuthPage(),
-      tokenSuccess: (token) {
-        return const MainNavigatorWidget();
-      },
-    );
+    return const MainNavigatorWidget();
+    //auth 
+    // final tokenCubit = context.watch<TokenCubit>();
+    // return tokenCubit.state.when(
+    //   initial: () => const Center(child: GardenLoadingWidget()),
+    //   authorized: (token) => const Center(child: GardenLoadingWidget()),
+    //   fail: (l) => const MainAuthPage(),
+    //   unauthorized: () => const MainAuthPage(),
+    //   tokenSuccess: (token) {
+    //     return const MainNavigatorWidget();
+    //   },
+    // );
   }
 }
