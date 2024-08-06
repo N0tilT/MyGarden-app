@@ -14,4 +14,9 @@ class GardenEntity {
         id: model.id,
         title: model.title,
       );
+
+  @override
+  String toString() {
+    return title;
+  }
 }

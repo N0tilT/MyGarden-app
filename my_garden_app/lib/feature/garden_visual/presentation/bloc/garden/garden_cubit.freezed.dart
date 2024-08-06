@@ -22,6 +22,10 @@ mixin _$GardenState {
     required TResult Function() loading,
     required TResult Function(List<GardenEntity> departments) success,
     required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +34,10 @@ mixin _$GardenState {
     TResult? Function()? loading,
     TResult? Function(List<GardenEntity> departments)? success,
     TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +46,10 @@ mixin _$GardenState {
     TResult Function()? loading,
     TResult Function(List<GardenEntity> departments)? success,
     TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +59,10 @@ mixin _$GardenState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +71,10 @@ mixin _$GardenState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +83,10 @@ mixin _$GardenState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +152,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(List<GardenEntity> departments) success,
     required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
   }) {
     return initial();
   }
@@ -139,6 +167,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(List<GardenEntity> departments)? success,
     TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
   }) {
     return initial?.call();
   }
@@ -150,6 +182,10 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(List<GardenEntity> departments)? success,
     TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -165,6 +201,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
   }) {
     return initial(this);
   }
@@ -176,6 +216,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
   }) {
     return initial?.call(this);
   }
@@ -187,6 +231,10 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -242,6 +290,10 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(List<GardenEntity> departments) success,
     required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
   }) {
     return loading();
   }
@@ -253,6 +305,10 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(List<GardenEntity> departments)? success,
     TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
   }) {
     return loading?.call();
   }
@@ -264,6 +320,10 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(List<GardenEntity> departments)? success,
     TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -279,6 +339,10 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
   }) {
     return loading(this);
   }
@@ -290,6 +354,10 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
   }) {
     return loading?.call(this);
   }
@@ -301,6 +369,10 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -390,6 +462,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(List<GardenEntity> departments) success,
     required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
   }) {
     return success(departments);
   }
@@ -401,6 +477,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(List<GardenEntity> departments)? success,
     TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
   }) {
     return success?.call(departments);
   }
@@ -412,6 +492,10 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(List<GardenEntity> departments)? success,
     TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -427,6 +511,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
   }) {
     return success(this);
   }
@@ -438,6 +526,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
   }) {
     return success?.call(this);
   }
@@ -449,6 +541,10 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -535,6 +631,10 @@ class _$FailImpl implements _Fail {
     required TResult Function() loading,
     required TResult Function(List<GardenEntity> departments) success,
     required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
   }) {
     return fail(message);
   }
@@ -546,6 +646,10 @@ class _$FailImpl implements _Fail {
     TResult? Function()? loading,
     TResult? Function(List<GardenEntity> departments)? success,
     TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
   }) {
     return fail?.call(message);
   }
@@ -557,6 +661,10 @@ class _$FailImpl implements _Fail {
     TResult Function()? loading,
     TResult Function(List<GardenEntity> departments)? success,
     TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (fail != null) {
@@ -572,6 +680,10 @@ class _$FailImpl implements _Fail {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
   }) {
     return fail(this);
   }
@@ -583,6 +695,10 @@ class _$FailImpl implements _Fail {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
   }) {
     return fail?.call(this);
   }
@@ -594,6 +710,10 @@ class _$FailImpl implements _Fail {
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
     required TResult orElse(),
   }) {
     if (fail != null) {
@@ -609,5 +729,659 @@ abstract class _Fail implements GardenState {
   String get message;
   @JsonKey(ignore: true)
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSelectedSuccessImplCopyWith<$Res> {
+  factory _$$GetSelectedSuccessImplCopyWith(_$GetSelectedSuccessImpl value,
+          $Res Function(_$GetSelectedSuccessImpl) then) =
+      __$$GetSelectedSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({GardenEntity departments});
+}
+
+/// @nodoc
+class __$$GetSelectedSuccessImplCopyWithImpl<$Res>
+    extends _$GardenStateCopyWithImpl<$Res, _$GetSelectedSuccessImpl>
+    implements _$$GetSelectedSuccessImplCopyWith<$Res> {
+  __$$GetSelectedSuccessImplCopyWithImpl(_$GetSelectedSuccessImpl _value,
+      $Res Function(_$GetSelectedSuccessImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? departments = null,
+  }) {
+    return _then(_$GetSelectedSuccessImpl(
+      null == departments
+          ? _value.departments
+          : departments // ignore: cast_nullable_to_non_nullable
+              as GardenEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSelectedSuccessImpl implements _GetSelectedSuccess {
+  const _$GetSelectedSuccessImpl(this.departments);
+
+  @override
+  final GardenEntity departments;
+
+  @override
+  String toString() {
+    return 'GardenState.getSelectedSuccess(departments: $departments)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSelectedSuccessImpl &&
+            (identical(other.departments, departments) ||
+                other.departments == departments));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, departments);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSelectedSuccessImplCopyWith<_$GetSelectedSuccessImpl> get copyWith =>
+      __$$GetSelectedSuccessImplCopyWithImpl<_$GetSelectedSuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<GardenEntity> departments) success,
+    required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
+  }) {
+    return getSelectedSuccess(departments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<GardenEntity> departments)? success,
+    TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
+  }) {
+    return getSelectedSuccess?.call(departments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<GardenEntity> departments)? success,
+    TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (getSelectedSuccess != null) {
+      return getSelectedSuccess(departments);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
+  }) {
+    return getSelectedSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
+  }) {
+    return getSelectedSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (getSelectedSuccess != null) {
+      return getSelectedSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSelectedSuccess implements GardenState {
+  const factory _GetSelectedSuccess(final GardenEntity departments) =
+      _$GetSelectedSuccessImpl;
+
+  GardenEntity get departments;
+  @JsonKey(ignore: true)
+  _$$GetSelectedSuccessImplCopyWith<_$GetSelectedSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSelectedFailImplCopyWith<$Res> {
+  factory _$$GetSelectedFailImplCopyWith(_$GetSelectedFailImpl value,
+          $Res Function(_$GetSelectedFailImpl) then) =
+      __$$GetSelectedFailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$GetSelectedFailImplCopyWithImpl<$Res>
+    extends _$GardenStateCopyWithImpl<$Res, _$GetSelectedFailImpl>
+    implements _$$GetSelectedFailImplCopyWith<$Res> {
+  __$$GetSelectedFailImplCopyWithImpl(
+      _$GetSelectedFailImpl _value, $Res Function(_$GetSelectedFailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$GetSelectedFailImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSelectedFailImpl implements _GetSelectedFail {
+  const _$GetSelectedFailImpl([this.message = "Unknown error"]);
+
+  @override
+  @JsonKey()
+  final String message;
+
+  @override
+  String toString() {
+    return 'GardenState.getSelectedFail(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSelectedFailImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSelectedFailImplCopyWith<_$GetSelectedFailImpl> get copyWith =>
+      __$$GetSelectedFailImplCopyWithImpl<_$GetSelectedFailImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<GardenEntity> departments) success,
+    required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
+  }) {
+    return getSelectedFail(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<GardenEntity> departments)? success,
+    TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
+  }) {
+    return getSelectedFail?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<GardenEntity> departments)? success,
+    TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (getSelectedFail != null) {
+      return getSelectedFail(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
+  }) {
+    return getSelectedFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
+  }) {
+    return getSelectedFail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (getSelectedFail != null) {
+      return getSelectedFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSelectedFail implements GardenState {
+  const factory _GetSelectedFail([final String message]) =
+      _$GetSelectedFailImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$GetSelectedFailImplCopyWith<_$GetSelectedFailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetSelectedSuccessImplCopyWith<$Res> {
+  factory _$$SetSelectedSuccessImplCopyWith(_$SetSelectedSuccessImpl value,
+          $Res Function(_$SetSelectedSuccessImpl) then) =
+      __$$SetSelectedSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SetSelectedSuccessImplCopyWithImpl<$Res>
+    extends _$GardenStateCopyWithImpl<$Res, _$SetSelectedSuccessImpl>
+    implements _$$SetSelectedSuccessImplCopyWith<$Res> {
+  __$$SetSelectedSuccessImplCopyWithImpl(_$SetSelectedSuccessImpl _value,
+      $Res Function(_$SetSelectedSuccessImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SetSelectedSuccessImpl implements _SetSelectedSuccess {
+  const _$SetSelectedSuccessImpl();
+
+  @override
+  String toString() {
+    return 'GardenState.setSelectedSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SetSelectedSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<GardenEntity> departments) success,
+    required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
+  }) {
+    return setSelectedSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<GardenEntity> departments)? success,
+    TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
+  }) {
+    return setSelectedSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<GardenEntity> departments)? success,
+    TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (setSelectedSuccess != null) {
+      return setSelectedSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
+  }) {
+    return setSelectedSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
+  }) {
+    return setSelectedSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (setSelectedSuccess != null) {
+      return setSelectedSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetSelectedSuccess implements GardenState {
+  const factory _SetSelectedSuccess() = _$SetSelectedSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$SetSelectedFailImplCopyWith<$Res> {
+  factory _$$SetSelectedFailImplCopyWith(_$SetSelectedFailImpl value,
+          $Res Function(_$SetSelectedFailImpl) then) =
+      __$$SetSelectedFailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$SetSelectedFailImplCopyWithImpl<$Res>
+    extends _$GardenStateCopyWithImpl<$Res, _$SetSelectedFailImpl>
+    implements _$$SetSelectedFailImplCopyWith<$Res> {
+  __$$SetSelectedFailImplCopyWithImpl(
+      _$SetSelectedFailImpl _value, $Res Function(_$SetSelectedFailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$SetSelectedFailImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectedFailImpl implements _SetSelectedFail {
+  const _$SetSelectedFailImpl([this.message = "Unknown error"]);
+
+  @override
+  @JsonKey()
+  final String message;
+
+  @override
+  String toString() {
+    return 'GardenState.setSelectedFail(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetSelectedFailImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetSelectedFailImplCopyWith<_$SetSelectedFailImpl> get copyWith =>
+      __$$SetSelectedFailImplCopyWithImpl<_$SetSelectedFailImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<GardenEntity> departments) success,
+    required TResult Function(String message) fail,
+    required TResult Function(GardenEntity departments) getSelectedSuccess,
+    required TResult Function(String message) getSelectedFail,
+    required TResult Function() setSelectedSuccess,
+    required TResult Function(String message) setSelectedFail,
+  }) {
+    return setSelectedFail(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<GardenEntity> departments)? success,
+    TResult? Function(String message)? fail,
+    TResult? Function(GardenEntity departments)? getSelectedSuccess,
+    TResult? Function(String message)? getSelectedFail,
+    TResult? Function()? setSelectedSuccess,
+    TResult? Function(String message)? setSelectedFail,
+  }) {
+    return setSelectedFail?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<GardenEntity> departments)? success,
+    TResult Function(String message)? fail,
+    TResult Function(GardenEntity departments)? getSelectedSuccess,
+    TResult Function(String message)? getSelectedFail,
+    TResult Function()? setSelectedSuccess,
+    TResult Function(String message)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (setSelectedFail != null) {
+      return setSelectedFail(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Fail value) fail,
+    required TResult Function(_GetSelectedSuccess value) getSelectedSuccess,
+    required TResult Function(_GetSelectedFail value) getSelectedFail,
+    required TResult Function(_SetSelectedSuccess value) setSelectedSuccess,
+    required TResult Function(_SetSelectedFail value) setSelectedFail,
+  }) {
+    return setSelectedFail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Fail value)? fail,
+    TResult? Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult? Function(_GetSelectedFail value)? getSelectedFail,
+    TResult? Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult? Function(_SetSelectedFail value)? setSelectedFail,
+  }) {
+    return setSelectedFail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Fail value)? fail,
+    TResult Function(_GetSelectedSuccess value)? getSelectedSuccess,
+    TResult Function(_GetSelectedFail value)? getSelectedFail,
+    TResult Function(_SetSelectedSuccess value)? setSelectedSuccess,
+    TResult Function(_SetSelectedFail value)? setSelectedFail,
+    required TResult orElse(),
+  }) {
+    if (setSelectedFail != null) {
+      return setSelectedFail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetSelectedFail implements GardenState {
+  const factory _SetSelectedFail([final String message]) =
+      _$SetSelectedFailImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$SetSelectedFailImplCopyWith<_$SetSelectedFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

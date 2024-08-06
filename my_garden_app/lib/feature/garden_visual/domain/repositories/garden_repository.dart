@@ -14,4 +14,9 @@ abstract class GardenRepository {
     bool remote = true,
   ]);
 
+  
+  Future<Either<Failure,GardenModel>> getSelectedGarden(void request);
+
+  Future<Either<Failure,void>> setSelectedGarden(GardenModel request);
+
 }

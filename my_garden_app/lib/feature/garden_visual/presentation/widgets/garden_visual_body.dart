@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_garden_app/core/constant_values/routes.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/entities/flower_bed_entity.dart';
-import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/widgets/grid_painter.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
@@ -431,12 +433,24 @@ class _GardenVisualAppBarWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final gardenCubit = context.watch<GardenCubit>();
     return AppBar(
       titleSpacing: 0,
+      automaticallyImplyLeading: false,
       centerTitle: true,
-      title: const Text(
-        'Мои грядки',
-        style: TextStyle(color: Colors.white, fontSize: 25),
+      title: GestureDetector(
+        onTap: () => Navigator.of(context).pushReplacementNamed(gardenSelector),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              gardenCubit.selectedGarden.title.isEmpty
+                  ? "Выберите сад"
+                  : gardenCubit.selectedGarden.title,
+            ),
+            const Icon(Icons.search, color: Colors.white, size: 27),
+          ],
+        ),
       ),
     );
   }
