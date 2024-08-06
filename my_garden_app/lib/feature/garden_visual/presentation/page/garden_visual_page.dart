@@ -84,13 +84,15 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
   Future<void> _showFlowerBedDialog(BuildContext context) async {
     final titleController = TextEditingController();
     final plantListCubit = context.read<PlantListCubit>();
-    List<PlantEntity> plantList = plantListCubit.state.maybeWhen(
+    List<PlantEntity> allPlantList = plantListCubit.state.maybeWhen(
       success: (plants) => plants,
       orElse: () => [],
     );
 
-    if (plantList.isNotEmpty) {
-      plantList = plantList
+    List<PlantEntity> plantList = [];
+
+    if (allPlantList.isNotEmpty) {
+      plantList = allPlantList
           .where((pl) => currentRectangle!.plantIds.contains(pl.id))
           .toList();
     }
@@ -103,39 +105,45 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
-                controller: titleController,
-                decoration: const InputDecoration(labelText: 'Название'),),
+              controller: titleController,
+              decoration: const InputDecoration(labelText: 'Название'),
+            ),
             const SizedBox(height: 10),
             const Text('Растения в грядке:'),
             SingleChildScrollView(
-                child: Column(
-                    children: plantList
-                        .map((e) => PlantListItem(plant: e))
-                        .toList(),),),
+              child: Column(
+                children:
+                    plantList.map((e) => Text(e.title ?? "")).toList(),
+              ),
+            ),
             const SizedBox(height: 10),
             FloatingActionButton(
-              onPressed: () => _showPlantSelectionDialog(context, plantList),
+              onPressed: () => _showPlantSelectionDialog(context, allPlantList),
               child: const Text("+", style: TextStyle(fontSize: 20)),
             ),
           ],
         ),
         actions: [
           TextButton(
-              onPressed: () {
-                setState(() => currentRectangle!.isMoving = true);
-                Navigator.of(context).pop();
-              },
-              child: const Icon(Icons.edit),),
+            onPressed: () {
+              setState(() => currentRectangle!.isMoving = true);
+              Navigator.of(context).pop();
+            },
+            child: const Icon(Icons.edit),
+          ),
           TextButton(
-              onPressed: () => _showDimensionDialog(context),
-              child: const Text('Изменить размеры'),),
+            onPressed: () => _showDimensionDialog(context),
+            child: const Text('Изменить размеры'),
+          ),
         ],
       ),
     );
   }
 
   void _showPlantSelectionDialog(
-      BuildContext context, List<PlantEntity> plantList,) {
+    BuildContext context,
+    List<PlantEntity> plantList,
+  ) {
     int? selectedPlantId;
 
     showDialog(
@@ -147,8 +155,12 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
             value: selectedPlantId,
             hint: const Text('Выберите растение'),
             items: plantList
-                .map((plant) => DropdownMenuItem(
-                    value: plant.id, child: Text(plant.title ?? ""),),)
+                .map(
+                  (plant) => DropdownMenuItem(
+                    value: plant.id,
+                    child: Text(plant.title ?? ""),
+                  ),
+                )
                 .toList(),
             onChanged: (value) => selectedPlantId = value,
           ),
@@ -158,19 +170,25 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
             onPressed: () {
               if (selectedPlantId != null) {
                 setState(() {
-                  currentRectangle!.plantIds.add(selectedPlantId!);
+                  final List<int> tmp = List.from(currentRectangle!.plantIds);
+                  tmp.add(selectedPlantId!);
+                  currentRectangle!.plantIds = tmp;
                 });
                 Navigator.of(context).pop();
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('Выберите растение для добавления.'),),);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Выберите растение для добавления.'),
+                  ),
+                );
               }
             },
             child: const Text('Добавить'),
           ),
           TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Закрыть'),),
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Закрыть'),
+          ),
         ],
       ),
     );
@@ -181,25 +199,31 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(currentRectangle == null
-            ? 'Введите размеры'
-            : 'Редактировать размеры',),
+        title: Text(
+          currentRectangle == null
+              ? 'Введите размеры'
+              : 'Редактировать размеры',
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             DropdownButtonFormField<int>(
               value: currentRectangle?.width ?? values.first,
               items: values
-                  .map((e) =>
-                      DropdownMenuItem(value: e, child: Text(e.toString())),)
+                  .map(
+                    (e) =>
+                        DropdownMenuItem(value: e, child: Text(e.toString())),
+                  )
                   .toList(),
               onChanged: (value) => selectedWidth = value ?? 1,
             ),
             DropdownButtonFormField<int>(
               value: currentRectangle?.height ?? values.first,
               items: values
-                  .map((e) =>
-                      DropdownMenuItem(value: e, child: Text(e.toString())),)
+                  .map(
+                    (e) =>
+                        DropdownMenuItem(value: e, child: Text(e.toString())),
+                  )
                   .toList(),
               onChanged: (value) => selectedHeight = value ?? 1,
             ),
@@ -207,28 +231,33 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
         ),
         actions: [
           TextButton(
-              onPressed: () {
-                if (currentRectangle != null) {
-                  context.read<FlowerBedCubit>().remove(currentRectangle!);
-                  currentRectangle = null;
-                }
-                Navigator.of(context).pop();
-              },
-              child: const Text('Удалить'),),
+            onPressed: () {
+              if (currentRectangle != null) {
+                context.read<FlowerBedCubit>().remove(currentRectangle!);
+                currentRectangle = null;
+              }
+              Navigator.of(context).pop();
+            },
+            child: const Text('Удалить'),
+          ),
           TextButton(
-              onPressed: () {
-                if (selectedWidth > 0 &&
-                    selectedHeight > 0 &&
-                    selectedWidth < 16 &&
-                    selectedHeight < 16) {
-                  _addOrEditRectangle(selectedWidth, selectedHeight);
-                  Navigator.of(context).pop();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Ошибка: размеры от 1 до 15.'),),);
-                }
-              },
-              child: const Text('Сохранить'),),
+            onPressed: () {
+              if (selectedWidth > 0 &&
+                  selectedHeight > 0 &&
+                  selectedWidth < 16 &&
+                  selectedHeight < 16) {
+                _addOrEditRectangle(selectedWidth, selectedHeight);
+                Navigator.of(context).pop();
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Ошибка: размеры от 1 до 15.'),
+                  ),
+                );
+              }
+            },
+            child: const Text('Сохранить'),
+          ),
         ],
       ),
     );
@@ -306,12 +335,14 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         FloatingActionButton(
-            onPressed: () => _showDimensionDialog(context),
-            child: const Icon(Icons.add),),
+          onPressed: () => _showDimensionDialog(context),
+          child: const Icon(Icons.add),
+        ),
         const SizedBox(width: 16),
         FloatingActionButton(
-            onPressed: () => _saveRectangle(context),
-            child: const Icon(Icons.check),),
+          onPressed: () => _saveRectangle(context),
+          child: const Icon(Icons.check),
+        ),
         const SizedBox(width: 16),
         FloatingActionButton(
           onPressed: () {
@@ -334,13 +365,18 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
     final rectBounds = _getRotatedBounds(currentRectangle!);
 
     if (flowerBedCubit.state.maybeWhen(
-      success: (rectangles) => rectangles.any((rectangle) =>
-          rectangle != currentRectangle &&
-          rectBounds.overlaps(_getRotatedBounds(rectangle)),),
+      success: (rectangles) => rectangles.any(
+        (rectangle) =>
+            rectangle != currentRectangle &&
+            rectBounds.overlaps(_getRotatedBounds(rectangle)),
+      ),
       orElse: () => false,
     )) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Ошибка: Прямоугольник перекрывает существующий.'),),);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Ошибка: Прямоугольник перекрывает существующий.'),
+        ),
+      );
       return;
     }
 
@@ -355,8 +391,10 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
       rectangle.position.translate(0, rectangle.height * 50),
       rectangle.position.translate(rectangle.width * 50, rectangle.height * 50),
     ]
-        .map((point) =>
-            _rotatePoint(point, rectangle.position, rectangle.rotation),)
+        .map(
+          (point) =>
+              _rotatePoint(point, rectangle.position, rectangle.rotation),
+        )
         .toList();
 
     final minX = corners.map((e) => e.dx).reduce(min).round();
@@ -364,16 +402,22 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
     final maxX = corners.map((e) => e.dx).reduce(max).round();
     final maxY = corners.map((e) => e.dy).reduce(max).round();
 
-    return Rect.fromLTRB(50.0 * (minX ~/ 50), 50.0 * (minY ~/ 50),
-        50.0 * (maxX ~/ 50), 50.0 * (maxY ~/ 50),);
+    return Rect.fromLTRB(
+      50.0 * (minX ~/ 50),
+      50.0 * (minY ~/ 50),
+      50.0 * (maxX ~/ 50),
+      50.0 * (maxY ~/ 50),
+    );
   }
 
   Offset _rotatePoint(Offset point, Offset center, double angle) {
     final radians = angle * (pi / 180);
     final x = point.dx - center.dx;
     final y = point.dy - center.dy;
-    return Offset(x * cos(radians) - y * sin(radians) + center.dx,
-        x * sin(radians) + y * cos(radians) + center.dy,);
+    return Offset(
+      x * cos(radians) - y * sin(radians) + center.dx,
+      x * sin(radians) + y * cos(radians) + center.dy,
+    );
   }
 
   Widget _rectangleContainer(FlowerBedEntity rectangle, Color color) {
@@ -383,10 +427,10 @@ class _GardenVisualBodyState extends State<_GardenVisualBody> {
       decoration: BoxDecoration(
         color: color,
         border: Border.all(
-            color: currentRectangle == rectangle
-                ? Colors.blue
-                : Colors.transparent,
-            width: 2,),
+          color:
+              currentRectangle == rectangle ? Colors.blue : Colors.transparent,
+          width: 2,
+        ),
       ),
       child: Center(child: Text('${rectangle.width}x${rectangle.height}')),
     );
@@ -402,8 +446,10 @@ class _GardenVisualAppBarWidget extends StatelessWidget
     return AppBar(
       titleSpacing: 0,
       centerTitle: true,
-      title: const Text('Мои грядки',
-          style: TextStyle(color: Colors.white, fontSize: 25),),
+      title: const Text(
+        'Мои грядки',
+        style: TextStyle(color: Colors.white, fontSize: 25),
+      ),
     );
   }
 
