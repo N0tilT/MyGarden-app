@@ -65,10 +65,7 @@ class _PlantCardWidgetState extends State<_PlantCardWidget> {
                     ),
                   );
                 },
-                child: const Text(
-                  "+",
-                  style: TextStyle(fontSize: 20),
-                ),
+                child: const Icon(Icons.edit),
               ),
             ),
           ),
