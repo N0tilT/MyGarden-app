@@ -8,7 +8,6 @@ import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flow
 import 'package:my_garden_app/feature/garden_visual/presentation/widgets/grid_painter.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 
 class GardenVisualBody extends StatefulWidget {
   const GardenVisualBody();
@@ -70,13 +69,16 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
   Future<void> _showFlowerBedDialog(BuildContext context) async {
     final titleController = TextEditingController();
     final plantListCubit = context.read<PlantListCubit>();
-    List<PlantEntity> plantList = plantListCubit.state.maybeWhen(
+    final flowerBedCubit = context.read<FlowerBedCubit>();
+    final List<PlantEntity> allPlantList = plantListCubit.state.maybeWhen(
       success: (plants) => plants,
       orElse: () => [],
     );
 
-    if (plantList.isNotEmpty) {
-      plantList = plantList
+    List<PlantEntity> plantList = [];
+
+    if (allPlantList.isNotEmpty) {
+      plantList = allPlantList
           .where((pl) => currentRectangle!.plantIds.contains(pl.id))
           .toList();
     }
@@ -96,13 +98,12 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
             const Text('Растения в грядке:'),
             SingleChildScrollView(
               child: Column(
-                children:
-                    plantList.map((e) => PlantListItem(plant: e)).toList(),
+                children: plantList.map((e) => Text(e.title ?? "")).toList(),
               ),
             ),
             const SizedBox(height: 10),
             FloatingActionButton(
-              onPressed: () => _showPlantSelectionDialog(context, plantList),
+              onPressed: () => _showPlantSelectionDialog(context, allPlantList, flowerBedCubit),
               child: const Text("+", style: TextStyle(fontSize: 20)),
             ),
           ],
@@ -126,53 +127,57 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
 
   void _showPlantSelectionDialog(
     BuildContext context,
-    List<PlantEntity> plantList,
+    List<PlantEntity> plantList, FlowerBedCubit flowerBedCubit,
   ) {
     int? selectedPlantId;
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Выберите растение'),
-        content: SingleChildScrollView(
-          child: DropdownButton<int>(
-            value: selectedPlantId,
-            hint: const Text('Выберите растение'),
-            items: plantList
-                .map(
-                  (plant) => DropdownMenuItem(
-                    value: plant.id,
-                    child: Text(plant.title ?? ""),
-                  ),
-                )
-                .toList(),
-            onChanged: (value) => selectedPlantId = value,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Выберите растение'),
+          content: SingleChildScrollView(
+            child: DropdownButton<int>(
+              value: selectedPlantId,
+              hint: const Text('Выберите растение'),
+              items: plantList
+                  .map(
+                    (plant) => DropdownMenuItem(
+                      value: plant.id,
+                      child: Text(plant.title ?? ""),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (value) => selectedPlantId = value,
+            ),
           ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              if (selectedPlantId != null) {
-                setState(() {
-                  currentRectangle!.plantIds.add(selectedPlantId!);
-                });
-                Navigator.of(context).pop();
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Выберите растение для добавления.'),
-                  ),
-                );
-              }
-            },
-            child: const Text('Добавить'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Закрыть'),
-          ),
-        ],
-      ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (selectedPlantId != null) {
+                  final List<int> tmp = List.from(currentRectangle!.plantIds);
+                  tmp.add(selectedPlantId!);
+                  currentRectangle!.plantIds = tmp;
+                  flowerBedCubit.update(currentRectangle!);
+                  setState(() {});
+                  Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Выберите растение для добавления.'),
+                    ),
+                  );
+                }
+              },
+              child: const Text('Добавить'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Закрыть'),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -266,12 +271,10 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
           child: Stack(
             children: [
               Container(color: Colors.lightGreen[100]),
+              GardenVisualGrid(offset: offset),
               ...rectangles.map((rectangle) => _buildRectangle(rectangle)),
               if (currentRectangle != null && currentRectangle!.isMoving)
                 _buildResizingRectangle(currentRectangle!),
-              GardenVisualGrid(
-                offset: offset,
-              ),
             ],
           ),
         ),

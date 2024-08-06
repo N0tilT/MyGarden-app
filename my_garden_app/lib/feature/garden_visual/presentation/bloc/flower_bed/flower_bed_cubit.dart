@@ -17,32 +17,59 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
   final RemoveFlowerBed removeFlowerBed;
   List<FlowerBedEntity> flowerBeds = [];
 
-  FlowerBedCubit(
-      {required this.removeFlowerBed,
-      required this.loadFlowerBeds,
-      required this.uploadFlowerBed,})
-      : super(const FlowerBedState.initial());
+  FlowerBedCubit({
+    required this.removeFlowerBed,
+    required this.loadFlowerBeds,
+    required this.uploadFlowerBed,
+  }) : super(const FlowerBedState.initial());
 
   Future<void> upload(FlowerBedEntity flowerBed) async {
     final int nextId =
         flowerBeds.isEmpty ? 1 : (flowerBeds.map((e) => e.id).reduce(max) + 1);
     flowerBed.id = nextId;
     flowerBeds.add(flowerBed);
-    final result = await uploadFlowerBed(flowerBeds
-        .map(
-          (e) => FlowerBedModel(
-            id: e.id,
-            width: e.width,
-            height: e.height,
-            trueDx: e.truePosition.dx,
-            trueDy: e.truePosition.dy,
-            dx: e.position.dx,
-            dy: e.position.dy,
-            rotation: e.rotation,
-            plantIds: e.plantIds,
-          ),
-        )
-        .toList(),);
+    final result = await uploadFlowerBed(
+      flowerBeds
+          .map(
+            (e) => FlowerBedModel(
+              id: e.id,
+              width: e.width,
+              height: e.height,
+              trueDx: e.truePosition.dx,
+              trueDy: e.truePosition.dy,
+              dx: e.position.dx,
+              dy: e.position.dy,
+              rotation: e.rotation,
+              plantIds: e.plantIds,
+            ),
+          )
+          .toList(),
+    );
+    result.fold(
+      (error) => emit(FlowerBedState.fail(error.message)),
+      (success) => emit(FlowerBedState.success(flowerBeds)),
+    );
+  }
+
+  Future<void> update(FlowerBedEntity flowerBed) async {
+    flowerBeds[flowerBeds.indexOf(flowerBed)] = flowerBed;
+    final result = await uploadFlowerBed(
+      flowerBeds
+          .map(
+            (e) => FlowerBedModel(
+              id: e.id,
+              width: e.width,
+              height: e.height,
+              trueDx: e.truePosition.dx,
+              trueDy: e.truePosition.dy,
+              dx: e.position.dx,
+              dy: e.position.dy,
+              rotation: e.rotation,
+              plantIds: e.plantIds,
+            ),
+          )
+          .toList(),
+    );
     result.fold(
       (error) => emit(FlowerBedState.fail(error.message)),
       (success) => emit(FlowerBedState.success(flowerBeds)),
@@ -69,21 +96,23 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
 
   Future<void> remove(FlowerBedEntity flowerBed) async {
     flowerBeds.remove(flowerBed);
-    final result = await uploadFlowerBed(flowerBeds
-        .map(
-          (e) => FlowerBedModel(
-            id: e.id,
-            width: e.width,
-            height: e.height,
-            trueDx: e.truePosition.dx,
-            trueDy: e.truePosition.dy,
-            dx: e.position.dx,
-            dy: e.position.dy,
-            rotation: e.rotation,
-            plantIds: e.plantIds,
-          ),
-        )
-        .toList(),);
+    final result = await uploadFlowerBed(
+      flowerBeds
+          .map(
+            (e) => FlowerBedModel(
+              id: e.id,
+              width: e.width,
+              height: e.height,
+              trueDx: e.truePosition.dx,
+              trueDy: e.truePosition.dy,
+              dx: e.position.dx,
+              dy: e.position.dy,
+              rotation: e.rotation,
+              plantIds: e.plantIds,
+            ),
+          )
+          .toList(),
+    );
     result.fold(
       (error) => emit(FlowerBedState.fail(error.message)),
       (success) => emit(FlowerBedState.success(flowerBeds)),

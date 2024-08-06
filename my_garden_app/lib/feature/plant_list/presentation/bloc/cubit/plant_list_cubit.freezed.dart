@@ -20,7 +20,7 @@ mixin _$PlantListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
@@ -31,7 +31,7 @@ mixin _$PlantListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -41,7 +41,7 @@ mixin _$PlantListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -139,7 +139,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
@@ -153,7 +153,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -166,7 +166,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -266,7 +266,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
@@ -280,7 +280,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -293,7 +293,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -359,7 +359,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PlantEntity> departments});
+  $Res call({List<PlantEntity> plants});
 }
 
 /// @nodoc
@@ -373,12 +373,12 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? departments = null,
+    Object? plants = null,
   }) {
     return _then(_$SuccessImpl(
-      null == departments
-          ? _value._departments
-          : departments // ignore: cast_nullable_to_non_nullable
+      null == plants
+          ? _value._plants
+          : plants // ignore: cast_nullable_to_non_nullable
               as List<PlantEntity>,
     ));
   }
@@ -387,20 +387,19 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<PlantEntity> departments)
-      : _departments = departments;
+  const _$SuccessImpl(final List<PlantEntity> plants) : _plants = plants;
 
-  final List<PlantEntity> _departments;
+  final List<PlantEntity> _plants;
   @override
-  List<PlantEntity> get departments {
-    if (_departments is EqualUnmodifiableListView) return _departments;
+  List<PlantEntity> get plants {
+    if (_plants is EqualUnmodifiableListView) return _plants;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_departments);
+    return EqualUnmodifiableListView(_plants);
   }
 
   @override
   String toString() {
-    return 'PlantListState.success(departments: $departments)';
+    return 'PlantListState.success(plants: $plants)';
   }
 
   @override
@@ -408,13 +407,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality()
-                .equals(other._departments, _departments));
+            const DeepCollectionEquality().equals(other._plants, _plants));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_departments));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_plants));
 
   @JsonKey(ignore: true)
   @override
@@ -427,13 +425,13 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
         localLoadingSuccess,
   }) {
-    return success(departments);
+    return success(plants);
   }
 
   @override
@@ -441,12 +439,12 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
   }) {
-    return success?.call(departments);
+    return success?.call(plants);
   }
 
   @override
@@ -454,14 +452,14 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(departments);
+      return success(plants);
     }
     return orElse();
   }
@@ -511,9 +509,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements PlantListState {
-  const factory _Success(final List<PlantEntity> departments) = _$SuccessImpl;
+  const factory _Success(final List<PlantEntity> plants) = _$SuccessImpl;
 
-  List<PlantEntity> get departments;
+  List<PlantEntity> get plants;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -585,7 +583,7 @@ class _$FailImpl implements _Fail {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
@@ -599,7 +597,7 @@ class _$FailImpl implements _Fail {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -612,7 +610,7 @@ class _$FailImpl implements _Fail {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -745,7 +743,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
@@ -759,7 +757,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -772,7 +770,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -913,7 +911,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PlantEntity> departments) success,
+    required TResult Function(List<PlantEntity> plants) success,
     required TResult Function(String message) fail,
     required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantEntity> departments)
@@ -927,7 +925,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PlantEntity> departments)? success,
+    TResult? Function(List<PlantEntity> plants)? success,
     TResult? Function(String message)? fail,
     TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -940,7 +938,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PlantEntity> departments)? success,
+    TResult Function(List<PlantEntity> plants)? success,
     TResult Function(String message)? fail,
     TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
