@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/add_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load_plants.dart';
@@ -17,22 +16,7 @@ class PlantListCubit extends Cubit<PlantListState> {
       : super(const PlantListState.initial());
 
   Future<void> upload(PlantEntity plant) async {
-    final result = await uploadPlant([
-      PlantModel(
-          id: plant.id,
-          title: plant.title,
-          biologyTitle: plant.biologyTitle,
-          fertilization: plant.fertilization,
-          toxicity: plant.toxicity,
-          replacing: plant.replacing,
-          description: plant.description,
-          groupId: plant.groupId,
-          wateringNeedId: plant.wateringNeedId,
-          lightNeedId: plant.lightNeedId,
-          stageId: plant.stageId,
-          imageId: plant.imageId,
-          ripeningPeriod: plant.ripeningPeriod,),
-    ]);
+    final result = await uploadPlant([plant]);
     plantList.add(plant);
     result.fold(
       (error) => emit(PlantListState.fail(error.message)),
@@ -45,8 +29,7 @@ class PlantListCubit extends Cubit<PlantListState> {
     plants.fold(
       (error) => emit(PlantListState.fail(error.message)),
       (succededPlantList) {
-        plantList =
-            succededPlantList.map((e) => PlantEntity.fromModel(e)).toList();
+        plantList = succededPlantList;
         emit(
           PlantListState.success(
             plantList,
@@ -62,8 +45,7 @@ class PlantListCubit extends Cubit<PlantListState> {
     plants.fold(
       (error) => emit(PlantListState.fail(error.message)),
       (succededPlantList) {
-        plantList =
-            succededPlantList.map((e) => PlantEntity.fromModel(e)).toList();
+        plantList = succededPlantList;
         emit(
           PlantListState.success(
             plantList,
