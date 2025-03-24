@@ -29,7 +29,7 @@ import 'package:my_garden_app/feature/garden_visual/domain/repositories/flower_b
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_flower_beds.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/remove_flower_bed.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_flower_bed.dart';
-import 'package:my_garden_app/feature/garden_visual/presentation/bloc/cubit/flower_bed_cubit.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_events.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_info.dart';
 import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
