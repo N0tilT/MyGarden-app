@@ -18,7 +18,7 @@ class GardenCubit extends Cubit<GardenState> {
   final UploadGarden uploadGarden;
   final RemoveGarden removeGarden;
   List<GardenEntity> gardens = [];
-  GardenEntity selectedGarden;
+  GardenEntity? selectedGarden;
 
   final SetSelectedGarden setSelectedGarden;
   final GetSelectedGarden getSelectedGarden;
@@ -29,7 +29,6 @@ class GardenCubit extends Cubit<GardenState> {
     required this.removeGarden,
     required this.loadGardens,
     required this.uploadGarden,
-    required this.selectedGarden,
   }) : super(const GardenState.initial());
 
   Future<void> upload(GardenEntity garden) async {
@@ -118,7 +117,7 @@ class GardenCubit extends Cubit<GardenState> {
         (succededGarden) {
           selectedGarden = GardenEntity.fromModel(succededGarden);
           emit(
-            GardenState.getSelectedSuccess(selectedGarden),
+            GardenState.getSelectedSuccess(selectedGarden??GardenEntity(id: -1, title: "title")),
           );
         },
       );

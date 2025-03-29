@@ -41,6 +41,7 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
           isMoving: true,
           rotation: 0,
           plantIds: [],
+          gardenId: -1,
         );
       } else {
         currentRectangle!
@@ -434,6 +435,7 @@ class _GardenVisualAppBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     final gardenCubit = context.watch<GardenCubit>();
+    gardenCubit.getSelected();
     return AppBar(
       titleSpacing: 0,
       automaticallyImplyLeading: false,
@@ -444,9 +446,9 @@ class _GardenVisualAppBarWidget extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              gardenCubit.selectedGarden.title.isEmpty
+              gardenCubit.selectedGarden == null
                   ? "Выберите сад"
-                  : gardenCubit.selectedGarden.title,
+                  : gardenCubit.selectedGarden!.title,
             ),
             const Icon(Icons.search, color: Colors.white, size: 27),
           ],

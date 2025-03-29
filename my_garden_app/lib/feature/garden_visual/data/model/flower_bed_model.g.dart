@@ -26,13 +26,14 @@ class FlowerBedModelAdapter extends TypeAdapter<_$FlowerBedModelImpl> {
       dy: fields[6] as double,
       rotation: fields[7] as double,
       plantIds: (fields[8] as List).cast<int>(),
+      gardenId: fields[9] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$FlowerBedModelImpl obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -49,6 +50,8 @@ class FlowerBedModelAdapter extends TypeAdapter<_$FlowerBedModelImpl> {
       ..write(obj.dy)
       ..writeByte(7)
       ..write(obj.rotation)
+      ..writeByte(9)
+      ..write(obj.gardenId)
       ..writeByte(8)
       ..write(obj.plantIds);
   }
@@ -81,6 +84,7 @@ _$FlowerBedModelImpl _$$FlowerBedModelImplFromJson(Map<String, dynamic> json) =>
       plantIds: (json['plantIds'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
+      gardenId: (json['gardenId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$FlowerBedModelImplToJson(
@@ -95,4 +99,5 @@ Map<String, dynamic> _$$FlowerBedModelImplToJson(
       'dy': instance.dy,
       'rotation': instance.rotation,
       'plantIds': instance.plantIds,
+      'gardenId': instance.gardenId,
     };

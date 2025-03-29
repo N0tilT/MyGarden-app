@@ -4,23 +4,23 @@ import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/garden_model.dart';
 
 class GardenLocalDataSource extends LocalDataSource<List<GardenModel>, void> {
-  Box<GardenModel> flowerBedBox;
+  Box<GardenModel> gardenBox;
 
   GardenLocalDataSource({
-    required this.flowerBedBox,
+    required this.gardenBox,
   });
 
   @override
-  Future<void> update(List<GardenModel> flowerBedList) async {
+  Future<void> update(List<GardenModel> gardenList) async {
     try {
-      if (flowerBedList.isEmpty) {
-        flowerBedBox.clear();
+      if (gardenList.isEmpty) {
+        gardenBox.clear();
         return;
       }
       await updateBox<GardenModel>(
-        {for (final item in flowerBedList) item.id: item},
-        flowerBedBox.values.map((e) => e.id).toList(),
-        flowerBedBox,
+        {for (final item in gardenList) item.id: item},
+        gardenBox.values.map((e) => e.id).toList(),
+        gardenBox,
       );
     } catch (e) {
       throw CacheException();
@@ -30,7 +30,7 @@ class GardenLocalDataSource extends LocalDataSource<List<GardenModel>, void> {
   @override
   Future<List<GardenModel>> load(void request) async {
     try {
-      return flowerBedBox.values.toList();
+      return gardenBox.values.toList();
     } catch (e) {
       throw CacheException();
     }

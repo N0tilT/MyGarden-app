@@ -21,7 +21,9 @@ mixin _$EventEntity {
   int get plantId => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventEntityCopyWith<EventEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$EventEntityCopyWithImpl<$Res, $Val extends EventEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EventEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$EventEntityImplCopyWithImpl<$Res>
       _$EventEntityImpl _value, $Res Function(_$EventEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,7 +161,9 @@ class _$EventEntityImpl extends _EventEntity {
   @override
   int get hashCode => Object.hash(runtimeType, id, title, plantId, date);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventEntityImplCopyWith<_$EventEntityImpl> get copyWith =>
@@ -178,8 +186,11 @@ abstract class _EventEntity extends EventEntity {
   int get plantId;
   @override
   DateTime get date;
+
+  /// Create a copy of EventEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventEntityImplCopyWith<_$EventEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

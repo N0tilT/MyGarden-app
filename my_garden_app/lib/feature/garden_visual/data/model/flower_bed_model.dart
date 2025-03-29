@@ -19,6 +19,7 @@ class FlowerBedModel extends HiveObject with _$FlowerBedModel {
     @JsonKey(name: 'dy') @HiveField(6) required double dy,
     @JsonKey(name: 'rotation') @HiveField(7) required double rotation,
     @JsonKey(name: 'plantIds') @HiveField(8) required List<int> plantIds,
+    @JsonKey(name: 'gardenId') @HiveField(9) required int gardenId,
   }) = _FlowerBedModel;
 
   FlowerBedModel._();

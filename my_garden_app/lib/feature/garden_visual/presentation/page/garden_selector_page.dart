@@ -13,35 +13,35 @@ final dropdownBoxDecoration = BoxDecoration(
   color: Colors.white,
 );
 
-class GroupSelectorPage extends StatefulWidget {
-  const GroupSelectorPage({super.key});
+class GardenSelectorPage extends StatefulWidget {
+  const GardenSelectorPage({super.key});
 
   @override
-  State<GroupSelectorPage> createState() => _GroupSelectorPageState();
+  State<GardenSelectorPage> createState() => _GardenSelectorPageState();
 }
 
-class _GroupSelectorPageState extends State<GroupSelectorPage> {
+class _GardenSelectorPageState extends State<GardenSelectorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 241, 245),
-      appBar: const GroupSelectorAppBarWidget(),
+      appBar: const GardenSelectorAppBarWidget(),
       body: BlocProvider<GardenCubit>(
         create: (context) => sl<GardenCubit>()..load(),
-        child: const _GroupSelectorWidget(),
+        child: const _GardenSelectorWidget(),
       ),
     );
   }
 }
 
-class _GroupSelectorWidget extends StatefulWidget {
-  const _GroupSelectorWidget();
+class _GardenSelectorWidget extends StatefulWidget {
+  const _GardenSelectorWidget();
 
   @override
-  State<_GroupSelectorWidget> createState() => _GroupSelectorWidgetState();
+  State<_GardenSelectorWidget> createState() => _GardenSelectorWidgetState();
 }
 
-class _GroupSelectorWidgetState extends State<_GroupSelectorWidget> {
+class _GardenSelectorWidgetState extends State<_GardenSelectorWidget> {
   @override
   void initState() {
     super.initState();
@@ -60,7 +60,7 @@ class _GroupSelectorWidgetState extends State<_GroupSelectorWidget> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const _GroupSelectionWidget(),
+            const _GardenSelectionWidget(),
             GardenButton(
               title: "Подтвердить",
               event: () {
@@ -74,8 +74,8 @@ class _GroupSelectorWidgetState extends State<_GroupSelectorWidget> {
   }
 }
 
-class _GroupSelectionWidget extends StatelessWidget {
-  const _GroupSelectionWidget();
+class _GardenSelectionWidget extends StatelessWidget {
+  const _GardenSelectionWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -84,19 +84,19 @@ class _GroupSelectionWidget extends StatelessWidget {
       initial: () => Container(),
       loading: () => Container(),
       fail: (message) => GardenDefaultLabelWidget(text: message, fontSize: 16),
-      orElse: () => const _GroupDropdownWidget(),
+      orElse: () => const _GardenDropdownWidget(),
     );
   }
 }
 
-class _GroupDropdownWidget extends StatefulWidget {
-  const _GroupDropdownWidget();
+class _GardenDropdownWidget extends StatefulWidget {
+  const _GardenDropdownWidget();
 
   @override
-  State<_GroupDropdownWidget> createState() => __GroupDropdownWidgetState();
+  State<_GardenDropdownWidget> createState() => __GardenDropdownWidgetState();
 }
 
-class __GroupDropdownWidgetState extends State<_GroupDropdownWidget> {
+class __GardenDropdownWidgetState extends State<_GardenDropdownWidget> {
   @override
   Widget build(BuildContext context) {
     final gardenCubit = context.watch<GardenCubit>();
@@ -135,9 +135,9 @@ class __GroupDropdownWidgetState extends State<_GroupDropdownWidget> {
   }
 }
 
-class GroupSelectorAppBarWidget extends StatelessWidget
+class GardenSelectorAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
-  const GroupSelectorAppBarWidget({
+  const GardenSelectorAppBarWidget({
     super.key,
   });
 

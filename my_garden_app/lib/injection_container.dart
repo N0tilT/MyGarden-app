@@ -23,13 +23,24 @@ import 'package:my_garden_app/feature/event_journal/domain/usecases/add_event.da
 import 'package:my_garden_app/feature/event_journal/domain/usecases/load_events.dart';
 import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/event_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/data/datasource/flower_bed_local_data_source.dart';
+import 'package:my_garden_app/feature/garden_visual/data/datasource/garden_local_data_source.dart';
+import 'package:my_garden_app/feature/garden_visual/data/datasource/selected_garden_datasource.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/flower_bed_model.dart';
+import 'package:my_garden_app/feature/garden_visual/data/model/garden_model.dart';
 import 'package:my_garden_app/feature/garden_visual/data/repository/flower_bed_repository_impl.dart';
+import 'package:my_garden_app/feature/garden_visual/data/repository/garden_repository_impl.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/repositories/flower_bed_repository.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/repositories/garden_repository.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/get_selected_garden.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_flower_beds.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_gardens.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/remove_flower_bed.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/remove_garden.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/set_selected_garden.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_flower_bed.dart';
+import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_garden.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
+import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_events.dart';
 import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_info.dart';
 import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
@@ -41,14 +52,17 @@ import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repos
 import 'package:my_garden_app/feature/plant_list/domain/usecases/add_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load_plants.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   const secureStorage = FlutterSecureStorage();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
   Hive.registerAdapter(PlantModelAdapter());
   Hive.registerAdapter(EventModelAdapter());
   Hive.registerAdapter(FlowerBedModelAdapter());
+  Hive.registerAdapter(GardenModelAdapter());
 
   //! Features
   //! Auth
@@ -250,6 +264,61 @@ Future<void> init() async {
       eventRepository: sl(),
     ),
   );
+    //! Gardens
+  sl.registerFactory(
+    () =>GardenCubit(
+      setSelectedGarden: sl(),
+      getSelectedGarden: sl(), 
+      removeGarden:sl(), 
+      loadGardens: sl(), 
+      uploadGarden: sl(),
+      ),
+  );
+
+  sl.registerLazySingleton(
+    () => SetSelectedGarden(
+      gardenRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => GetSelectedGarden(
+      gardenRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => RemoveGarden(
+      gardenRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => LoadGardens(
+      gardenRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => UploadGarden(
+      gardenRepository: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<GardenRepository>(
+    () => GardenRepositoryImpl(
+      localDataSource: sl(), 
+      selectedGardenDatasource: sl(), 
+      networkInfo: sl(),),
+  );
+
+  sl.registerLazySingleton<SelectedGardenDataSource>(
+    () => SelectedGardenDataSourceImpl(prefs: prefs),
+  );
+
+  sl.registerLazySingletonAsync<GardenLocalDataSource>(() async {
+    return GardenLocalDataSource(
+      gardenBox: await Hive.openBox<GardenModel>('GardenBox'),
+    );
+  });
+
+  await sl.isReady<GardenLocalDataSource>();
 
 //! Core
 

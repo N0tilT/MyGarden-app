@@ -27,8 +27,12 @@ mixin _$GardenModel {
   @HiveField(1)
   String get title => throw _privateConstructorUsedError;
 
+  /// Serializes this GardenModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GardenModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GardenModelCopyWith<GardenModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$GardenModelCopyWithImpl<$Res, $Val extends GardenModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GardenModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +100,8 @@ class __$$GardenModelImplCopyWithImpl<$Res>
       _$GardenModelImpl _value, $Res Function(_$GardenModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GardenModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,11 +156,13 @@ class _$GardenModelImpl extends _GardenModel {
             (identical(other.title, title) || other.title == title));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GardenModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GardenModelImplCopyWith<_$GardenModelImpl> get copyWith =>
@@ -184,8 +194,11 @@ abstract class _GardenModel extends GardenModel {
   @JsonKey(name: 'title')
   @HiveField(1)
   String get title;
+
+  /// Create a copy of GardenModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GardenModelImplCopyWith<_$GardenModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

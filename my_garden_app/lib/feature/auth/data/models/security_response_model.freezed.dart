@@ -26,8 +26,12 @@ mixin _$SecurityResponseModel {
   @JsonKey(name: 'Token')
   String get token => throw _privateConstructorUsedError;
 
+  /// Serializes this SecurityResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SecurityResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SecurityResponseModelCopyWith<SecurityResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$SecurityResponseModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SecurityResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$SecurityResponseModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SecurityResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AccountModelCopyWith<$Res> get user {
@@ -109,6 +117,8 @@ class __$$SecurityResponseModelImplCopyWithImpl<$Res>
       $Res Function(_$SecurityResponseModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SecurityResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,11 +169,13 @@ class _$SecurityResponseModelImpl implements _SecurityResponseModel {
             (identical(other.token, token) || other.token == token));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, user, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SecurityResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SecurityResponseModelImplCopyWith<_$SecurityResponseModelImpl>
@@ -193,8 +205,11 @@ abstract class _SecurityResponseModel implements SecurityResponseModel {
   @override
   @JsonKey(name: 'Token')
   String get token;
+
+  /// Create a copy of SecurityResponseModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SecurityResponseModelImplCopyWith<_$SecurityResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

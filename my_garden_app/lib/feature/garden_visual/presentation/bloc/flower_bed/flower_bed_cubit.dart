@@ -41,6 +41,7 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
               dy: e.position.dy,
               rotation: e.rotation,
               plantIds: e.plantIds,
+              gardenId: e.gardenId
             ),
           )
           .toList(),
@@ -66,6 +67,7 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
               dy: e.position.dy,
               rotation: e.rotation,
               plantIds: e.plantIds,
+              gardenId: e.gardenId
             ),
           )
           .toList(),
@@ -76,7 +78,7 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
     );
   }
 
-  Future<void> load() async {
+  Future<void> load(int garden_id) async {
     emit(const FlowerBedState.loading());
     final result = await loadFlowerBeds(() {});
     result.fold(
@@ -109,6 +111,7 @@ class FlowerBedCubit extends Cubit<FlowerBedState> {
               dy: e.position.dy,
               rotation: e.rotation,
               plantIds: e.plantIds,
+              gardenId: e.gardenId
             ),
           )
           .toList(),

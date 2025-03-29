@@ -108,6 +108,9 @@ class _$GardenStateCopyWithImpl<$Res, $Val extends GardenState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -124,6 +127,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -262,6 +268,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -403,6 +412,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -449,7 +460,9 @@ class _$SuccessImpl implements _Success {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_departments));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -558,7 +571,10 @@ abstract class _Success implements GardenState {
   const factory _Success(final List<GardenEntity> departments) = _$SuccessImpl;
 
   List<GardenEntity> get departments;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -579,6 +595,8 @@ class __$$FailImplCopyWithImpl<$Res>
   __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -618,7 +636,9 @@ class _$FailImpl implements _Fail {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
@@ -727,7 +747,10 @@ abstract class _Fail implements GardenState {
   const factory _Fail([final String message]) = _$FailImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -749,6 +772,8 @@ class __$$GetSelectedSuccessImplCopyWithImpl<$Res>
       $Res Function(_$GetSelectedSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -788,7 +813,9 @@ class _$GetSelectedSuccessImpl implements _GetSelectedSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, departments);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetSelectedSuccessImplCopyWith<_$GetSelectedSuccessImpl> get copyWith =>
@@ -899,7 +926,10 @@ abstract class _GetSelectedSuccess implements GardenState {
       _$GetSelectedSuccessImpl;
 
   GardenEntity get departments;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetSelectedSuccessImplCopyWith<_$GetSelectedSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -921,6 +951,8 @@ class __$$GetSelectedFailImplCopyWithImpl<$Res>
       _$GetSelectedFailImpl _value, $Res Function(_$GetSelectedFailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -960,7 +992,9 @@ class _$GetSelectedFailImpl implements _GetSelectedFail {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetSelectedFailImplCopyWith<_$GetSelectedFailImpl> get copyWith =>
@@ -1071,7 +1105,10 @@ abstract class _GetSelectedFail implements GardenState {
       _$GetSelectedFailImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetSelectedFailImplCopyWith<_$GetSelectedFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1090,6 +1127,9 @@ class __$$SetSelectedSuccessImplCopyWithImpl<$Res>
   __$$SetSelectedSuccessImplCopyWithImpl(_$SetSelectedSuccessImpl _value,
       $Res Function(_$SetSelectedSuccessImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1231,6 +1271,8 @@ class __$$SetSelectedFailImplCopyWithImpl<$Res>
       _$SetSelectedFailImpl _value, $Res Function(_$SetSelectedFailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1270,7 +1312,9 @@ class _$SetSelectedFailImpl implements _SetSelectedFail {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetSelectedFailImplCopyWith<_$SetSelectedFailImpl> get copyWith =>
@@ -1381,7 +1425,10 @@ abstract class _SetSelectedFail implements GardenState {
       _$SetSelectedFailImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetSelectedFailImplCopyWith<_$SetSelectedFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

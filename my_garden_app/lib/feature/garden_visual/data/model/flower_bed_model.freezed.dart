@@ -47,9 +47,16 @@ mixin _$FlowerBedModel {
   @JsonKey(name: 'plantIds')
   @HiveField(8)
   List<int> get plantIds => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gardenId')
+  @HiveField(9)
+  int get gardenId => throw _privateConstructorUsedError;
 
+  /// Serializes this FlowerBedModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FlowerBedModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FlowerBedModelCopyWith<FlowerBedModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -69,7 +76,8 @@ abstract class $FlowerBedModelCopyWith<$Res> {
       @JsonKey(name: 'dx') @HiveField(5) double dx,
       @JsonKey(name: 'dy') @HiveField(6) double dy,
       @JsonKey(name: 'rotation') @HiveField(7) double rotation,
-      @JsonKey(name: 'plantIds') @HiveField(8) List<int> plantIds});
+      @JsonKey(name: 'plantIds') @HiveField(8) List<int> plantIds,
+      @JsonKey(name: 'gardenId') @HiveField(9) int gardenId});
 }
 
 /// @nodoc
@@ -82,6 +90,8 @@ class _$FlowerBedModelCopyWithImpl<$Res, $Val extends FlowerBedModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FlowerBedModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +104,7 @@ class _$FlowerBedModelCopyWithImpl<$Res, $Val extends FlowerBedModel>
     Object? dy = null,
     Object? rotation = null,
     Object? plantIds = null,
+    Object? gardenId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -132,6 +143,10 @@ class _$FlowerBedModelCopyWithImpl<$Res, $Val extends FlowerBedModel>
           ? _value.plantIds
           : plantIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      gardenId: null == gardenId
+          ? _value.gardenId
+          : gardenId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -153,7 +168,8 @@ abstract class _$$FlowerBedModelImplCopyWith<$Res>
       @JsonKey(name: 'dx') @HiveField(5) double dx,
       @JsonKey(name: 'dy') @HiveField(6) double dy,
       @JsonKey(name: 'rotation') @HiveField(7) double rotation,
-      @JsonKey(name: 'plantIds') @HiveField(8) List<int> plantIds});
+      @JsonKey(name: 'plantIds') @HiveField(8) List<int> plantIds,
+      @JsonKey(name: 'gardenId') @HiveField(9) int gardenId});
 }
 
 /// @nodoc
@@ -164,6 +180,8 @@ class __$$FlowerBedModelImplCopyWithImpl<$Res>
       _$FlowerBedModelImpl _value, $Res Function(_$FlowerBedModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FlowerBedModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,6 +194,7 @@ class __$$FlowerBedModelImplCopyWithImpl<$Res>
     Object? dy = null,
     Object? rotation = null,
     Object? plantIds = null,
+    Object? gardenId = null,
   }) {
     return _then(_$FlowerBedModelImpl(
       id: null == id
@@ -214,6 +233,10 @@ class __$$FlowerBedModelImplCopyWithImpl<$Res>
           ? _value._plantIds
           : plantIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      gardenId: null == gardenId
+          ? _value.gardenId
+          : gardenId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -233,7 +256,8 @@ class _$FlowerBedModelImpl extends _FlowerBedModel {
       @JsonKey(name: 'rotation') @HiveField(7) required this.rotation,
       @JsonKey(name: 'plantIds')
       @HiveField(8)
-      required final List<int> plantIds})
+      required final List<int> plantIds,
+      @JsonKey(name: 'gardenId') @HiveField(9) required this.gardenId})
       : _plantIds = plantIds,
         super._();
 
@@ -283,8 +307,13 @@ class _$FlowerBedModelImpl extends _FlowerBedModel {
   }
 
   @override
+  @JsonKey(name: 'gardenId')
+  @HiveField(9)
+  final int gardenId;
+
+  @override
   String toString() {
-    return 'FlowerBedModel(id: $id, width: $width, height: $height, trueDx: $trueDx, trueDy: $trueDy, dx: $dx, dy: $dy, rotation: $rotation, plantIds: $plantIds)';
+    return 'FlowerBedModel(id: $id, width: $width, height: $height, trueDx: $trueDx, trueDy: $trueDy, dx: $dx, dy: $dy, rotation: $rotation, plantIds: $plantIds, gardenId: $gardenId)';
   }
 
   @override
@@ -301,15 +330,29 @@ class _$FlowerBedModelImpl extends _FlowerBedModel {
             (identical(other.dy, dy) || other.dy == dy) &&
             (identical(other.rotation, rotation) ||
                 other.rotation == rotation) &&
-            const DeepCollectionEquality().equals(other._plantIds, _plantIds));
+            const DeepCollectionEquality().equals(other._plantIds, _plantIds) &&
+            (identical(other.gardenId, gardenId) ||
+                other.gardenId == gardenId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, width, height, trueDx,
-      trueDy, dx, dy, rotation, const DeepCollectionEquality().hash(_plantIds));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      width,
+      height,
+      trueDx,
+      trueDy,
+      dx,
+      dy,
+      rotation,
+      const DeepCollectionEquality().hash(_plantIds),
+      gardenId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FlowerBedModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FlowerBedModelImplCopyWith<_$FlowerBedModelImpl> get copyWith =>
@@ -336,7 +379,10 @@ abstract class _FlowerBedModel extends FlowerBedModel {
       @JsonKey(name: 'rotation') @HiveField(7) required final double rotation,
       @JsonKey(name: 'plantIds')
       @HiveField(8)
-      required final List<int> plantIds}) = _$FlowerBedModelImpl;
+      required final List<int> plantIds,
+      @JsonKey(name: 'gardenId')
+      @HiveField(9)
+      required final int gardenId}) = _$FlowerBedModelImpl;
   _FlowerBedModel._() : super._();
 
   factory _FlowerBedModel.fromJson(Map<String, dynamic> json) =
@@ -379,7 +425,14 @@ abstract class _FlowerBedModel extends FlowerBedModel {
   @HiveField(8)
   List<int> get plantIds;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(name: 'gardenId')
+  @HiveField(9)
+  int get gardenId;
+
+  /// Create a copy of FlowerBedModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FlowerBedModelImplCopyWith<_$FlowerBedModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

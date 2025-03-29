@@ -90,6 +90,9 @@ class _$TokenStateCopyWithImpl<$Res, $Val extends TokenState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -106,6 +109,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -231,6 +237,8 @@ class __$$AuthorizedImplCopyWithImpl<$Res>
       _$AuthorizedImpl _value, $Res Function(_$AuthorizedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -244,6 +252,8 @@ class __$$AuthorizedImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TokenModelCopyWith<$Res> get token {
@@ -277,7 +287,9 @@ class _$AuthorizedImpl implements _Authorized {
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthorizedImplCopyWith<_$AuthorizedImpl> get copyWith =>
@@ -368,7 +380,10 @@ abstract class _Authorized implements TokenState {
   const factory _Authorized(final TokenModel token) = _$AuthorizedImpl;
 
   TokenModel get token;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthorizedImplCopyWith<_$AuthorizedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -389,6 +404,8 @@ class __$$FailImplCopyWithImpl<$Res>
   __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -428,7 +445,9 @@ class _$FailImpl implements _Fail {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
@@ -519,7 +538,10 @@ abstract class _Fail implements TokenState {
   const factory _Fail([final String message]) = _$FailImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -543,6 +565,8 @@ class __$$TokenSuccessImplCopyWithImpl<$Res>
       _$TokenSuccessImpl _value, $Res Function(_$TokenSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -556,6 +580,8 @@ class __$$TokenSuccessImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TokenModelCopyWith<$Res> get token {
@@ -589,7 +615,9 @@ class _$TokenSuccessImpl implements _TokenSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TokenSuccessImplCopyWith<_$TokenSuccessImpl> get copyWith =>
@@ -680,7 +708,10 @@ abstract class _TokenSuccess implements TokenState {
   const factory _TokenSuccess(final TokenModel token) = _$TokenSuccessImpl;
 
   TokenModel get token;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TokenSuccessImplCopyWith<_$TokenSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -699,6 +730,9 @@ class __$$UnauthorizedImplCopyWithImpl<$Res>
   __$$UnauthorizedImplCopyWithImpl(
       _$UnauthorizedImpl _value, $Res Function(_$UnauthorizedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

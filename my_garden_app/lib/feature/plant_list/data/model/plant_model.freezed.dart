@@ -60,8 +60,12 @@ mixin _$PlantModel {
   @HiveField(12)
   int get ripeningPeriod => throw _privateConstructorUsedError;
 
+  /// Serializes this PlantModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlantModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlantModelCopyWith<PlantModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -98,6 +102,8 @@ class _$PlantModelCopyWithImpl<$Res, $Val extends PlantModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlantModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -204,6 +210,8 @@ class __$$PlantModelImplCopyWithImpl<$Res>
       _$PlantModelImpl _value, $Res Function(_$PlantModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlantModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -391,7 +399,7 @@ class _$PlantModelImpl extends _PlantModel {
                 other.ripeningPeriod == ripeningPeriod));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -409,7 +417,9 @@ class _$PlantModelImpl extends _PlantModel {
       imageId,
       ripeningPeriod);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlantModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlantModelImplCopyWith<_$PlantModelImpl> get copyWith =>
@@ -509,8 +519,11 @@ abstract class _PlantModel extends PlantModel {
   @JsonKey(name: 'ripeningPeriod')
   @HiveField(12)
   int get ripeningPeriod;
+
+  /// Create a copy of PlantModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlantModelImplCopyWith<_$PlantModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

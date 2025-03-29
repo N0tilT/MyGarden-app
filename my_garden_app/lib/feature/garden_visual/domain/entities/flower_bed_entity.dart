@@ -12,6 +12,7 @@ class FlowerBedEntity {
   Offset position;
   double rotation;
   List<int> plantIds;
+  int gardenId;
   bool isMoving;
 
   FlowerBedEntity({
@@ -22,6 +23,7 @@ class FlowerBedEntity {
     required this.position,
     required this.rotation,
     required this.plantIds,
+    required this.gardenId,
     required this.isMoving,
   });
 
@@ -33,6 +35,7 @@ class FlowerBedEntity {
         position: Offset(model.dx, model.dy),
         rotation: model.rotation,
         plantIds: model.plantIds,
+        gardenId: model.gardenId,
         isMoving: false,
       );
 }

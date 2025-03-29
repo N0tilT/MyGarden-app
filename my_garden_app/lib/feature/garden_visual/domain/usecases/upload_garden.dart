@@ -5,15 +5,15 @@ import 'package:my_garden_app/feature/garden_visual/data/model/garden_model.dart
 import 'package:my_garden_app/feature/garden_visual/domain/repositories/garden_repository.dart';
 
 class UploadGarden extends Usecase<void, List<GardenModel>> {
-  final GardenRepository flowerBedRepository;
+  final GardenRepository gardenRepository;
 
-  UploadGarden({required this.flowerBedRepository});
+  UploadGarden({required this.gardenRepository});
 
   @override
   Future<Either<Failure, void>> call(
     List<GardenModel> request, [
     bool remote = true,
   ]) async {
-    return await flowerBedRepository.update(request, remote);
+    return await gardenRepository.update(request, remote);
   }
 }

@@ -36,8 +36,12 @@ mixin _$AccountModel {
   @HiveField(4)
   String? get identityId => throw _privateConstructorUsedError;
 
+  /// Serializes this AccountModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AccountModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AccountModelCopyWith<AccountModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AccountModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,6 +130,8 @@ class __$$AccountModelImplCopyWithImpl<$Res>
       _$AccountModelImpl _value, $Res Function(_$AccountModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AccountModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -213,12 +221,14 @@ class _$AccountModelImpl extends _AccountModel {
                 other.identityId == identityId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, name, surname, patronymic, identityId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AccountModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AccountModelImplCopyWith<_$AccountModelImpl> get copyWith =>
@@ -268,8 +278,11 @@ abstract class _AccountModel extends AccountModel {
   @JsonKey(name: 'IdentityId')
   @HiveField(4)
   String? get identityId;
+
+  /// Create a copy of AccountModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AccountModelImplCopyWith<_$AccountModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

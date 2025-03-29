@@ -97,6 +97,9 @@ class _$EventStateCopyWithImpl<$Res, $Val extends EventState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -113,6 +116,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -240,6 +246,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -370,6 +379,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -416,7 +427,9 @@ class _$SuccessImpl implements _Success {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_departments));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -514,7 +527,10 @@ abstract class _Success implements EventState {
   const factory _Success(final List<EventEntity> departments) = _$SuccessImpl;
 
   List<EventEntity> get departments;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -535,6 +551,8 @@ class __$$FailImplCopyWithImpl<$Res>
   __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -574,7 +592,9 @@ class _$FailImpl implements _Fail {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
@@ -672,7 +692,10 @@ abstract class _Fail implements EventState {
   const factory _Fail([final String message]) = _$FailImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailImplCopyWith<_$FailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -694,6 +717,8 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
       $Res Function(_$LocalLoadingFailImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -733,7 +758,9 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
@@ -833,7 +860,10 @@ abstract class _LocalLoadingFail implements EventState {
       _$LocalLoadingFailImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -855,6 +885,8 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
       $Res Function(_$LocalLoadingSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -901,7 +933,9 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_departments));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
@@ -1001,7 +1035,10 @@ abstract class _LocalLoadingSuccess implements EventState {
       _$LocalLoadingSuccessImpl;
 
   List<EventEntity> get departments;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

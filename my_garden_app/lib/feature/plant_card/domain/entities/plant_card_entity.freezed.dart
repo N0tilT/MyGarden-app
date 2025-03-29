@@ -19,7 +19,9 @@ mixin _$PlantCardEntity {
   PlantEntity get plant => throw _privateConstructorUsedError;
   List<EventEntity> get event => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlantCardEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlantCardEntityCopyWith<PlantCardEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$PlantCardEntityCopyWithImpl<$Res, $Val extends PlantCardEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlantCardEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -63,6 +67,8 @@ class _$PlantCardEntityCopyWithImpl<$Res, $Val extends PlantCardEntity>
     ) as $Val);
   }
 
+  /// Create a copy of PlantCardEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlantEntityCopyWith<$Res> get plant {
@@ -94,6 +100,8 @@ class __$$PlantCardEntityImplCopyWithImpl<$Res>
       _$PlantCardEntityImpl _value, $Res Function(_$PlantCardEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlantCardEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -144,7 +152,9 @@ class _$PlantCardEntityImpl extends _PlantCardEntity {
   int get hashCode => Object.hash(
       runtimeType, plant, const DeepCollectionEquality().hash(_event));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlantCardEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlantCardEntityImplCopyWith<_$PlantCardEntityImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _PlantCardEntity extends PlantCardEntity {
   PlantEntity get plant;
   @override
   List<EventEntity> get event;
+
+  /// Create a copy of PlantCardEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlantCardEntityImplCopyWith<_$PlantCardEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

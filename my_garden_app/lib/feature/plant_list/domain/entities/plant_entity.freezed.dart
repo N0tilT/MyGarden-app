@@ -30,7 +30,9 @@ mixin _$PlantEntity {
   int get imageId => throw _privateConstructorUsedError;
   int get ripeningPeriod => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlantEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlantEntityCopyWith<PlantEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -67,6 +69,8 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlantEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -173,6 +177,8 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
       _$PlantEntityImpl _value, $Res Function(_$PlantEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlantEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -338,7 +344,9 @@ class _$PlantEntityImpl extends _PlantEntity {
       imageId,
       ripeningPeriod);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlantEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlantEntityImplCopyWith<_$PlantEntityImpl> get copyWith =>
@@ -388,8 +396,11 @@ abstract class _PlantEntity extends PlantEntity {
   int get imageId;
   @override
   int get ripeningPeriod;
+
+  /// Create a copy of PlantEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlantEntityImplCopyWith<_$PlantEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
