@@ -1,6 +1,7 @@
 name: my_garden_app
 description: "A new Flutter project."
 
+
 # Prevent accidental publishing to pub.dev.
 publish_to: 'none'
 
