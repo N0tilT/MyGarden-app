@@ -10,8 +10,8 @@ part 'security_response_model.g.dart';
 class SecurityResponseModel with _$SecurityResponseModel{
   const factory SecurityResponseModel({
 
-    @JsonKey(name: 'Account') required AccountModel user,
-    @JsonKey(name: 'Token') required String token,
+    @JsonKey(name: 'user') required AccountModel user,
+    @JsonKey(name: 'token') required String token,
   }) = _SecurityResponseModel;
   
   factory SecurityResponseModel.fromJson(Map<String,dynamic> json) => _$SecurityResponseModelFromJson(json);

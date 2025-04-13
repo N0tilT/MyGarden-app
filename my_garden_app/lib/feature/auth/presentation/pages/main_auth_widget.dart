@@ -31,7 +31,6 @@ class _BodyWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //TODO: Icon here
           const SizedBox(
             height: 40,
           ),

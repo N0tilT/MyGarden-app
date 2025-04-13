@@ -20,21 +20,12 @@ AccountModel _$AccountModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccountModel {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Name')
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userName')
   @HiveField(1)
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Surname')
-  @HiveField(2)
-  String? get surname => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Patronymic')
-  @HiveField(3)
-  String? get patronymic => throw _privateConstructorUsedError;
-  @JsonKey(name: 'IdentityId')
-  @HiveField(4)
-  String? get identityId => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
 
   /// Serializes this AccountModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,11 +44,8 @@ abstract class $AccountModelCopyWith<$Res> {
       _$AccountModelCopyWithImpl<$Res, AccountModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'Id') @HiveField(0) int id,
-      @JsonKey(name: 'Name') @HiveField(1) String? name,
-      @JsonKey(name: 'Surname') @HiveField(2) String? surname,
-      @JsonKey(name: 'Patronymic') @HiveField(3) String? patronymic,
-      @JsonKey(name: 'IdentityId') @HiveField(4) String? identityId});
+      {@JsonKey(name: 'id') @HiveField(0) String id,
+      @JsonKey(name: 'userName') @HiveField(1) String? userName});
 }
 
 /// @nodoc
@@ -76,31 +64,16 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
   @override
   $Res call({
     Object? id = null,
-    Object? name = freezed,
-    Object? surname = freezed,
-    Object? patronymic = freezed,
-    Object? identityId = freezed,
+    Object? userName = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      surname: freezed == surname
-          ? _value.surname
-          : surname // ignore: cast_nullable_to_non_nullable
-              as String?,
-      patronymic: freezed == patronymic
-          ? _value.patronymic
-          : patronymic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      identityId: freezed == identityId
-          ? _value.identityId
-          : identityId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -115,11 +88,8 @@ abstract class _$$AccountModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'Id') @HiveField(0) int id,
-      @JsonKey(name: 'Name') @HiveField(1) String? name,
-      @JsonKey(name: 'Surname') @HiveField(2) String? surname,
-      @JsonKey(name: 'Patronymic') @HiveField(3) String? patronymic,
-      @JsonKey(name: 'IdentityId') @HiveField(4) String? identityId});
+      {@JsonKey(name: 'id') @HiveField(0) String id,
+      @JsonKey(name: 'userName') @HiveField(1) String? userName});
 }
 
 /// @nodoc
@@ -136,31 +106,16 @@ class __$$AccountModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = freezed,
-    Object? surname = freezed,
-    Object? patronymic = freezed,
-    Object? identityId = freezed,
+    Object? userName = freezed,
   }) {
     return _then(_$AccountModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      surname: freezed == surname
-          ? _value.surname
-          : surname // ignore: cast_nullable_to_non_nullable
-              as String?,
-      patronymic: freezed == patronymic
-          ? _value.patronymic
-          : patronymic // ignore: cast_nullable_to_non_nullable
-              as String?,
-      identityId: freezed == identityId
-          ? _value.identityId
-          : identityId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -171,40 +126,25 @@ class __$$AccountModelImplCopyWithImpl<$Res>
 @HiveType(typeId: 0, adapterName: 'AccountModelAdapter')
 class _$AccountModelImpl extends _AccountModel {
   _$AccountModelImpl(
-      {@JsonKey(name: 'Id') @HiveField(0) required this.id,
-      @JsonKey(name: 'Name') @HiveField(1) required this.name,
-      @JsonKey(name: 'Surname') @HiveField(2) required this.surname,
-      @JsonKey(name: 'Patronymic') @HiveField(3) required this.patronymic,
-      @JsonKey(name: 'IdentityId') @HiveField(4) required this.identityId})
+      {@JsonKey(name: 'id') @HiveField(0) required this.id,
+      @JsonKey(name: 'userName') @HiveField(1) required this.userName})
       : super._();
 
   factory _$AccountModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccountModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   @HiveField(0)
-  final int id;
+  final String id;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'userName')
   @HiveField(1)
-  final String? name;
-  @override
-  @JsonKey(name: 'Surname')
-  @HiveField(2)
-  final String? surname;
-  @override
-  @JsonKey(name: 'Patronymic')
-  @HiveField(3)
-  final String? patronymic;
-  @override
-  @JsonKey(name: 'IdentityId')
-  @HiveField(4)
-  final String? identityId;
+  final String? userName;
 
   @override
   String toString() {
-    return 'AccountModel(id: $id, name: $name, surname: $surname, patronymic: $patronymic, identityId: $identityId)';
+    return 'AccountModel(id: $id, userName: $userName)';
   }
 
   @override
@@ -213,18 +153,13 @@ class _$AccountModelImpl extends _AccountModel {
         (other.runtimeType == runtimeType &&
             other is _$AccountModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.surname, surname) || other.surname == surname) &&
-            (identical(other.patronymic, patronymic) ||
-                other.patronymic == patronymic) &&
-            (identical(other.identityId, identityId) ||
-                other.identityId == identityId));
+            (identical(other.userName, userName) ||
+                other.userName == userName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, surname, patronymic, identityId);
+  int get hashCode => Object.hash(runtimeType, id, userName);
 
   /// Create a copy of AccountModel
   /// with the given fields replaced by the non-null parameter values.
@@ -244,40 +179,23 @@ class _$AccountModelImpl extends _AccountModel {
 
 abstract class _AccountModel extends AccountModel {
   factory _AccountModel(
-      {@JsonKey(name: 'Id') @HiveField(0) required final int id,
-      @JsonKey(name: 'Name') @HiveField(1) required final String? name,
-      @JsonKey(name: 'Surname') @HiveField(2) required final String? surname,
-      @JsonKey(name: 'Patronymic')
-      @HiveField(3)
-      required final String? patronymic,
-      @JsonKey(name: 'IdentityId')
-      @HiveField(4)
-      required final String? identityId}) = _$AccountModelImpl;
+      {@JsonKey(name: 'id') @HiveField(0) required final String id,
+      @JsonKey(name: 'userName')
+      @HiveField(1)
+      required final String? userName}) = _$AccountModelImpl;
   _AccountModel._() : super._();
 
   factory _AccountModel.fromJson(Map<String, dynamic> json) =
       _$AccountModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'Id')
+  @JsonKey(name: 'id')
   @HiveField(0)
-  int get id;
+  String get id;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: 'userName')
   @HiveField(1)
-  String? get name;
-  @override
-  @JsonKey(name: 'Surname')
-  @HiveField(2)
-  String? get surname;
-  @override
-  @JsonKey(name: 'Patronymic')
-  @HiveField(3)
-  String? get patronymic;
-  @override
-  @JsonKey(name: 'IdentityId')
-  @HiveField(4)
-  String? get identityId;
+  String? get userName;
 
   /// Create a copy of AccountModel
   /// with the given fields replaced by the non-null parameter values.

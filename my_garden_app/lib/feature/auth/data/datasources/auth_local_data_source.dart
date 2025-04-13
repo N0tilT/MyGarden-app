@@ -32,10 +32,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
           userBox.add(
             AccountModel(
               id: response.user.id,
-              identityId: response.user.identityId,
-              name: response.user.name,
-              patronymic: response.user.patronymic,
-              surname: response.user.surname,
+              userName: response.user.userName
             ),
           );
         } on Exception {

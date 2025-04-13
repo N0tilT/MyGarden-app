@@ -21,9 +21,9 @@ SecurityResponseModel _$SecurityResponseModelFromJson(
 
 /// @nodoc
 mixin _$SecurityResponseModel {
-  @JsonKey(name: 'Account')
+  @JsonKey(name: 'user')
   AccountModel get user => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Token')
+  @JsonKey(name: 'token')
   String get token => throw _privateConstructorUsedError;
 
   /// Serializes this SecurityResponseModel to a JSON map.
@@ -43,8 +43,8 @@ abstract class $SecurityResponseModelCopyWith<$Res> {
       _$SecurityResponseModelCopyWithImpl<$Res, SecurityResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'Account') AccountModel user,
-      @JsonKey(name: 'Token') String token});
+      {@JsonKey(name: 'user') AccountModel user,
+      @JsonKey(name: 'token') String token});
 
   $AccountModelCopyWith<$Res> get user;
 }
@@ -101,8 +101,8 @@ abstract class _$$SecurityResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'Account') AccountModel user,
-      @JsonKey(name: 'Token') String token});
+      {@JsonKey(name: 'user') AccountModel user,
+      @JsonKey(name: 'token') String token});
 
   @override
   $AccountModelCopyWith<$Res> get user;
@@ -142,17 +142,17 @@ class __$$SecurityResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SecurityResponseModelImpl implements _SecurityResponseModel {
   const _$SecurityResponseModelImpl(
-      {@JsonKey(name: 'Account') required this.user,
-      @JsonKey(name: 'Token') required this.token});
+      {@JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'token') required this.token});
 
   factory _$SecurityResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SecurityResponseModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'Account')
+  @JsonKey(name: 'user')
   final AccountModel user;
   @override
-  @JsonKey(name: 'Token')
+  @JsonKey(name: 'token')
   final String token;
 
   @override
@@ -192,18 +192,18 @@ class _$SecurityResponseModelImpl implements _SecurityResponseModel {
 
 abstract class _SecurityResponseModel implements SecurityResponseModel {
   const factory _SecurityResponseModel(
-          {@JsonKey(name: 'Account') required final AccountModel user,
-          @JsonKey(name: 'Token') required final String token}) =
+          {@JsonKey(name: 'user') required final AccountModel user,
+          @JsonKey(name: 'token') required final String token}) =
       _$SecurityResponseModelImpl;
 
   factory _SecurityResponseModel.fromJson(Map<String, dynamic> json) =
       _$SecurityResponseModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'Account')
+  @JsonKey(name: 'user')
   AccountModel get user;
   @override
-  @JsonKey(name: 'Token')
+  @JsonKey(name: 'token')
   String get token;
 
   /// Create a copy of SecurityResponseModel

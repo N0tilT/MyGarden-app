@@ -48,7 +48,7 @@ class _LoginAuthPageState extends State<LoginAuthPage> {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).pushReplacementNamed(widget.route);
             });
-            return Container(); // Return an empty container to avoid return null.
+            return Container();
           },
           authLoading: () => const Center(
             child: GardenLoadingWidget(),

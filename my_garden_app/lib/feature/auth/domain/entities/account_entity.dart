@@ -6,14 +6,10 @@ part 'account_entity.freezed.dart';
 @freezed
 class AccountEntity with _$AccountEntity {
   const factory AccountEntity(
-      {required int id,
-      required String? name,
-      required String? surname,
-      required String? patronymic,}) = _AccountEntity;
+      {required String id,
+      required String? userName,}) = _AccountEntity;
 
   factory AccountEntity.fromModel(AccountModel model) => AccountEntity(
       id: model.id,
-      name: model.name,
-      surname: model.surname,
-      patronymic: model.patronymic,);
+      userName: model.userName,);
 }

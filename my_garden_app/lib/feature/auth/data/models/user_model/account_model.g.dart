@@ -17,28 +17,19 @@ class AccountModelAdapter extends TypeAdapter<_$AccountModelImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$AccountModelImpl(
-      id: fields[0] as int,
-      name: fields[1] as String?,
-      surname: fields[2] as String?,
-      patronymic: fields[3] as String?,
-      identityId: fields[4] as String?,
+      id: fields[0] as String,
+      userName: fields[1] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$AccountModelImpl obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
-      ..writeByte(2)
-      ..write(obj.surname)
-      ..writeByte(3)
-      ..write(obj.patronymic)
-      ..writeByte(4)
-      ..write(obj.identityId);
+      ..write(obj.userName);
   }
 
   @override
@@ -58,18 +49,12 @@ class AccountModelAdapter extends TypeAdapter<_$AccountModelImpl> {
 
 _$AccountModelImpl _$$AccountModelImplFromJson(Map<String, dynamic> json) =>
     _$AccountModelImpl(
-      id: (json['Id'] as num).toInt(),
-      name: json['Name'] as String?,
-      surname: json['Surname'] as String?,
-      patronymic: json['Patronymic'] as String?,
-      identityId: json['IdentityId'] as String?,
+      id: json['id'] as String,
+      userName: json['userName'] as String?,
     );
 
 Map<String, dynamic> _$$AccountModelImplToJson(_$AccountModelImpl instance) =>
     <String, dynamic>{
-      'Id': instance.id,
-      'Name': instance.name,
-      'Surname': instance.surname,
-      'Patronymic': instance.patronymic,
-      'IdentityId': instance.identityId,
+      'id': instance.id,
+      'userName': instance.userName,
     };
