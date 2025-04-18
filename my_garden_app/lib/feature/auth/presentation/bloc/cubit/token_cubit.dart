@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_garden_app/feature/auth/data/models/token_model.dart';
+import 'package:my_garden_app/feature/auth/data/models/security_response_model.dart';
 import 'package:my_garden_app/feature/auth/domain/usecases/get_token.dart';
 import 'package:my_garden_app/feature/auth/domain/usecases/logout.dart';
 
@@ -8,9 +8,10 @@ part 'token_cubit.freezed.dart';
 part 'token_state.dart';
 
 class TokenCubit extends Cubit<TokenState> {
-  final GetToken getTokenUseCase;
+  final GetUserData getTokenUseCase;
   final Logout logoutUseCase;
-  TokenModel token = const TokenModel(token: "");
+  SecurityResponseModel token =
+      const SecurityResponseModel(token: "", refreshToken: "");
 
   TokenCubit({
     required this.logoutUseCase,

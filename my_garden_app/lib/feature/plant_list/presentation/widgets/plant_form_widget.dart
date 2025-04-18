@@ -55,49 +55,50 @@ class _PlantFormWidgetState extends State<PlantFormWidget> {
   @override
   Widget build(BuildContext context) {
     controllers = [
-    _Controller(
-      controller: TextEditingController(text: widget.plant.title),
-      name: "title",
-      label: "Название",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(text: widget.plant.biologyTitle),
-      name: "bioTitle",
-      label: "Биологическое название",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(text: widget.plant.fertilization),
-      name: "fertilizationTitle",
-      label: "Удобрение",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(text: widget.plant.toxicity),
-      name: "toxicity",
-      label: "Токсичность",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(text: widget.plant.replacing),
-      name: "replacing",
-      label: "Пересадка",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(text: widget.plant.description),
-      name: "description",
-      label: "Описание",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(text: widget.plant.ripeningPeriod.toString()),
-      name: "ripening",
-      label: "Время всхода",
-      type: TextInputType.number,
-    ),
-  ];
+      _Controller(
+        controller: TextEditingController(text: widget.plant.title),
+        name: "title",
+        label: "Название",
+        type: TextInputType.text,
+      ),
+      _Controller(
+        controller: TextEditingController(text: widget.plant.biologyTitle),
+        name: "bioTitle",
+        label: "Биологическое название",
+        type: TextInputType.text,
+      ),
+      _Controller(
+        controller: TextEditingController(text: widget.plant.fertilization),
+        name: "fertilizationTitle",
+        label: "Удобрение",
+        type: TextInputType.text,
+      ),
+      _Controller(
+        controller: TextEditingController(text: widget.plant.toxicity),
+        name: "toxicity",
+        label: "Токсичность",
+        type: TextInputType.text,
+      ),
+      _Controller(
+        controller: TextEditingController(text: widget.plant.replacing),
+        name: "replacing",
+        label: "Пересадка",
+        type: TextInputType.text,
+      ),
+      _Controller(
+        controller: TextEditingController(text: widget.plant.description),
+        name: "description",
+        label: "Описание",
+        type: TextInputType.text,
+      ),
+      _Controller(
+        controller:
+            TextEditingController(text: widget.plant.ripeningPeriod.toString()),
+        name: "ripening",
+        label: "Время всхода",
+        type: TextInputType.number,
+      ),
+    ];
     return Form(
       key: formKey,
       child: Stack(

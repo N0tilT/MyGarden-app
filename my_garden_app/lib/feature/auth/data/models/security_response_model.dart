@@ -7,12 +7,13 @@ part 'security_response_model.freezed.dart';
 part 'security_response_model.g.dart';
 
 @freezed
-class SecurityResponseModel with _$SecurityResponseModel{
+class SecurityResponseModel with _$SecurityResponseModel {
   const factory SecurityResponseModel({
-
-    @JsonKey(name: 'user') required AccountModel user,
+    @JsonKey(name: 'user') AccountModel? user,
     @JsonKey(name: 'token') required String token,
+    @JsonKey(name: 'refreshToken') required String refreshToken,
   }) = _SecurityResponseModel;
-  
-  factory SecurityResponseModel.fromJson(Map<String,dynamic> json) => _$SecurityResponseModelFromJson(json);
+
+  factory SecurityResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$SecurityResponseModelFromJson(json);
 }

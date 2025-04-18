@@ -6,7 +6,6 @@ import 'package:my_garden_app/feature/auth/data/datasources/auth_local_data_sour
 import 'package:my_garden_app/feature/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:my_garden_app/feature/auth/data/models/security_request_model.dart';
 import 'package:my_garden_app/feature/auth/data/models/security_response_model.dart';
-import 'package:my_garden_app/feature/auth/data/models/token_model.dart';
 import 'package:my_garden_app/feature/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -40,16 +39,24 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, TokenModel>> getToken() async {
+  Future<Either<Failure, SecurityResponseModel>> getUserData() async {
     try {
-      final token = await localDataSource.loadToken();
-      if (token.token.isEmpty) throw CacheException();
-      return Right(token);
+      SecurityResponseModel userData = await localDataSource.loadUserData();
+      if (userData.token.isEmpty) throw CacheException();
+      if (!await remoteDataSource.validateToken(
+          userData.user?.userName ?? "", userData.token)) {
+        try {
+          userData = await remoteDataSource.refreshToken(userData);
+        } on ServerException {
+          return const Left(CacheFailure(message: "Ошибка получения токена"));
+        }
+      }
+      return Right(userData);
     } on CacheException {
-      return const Left(ServerFailure(message: "Ошибка сервера"));
+      return const Left(CacheFailure(message: "Ошибка получения токена"));
     }
   }
-  
+
   @override
   Future<Either<Failure, void>> logout() async {
     try {

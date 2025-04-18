@@ -20,25 +20,23 @@ class EventRepositoryImpl implements EventRepository {
 
   @override
   Future<Either<Failure, List<EventModel>>> load(
-    void request, [
+    void request,
+    String token, [
     bool remote = true,
   ]) async {
-    return await loadData<
-        EventLocalDataSource,
-        EventRemoteDataSource,
-        List<EventModel>,
-        void>(localDataSource, remoteDataSource, remote, request, networkInfo);
+    return await loadData<EventLocalDataSource, EventRemoteDataSource,
+            List<EventModel>, void>(
+        localDataSource, remoteDataSource, remote, request, networkInfo, token);
   }
 
   @override
   Future<Either<Failure, void>> add(
-    List<EventModel> request, [
+    List<EventModel> request,
+    String token, [
     bool remote = true,
   ]) async {
-    return await uploadData<
-        EventLocalDataSource,
-        EventRemoteDataSource,
-        List<EventModel>,
-        void>(localDataSource, remoteDataSource, remote, request, networkInfo);
+    return await uploadData<EventLocalDataSource, EventRemoteDataSource,
+            List<EventModel>, void>(
+        localDataSource, remoteDataSource, remote, request, networkInfo, token);
   }
 }

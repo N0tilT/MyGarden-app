@@ -9,9 +9,11 @@ class GardenState with _$GardenState {
       _Fail;
   const factory GardenState.getSelectedSuccess(GardenEntity departments) =
       _GetSelectedSuccess;
-  const factory GardenState.getSelectedFail(
-      [@Default("Unknown error") String message,]) = _GetSelectedFail;
+  const factory GardenState.getSelectedFail([
+    @Default("Unknown error") String message,
+  ]) = _GetSelectedFail;
   const factory GardenState.setSelectedSuccess() = _SetSelectedSuccess;
-  const factory GardenState.setSelectedFail(
-      [@Default("Unknown error") String message,]) = _SetSelectedFail;
+  const factory GardenState.setSelectedFail([
+    @Default("Unknown error") String message,
+  ]) = _SetSelectedFail;
 }

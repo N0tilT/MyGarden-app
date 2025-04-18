@@ -3,7 +3,6 @@ import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/garden_model.dart';
 
 abstract class GardenRepository {
-
   Future<Either<Failure, List<GardenModel>>> load(
     void request, [
     bool remote = true,
@@ -14,9 +13,7 @@ abstract class GardenRepository {
     bool remote = true,
   ]);
 
-  
-  Future<Either<Failure,GardenModel>> getSelectedGarden(void request);
+  Future<Either<Failure, GardenModel>> getSelectedGarden(void request);
 
-  Future<Either<Failure,void>> setSelectedGarden(GardenModel request);
-
+  Future<Either<Failure, void>> setSelectedGarden(GardenModel request);
 }

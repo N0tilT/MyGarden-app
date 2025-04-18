@@ -43,7 +43,8 @@ class NetworkConnectivity {
   Stream get myStream => _controller.stream;
   // 1.
   Future<void> initialise() async {
-    final ConnectivityResult result = await _networkConnectivity.checkConnectivity();
+    final ConnectivityResult result =
+        await _networkConnectivity.checkConnectivity();
     _checkStatus(result);
     _networkConnectivity.onConnectivityChanged.listen((result) {
       _checkStatus(result);

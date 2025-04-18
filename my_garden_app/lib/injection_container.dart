@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/auth/data/datasources/auth_local_data_source.dart';
 import 'package:my_garden_app/feature/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:my_garden_app/feature/auth/data/models/user_model/account_model.dart';
 import 'package:my_garden_app/feature/auth/data/repositories/auth_repository_impl.dart';
 import 'package:my_garden_app/feature/auth/domain/repositories/auth_repository.dart';
 import 'package:my_garden_app/feature/auth/domain/usecases/auth.dart';
@@ -87,7 +86,7 @@ Future<void> init() async {
     ),
   );
   sl.registerLazySingleton(
-    () => GetToken(
+    () => GetUserData(
       authRepository: sl(),
     ),
   );
@@ -117,8 +116,7 @@ Future<void> init() async {
 
   sl.registerLazySingletonAsync<AuthLocalDataSource>(() async {
     return AuthLocalDataSourceImpl(
-      tokenStorage: secureStorage,
-      userBox: await Hive.openBox<AccountModel>('UserBox'),
+      userStorage: secureStorage,
     );
   });
 
@@ -135,11 +133,13 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => LoadPlants(
       plantRepository: sl(),
+      authRepository: sl(),
     ),
   );
   sl.registerLazySingleton(
     () => UploadPlant(
       plantRepository: sl(),
+      authRepository: sl(),
     ),
   );
 
@@ -176,11 +176,13 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => LoadEvents(
       eventRepository: sl(),
+      authRepository: sl(),
     ),
   );
   sl.registerLazySingleton(
     () => UploadEvent(
       eventRepository: sl(),
+      authRepository: sl(),
     ),
   );
 
@@ -257,22 +259,24 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => LoadPlant(
       plantRepository: sl(),
+      authRepository: sl(),
     ),
   );
   sl.registerLazySingleton(
     () => LoadPlantEvents(
       eventRepository: sl(),
+      authRepository: sl(),
     ),
   );
-    //! Gardens
+  //! Gardens
   sl.registerFactory(
-    () =>GardenCubit(
+    () => GardenCubit(
       setSelectedGarden: sl(),
-      getSelectedGarden: sl(), 
-      removeGarden:sl(), 
-      loadGardens: sl(), 
+      getSelectedGarden: sl(),
+      removeGarden: sl(),
+      loadGardens: sl(),
       uploadGarden: sl(),
-      ),
+    ),
   );
 
   sl.registerLazySingleton(
@@ -303,9 +307,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GardenRepository>(
     () => GardenRepositoryImpl(
-      localDataSource: sl(), 
-      selectedGardenDatasource: sl(), 
-      networkInfo: sl(),),
+      localDataSource: sl(),
+      selectedGardenDatasource: sl(),
+      networkInfo: sl(),
+    ),
   );
 
   sl.registerLazySingleton<SelectedGardenDataSource>(

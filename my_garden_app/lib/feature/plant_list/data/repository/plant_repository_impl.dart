@@ -6,6 +6,7 @@ import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/plant_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/plant_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
 
 class PlantRepositoryImpl implements PlantRepository {
@@ -21,31 +22,30 @@ class PlantRepositoryImpl implements PlantRepository {
 
   @override
   Future<Either<Failure, List<PlantModel>>> load(
-    void request, [
+    PlantRequestModel request,
+    String token, [
     bool remote = true,
   ]) async {
-    return await loadData<
-        PlantLocalDataSource,
-        PlantRemoteDataSource,
-        List<PlantModel>,
-        void>(localDataSource, remoteDataSource, remote, request, networkInfo);
+    return await loadData<PlantLocalDataSource, PlantRemoteDataSource,
+            List<PlantModel>, PlantRequestModel>(
+        localDataSource, remoteDataSource, remote, request, networkInfo, token);
   }
 
   @override
   Future<Either<Failure, void>> add(
-    List<PlantModel> request, [
+    List<PlantModel> request,
+    String token, [
     bool remote = true,
   ]) async {
-    return await uploadData<
-        PlantLocalDataSource,
-        PlantRemoteDataSource,
-        List<PlantModel>,
-        void>(localDataSource, remoteDataSource, remote, request, networkInfo);
+    return await uploadData<PlantLocalDataSource, PlantRemoteDataSource,
+            List<PlantModel>, void>(
+        localDataSource, remoteDataSource, remote, request, networkInfo, token);
   }
 
   @override
   Future<Either<Failure, PlantModel>> loadByPlantId(
-    int request, [
+    int request,
+    String token, [
     bool remote = false,
   ]) async {
     try {

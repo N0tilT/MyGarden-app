@@ -6,8 +6,8 @@ abstract class LocalDataSource<ResponseType, RequestType> {
 }
 
 abstract class RemoteDataSource<ResponseType, RequestType> {
-  Future<ResponseType> load(RequestType request);
-  Future<void> upload(ResponseType remoteLoad);
+  Future<ResponseType> load(RequestType request, String token);
+  Future<void> upload(ResponseType remoteLoad, String token);
 }
 
 Future<void> updateBox<ModelType>(

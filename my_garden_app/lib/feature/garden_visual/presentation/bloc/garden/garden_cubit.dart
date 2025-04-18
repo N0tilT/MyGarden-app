@@ -112,14 +112,15 @@ class GardenCubit extends Cubit<GardenState> {
 
   Future<void> getSelected() async {
     final result = await getSelectedGarden.call(() {});
-      result.fold(
-        (error) => emit(GardenState.setSelectedFail(error.message)),
-        (succededGarden) {
-          selectedGarden = GardenEntity.fromModel(succededGarden);
-          emit(
-            GardenState.getSelectedSuccess(selectedGarden??GardenEntity(id: -1, title: "title")),
-          );
-        },
-      );
+    result.fold(
+      (error) => emit(GardenState.setSelectedFail(error.message)),
+      (succededGarden) {
+        selectedGarden = GardenEntity.fromModel(succededGarden);
+        emit(
+          GardenState.getSelectedSuccess(
+              selectedGarden ?? GardenEntity(id: -1, title: "title")),
+        );
+      },
+    );
   }
 }

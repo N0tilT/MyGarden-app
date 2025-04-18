@@ -116,8 +116,7 @@ class _EventListWrapper extends StatelessWidget {
   }
 }
 
-class EventAppBarWidget extends StatelessWidget
-    implements PreferredSizeWidget {
+class EventAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const EventAppBarWidget({
     super.key,
   });

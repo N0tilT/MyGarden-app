@@ -106,7 +106,8 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
             ),
             const SizedBox(height: 10),
             FloatingActionButton(
-              onPressed: () => _showPlantSelectionDialog(context, allPlantList, flowerBedCubit),
+              onPressed: () => _showPlantSelectionDialog(
+                  context, allPlantList, flowerBedCubit),
               child: const Text("+", style: TextStyle(fontSize: 20)),
             ),
           ],
@@ -130,7 +131,8 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
 
   void _showPlantSelectionDialog(
     BuildContext context,
-    List<PlantEntity> plantList, FlowerBedCubit flowerBedCubit,
+    List<PlantEntity> plantList,
+    FlowerBedCubit flowerBedCubit,
   ) {
     int? selectedPlantId;
 

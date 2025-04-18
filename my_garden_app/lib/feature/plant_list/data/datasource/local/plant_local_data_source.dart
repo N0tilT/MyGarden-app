@@ -3,8 +3,7 @@ import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
 
-class PlantLocalDataSource
-    extends LocalDataSource<List<PlantModel>, void> {
+class PlantLocalDataSource extends LocalDataSource<List<PlantModel>, void> {
   Box<PlantModel> plantBox;
 
   PlantLocalDataSource({required this.plantBox});
@@ -34,5 +33,4 @@ class PlantLocalDataSource
       throw CacheException();
     }
   }
-  
 }

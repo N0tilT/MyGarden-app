@@ -9,7 +9,7 @@ class EventRemoteDataSource extends RemoteDataSource<List<EventModel>, void> {
   EventRemoteDataSource({required this.client});
 
   @override
-  Future<List<EventModel>> load(void request) async {
+  Future<List<EventModel>> load(void request, String token) async {
     try {
       // final response = await client.get(
       //   Uri.parse('$BASE_URL/course'),
@@ -54,9 +54,9 @@ class EventRemoteDataSource extends RemoteDataSource<List<EventModel>, void> {
       throw ServerException();
     }
   }
-  
+
   @override
-  Future<void> upload(List<EventModel> remoteLoad) {
+  Future<void> upload(List<EventModel> remoteLoad, String token) {
     // ignore: void_checks
     return Future.value(remoteLoad);
   }

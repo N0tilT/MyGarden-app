@@ -22,9 +22,11 @@ SecurityResponseModel _$SecurityResponseModelFromJson(
 /// @nodoc
 mixin _$SecurityResponseModel {
   @JsonKey(name: 'user')
-  AccountModel get user => throw _privateConstructorUsedError;
+  AccountModel? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'token')
   String get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'refreshToken')
+  String get refreshToken => throw _privateConstructorUsedError;
 
   /// Serializes this SecurityResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,10 +45,11 @@ abstract class $SecurityResponseModelCopyWith<$Res> {
       _$SecurityResponseModelCopyWithImpl<$Res, SecurityResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'user') AccountModel user,
-      @JsonKey(name: 'token') String token});
+      {@JsonKey(name: 'user') AccountModel? user,
+      @JsonKey(name: 'token') String token,
+      @JsonKey(name: 'refreshToken') String refreshToken});
 
-  $AccountModelCopyWith<$Res> get user;
+  $AccountModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -65,17 +68,22 @@ class _$SecurityResponseModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
     Object? token = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as AccountModel,
+              as AccountModel?,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -84,8 +92,12 @@ class _$SecurityResponseModelCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountModelCopyWith<$Res> get user {
-    return $AccountModelCopyWith<$Res>(_value.user, (value) {
+  $AccountModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $AccountModelCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -101,11 +113,12 @@ abstract class _$$SecurityResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'user') AccountModel user,
-      @JsonKey(name: 'token') String token});
+      {@JsonKey(name: 'user') AccountModel? user,
+      @JsonKey(name: 'token') String token,
+      @JsonKey(name: 'refreshToken') String refreshToken});
 
   @override
-  $AccountModelCopyWith<$Res> get user;
+  $AccountModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -122,17 +135,22 @@ class __$$SecurityResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
     Object? token = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$SecurityResponseModelImpl(
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as AccountModel,
+              as AccountModel?,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -142,22 +160,26 @@ class __$$SecurityResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SecurityResponseModelImpl implements _SecurityResponseModel {
   const _$SecurityResponseModelImpl(
-      {@JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'token') required this.token});
+      {@JsonKey(name: 'user') this.user,
+      @JsonKey(name: 'token') required this.token,
+      @JsonKey(name: 'refreshToken') required this.refreshToken});
 
   factory _$SecurityResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SecurityResponseModelImplFromJson(json);
 
   @override
   @JsonKey(name: 'user')
-  final AccountModel user;
+  final AccountModel? user;
   @override
   @JsonKey(name: 'token')
   final String token;
+  @override
+  @JsonKey(name: 'refreshToken')
+  final String refreshToken;
 
   @override
   String toString() {
-    return 'SecurityResponseModel(user: $user, token: $token)';
+    return 'SecurityResponseModel(user: $user, token: $token, refreshToken: $refreshToken)';
   }
 
   @override
@@ -166,12 +188,14 @@ class _$SecurityResponseModelImpl implements _SecurityResponseModel {
         (other.runtimeType == runtimeType &&
             other is _$SecurityResponseModelImpl &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, token);
+  int get hashCode => Object.hash(runtimeType, user, token, refreshToken);
 
   /// Create a copy of SecurityResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -192,8 +216,9 @@ class _$SecurityResponseModelImpl implements _SecurityResponseModel {
 
 abstract class _SecurityResponseModel implements SecurityResponseModel {
   const factory _SecurityResponseModel(
-          {@JsonKey(name: 'user') required final AccountModel user,
-          @JsonKey(name: 'token') required final String token}) =
+          {@JsonKey(name: 'user') final AccountModel? user,
+          @JsonKey(name: 'token') required final String token,
+          @JsonKey(name: 'refreshToken') required final String refreshToken}) =
       _$SecurityResponseModelImpl;
 
   factory _SecurityResponseModel.fromJson(Map<String, dynamic> json) =
@@ -201,10 +226,13 @@ abstract class _SecurityResponseModel implements SecurityResponseModel {
 
   @override
   @JsonKey(name: 'user')
-  AccountModel get user;
+  AccountModel? get user;
   @override
   @JsonKey(name: 'token')
   String get token;
+  @override
+  @JsonKey(name: 'refreshToken')
+  String get refreshToken;
 
   /// Create a copy of SecurityResponseModel
   /// with the given fields replaced by the non-null parameter values.

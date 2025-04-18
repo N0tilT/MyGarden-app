@@ -13,7 +13,9 @@ class PlantModel extends HiveObject with _$PlantModel {
     @JsonKey(name: 'id') @HiveField(0) required int id,
     @JsonKey(name: 'title') @HiveField(1) required String? title,
     @JsonKey(name: 'biologyTitle') @HiveField(2) required String? biologyTitle,
-    @JsonKey(name: 'fertilization') @HiveField(3) required String? fertilization,
+    @JsonKey(name: 'fertilization')
+    @HiveField(3)
+    required String? fertilization,
     @JsonKey(name: 'toxicity') @HiveField(4) required String? toxicity,
     @JsonKey(name: 'replacing') @HiveField(5) required String? replacing,
     @JsonKey(name: 'description') @HiveField(6) required String? description,

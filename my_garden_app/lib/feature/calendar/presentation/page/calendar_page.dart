@@ -10,7 +10,6 @@ import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/even
 import 'package:my_garden_app/injection_container.dart';
 
 class CalendarPage extends StatefulWidget {
-  
   const CalendarPage({super.key});
   @override
   _CalendarPageState createState() => _CalendarPageState();

@@ -1,66 +1,67 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive/hive.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/feature/auth/data/models/security_response_model.dart';
-import 'package:my_garden_app/feature/auth/data/models/token_model.dart';
 import 'package:my_garden_app/feature/auth/data/models/user_model/account_model.dart';
 
 abstract class AuthLocalDataSource {
-  Future<TokenModel> loadToken();
-  Future<void> updateToken(TokenModel token);
+  Future<SecurityResponseModel> loadUserData();
+  Future<void> updateToken(SecurityResponseModel token);
   Future<void> add(SecurityResponseModel remoteLoad);
   Future<void> logout();
 }
 
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
-  FlutterSecureStorage tokenStorage;
-  Box<AccountModel> userBox;
+  FlutterSecureStorage userStorage;
 
-  AuthLocalDataSourceImpl({required this.tokenStorage, required this.userBox});
+  AuthLocalDataSourceImpl({required this.userStorage});
 
   @override
   Future<void> add(SecurityResponseModel response) async {
     try {
-      await tokenStorage.write(key: 'jwt_access_token', value: response.token);
-      if (userBox.isNotEmpty) {
-        final alreadyExists = userBox.values.firstWhere(
-          (element) => element.id == response.user.id,
-        );
-        // ignore: unrelated_type_equality_checks
-      if (alreadyExists == -1) {
-        try {
-          userBox.add(
-            AccountModel(
-              id: response.user.id,
-              userName: response.user.userName
-            ),
-          );
-        } on Exception {
-          throw CacheException();
-        }
-      }
-      }
-      
+      await userStorage.write(key: 'jwt_access_token', value: response.token);
+      await userStorage.write(
+        key: 'jwt_refresh_token',
+        value: response.refreshToken,
+      );
+      await userStorage.write(
+        key: 'userName',
+        value: response.user?.userName ?? "",
+      );
+      await userStorage.write(key: 'userId', value: response.user?.id ?? "");
     } catch (e) {
       throw CacheException();
     }
   }
 
   @override
-  Future<void> updateToken(TokenModel token) async {
+  Future<void> updateToken(SecurityResponseModel token) async {
     try {
-      await tokenStorage.write(key: 'jwt_access_token', value: token.token);
+      await userStorage.write(key: 'jwt_access_token', value: token.token);
+      await userStorage.write(
+        key: 'jwt_refresh_token',
+        value: token.refreshToken,
+      );
+      await userStorage.write(
+        key: 'userName',
+        value: token.user?.userName ?? "",
+      );
+      await userStorage.write(key: 'userId', value: token.user?.id ?? "");
     } catch (e) {
       throw CacheException();
     }
   }
 
   @override
-  Future<TokenModel> loadToken() async {
+  Future<SecurityResponseModel> loadUserData() async {
     try {
-      final token = await tokenStorage.read(key: 'jwt_access_token');
-      return TokenModel(
+      final token = await userStorage.read(key: 'jwt_access_token');
+      final refreshToken = await userStorage.read(key: 'jwt_refresh_token');
+      final userName = await userStorage.read(key: 'userName');
+      final userId = await userStorage.read(key: 'userId');
+      return SecurityResponseModel(
         token: token ?? "",
+        refreshToken: refreshToken ?? "",
+        user: AccountModel(id: userId ?? "", userName: userName),
       );
     } catch (e) {
       throw CacheException();
@@ -69,7 +70,9 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
   @override
   Future<void> logout() async {
-    await tokenStorage.delete(key: 'jwt_access_token');
-    userBox.clear();
+    await userStorage.delete(key: 'jwt_access_token');
+    await userStorage.delete(key: 'jwt_refresh_token');
+    await userStorage.delete(key: 'userName');
+    await userStorage.delete(key: 'userId');
   }
 }

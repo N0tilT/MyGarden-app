@@ -46,7 +46,6 @@ class GardenDropdownState<T> extends State<GardenDropdown<T>> {
               value: item,
               padding: const EdgeInsets.only(left: 12),
               isExpanded: true,
-            
               items: widget.items.map<DropdownMenuItem<T>>(
                 (T? item) {
                   return DropdownMenuItem<T>(

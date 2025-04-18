@@ -3,14 +3,15 @@ import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart';
 
 abstract class EventRepository {
-
   Future<Either<Failure, List<EventModel>>> load(
-    void request, [
+    void request,
+    String token, [
     bool remote = true,
   ]);
 
   Future<Either<Failure, void>> add(
-    List<EventModel> request, [
+    List<EventModel> request,
+    String token, [
     bool remote = true,
   ]);
 }

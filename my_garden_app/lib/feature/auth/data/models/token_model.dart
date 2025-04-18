@@ -6,11 +6,11 @@ part 'token_model.freezed.dart';
 part 'token_model.g.dart';
 
 @freezed
-class TokenModel with _$TokenModel{
-  
+class TokenModel with _$TokenModel {
   const factory TokenModel({
     @JsonKey(name: 'token') required String token,
   }) = _TokenModel;
-  
-  factory TokenModel.fromJson(Map<String,dynamic> json) => _$TokenModelFromJson(json);
+
+  factory TokenModel.fromJson(Map<String, dynamic> json) =>
+      _$TokenModelFromJson(json);
 }

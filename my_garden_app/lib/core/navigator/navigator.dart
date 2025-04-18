@@ -7,8 +7,7 @@ class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({super.key});
 
   @override
-  State<MainNavigatorWidget> createState() =>
-      _MainNavigatorWidgetState();
+  State<MainNavigatorWidget> createState() => _MainNavigatorWidgetState();
 }
 
 class _MainNavigatorWidgetState extends State<MainNavigatorWidget> {

@@ -11,6 +11,7 @@ Future<Either<Failure, ResponseType>> loadData<Local extends LocalDataSource,
   bool remote,
   RequestType request,
   NetworkInfo networkInfo,
+  String token,
 ) async {
   if (!(await networkInfo.isConnected && remote)) {
     try {
@@ -22,7 +23,8 @@ Future<Either<Failure, ResponseType>> loadData<Local extends LocalDataSource,
     }
   } else {
     try {
-      final remoteLoad = await remoteDataSource.load(request) as ResponseType;
+      final remoteLoad =
+          await remoteDataSource.load(request, token) as ResponseType;
       await localDataSource.update(remoteLoad);
       return Right(await localDataSource.load(request) as ResponseType);
     } on ServerException {
@@ -40,6 +42,7 @@ Future<Either<Failure, ResponseType>> uploadData<Local extends LocalDataSource,
   bool remote,
   ResponseType request,
   NetworkInfo networkInfo,
+  String token,
 ) async {
   if (!(await networkInfo.isConnected && remote)) {
     try {
@@ -51,7 +54,8 @@ Future<Either<Failure, ResponseType>> uploadData<Local extends LocalDataSource,
     }
   } else {
     try {
-      final remoteLoad = await remoteDataSource.upload(request) as ResponseType;
+      final remoteLoad =
+          await remoteDataSource.upload(request, token) as ResponseType;
       await localDataSource.update(remoteLoad);
       return Right(await localDataSource.load(request) as ResponseType);
     } on ServerException {

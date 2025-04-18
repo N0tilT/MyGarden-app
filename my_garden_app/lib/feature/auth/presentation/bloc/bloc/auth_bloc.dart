@@ -10,7 +10,7 @@ part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final Auth authUseCase;
-  AccountEntity user = const AccountEntity(id: "-1", userName: "");
+  AccountEntity? user;
 
   AuthBloc({required this.authUseCase}) : super(const _Initial()) {
     on<_Auth>(

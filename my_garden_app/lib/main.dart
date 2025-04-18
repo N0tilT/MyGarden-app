@@ -104,7 +104,6 @@ class _InitializerState extends State<Initializer> {
 
   @override
   Widget build(BuildContext context) {
-    //auth 
     final tokenCubit = context.watch<TokenCubit>();
     return tokenCubit.state.when(
       initial: () => const Center(child: GardenLoadingWidget()),
@@ -116,5 +115,4 @@ class _InitializerState extends State<Initializer> {
       },
     );
   }
-    // return const MainNavigatorWidget();
 }
