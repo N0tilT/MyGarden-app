@@ -12,7 +12,8 @@ class Auth extends Usecase<SecurityResponseModel, SecurityRequestModel> {
 
   @override
   Future<Either<Failure, SecurityResponseModel>> call(
-      SecurityRequestModel request) async {
+    SecurityRequestModel request,
+  ) async {
     return await authRepository.auth(request);
   }
 }

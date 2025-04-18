@@ -118,7 +118,8 @@ class GardenCubit extends Cubit<GardenState> {
         selectedGarden = GardenEntity.fromModel(succededGarden);
         emit(
           GardenState.getSelectedSuccess(
-              selectedGarden ?? GardenEntity(id: -1, title: "title")),
+            selectedGarden ?? GardenEntity(id: -1, title: "title"),
+          ),
         );
       },
     );

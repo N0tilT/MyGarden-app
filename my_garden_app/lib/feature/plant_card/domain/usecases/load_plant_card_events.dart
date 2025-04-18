@@ -11,8 +11,10 @@ class LoadPlantEvents extends Usecase<List<EventModel>, int> {
   final EventRepository eventRepository;
   final AuthRepository authRepository;
 
-  LoadPlantEvents(
-      {required this.eventRepository, required this.authRepository});
+  LoadPlantEvents({
+    required this.eventRepository,
+    required this.authRepository,
+  });
 
   @override
   Future<Either<Failure, List<EventModel>>> call(

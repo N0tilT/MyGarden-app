@@ -52,7 +52,8 @@ class AuthRemoteDataSource
   }
 
   Future<SecurityResponseModel> refreshToken(
-      SecurityResponseModel token) async {
+    SecurityResponseModel token,
+  ) async {
     try {
       final response = await client.post(
         Uri.parse('$BASE_URL/auth/refresh'),
@@ -94,7 +95,9 @@ class AuthRemoteDataSource
 
   @override
   Future<SecurityResponseModel> load(
-      SecurityRequestModel request, String token) {
+    SecurityRequestModel request,
+    String token,
+  ) {
     // TODO: implement load
     throw UnimplementedError();
   }

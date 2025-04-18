@@ -44,7 +44,9 @@ class AuthRepositoryImpl implements AuthRepository {
       SecurityResponseModel userData = await localDataSource.loadUserData();
       if (userData.token.isEmpty) throw CacheException();
       if (!await remoteDataSource.validateToken(
-          userData.user?.userName ?? "", userData.token)) {
+        userData.user?.userName ?? "",
+        userData.token,
+      )) {
         try {
           userData = await remoteDataSource.refreshToken(userData);
         } on ServerException {

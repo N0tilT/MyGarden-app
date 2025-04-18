@@ -59,6 +59,15 @@ mixin _$PlantModel {
   @JsonKey(name: 'ripeningPeriod')
   @HiveField(12)
   int get ripeningPeriod => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userId')
+  @HiveField(13)
+  String get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'plantTypeId')
+  @HiveField(14)
+  int get plantTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'plantVarietyId')
+  @HiveField(15)
+  int get plantVarietyId => throw _privateConstructorUsedError;
 
   /// Serializes this PlantModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -89,7 +98,10 @@ abstract class $PlantModelCopyWith<$Res> {
       @JsonKey(name: 'lightNeedId') @HiveField(9) int lightNeedId,
       @JsonKey(name: 'stageId') @HiveField(10) int stageId,
       @JsonKey(name: 'imageId') @HiveField(11) int imageId,
-      @JsonKey(name: 'ripeningPeriod') @HiveField(12) int ripeningPeriod});
+      @JsonKey(name: 'ripeningPeriod') @HiveField(12) int ripeningPeriod,
+      @JsonKey(name: 'userId') @HiveField(13) String userId,
+      @JsonKey(name: 'plantTypeId') @HiveField(14) int plantTypeId,
+      @JsonKey(name: 'plantVarietyId') @HiveField(15) int plantVarietyId});
 }
 
 /// @nodoc
@@ -120,6 +132,9 @@ class _$PlantModelCopyWithImpl<$Res, $Val extends PlantModel>
     Object? stageId = null,
     Object? imageId = null,
     Object? ripeningPeriod = null,
+    Object? userId = null,
+    Object? plantTypeId = null,
+    Object? plantVarietyId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -174,6 +189,18 @@ class _$PlantModelCopyWithImpl<$Res, $Val extends PlantModel>
           ? _value.ripeningPeriod
           : ripeningPeriod // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      plantTypeId: null == plantTypeId
+          ? _value.plantTypeId
+          : plantTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      plantVarietyId: null == plantVarietyId
+          ? _value.plantVarietyId
+          : plantVarietyId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -199,7 +226,10 @@ abstract class _$$PlantModelImplCopyWith<$Res>
       @JsonKey(name: 'lightNeedId') @HiveField(9) int lightNeedId,
       @JsonKey(name: 'stageId') @HiveField(10) int stageId,
       @JsonKey(name: 'imageId') @HiveField(11) int imageId,
-      @JsonKey(name: 'ripeningPeriod') @HiveField(12) int ripeningPeriod});
+      @JsonKey(name: 'ripeningPeriod') @HiveField(12) int ripeningPeriod,
+      @JsonKey(name: 'userId') @HiveField(13) String userId,
+      @JsonKey(name: 'plantTypeId') @HiveField(14) int plantTypeId,
+      @JsonKey(name: 'plantVarietyId') @HiveField(15) int plantVarietyId});
 }
 
 /// @nodoc
@@ -228,6 +258,9 @@ class __$$PlantModelImplCopyWithImpl<$Res>
     Object? stageId = null,
     Object? imageId = null,
     Object? ripeningPeriod = null,
+    Object? userId = null,
+    Object? plantTypeId = null,
+    Object? plantVarietyId = null,
   }) {
     return _then(_$PlantModelImpl(
       id: null == id
@@ -282,6 +315,18 @@ class __$$PlantModelImplCopyWithImpl<$Res>
           ? _value.ripeningPeriod
           : ripeningPeriod // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      plantTypeId: null == plantTypeId
+          ? _value.plantTypeId
+          : plantTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      plantVarietyId: null == plantVarietyId
+          ? _value.plantVarietyId
+          : plantVarietyId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -307,7 +352,12 @@ class _$PlantModelImpl extends _PlantModel {
       @JsonKey(name: 'imageId') @HiveField(11) required this.imageId,
       @JsonKey(name: 'ripeningPeriod')
       @HiveField(12)
-      required this.ripeningPeriod})
+      required this.ripeningPeriod,
+      @JsonKey(name: 'userId') @HiveField(13) required this.userId,
+      @JsonKey(name: 'plantTypeId') @HiveField(14) required this.plantTypeId,
+      @JsonKey(name: 'plantVarietyId')
+      @HiveField(15)
+      required this.plantVarietyId})
       : super._();
 
   factory _$PlantModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -365,10 +415,22 @@ class _$PlantModelImpl extends _PlantModel {
   @JsonKey(name: 'ripeningPeriod')
   @HiveField(12)
   final int ripeningPeriod;
+  @override
+  @JsonKey(name: 'userId')
+  @HiveField(13)
+  final String userId;
+  @override
+  @JsonKey(name: 'plantTypeId')
+  @HiveField(14)
+  final int plantTypeId;
+  @override
+  @JsonKey(name: 'plantVarietyId')
+  @HiveField(15)
+  final int plantVarietyId;
 
   @override
   String toString() {
-    return 'PlantModel(id: $id, title: $title, biologyTitle: $biologyTitle, fertilization: $fertilization, toxicity: $toxicity, replacing: $replacing, description: $description, groupId: $groupId, wateringNeedId: $wateringNeedId, lightNeedId: $lightNeedId, stageId: $stageId, imageId: $imageId, ripeningPeriod: $ripeningPeriod)';
+    return 'PlantModel(id: $id, title: $title, biologyTitle: $biologyTitle, fertilization: $fertilization, toxicity: $toxicity, replacing: $replacing, description: $description, groupId: $groupId, wateringNeedId: $wateringNeedId, lightNeedId: $lightNeedId, stageId: $stageId, imageId: $imageId, ripeningPeriod: $ripeningPeriod, userId: $userId, plantTypeId: $plantTypeId, plantVarietyId: $plantVarietyId)';
   }
 
   @override
@@ -396,7 +458,12 @@ class _$PlantModelImpl extends _PlantModel {
             (identical(other.stageId, stageId) || other.stageId == stageId) &&
             (identical(other.imageId, imageId) || other.imageId == imageId) &&
             (identical(other.ripeningPeriod, ripeningPeriod) ||
-                other.ripeningPeriod == ripeningPeriod));
+                other.ripeningPeriod == ripeningPeriod) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.plantTypeId, plantTypeId) ||
+                other.plantTypeId == plantTypeId) &&
+            (identical(other.plantVarietyId, plantVarietyId) ||
+                other.plantVarietyId == plantVarietyId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -415,7 +482,10 @@ class _$PlantModelImpl extends _PlantModel {
       lightNeedId,
       stageId,
       imageId,
-      ripeningPeriod);
+      ripeningPeriod,
+      userId,
+      plantTypeId,
+      plantVarietyId);
 
   /// Create a copy of PlantModel
   /// with the given fields replaced by the non-null parameter values.
@@ -461,7 +531,14 @@ abstract class _PlantModel extends PlantModel {
       @JsonKey(name: 'imageId') @HiveField(11) required final int imageId,
       @JsonKey(name: 'ripeningPeriod')
       @HiveField(12)
-      required final int ripeningPeriod}) = _$PlantModelImpl;
+      required final int ripeningPeriod,
+      @JsonKey(name: 'userId') @HiveField(13) required final String userId,
+      @JsonKey(name: 'plantTypeId')
+      @HiveField(14)
+      required final int plantTypeId,
+      @JsonKey(name: 'plantVarietyId')
+      @HiveField(15)
+      required final int plantVarietyId}) = _$PlantModelImpl;
   _PlantModel._() : super._();
 
   factory _PlantModel.fromJson(Map<String, dynamic> json) =
@@ -519,6 +596,18 @@ abstract class _PlantModel extends PlantModel {
   @JsonKey(name: 'ripeningPeriod')
   @HiveField(12)
   int get ripeningPeriod;
+  @override
+  @JsonKey(name: 'userId')
+  @HiveField(13)
+  String get userId;
+  @override
+  @JsonKey(name: 'plantTypeId')
+  @HiveField(14)
+  int get plantTypeId;
+  @override
+  @JsonKey(name: 'plantVarietyId')
+  @HiveField(15)
+  int get plantVarietyId;
 
   /// Create a copy of PlantModel
   /// with the given fields replaced by the non-null parameter values.

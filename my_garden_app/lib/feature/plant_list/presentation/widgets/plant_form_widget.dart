@@ -142,6 +142,8 @@ class _PlantFormWidgetState extends State<PlantFormWidget> {
                       groupId: 0,
                       wateringNeedId: 0,
                       lightNeedId: 0,
+                      plantTypeId: 0,
+                      plantVarietyId: 0,
                       stageId: 0,
                       imageId: 0,
                       ripeningPeriod: int.parse(inputs[6]),

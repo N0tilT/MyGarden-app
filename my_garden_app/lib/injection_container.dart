@@ -45,7 +45,14 @@ import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card
 import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/plant_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_remote_data_source.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/garden_type_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/group_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/grow_stage_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/light_need_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/plant_type_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/plant_variety_model.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/watering_need_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/plant_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/add_plant.dart';
@@ -62,6 +69,13 @@ Future<void> init() async {
   Hive.registerAdapter(EventModelAdapter());
   Hive.registerAdapter(FlowerBedModelAdapter());
   Hive.registerAdapter(GardenModelAdapter());
+  Hive.registerAdapter(GroupModelAdapter());
+  Hive.registerAdapter(GardenTypeModelAdapter());
+  Hive.registerAdapter(GrowStageModelAdapter());
+  Hive.registerAdapter(LightNeedModelAdapter());
+  Hive.registerAdapter(WateringNeedModelAdapter());
+  Hive.registerAdapter(PlantTypeModelAdapter());
+  Hive.registerAdapter(PlantVarietyModelAdapter());
 
   //! Features
   //! Auth

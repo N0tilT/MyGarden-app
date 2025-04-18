@@ -30,13 +30,16 @@ class PlantModelAdapter extends TypeAdapter<_$PlantModelImpl> {
       stageId: fields[10] as int,
       imageId: fields[11] as int,
       ripeningPeriod: fields[12] as int,
+      userId: fields[13] as String,
+      plantTypeId: fields[14] as int,
+      plantVarietyId: fields[15] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$PlantModelImpl obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -62,7 +65,13 @@ class PlantModelAdapter extends TypeAdapter<_$PlantModelImpl> {
       ..writeByte(11)
       ..write(obj.imageId)
       ..writeByte(12)
-      ..write(obj.ripeningPeriod);
+      ..write(obj.ripeningPeriod)
+      ..writeByte(13)
+      ..write(obj.userId)
+      ..writeByte(14)
+      ..write(obj.plantTypeId)
+      ..writeByte(15)
+      ..write(obj.plantVarietyId);
   }
 
   @override
@@ -95,6 +104,9 @@ _$PlantModelImpl _$$PlantModelImplFromJson(Map<String, dynamic> json) =>
       stageId: (json['stageId'] as num).toInt(),
       imageId: (json['imageId'] as num).toInt(),
       ripeningPeriod: (json['ripeningPeriod'] as num).toInt(),
+      userId: json['userId'] as String,
+      plantTypeId: (json['plantTypeId'] as num).toInt(),
+      plantVarietyId: (json['plantVarietyId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$PlantModelImplToJson(_$PlantModelImpl instance) =>
@@ -112,4 +124,7 @@ Map<String, dynamic> _$$PlantModelImplToJson(_$PlantModelImpl instance) =>
       'stageId': instance.stageId,
       'imageId': instance.imageId,
       'ripeningPeriod': instance.ripeningPeriod,
+      'userId': instance.userId,
+      'plantTypeId': instance.plantTypeId,
+      'plantVarietyId': instance.plantVarietyId,
     };

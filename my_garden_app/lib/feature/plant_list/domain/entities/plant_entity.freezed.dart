@@ -26,6 +26,8 @@ mixin _$PlantEntity {
   int get groupId => throw _privateConstructorUsedError;
   int get wateringNeedId => throw _privateConstructorUsedError;
   int get lightNeedId => throw _privateConstructorUsedError;
+  int get plantTypeId => throw _privateConstructorUsedError;
+  int get plantVarietyId => throw _privateConstructorUsedError;
   int get stageId => throw _privateConstructorUsedError;
   int get imageId => throw _privateConstructorUsedError;
   int get ripeningPeriod => throw _privateConstructorUsedError;
@@ -54,6 +56,8 @@ abstract class $PlantEntityCopyWith<$Res> {
       int groupId,
       int wateringNeedId,
       int lightNeedId,
+      int plantTypeId,
+      int plantVarietyId,
       int stageId,
       int imageId,
       int ripeningPeriod});
@@ -84,6 +88,8 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
     Object? groupId = null,
     Object? wateringNeedId = null,
     Object? lightNeedId = null,
+    Object? plantTypeId = null,
+    Object? plantVarietyId = null,
     Object? stageId = null,
     Object? imageId = null,
     Object? ripeningPeriod = null,
@@ -129,6 +135,14 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
           ? _value.lightNeedId
           : lightNeedId // ignore: cast_nullable_to_non_nullable
               as int,
+      plantTypeId: null == plantTypeId
+          ? _value.plantTypeId
+          : plantTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      plantVarietyId: null == plantVarietyId
+          ? _value.plantVarietyId
+          : plantVarietyId // ignore: cast_nullable_to_non_nullable
+              as int,
       stageId: null == stageId
           ? _value.stageId
           : stageId // ignore: cast_nullable_to_non_nullable
@@ -164,6 +178,8 @@ abstract class _$$PlantEntityImplCopyWith<$Res>
       int groupId,
       int wateringNeedId,
       int lightNeedId,
+      int plantTypeId,
+      int plantVarietyId,
       int stageId,
       int imageId,
       int ripeningPeriod});
@@ -192,6 +208,8 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
     Object? groupId = null,
     Object? wateringNeedId = null,
     Object? lightNeedId = null,
+    Object? plantTypeId = null,
+    Object? plantVarietyId = null,
     Object? stageId = null,
     Object? imageId = null,
     Object? ripeningPeriod = null,
@@ -237,6 +255,14 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
           ? _value.lightNeedId
           : lightNeedId // ignore: cast_nullable_to_non_nullable
               as int,
+      plantTypeId: null == plantTypeId
+          ? _value.plantTypeId
+          : plantTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      plantVarietyId: null == plantVarietyId
+          ? _value.plantVarietyId
+          : plantVarietyId // ignore: cast_nullable_to_non_nullable
+              as int,
       stageId: null == stageId
           ? _value.stageId
           : stageId // ignore: cast_nullable_to_non_nullable
@@ -267,6 +293,8 @@ class _$PlantEntityImpl extends _PlantEntity {
       required this.groupId,
       required this.wateringNeedId,
       required this.lightNeedId,
+      required this.plantTypeId,
+      required this.plantVarietyId,
       required this.stageId,
       required this.imageId,
       required this.ripeningPeriod})
@@ -292,6 +320,10 @@ class _$PlantEntityImpl extends _PlantEntity {
   final int wateringNeedId;
   @override
   final int lightNeedId;
+  @override
+  final int plantTypeId;
+  @override
+  final int plantVarietyId;
   @override
   final int stageId;
   @override
@@ -321,6 +353,10 @@ class _$PlantEntityImpl extends _PlantEntity {
                 other.wateringNeedId == wateringNeedId) &&
             (identical(other.lightNeedId, lightNeedId) ||
                 other.lightNeedId == lightNeedId) &&
+            (identical(other.plantTypeId, plantTypeId) ||
+                other.plantTypeId == plantTypeId) &&
+            (identical(other.plantVarietyId, plantVarietyId) ||
+                other.plantVarietyId == plantVarietyId) &&
             (identical(other.stageId, stageId) || other.stageId == stageId) &&
             (identical(other.imageId, imageId) || other.imageId == imageId) &&
             (identical(other.ripeningPeriod, ripeningPeriod) ||
@@ -340,6 +376,8 @@ class _$PlantEntityImpl extends _PlantEntity {
       groupId,
       wateringNeedId,
       lightNeedId,
+      plantTypeId,
+      plantVarietyId,
       stageId,
       imageId,
       ripeningPeriod);
@@ -365,6 +403,8 @@ abstract class _PlantEntity extends PlantEntity {
       required final int groupId,
       required final int wateringNeedId,
       required final int lightNeedId,
+      required final int plantTypeId,
+      required final int plantVarietyId,
       required final int stageId,
       required final int imageId,
       required final int ripeningPeriod}) = _$PlantEntityImpl;
@@ -390,6 +430,10 @@ abstract class _PlantEntity extends PlantEntity {
   int get wateringNeedId;
   @override
   int get lightNeedId;
+  @override
+  int get plantTypeId;
+  @override
+  int get plantVarietyId;
   @override
   int get stageId;
   @override

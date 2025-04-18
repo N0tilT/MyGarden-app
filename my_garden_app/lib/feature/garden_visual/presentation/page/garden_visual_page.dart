@@ -17,10 +17,11 @@ class GardenVisualPage extends StatelessWidget {
         BlocProvider(create: (context) => sl<FlowerBedCubit>()..load(1)),
         BlocProvider(create: (context) => sl<PlantListCubit>()..load()),
         BlocProvider(
-            create: (context) => sl<GardenCubit>()
-              ..load()
-              ..upload(GardenEntity(id: 1, title: "Основной"))
-              ..upload(GardenEntity(id: 2, title: "Дополнительный"))),
+          create: (context) => sl<GardenCubit>()
+            ..load()
+            ..upload(GardenEntity(id: 1, title: "Основной"))
+            ..upload(GardenEntity(id: 2, title: "Дополнительный")),
+        ),
       ],
       child: const GardenVisualBody(),
     );

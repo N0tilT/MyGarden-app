@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'plant_request_model.dart';
+part of 'garden_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PlantRequestModelImpl _$$PlantRequestModelImplFromJson(
+_$GardenRequestModelImpl _$$GardenRequestModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$PlantRequestModelImpl(
-      userId: json['userId'] as String,
+    _$GardenRequestModelImpl(
+      userId: json['userId'] as String?,
       ids: (json['ids'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
     );
 
-Map<String, dynamic> _$$PlantRequestModelImplToJson(
-        _$PlantRequestModelImpl instance) =>
+Map<String, dynamic> _$$GardenRequestModelImplToJson(
+        _$GardenRequestModelImpl instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'ids': instance.ids,

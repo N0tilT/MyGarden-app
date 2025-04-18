@@ -4,17 +4,20 @@ import 'package:http/http.dart' as http;
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/core/network/api_config.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/garden_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
-import 'package:my_garden_app/feature/plant_list/data/model/plant_request_model.dart';
 
 class PlantRemoteDataSource
-    extends RemoteDataSource<List<PlantModel>, PlantRequestModel> {
+    extends RemoteDataSource<List<PlantModel>, GardenRequestModel> {
   final http.Client client;
 
   PlantRemoteDataSource({required this.client});
 
   @override
-  Future<List<PlantModel>> load(PlantRequestModel request, String token) async {
+  Future<List<PlantModel>> load(
+    GardenRequestModel request,
+    String token,
+  ) async {
     try {
       final uri = Uri.parse('$BASE_URL/plant').replace(
         queryParameters: {
@@ -28,6 +31,7 @@ class PlantRemoteDataSource
         uri,
         headers: {
           "Authorization": "Bearer $token",
+          'Content-type': 'application/json; charset=UTF-8',
         },
       );
       if (response.statusCode == 200) {
@@ -48,8 +52,25 @@ class PlantRemoteDataSource
   }
 
   @override
-  Future<void> upload(List<PlantModel> remoteLoad, String token) {
-    // ignore: void_checks
-    return Future.value(remoteLoad);
+  Future<void> upload(List<PlantModel> remoteLoad, String token) async {
+    try {
+      final uri = Uri.parse('$BASE_URL/plant');
+
+      final response = await client.post(
+        uri,
+        body: json.encode(remoteLoad),
+        headers: {
+          "Authorization": "Bearer $token",
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      throw ServerException();
+    }
   }
 }

@@ -28,15 +28,24 @@ class SimplifiedUri {
     return Uri.encodeFull(queries.join("&"));
   }
 
-  static void generateInnerMap(List<String> queryList, String parentKey,
-      Map<String, dynamic> innerJson) {
+  static void generateInnerMap(
+    List<String> queryList,
+    String parentKey,
+    Map<String, dynamic> innerJson,
+  ) {
     for (final key in innerJson.keys) {
       if (innerJson[key] is Map) {
-        generateInnerMap(queryList, "$parentKey[$key]",
-            innerJson[key] as Map<String, dynamic>);
+        generateInnerMap(
+          queryList,
+          "$parentKey[$key]",
+          innerJson[key] as Map<String, dynamic>,
+        );
       } else if (innerJson[key] is List) {
         generateInnerList(
-            queryList, "$parentKey[$key]", innerJson[key] as List<dynamic>);
+          queryList,
+          "$parentKey[$key]",
+          innerJson[key] as List<dynamic>,
+        );
       } else {
         queryList.add("$parentKey[$key]=${innerJson[key]}");
       }
@@ -44,11 +53,17 @@ class SimplifiedUri {
   }
 
   static void generateInnerList(
-      List<String> queryList, String parentKey, List<dynamic> innerList) {
+    List<String> queryList,
+    String parentKey,
+    List<dynamic> innerList,
+  ) {
     for (final item in innerList) {
       if (item is Map) {
         generateInnerMap(
-            queryList, "$parentKey[]", item as Map<String, dynamic>);
+          queryList,
+          "$parentKey[]",
+          item as Map<String, dynamic>,
+        );
       } else {
         queryList.add("$parentKey[]=$item");
       }

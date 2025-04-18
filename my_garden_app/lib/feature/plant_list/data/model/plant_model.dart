@@ -2,6 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 
 part 'plant_model.freezed.dart';
 part 'plant_model.g.dart';
@@ -25,10 +26,33 @@ class PlantModel extends HiveObject with _$PlantModel {
     @JsonKey(name: 'stageId') @HiveField(10) required int stageId,
     @JsonKey(name: 'imageId') @HiveField(11) required int imageId,
     @JsonKey(name: 'ripeningPeriod') @HiveField(12) required int ripeningPeriod,
+    @JsonKey(name: 'userId') @HiveField(13) required String userId,
+    @JsonKey(name: 'plantTypeId') @HiveField(14) required int plantTypeId,
+    @JsonKey(name: 'plantVarietyId') @HiveField(15) required int plantVarietyId,
   }) = _PlantModel;
 
   PlantModel._();
 
   factory PlantModel.fromJson(Map<String, dynamic> json) =>
       _$PlantModelFromJson(json);
+
+  factory PlantModel.fromEntity(PlantEntity entity, String userId) =>
+      PlantModel(
+        id: entity.id,
+        title: entity.title,
+        biologyTitle: entity.biologyTitle,
+        fertilization: entity.fertilization,
+        toxicity: entity.toxicity,
+        replacing: entity.replacing,
+        description: entity.description,
+        groupId: entity.groupId,
+        wateringNeedId: entity.wateringNeedId,
+        lightNeedId: entity.lightNeedId,
+        plantTypeId: entity.plantTypeId,
+        plantVarietyId: entity.plantVarietyId,
+        stageId: entity.stageId,
+        imageId: entity.imageId,
+        ripeningPeriod: entity.ripeningPeriod,
+        userId: userId,
+      );
 }

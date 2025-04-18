@@ -25,8 +25,14 @@ class EventRepositoryImpl implements EventRepository {
     bool remote = true,
   ]) async {
     return await loadData<EventLocalDataSource, EventRemoteDataSource,
-            List<EventModel>, void>(
-        localDataSource, remoteDataSource, remote, request, networkInfo, token);
+        List<EventModel>, void>(
+      localDataSource,
+      remoteDataSource,
+      remote,
+      request,
+      networkInfo,
+      token,
+    );
   }
 
   @override
@@ -36,7 +42,13 @@ class EventRepositoryImpl implements EventRepository {
     bool remote = true,
   ]) async {
     return await uploadData<EventLocalDataSource, EventRemoteDataSource,
-            List<EventModel>, void>(
-        localDataSource, remoteDataSource, remote, request, networkInfo, token);
+        List<EventModel>, void>(
+      localDataSource,
+      remoteDataSource,
+      remote,
+      request,
+      networkInfo,
+      token,
+    );
   }
 }

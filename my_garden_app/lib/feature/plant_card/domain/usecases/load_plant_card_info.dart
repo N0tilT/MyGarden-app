@@ -4,8 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/core/data/usecases/usecase.dart';
 import 'package:my_garden_app/feature/auth/domain/repositories/auth_repository.dart';
+import 'package:my_garden_app/feature/plant_list/data/model/garden_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
-import 'package:my_garden_app/feature/plant_list/data/model/plant_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
 
 class LoadPlant extends Usecase<PlantModel, int> {
@@ -24,14 +24,16 @@ class LoadPlant extends Usecase<PlantModel, int> {
       return Left(l);
     }, (r) async {
       var plants = await plantRepository.load(
-          PlantRequestModel(userId: r.user?.id ?? "", ids: [request]),
-          r.token,
-          remote);
+        GardenRequestModel(userId: r.user?.id ?? "", ids: [request]),
+        r.token,
+        remote,
+      );
       if (plants.length() == 0) {
         plants = await plantRepository.load(
-            PlantRequestModel(userId: r.user?.id ?? "", ids: [request]),
-            r.token,
-            !remote);
+          GardenRequestModel(userId: r.user?.id ?? "", ids: [request]),
+          r.token,
+          !remote,
+        );
       }
       return plants.fold(
         (error) => Left(error),

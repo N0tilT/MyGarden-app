@@ -107,7 +107,10 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
             const SizedBox(height: 10),
             FloatingActionButton(
               onPressed: () => _showPlantSelectionDialog(
-                  context, allPlantList, flowerBedCubit),
+                context,
+                allPlantList,
+                flowerBedCubit,
+              ),
               child: const Text("+", style: TextStyle(fontSize: 20)),
             ),
           ],

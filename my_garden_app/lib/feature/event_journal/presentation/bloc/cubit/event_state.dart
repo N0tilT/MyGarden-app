@@ -7,8 +7,9 @@ class EventState with _$EventState {
   const factory EventState.success(List<EventEntity> departments) = _Success;
   const factory EventState.fail([@Default("Unknown error") String message]) =
       _Fail;
-  const factory EventState.localLoadingFail(
-      [@Default("Unknown error") String message]) = _LocalLoadingFail;
+  const factory EventState.localLoadingFail([
+    @Default("Unknown error") String message,
+  ]) = _LocalLoadingFail;
   const factory EventState.localLoadingSuccess(List<EventEntity> departments) =
       _LocalLoadingSuccess;
 }

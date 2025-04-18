@@ -5,7 +5,8 @@ import 'package:my_garden_app/feature/auth/data/models/security_response_model.d
 
 abstract class AuthRepository {
   Future<Either<Failure, SecurityResponseModel>> auth(
-      SecurityRequestModel request);
+    SecurityRequestModel request,
+  );
   Future<Either<Failure, SecurityResponseModel>> getUserData();
   Future<Either<Failure, void>> logout();
 }
