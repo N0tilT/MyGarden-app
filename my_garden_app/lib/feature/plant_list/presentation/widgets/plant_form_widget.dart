@@ -4,7 +4,7 @@ import 'package:my_garden_app/core/presentation/button_widget.dart';
 import 'package:my_garden_app/core/presentation/garden_input_text_field_style.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
 
 class PlantFormWidget extends StatefulWidget {
   const PlantFormWidget({required this.plant, required this.state});

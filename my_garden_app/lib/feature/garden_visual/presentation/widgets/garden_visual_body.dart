@@ -9,7 +9,7 @@ import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/widgets/grid_painter.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
 
 class GardenVisualBody extends StatefulWidget {
   const GardenVisualBody();

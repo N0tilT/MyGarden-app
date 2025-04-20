@@ -4,7 +4,7 @@ import 'package:my_garden_app/feature/garden_visual/domain/entities/garden_entit
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/widgets/garden_visual_body.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
 import 'package:my_garden_app/injection_container.dart';
 
 class GardenVisualPage extends StatelessWidget {

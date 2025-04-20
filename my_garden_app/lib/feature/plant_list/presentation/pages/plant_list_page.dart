@@ -3,7 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/light_need/light_need_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_adding_page.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:my_garden_app/injection_container.dart';
@@ -18,12 +23,31 @@ class PlantListPage extends StatefulWidget {
 class _PlantListPageState extends State<PlantListPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 241, 245),
-      appBar: const PlantListAppBarWidget(),
-      body: BlocProvider<PlantListCubit>(
-        create: (context) => sl<PlantListCubit>()..load(),
-        child: const _PlantListWidget(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<GrowStageCubit>(
+          create: (context) => sl<GrowStageCubit>()..loadLocally(),
+        ),
+        BlocProvider<LightNeedCubit>(
+          create: (context) => sl<LightNeedCubit>()..loadLocally(),
+        ),
+        BlocProvider<WateringNeedCubit>(
+          create: (context) => sl<WateringNeedCubit>()..loadLocally(),
+        ),
+        BlocProvider<PlantTypeCubit>(
+          create: (context) => sl<PlantTypeCubit>()..loadLocally(),
+        ),
+        BlocProvider<PlantVarietyCubit>(
+          create: (context) => sl<PlantVarietyCubit>()..loadLocally(),
+        ),
+        BlocProvider<PlantListCubit>(
+          create: (context) => sl<PlantListCubit>()..loadLocally(),
+        ),
+      ],
+      child: const Scaffold(
+        backgroundColor: Color.fromARGB(255, 240, 241, 245),
+        appBar: PlantListAppBarWidget(),
+        body: _PlantListWidget(),
       ),
     );
   }

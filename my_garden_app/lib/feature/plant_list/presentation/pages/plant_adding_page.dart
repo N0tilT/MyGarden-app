@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_form_widget.dart';
 import 'package:my_garden_app/injection_container.dart';
 
