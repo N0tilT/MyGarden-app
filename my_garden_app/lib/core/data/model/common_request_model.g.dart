@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'garden_request_model.dart';
+part of 'common_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GardenRequestModelImpl _$$GardenRequestModelImplFromJson(
+_$CommonRequestModelImpl _$$CommonRequestModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$GardenRequestModelImpl(
+    _$CommonRequestModelImpl(
       userId: json['userId'] as String?,
       ids: (json['ids'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
     );
 
-Map<String, dynamic> _$$GardenRequestModelImplToJson(
-        _$GardenRequestModelImpl instance) =>
+Map<String, dynamic> _$$CommonRequestModelImplToJson(
+        _$CommonRequestModelImpl instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'ids': instance.ids,

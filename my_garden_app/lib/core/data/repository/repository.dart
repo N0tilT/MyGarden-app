@@ -40,7 +40,7 @@ Future<Either<Failure, ResponseType>> uploadData<Local extends LocalDataSource,
   Local localDataSource,
   Remote remoteDataSource,
   bool remote,
-  ResponseType request,
+  RequestType request,
   NetworkInfo networkInfo,
   String token,
 ) async {

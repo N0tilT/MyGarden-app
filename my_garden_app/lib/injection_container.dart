@@ -3,6 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_garden_app/core/data/model/common_request_model.dart';
+import 'package:my_garden_app/core/domain/repositories/common_repository.dart';
 import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/auth/data/datasources/auth_local_data_source.dart';
 import 'package:my_garden_app/feature/auth/data/datasources/auth_remote_data_source.dart';
@@ -54,9 +56,9 @@ import 'package:my_garden_app/feature/plant_list/data/model/plant_type_model.dar
 import 'package:my_garden_app/feature/plant_list/data/model/plant_variety_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/watering_need_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/plant_repository_impl.dart';
-import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_repository.dart';
-import 'package:my_garden_app/feature/plant_list/domain/usecases/add_plant.dart';
-import 'package:my_garden_app/feature/plant_list/domain/usecases/load_plants.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plants.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_plant.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/cubit/plant_list_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -146,18 +148,24 @@ Future<void> init() async {
 
   sl.registerLazySingleton(
     () => LoadPlants(
-      plantRepository: sl(),
+      commonRepository: sl(),
       authRepository: sl(),
+      fromModelConverter: (e) {
+        return PlantEntity.fromModel(e);
+      },
     ),
   );
   sl.registerLazySingleton(
     () => UploadPlant(
-      plantRepository: sl(),
+      commonRepository: sl(),
       authRepository: sl(),
+      fromEntityConverter: (e) {
+        return PlantModel.fromEntity(e, "-1");
+      },
     ),
   );
 
-  sl.registerLazySingleton<PlantRepository>(
+  sl.registerLazySingleton<CommonRepository<PlantModel, CommonRequestModel>>(
     () => PlantRepositoryImpl(
       remoteDataSource: sl(),
       localDataSource: sl(),

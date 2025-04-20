@@ -2,13 +2,16 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
+import 'package:my_garden_app/core/data/model/i_common_model.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/watering_need_entity.dart';
 
 part 'watering_need_model.freezed.dart';
 part 'watering_need_model.g.dart';
 
 @freezed
-class WateringNeedModel extends HiveObject with _$WateringNeedModel {
+class WateringNeedModel extends HiveObject
+    with _$WateringNeedModel
+    implements ICommonModel {
   @HiveType(typeId: 9, adapterName: 'WateringNeedModelAdapter')
   factory WateringNeedModel({
     @JsonKey(name: 'id') @HiveField(0) required int id,

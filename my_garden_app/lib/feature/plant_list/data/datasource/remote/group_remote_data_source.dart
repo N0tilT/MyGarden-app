@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
+import 'package:my_garden_app/core/data/model/common_request_model.dart';
 import 'package:my_garden_app/core/network/api_config.dart';
-import 'package:my_garden_app/feature/plant_list/data/model/garden_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/group_model.dart';
 
 class GroupRemoteDataSource
-    extends RemoteDataSource<List<GroupModel>, GardenRequestModel> {
+    extends RemoteDataSource<List<GroupModel>, CommonRequestModel> {
   final http.Client client;
 
   GroupRemoteDataSource({required this.client});
 
   @override
   Future<List<GroupModel>> load(
-    GardenRequestModel request,
+    CommonRequestModel request,
     String token,
   ) async {
     try {

@@ -1,20 +1,21 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
+import 'package:my_garden_app/core/data/model/common_request_model.dart';
 import 'package:my_garden_app/core/network/api_config.dart';
-import 'package:my_garden_app/feature/plant_list/data/model/garden_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/watering_need_model.dart';
 
 class WateringNeedRemoteDataSource
-    extends RemoteDataSource<List<WateringNeedModel>, GardenRequestModel> {
+    extends RemoteDataSource<List<WateringNeedModel>, CommonRequestModel> {
   final http.Client client;
 
   WateringNeedRemoteDataSource({required this.client});
 
   @override
   Future<List<WateringNeedModel>> load(
-    GardenRequestModel request,
+    CommonRequestModel request,
     String token,
   ) async {
     try {

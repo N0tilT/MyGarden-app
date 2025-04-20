@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:my_garden_app/core/domain/entities/i_common_entity.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_type_model.dart';
 
 part 'plant_type_entity.freezed.dart';
@@ -6,7 +7,7 @@ part 'plant_type_entity.freezed.dart';
 @Freezed(
   toStringOverride: false,
 )
-class PlantTypeEntity with _$PlantTypeEntity {
+class PlantTypeEntity with _$PlantTypeEntity implements ICommonEntity {
   const factory PlantTypeEntity({
     required int id,
     required String? title,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'garden_request_model.dart';
+part of 'common_request_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,45 +14,45 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-GardenRequestModel _$GardenRequestModelFromJson(Map<String, dynamic> json) {
-  return _GardenRequestModel.fromJson(json);
+CommonRequestModel _$CommonRequestModelFromJson(Map<String, dynamic> json) {
+  return _CommonRequestModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GardenRequestModel {
+mixin _$CommonRequestModel {
   String? get userId => throw _privateConstructorUsedError;
   List<int>? get ids => throw _privateConstructorUsedError;
 
-  /// Serializes this GardenRequestModel to a JSON map.
+  /// Serializes this CommonRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of GardenRequestModel
+  /// Create a copy of CommonRequestModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GardenRequestModelCopyWith<GardenRequestModel> get copyWith =>
+  $CommonRequestModelCopyWith<CommonRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GardenRequestModelCopyWith<$Res> {
-  factory $GardenRequestModelCopyWith(
-          GardenRequestModel value, $Res Function(GardenRequestModel) then) =
-      _$GardenRequestModelCopyWithImpl<$Res, GardenRequestModel>;
+abstract class $CommonRequestModelCopyWith<$Res> {
+  factory $CommonRequestModelCopyWith(
+          CommonRequestModel value, $Res Function(CommonRequestModel) then) =
+      _$CommonRequestModelCopyWithImpl<$Res, CommonRequestModel>;
   @useResult
   $Res call({String? userId, List<int>? ids});
 }
 
 /// @nodoc
-class _$GardenRequestModelCopyWithImpl<$Res, $Val extends GardenRequestModel>
-    implements $GardenRequestModelCopyWith<$Res> {
-  _$GardenRequestModelCopyWithImpl(this._value, this._then);
+class _$CommonRequestModelCopyWithImpl<$Res, $Val extends CommonRequestModel>
+    implements $CommonRequestModelCopyWith<$Res> {
+  _$CommonRequestModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GardenRequestModel
+  /// Create a copy of CommonRequestModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -74,25 +74,25 @@ class _$GardenRequestModelCopyWithImpl<$Res, $Val extends GardenRequestModel>
 }
 
 /// @nodoc
-abstract class _$$GardenRequestModelImplCopyWith<$Res>
-    implements $GardenRequestModelCopyWith<$Res> {
-  factory _$$GardenRequestModelImplCopyWith(_$GardenRequestModelImpl value,
-          $Res Function(_$GardenRequestModelImpl) then) =
-      __$$GardenRequestModelImplCopyWithImpl<$Res>;
+abstract class _$$CommonRequestModelImplCopyWith<$Res>
+    implements $CommonRequestModelCopyWith<$Res> {
+  factory _$$CommonRequestModelImplCopyWith(_$CommonRequestModelImpl value,
+          $Res Function(_$CommonRequestModelImpl) then) =
+      __$$CommonRequestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? userId, List<int>? ids});
 }
 
 /// @nodoc
-class __$$GardenRequestModelImplCopyWithImpl<$Res>
-    extends _$GardenRequestModelCopyWithImpl<$Res, _$GardenRequestModelImpl>
-    implements _$$GardenRequestModelImplCopyWith<$Res> {
-  __$$GardenRequestModelImplCopyWithImpl(_$GardenRequestModelImpl _value,
-      $Res Function(_$GardenRequestModelImpl) _then)
+class __$$CommonRequestModelImplCopyWithImpl<$Res>
+    extends _$CommonRequestModelCopyWithImpl<$Res, _$CommonRequestModelImpl>
+    implements _$$CommonRequestModelImplCopyWith<$Res> {
+  __$$CommonRequestModelImplCopyWithImpl(_$CommonRequestModelImpl _value,
+      $Res Function(_$CommonRequestModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GardenRequestModel
+  /// Create a copy of CommonRequestModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -100,7 +100,7 @@ class __$$GardenRequestModelImplCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? ids = freezed,
   }) {
-    return _then(_$GardenRequestModelImpl(
+    return _then(_$CommonRequestModelImpl(
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -115,13 +115,13 @@ class __$$GardenRequestModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$GardenRequestModelImpl implements _GardenRequestModel {
-  const _$GardenRequestModelImpl(
+class _$CommonRequestModelImpl implements _CommonRequestModel {
+  const _$CommonRequestModelImpl(
       {required this.userId, required final List<int>? ids})
       : _ids = ids;
 
-  factory _$GardenRequestModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GardenRequestModelImplFromJson(json);
+  factory _$CommonRequestModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CommonRequestModelImplFromJson(json);
 
   @override
   final String? userId;
@@ -137,14 +137,14 @@ class _$GardenRequestModelImpl implements _GardenRequestModel {
 
   @override
   String toString() {
-    return 'GardenRequestModel(userId: $userId, ids: $ids)';
+    return 'CommonRequestModel(userId: $userId, ids: $ids)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GardenRequestModelImpl &&
+            other is _$CommonRequestModelImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             const DeepCollectionEquality().equals(other._ids, _ids));
   }
@@ -154,40 +154,40 @@ class _$GardenRequestModelImpl implements _GardenRequestModel {
   int get hashCode => Object.hash(
       runtimeType, userId, const DeepCollectionEquality().hash(_ids));
 
-  /// Create a copy of GardenRequestModel
+  /// Create a copy of CommonRequestModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GardenRequestModelImplCopyWith<_$GardenRequestModelImpl> get copyWith =>
-      __$$GardenRequestModelImplCopyWithImpl<_$GardenRequestModelImpl>(
+  _$$CommonRequestModelImplCopyWith<_$CommonRequestModelImpl> get copyWith =>
+      __$$CommonRequestModelImplCopyWithImpl<_$CommonRequestModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GardenRequestModelImplToJson(
+    return _$$CommonRequestModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _GardenRequestModel implements GardenRequestModel {
-  const factory _GardenRequestModel(
+abstract class _CommonRequestModel implements CommonRequestModel {
+  const factory _CommonRequestModel(
       {required final String? userId,
-      required final List<int>? ids}) = _$GardenRequestModelImpl;
+      required final List<int>? ids}) = _$CommonRequestModelImpl;
 
-  factory _GardenRequestModel.fromJson(Map<String, dynamic> json) =
-      _$GardenRequestModelImpl.fromJson;
+  factory _CommonRequestModel.fromJson(Map<String, dynamic> json) =
+      _$CommonRequestModelImpl.fromJson;
 
   @override
   String? get userId;
   @override
   List<int>? get ids;
 
-  /// Create a copy of GardenRequestModel
+  /// Create a copy of CommonRequestModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GardenRequestModelImplCopyWith<_$GardenRequestModelImpl> get copyWith =>
+  _$$CommonRequestModelImplCopyWith<_$CommonRequestModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

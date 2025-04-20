@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
-import 'package:my_garden_app/feature/plant_list/domain/usecases/add_plant.dart';
-import 'package:my_garden_app/feature/plant_list/domain/usecases/load_plants.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plants.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_plant.dart';
 
 part 'plant_list_cubit.freezed.dart';
 part 'plant_list_state.dart';

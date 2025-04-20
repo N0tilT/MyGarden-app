@@ -2,13 +2,16 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
+import 'package:my_garden_app/core/data/model/i_has_userId_model.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 
 part 'plant_model.freezed.dart';
 part 'plant_model.g.dart';
 
-@freezed
-class PlantModel extends HiveObject with _$PlantModel {
+@Freezed(copyWith: false)
+class PlantModel extends HiveObject
+    with _$PlantModel
+    implements IHasUseridModel<PlantEntity> {
   @HiveType(typeId: 1, adapterName: 'PlantModelAdapter')
   factory PlantModel({
     @JsonKey(name: 'id') @HiveField(0) required int id,
@@ -32,6 +35,26 @@ class PlantModel extends HiveObject with _$PlantModel {
   }) = _PlantModel;
 
   PlantModel._();
+
+  @override
+  PlantModel copyWith({String? userId}) => PlantModel(
+        id: id,
+        title: title,
+        biologyTitle: biologyTitle,
+        fertilization: fertilization,
+        toxicity: toxicity,
+        replacing: replacing,
+        description: description,
+        groupId: groupId,
+        wateringNeedId: wateringNeedId,
+        lightNeedId: lightNeedId,
+        stageId: stageId,
+        imageId: imageId,
+        ripeningPeriod: ripeningPeriod,
+        userId: userId ?? "",
+        plantTypeId: plantTypeId,
+        plantVarietyId: plantVarietyId,
+      );
 
   factory PlantModel.fromJson(Map<String, dynamic> json) =>
       _$PlantModelFromJson(json);
