@@ -132,19 +132,19 @@ class _PlantFormWidgetState extends State<PlantFormWidget> {
                         )
                         .toList();
                     final plantEntity = PlantEntity(
-                      id: 0,
+                      id: null,
                       title: inputs[0],
                       biologyTitle: inputs[1],
                       fertilization: inputs[2],
                       toxicity: inputs[3],
                       replacing: inputs[4],
                       description: inputs[5],
-                      groupId: 0,
-                      wateringNeedId: 0,
-                      lightNeedId: 0,
-                      plantTypeId: 0,
-                      plantVarietyId: 0,
-                      stageId: 0,
+                      groupId: 1,
+                      wateringNeedId: 1,
+                      lightNeedId: 1,
+                      plantTypeId: 1,
+                      plantVarietyId: 1,
+                      stageId: 1,
                       imageId: 0,
                       ripeningPeriod: int.parse(inputs[6]),
                     );

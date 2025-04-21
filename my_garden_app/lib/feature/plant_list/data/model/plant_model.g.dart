@@ -17,7 +17,7 @@ class PlantModelAdapter extends TypeAdapter<_$PlantModelImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$PlantModelImpl(
-      id: fields[0] as int,
+      id: fields[0] as int?,
       title: fields[1] as String?,
       biologyTitle: fields[2] as String?,
       fertilization: fields[3] as String?,
@@ -91,7 +91,7 @@ class PlantModelAdapter extends TypeAdapter<_$PlantModelImpl> {
 
 _$PlantModelImpl _$$PlantModelImplFromJson(Map<String, dynamic> json) =>
     _$PlantModelImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       biologyTitle: json['biologyTitle'] as String?,
       fertilization: json['fertilization'] as String?,

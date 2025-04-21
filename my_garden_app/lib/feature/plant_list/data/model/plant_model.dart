@@ -14,7 +14,7 @@ class PlantModel extends HiveObject
     implements IHasUseridModel<PlantEntity> {
   @HiveType(typeId: 1, adapterName: 'PlantModelAdapter')
   factory PlantModel({
-    @JsonKey(name: 'id') @HiveField(0) required int id,
+    @JsonKey(name: 'id') @HiveField(0) required int? id,
     @JsonKey(name: 'title') @HiveField(1) required String? title,
     @JsonKey(name: 'biologyTitle') @HiveField(2) required String? biologyTitle,
     @JsonKey(name: 'fertilization')

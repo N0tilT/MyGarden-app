@@ -20,12 +20,12 @@ class CommonRepositoryImpl<CommonResponseType, CommonRequestType>
 
   @override
   Future<Either<Failure, void>> add(
-    List<CommonResponseType> request,
+    CommonResponseType request,
     String token, [
     bool remote = true,
   ]) async {
     return await uploadData<LocalDataSource, RemoteDataSource,
-        List<CommonResponseType>, void>(
+        CommonResponseType, void>(
       localDataSource,
       remoteDataSource,
       remote,
@@ -37,13 +37,13 @@ class CommonRepositoryImpl<CommonResponseType, CommonRequestType>
   }
 
   @override
-  Future<Either<Failure, List<CommonResponseType>>> load(
+  Future<Either<Failure, CommonResponseType>> load(
     CommonRequestType request,
     String token, [
     bool remote = true,
   ]) async {
-    return await loadData<LocalDataSource, RemoteDataSource,
-        List<CommonResponseType>, CommonRequestType>(
+    return await loadData<LocalDataSource, RemoteDataSource, CommonResponseType,
+        CommonRequestType>(
       localDataSource,
       remoteDataSource,
       remote,

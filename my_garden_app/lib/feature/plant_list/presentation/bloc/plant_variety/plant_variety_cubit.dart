@@ -7,14 +7,15 @@ part 'plant_variety_cubit.freezed.dart';
 part 'plant_variety_state.dart';
 
 class PlantVarietyCubit extends Cubit<PlantVarietyState> {
-  final LoadPlantVarieties loadPlants;
+  final LoadPlantVarieties loadPlantVarieties;
   List<PlantVarietyEntity> plantList = [];
 
-  PlantVarietyCubit({required this.loadPlants})
+  PlantVarietyCubit({required this.loadPlantVarieties})
       : super(const PlantVarietyState.initial());
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const PlantVarietyState.loading());
+    final plants = await loadPlantVarieties([]);
     plants.fold(
       (error) => emit(PlantVarietyState.fail(error.message)),
       (succededPlantList) {
@@ -30,7 +31,7 @@ class PlantVarietyCubit extends Cubit<PlantVarietyState> {
 
   Future<void> loadLocally() async {
     emit(const PlantVarietyState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadPlantVarieties([], false);
     plants.fold(
       (error) => emit(PlantVarietyState.fail(error.message)),
       (succededPlantList) {

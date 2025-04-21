@@ -7,21 +7,22 @@ part 'grow_stage_cubit.freezed.dart';
 part 'grow_stage_state.dart';
 
 class GrowStageCubit extends Cubit<GrowStageState> {
-  final LoadGrowStages loadPlants;
-  List<GrowStageEntity> plantList = [];
+  final LoadGrowStages loadGrowStages;
+  List<GrowStageEntity> growStages = [];
 
-  GrowStageCubit({required this.loadPlants})
+  GrowStageCubit({required this.loadGrowStages})
       : super(const GrowStageState.initial());
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const GrowStageState.loading());
+    final plants = await loadGrowStages([]);
     plants.fold(
       (error) => emit(GrowStageState.fail(error.message)),
       (succededPlantList) {
-        plantList = succededPlantList;
+        growStages = succededPlantList;
         emit(
           GrowStageState.success(
-            plantList,
+            growStages,
           ),
         );
       },
@@ -30,14 +31,14 @@ class GrowStageCubit extends Cubit<GrowStageState> {
 
   Future<void> loadLocally() async {
     emit(const GrowStageState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadGrowStages([], false);
     plants.fold(
       (error) => emit(GrowStageState.fail(error.message)),
       (succededPlantList) {
-        plantList = succededPlantList;
+        growStages = succededPlantList;
         emit(
           GrowStageState.success(
-            plantList,
+            growStages,
           ),
         );
       },

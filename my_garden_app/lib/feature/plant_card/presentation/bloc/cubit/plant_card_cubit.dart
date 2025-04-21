@@ -19,7 +19,7 @@ class PlantCardCubit extends Cubit<PlantCardState> {
   Future<void> load(PlantEntity plant) async {
     emit(const PlantCardState.loading());
 
-    final events = await loadPlantEvents(plant.id);
+    final events = await loadPlantEvents(plant.id!);
     events.fold(
       (error) => emit(PlantCardState.fail(error.message)),
       (succededEvents) => emit(

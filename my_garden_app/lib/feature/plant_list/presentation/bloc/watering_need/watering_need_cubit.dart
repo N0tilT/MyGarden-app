@@ -7,21 +7,22 @@ part 'watering_need_cubit.freezed.dart';
 part 'watering_need_state.dart';
 
 class WateringNeedCubit extends Cubit<WateringNeedState> {
-  final LoadWateringNeeds loadPlants;
-  List<WateringNeedEntity> plantList = [];
+  final LoadWateringNeeds loadWateringNeeds;
+  List<WateringNeedEntity> wateringNeeds = [];
 
-  WateringNeedCubit({required this.loadPlants})
+  WateringNeedCubit({required this.loadWateringNeeds})
       : super(const WateringNeedState.initial());
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const WateringNeedState.loading());
+    final plants = await loadWateringNeeds([]);
     plants.fold(
       (error) => emit(WateringNeedState.fail(error.message)),
       (succededPlantList) {
-        plantList = succededPlantList;
+        wateringNeeds = succededPlantList;
         emit(
           WateringNeedState.success(
-            plantList,
+            wateringNeeds,
           ),
         );
       },
@@ -30,14 +31,14 @@ class WateringNeedCubit extends Cubit<WateringNeedState> {
 
   Future<void> loadLocally() async {
     emit(const WateringNeedState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadWateringNeeds([], false);
     plants.fold(
       (error) => emit(WateringNeedState.fail(error.message)),
       (succededPlantList) {
-        plantList = succededPlantList;
+        wateringNeeds = succededPlantList;
         emit(
           WateringNeedState.success(
-            plantList,
+            wateringNeeds,
           ),
         );
       },

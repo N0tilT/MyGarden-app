@@ -1,10 +1,11 @@
 import 'package:hive/hive.dart';
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
+import 'package:my_garden_app/core/data/model/common_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/light_need_model.dart';
 
 class LightNeedLocalDataSource
-    extends LocalDataSource<List<LightNeedModel>, void> {
+    extends LocalDataSource<List<LightNeedModel>, CommonRequestModel> {
   Box<LightNeedModel> lightNeedBox;
 
   LightNeedLocalDataSource({required this.lightNeedBox});

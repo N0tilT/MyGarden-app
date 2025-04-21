@@ -17,7 +17,7 @@ class GroupModelAdapter extends TypeAdapter<_$GroupModelImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$GroupModelImpl(
-      id: fields[0] as int,
+      id: fields[0] as int?,
       title: fields[1] as String?,
       userId: fields[2] as String,
     );
@@ -52,7 +52,7 @@ class GroupModelAdapter extends TypeAdapter<_$GroupModelImpl> {
 
 _$GroupModelImpl _$$GroupModelImplFromJson(Map<String, dynamic> json) =>
     _$GroupModelImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       userId: json['userId'] as String,
     );

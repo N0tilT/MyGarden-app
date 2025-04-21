@@ -51,32 +51,36 @@ mixin _$WateringNeedState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -104,18 +108,18 @@ class _$WateringNeedStateCopyWithImpl<$Res, $Val extends WateringNeedState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$WateringNeedInitialImplCopyWith<$Res> {
+  factory _$$WateringNeedInitialImplCopyWith(_$WateringNeedInitialImpl value,
+          $Res Function(_$WateringNeedInitialImpl) then) =
+      __$$WateringNeedInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$WateringNeedStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$WateringNeedInitialImplCopyWithImpl<$Res>
+    extends _$WateringNeedStateCopyWithImpl<$Res, _$WateringNeedInitialImpl>
+    implements _$$WateringNeedInitialImplCopyWith<$Res> {
+  __$$WateringNeedInitialImplCopyWithImpl(_$WateringNeedInitialImpl _value,
+      $Res Function(_$WateringNeedInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of WateringNeedState
@@ -124,8 +128,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$WateringNeedInitialImpl implements WateringNeedInitial {
+  const _$WateringNeedInitialImpl();
 
   @override
   String toString() {
@@ -135,7 +139,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$WateringNeedInitialImpl);
   }
 
   @override
@@ -189,12 +194,14 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return initial(this);
   }
@@ -202,12 +209,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return initial?.call(this);
   }
@@ -215,12 +223,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -230,23 +239,23 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements WateringNeedState {
-  const factory _Initial() = _$InitialImpl;
+abstract class WateringNeedInitial implements WateringNeedState {
+  const factory WateringNeedInitial() = _$WateringNeedInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$WateringNeedLoadingImplCopyWith<$Res> {
+  factory _$$WateringNeedLoadingImplCopyWith(_$WateringNeedLoadingImpl value,
+          $Res Function(_$WateringNeedLoadingImpl) then) =
+      __$$WateringNeedLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$WateringNeedStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$WateringNeedLoadingImplCopyWithImpl<$Res>
+    extends _$WateringNeedStateCopyWithImpl<$Res, _$WateringNeedLoadingImpl>
+    implements _$$WateringNeedLoadingImplCopyWith<$Res> {
+  __$$WateringNeedLoadingImplCopyWithImpl(_$WateringNeedLoadingImpl _value,
+      $Res Function(_$WateringNeedLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of WateringNeedState
@@ -255,8 +264,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$WateringNeedLoadingImpl implements WateringNeedLoading {
+  const _$WateringNeedLoadingImpl();
 
   @override
   String toString() {
@@ -266,7 +275,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$WateringNeedLoadingImpl);
   }
 
   @override
@@ -320,12 +330,14 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return loading(this);
   }
@@ -333,12 +345,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return loading?.call(this);
   }
@@ -346,12 +359,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -361,25 +375,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements WateringNeedState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class WateringNeedLoading implements WateringNeedState {
+  const factory WateringNeedLoading() = _$WateringNeedLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$WateringNeedSuccessImplCopyWith<$Res> {
+  factory _$$WateringNeedSuccessImplCopyWith(_$WateringNeedSuccessImpl value,
+          $Res Function(_$WateringNeedSuccessImpl) then) =
+      __$$WateringNeedSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<WateringNeedEntity> plants});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$WateringNeedStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$WateringNeedSuccessImplCopyWithImpl<$Res>
+    extends _$WateringNeedStateCopyWithImpl<$Res, _$WateringNeedSuccessImpl>
+    implements _$$WateringNeedSuccessImplCopyWith<$Res> {
+  __$$WateringNeedSuccessImplCopyWithImpl(_$WateringNeedSuccessImpl _value,
+      $Res Function(_$WateringNeedSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of WateringNeedState
@@ -389,7 +403,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? plants = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$WateringNeedSuccessImpl(
       null == plants
           ? _value._plants
           : plants // ignore: cast_nullable_to_non_nullable
@@ -400,8 +414,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<WateringNeedEntity> plants) : _plants = plants;
+class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
+  const _$WateringNeedSuccessImpl(final List<WateringNeedEntity> plants)
+      : _plants = plants;
 
   final List<WateringNeedEntity> _plants;
   @override
@@ -420,7 +435,7 @@ class _$SuccessImpl implements _Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$WateringNeedSuccessImpl &&
             const DeepCollectionEquality().equals(other._plants, _plants));
   }
 
@@ -433,8 +448,9 @@ class _$SuccessImpl implements _Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$WateringNeedSuccessImplCopyWith<_$WateringNeedSuccessImpl> get copyWith =>
+      __$$WateringNeedSuccessImplCopyWithImpl<_$WateringNeedSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -484,12 +500,14 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return success(this);
   }
@@ -497,12 +515,13 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return success?.call(this);
   }
@@ -510,12 +529,13 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -525,32 +545,34 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements WateringNeedState {
-  const factory _Success(final List<WateringNeedEntity> plants) = _$SuccessImpl;
+abstract class WateringNeedSuccess implements WateringNeedState {
+  const factory WateringNeedSuccess(final List<WateringNeedEntity> plants) =
+      _$WateringNeedSuccessImpl;
 
   List<WateringNeedEntity> get plants;
 
   /// Create a copy of WateringNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$WateringNeedSuccessImplCopyWith<_$WateringNeedSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailImplCopyWith<$Res> {
-  factory _$$FailImplCopyWith(
-          _$FailImpl value, $Res Function(_$FailImpl) then) =
-      __$$FailImplCopyWithImpl<$Res>;
+abstract class _$$WateringNeedFailImplCopyWith<$Res> {
+  factory _$$WateringNeedFailImplCopyWith(_$WateringNeedFailImpl value,
+          $Res Function(_$WateringNeedFailImpl) then) =
+      __$$WateringNeedFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailImplCopyWithImpl<$Res>
-    extends _$WateringNeedStateCopyWithImpl<$Res, _$FailImpl>
-    implements _$$FailImplCopyWith<$Res> {
-  __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
+class __$$WateringNeedFailImplCopyWithImpl<$Res>
+    extends _$WateringNeedStateCopyWithImpl<$Res, _$WateringNeedFailImpl>
+    implements _$$WateringNeedFailImplCopyWith<$Res> {
+  __$$WateringNeedFailImplCopyWithImpl(_$WateringNeedFailImpl _value,
+      $Res Function(_$WateringNeedFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of WateringNeedState
@@ -560,7 +582,7 @@ class __$$FailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailImpl(
+    return _then(_$WateringNeedFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -571,8 +593,8 @@ class __$$FailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailImpl implements _Fail {
-  const _$FailImpl([this.message = "Unknown error"]);
+class _$WateringNeedFailImpl implements WateringNeedFail {
+  const _$WateringNeedFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -587,7 +609,7 @@ class _$FailImpl implements _Fail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailImpl &&
+            other is _$WateringNeedFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -599,8 +621,9 @@ class _$FailImpl implements _Fail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
-      __$$FailImplCopyWithImpl<_$FailImpl>(this, _$identity);
+  _$$WateringNeedFailImplCopyWith<_$WateringNeedFailImpl> get copyWith =>
+      __$$WateringNeedFailImplCopyWithImpl<_$WateringNeedFailImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -650,12 +673,14 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return fail(this);
   }
@@ -663,12 +688,13 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return fail?.call(this);
   }
@@ -676,12 +702,13 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (fail != null) {
@@ -691,33 +718,37 @@ class _$FailImpl implements _Fail {
   }
 }
 
-abstract class _Fail implements WateringNeedState {
-  const factory _Fail([final String message]) = _$FailImpl;
+abstract class WateringNeedFail implements WateringNeedState {
+  const factory WateringNeedFail([final String message]) =
+      _$WateringNeedFailImpl;
 
   String get message;
 
   /// Create a copy of WateringNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
+  _$$WateringNeedFailImplCopyWith<_$WateringNeedFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingFailImplCopyWith<$Res> {
-  factory _$$LocalLoadingFailImplCopyWith(_$LocalLoadingFailImpl value,
-          $Res Function(_$LocalLoadingFailImpl) then) =
-      __$$LocalLoadingFailImplCopyWithImpl<$Res>;
+abstract class _$$WateringNeedLocalLoadingFailImplCopyWith<$Res> {
+  factory _$$WateringNeedLocalLoadingFailImplCopyWith(
+          _$WateringNeedLocalLoadingFailImpl value,
+          $Res Function(_$WateringNeedLocalLoadingFailImpl) then) =
+      __$$WateringNeedLocalLoadingFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$LocalLoadingFailImplCopyWithImpl<$Res>
-    extends _$WateringNeedStateCopyWithImpl<$Res, _$LocalLoadingFailImpl>
-    implements _$$LocalLoadingFailImplCopyWith<$Res> {
-  __$$LocalLoadingFailImplCopyWithImpl(_$LocalLoadingFailImpl _value,
-      $Res Function(_$LocalLoadingFailImpl) _then)
+class __$$WateringNeedLocalLoadingFailImplCopyWithImpl<$Res>
+    extends _$WateringNeedStateCopyWithImpl<$Res,
+        _$WateringNeedLocalLoadingFailImpl>
+    implements _$$WateringNeedLocalLoadingFailImplCopyWith<$Res> {
+  __$$WateringNeedLocalLoadingFailImplCopyWithImpl(
+      _$WateringNeedLocalLoadingFailImpl _value,
+      $Res Function(_$WateringNeedLocalLoadingFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of WateringNeedState
@@ -727,7 +758,7 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$LocalLoadingFailImpl(
+    return _then(_$WateringNeedLocalLoadingFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -738,8 +769,9 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingFailImpl implements _LocalLoadingFail {
-  const _$LocalLoadingFailImpl([this.message = "Unknown error"]);
+class _$WateringNeedLocalLoadingFailImpl
+    implements WateringNeedLocalLoadingFail {
+  const _$WateringNeedLocalLoadingFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -754,7 +786,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingFailImpl &&
+            other is _$WateringNeedLocalLoadingFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -766,9 +798,10 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      __$$LocalLoadingFailImplCopyWithImpl<_$LocalLoadingFailImpl>(
-          this, _$identity);
+  _$$WateringNeedLocalLoadingFailImplCopyWith<
+          _$WateringNeedLocalLoadingFailImpl>
+      get copyWith => __$$WateringNeedLocalLoadingFailImplCopyWithImpl<
+          _$WateringNeedLocalLoadingFailImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -818,12 +851,14 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingFail(this);
   }
@@ -831,12 +866,13 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return localLoadingFail?.call(this);
   }
@@ -844,12 +880,13 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingFail != null) {
@@ -859,34 +896,38 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   }
 }
 
-abstract class _LocalLoadingFail implements WateringNeedState {
-  const factory _LocalLoadingFail([final String message]) =
-      _$LocalLoadingFailImpl;
+abstract class WateringNeedLocalLoadingFail implements WateringNeedState {
+  const factory WateringNeedLocalLoadingFail([final String message]) =
+      _$WateringNeedLocalLoadingFailImpl;
 
   String get message;
 
   /// Create a copy of WateringNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$WateringNeedLocalLoadingFailImplCopyWith<
+          _$WateringNeedLocalLoadingFailImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  factory _$$LocalLoadingSuccessImplCopyWith(_$LocalLoadingSuccessImpl value,
-          $Res Function(_$LocalLoadingSuccessImpl) then) =
-      __$$LocalLoadingSuccessImplCopyWithImpl<$Res>;
+abstract class _$$WateringNeedLocalLoadingSuccessImplCopyWith<$Res> {
+  factory _$$WateringNeedLocalLoadingSuccessImplCopyWith(
+          _$WateringNeedLocalLoadingSuccessImpl value,
+          $Res Function(_$WateringNeedLocalLoadingSuccessImpl) then) =
+      __$$WateringNeedLocalLoadingSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<WateringNeedEntity> departments});
 }
 
 /// @nodoc
-class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
-    extends _$WateringNeedStateCopyWithImpl<$Res, _$LocalLoadingSuccessImpl>
-    implements _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  __$$LocalLoadingSuccessImplCopyWithImpl(_$LocalLoadingSuccessImpl _value,
-      $Res Function(_$LocalLoadingSuccessImpl) _then)
+class __$$WateringNeedLocalLoadingSuccessImplCopyWithImpl<$Res>
+    extends _$WateringNeedStateCopyWithImpl<$Res,
+        _$WateringNeedLocalLoadingSuccessImpl>
+    implements _$$WateringNeedLocalLoadingSuccessImplCopyWith<$Res> {
+  __$$WateringNeedLocalLoadingSuccessImplCopyWithImpl(
+      _$WateringNeedLocalLoadingSuccessImpl _value,
+      $Res Function(_$WateringNeedLocalLoadingSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of WateringNeedState
@@ -896,7 +937,7 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? departments = null,
   }) {
-    return _then(_$LocalLoadingSuccessImpl(
+    return _then(_$WateringNeedLocalLoadingSuccessImpl(
       null == departments
           ? _value._departments
           : departments // ignore: cast_nullable_to_non_nullable
@@ -907,8 +948,10 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
-  const _$LocalLoadingSuccessImpl(final List<WateringNeedEntity> departments)
+class _$WateringNeedLocalLoadingSuccessImpl
+    implements WateringNeedLocalLoadingSuccess {
+  const _$WateringNeedLocalLoadingSuccessImpl(
+      final List<WateringNeedEntity> departments)
       : _departments = departments;
 
   final List<WateringNeedEntity> _departments;
@@ -928,7 +971,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingSuccessImpl &&
+            other is _$WateringNeedLocalLoadingSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._departments, _departments));
   }
@@ -942,9 +985,10 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      __$$LocalLoadingSuccessImplCopyWithImpl<_$LocalLoadingSuccessImpl>(
-          this, _$identity);
+  _$$WateringNeedLocalLoadingSuccessImplCopyWith<
+          _$WateringNeedLocalLoadingSuccessImpl>
+      get copyWith => __$$WateringNeedLocalLoadingSuccessImplCopyWithImpl<
+          _$WateringNeedLocalLoadingSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -994,12 +1038,14 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(WateringNeedInitial value) initial,
+    required TResult Function(WateringNeedLoading value) loading,
+    required TResult Function(WateringNeedSuccess value) success,
+    required TResult Function(WateringNeedFail value) fail,
+    required TResult Function(WateringNeedLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(WateringNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingSuccess(this);
   }
@@ -1007,12 +1053,13 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(WateringNeedInitial value)? initial,
+    TResult? Function(WateringNeedLoading value)? loading,
+    TResult? Function(WateringNeedSuccess value)? success,
+    TResult? Function(WateringNeedFail value)? fail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(this);
   }
@@ -1020,12 +1067,13 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(WateringNeedInitial value)? initial,
+    TResult Function(WateringNeedLoading value)? loading,
+    TResult Function(WateringNeedSuccess value)? success,
+    TResult Function(WateringNeedFail value)? fail,
+    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingSuccess != null) {
@@ -1035,15 +1083,17 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   }
 }
 
-abstract class _LocalLoadingSuccess implements WateringNeedState {
-  const factory _LocalLoadingSuccess(
-      final List<WateringNeedEntity> departments) = _$LocalLoadingSuccessImpl;
+abstract class WateringNeedLocalLoadingSuccess implements WateringNeedState {
+  const factory WateringNeedLocalLoadingSuccess(
+          final List<WateringNeedEntity> departments) =
+      _$WateringNeedLocalLoadingSuccessImpl;
 
   List<WateringNeedEntity> get departments;
 
   /// Create a copy of WateringNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$WateringNeedLocalLoadingSuccessImplCopyWith<
+          _$WateringNeedLocalLoadingSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

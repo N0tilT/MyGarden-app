@@ -7,14 +7,15 @@ part 'plant_type_cubit.freezed.dart';
 part 'plant_type_state.dart';
 
 class PlantTypeCubit extends Cubit<PlantTypeState> {
-  final LoadPlantTypes loadPlants;
+  final LoadPlantTypes loadPlantTypes;
   List<PlantTypeEntity> plantList = [];
 
-  PlantTypeCubit({required this.loadPlants})
+  PlantTypeCubit({required this.loadPlantTypes})
       : super(const PlantTypeState.initial());
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const PlantTypeState.loading());
+    final plants = await loadPlantTypes([]);
     plants.fold(
       (error) => emit(PlantTypeState.fail(error.message)),
       (succededPlantList) {
@@ -30,7 +31,7 @@ class PlantTypeCubit extends Cubit<PlantTypeState> {
 
   Future<void> loadLocally() async {
     emit(const PlantTypeState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadPlantTypes([], false);
     plants.fold(
       (error) => emit(PlantTypeState.fail(error.message)),
       (succededPlantList) {

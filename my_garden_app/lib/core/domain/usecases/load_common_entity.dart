@@ -10,7 +10,8 @@ import 'package:my_garden_app/feature/auth/domain/repositories/auth_repository.d
 class LoadCommonEntity<CommonEntityType extends ICommonEntity,
         CommonModelType extends ICommonModel>
     extends Usecase<List<CommonEntityType>, List<int>> {
-  final CommonRepository<CommonModelType, CommonRequestModel> commonRepository;
+  final CommonRepository<List<CommonModelType>, CommonRequestModel>
+      commonRepository;
   final AuthRepository authRepository;
   final CommonEntityType Function(CommonModelType) fromModelConverter;
 
@@ -38,11 +39,7 @@ class LoadCommonEntity<CommonEntityType extends ICommonEntity,
       return result.fold(
         (l) => Left(l),
         (r) => Right(
-          r
-              .map(
-                (e) => fromModelConverter(e),
-              )
-              .toList(),
+          r.map((x) => fromModelConverter(x)).toList(),
         ),
       );
     });

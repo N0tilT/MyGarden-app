@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PlantEntity {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get biologyTitle => throw _privateConstructorUsedError;
   String? get fertilization => throw _privateConstructorUsedError;
@@ -24,11 +24,17 @@ mixin _$PlantEntity {
   String? get replacing => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int get groupId => throw _privateConstructorUsedError;
+  String? get groupName => throw _privateConstructorUsedError;
   int get wateringNeedId => throw _privateConstructorUsedError;
+  String? get wateringNeedTitle => throw _privateConstructorUsedError;
   int get lightNeedId => throw _privateConstructorUsedError;
+  String? get lightNeedTitle => throw _privateConstructorUsedError;
   int get plantTypeId => throw _privateConstructorUsedError;
+  String? get plantTypeTitle => throw _privateConstructorUsedError;
   int get plantVarietyId => throw _privateConstructorUsedError;
+  String? get plantVarietyTitle => throw _privateConstructorUsedError;
   int get stageId => throw _privateConstructorUsedError;
+  String? get stageTitle => throw _privateConstructorUsedError;
   int get imageId => throw _privateConstructorUsedError;
   int get ripeningPeriod => throw _privateConstructorUsedError;
 
@@ -46,7 +52,7 @@ abstract class $PlantEntityCopyWith<$Res> {
       _$PlantEntityCopyWithImpl<$Res, PlantEntity>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String? title,
       String? biologyTitle,
       String? fertilization,
@@ -54,11 +60,17 @@ abstract class $PlantEntityCopyWith<$Res> {
       String? replacing,
       String? description,
       int groupId,
+      String? groupName,
       int wateringNeedId,
+      String? wateringNeedTitle,
       int lightNeedId,
+      String? lightNeedTitle,
       int plantTypeId,
+      String? plantTypeTitle,
       int plantVarietyId,
+      String? plantVarietyTitle,
       int stageId,
+      String? stageTitle,
       int imageId,
       int ripeningPeriod});
 }
@@ -78,7 +90,7 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
     Object? biologyTitle = freezed,
     Object? fertilization = freezed,
@@ -86,19 +98,25 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
     Object? replacing = freezed,
     Object? description = freezed,
     Object? groupId = null,
+    Object? groupName = freezed,
     Object? wateringNeedId = null,
+    Object? wateringNeedTitle = freezed,
     Object? lightNeedId = null,
+    Object? lightNeedTitle = freezed,
     Object? plantTypeId = null,
+    Object? plantTypeTitle = freezed,
     Object? plantVarietyId = null,
+    Object? plantVarietyTitle = freezed,
     Object? stageId = null,
+    Object? stageTitle = freezed,
     Object? imageId = null,
     Object? ripeningPeriod = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -127,26 +145,50 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
               as int,
+      groupName: freezed == groupName
+          ? _value.groupName
+          : groupName // ignore: cast_nullable_to_non_nullable
+              as String?,
       wateringNeedId: null == wateringNeedId
           ? _value.wateringNeedId
           : wateringNeedId // ignore: cast_nullable_to_non_nullable
               as int,
+      wateringNeedTitle: freezed == wateringNeedTitle
+          ? _value.wateringNeedTitle
+          : wateringNeedTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       lightNeedId: null == lightNeedId
           ? _value.lightNeedId
           : lightNeedId // ignore: cast_nullable_to_non_nullable
               as int,
+      lightNeedTitle: freezed == lightNeedTitle
+          ? _value.lightNeedTitle
+          : lightNeedTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       plantTypeId: null == plantTypeId
           ? _value.plantTypeId
           : plantTypeId // ignore: cast_nullable_to_non_nullable
               as int,
+      plantTypeTitle: freezed == plantTypeTitle
+          ? _value.plantTypeTitle
+          : plantTypeTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       plantVarietyId: null == plantVarietyId
           ? _value.plantVarietyId
           : plantVarietyId // ignore: cast_nullable_to_non_nullable
               as int,
+      plantVarietyTitle: freezed == plantVarietyTitle
+          ? _value.plantVarietyTitle
+          : plantVarietyTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       stageId: null == stageId
           ? _value.stageId
           : stageId // ignore: cast_nullable_to_non_nullable
               as int,
+      stageTitle: freezed == stageTitle
+          ? _value.stageTitle
+          : stageTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageId: null == imageId
           ? _value.imageId
           : imageId // ignore: cast_nullable_to_non_nullable
@@ -168,7 +210,7 @@ abstract class _$$PlantEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String? title,
       String? biologyTitle,
       String? fertilization,
@@ -176,11 +218,17 @@ abstract class _$$PlantEntityImplCopyWith<$Res>
       String? replacing,
       String? description,
       int groupId,
+      String? groupName,
       int wateringNeedId,
+      String? wateringNeedTitle,
       int lightNeedId,
+      String? lightNeedTitle,
       int plantTypeId,
+      String? plantTypeTitle,
       int plantVarietyId,
+      String? plantVarietyTitle,
       int stageId,
+      String? stageTitle,
       int imageId,
       int ripeningPeriod});
 }
@@ -198,7 +246,7 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
     Object? biologyTitle = freezed,
     Object? fertilization = freezed,
@@ -206,19 +254,25 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
     Object? replacing = freezed,
     Object? description = freezed,
     Object? groupId = null,
+    Object? groupName = freezed,
     Object? wateringNeedId = null,
+    Object? wateringNeedTitle = freezed,
     Object? lightNeedId = null,
+    Object? lightNeedTitle = freezed,
     Object? plantTypeId = null,
+    Object? plantTypeTitle = freezed,
     Object? plantVarietyId = null,
+    Object? plantVarietyTitle = freezed,
     Object? stageId = null,
+    Object? stageTitle = freezed,
     Object? imageId = null,
     Object? ripeningPeriod = null,
   }) {
     return _then(_$PlantEntityImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -247,26 +301,50 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
               as int,
+      groupName: freezed == groupName
+          ? _value.groupName
+          : groupName // ignore: cast_nullable_to_non_nullable
+              as String?,
       wateringNeedId: null == wateringNeedId
           ? _value.wateringNeedId
           : wateringNeedId // ignore: cast_nullable_to_non_nullable
               as int,
+      wateringNeedTitle: freezed == wateringNeedTitle
+          ? _value.wateringNeedTitle
+          : wateringNeedTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       lightNeedId: null == lightNeedId
           ? _value.lightNeedId
           : lightNeedId // ignore: cast_nullable_to_non_nullable
               as int,
+      lightNeedTitle: freezed == lightNeedTitle
+          ? _value.lightNeedTitle
+          : lightNeedTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       plantTypeId: null == plantTypeId
           ? _value.plantTypeId
           : plantTypeId // ignore: cast_nullable_to_non_nullable
               as int,
+      plantTypeTitle: freezed == plantTypeTitle
+          ? _value.plantTypeTitle
+          : plantTypeTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       plantVarietyId: null == plantVarietyId
           ? _value.plantVarietyId
           : plantVarietyId // ignore: cast_nullable_to_non_nullable
               as int,
+      plantVarietyTitle: freezed == plantVarietyTitle
+          ? _value.plantVarietyTitle
+          : plantVarietyTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       stageId: null == stageId
           ? _value.stageId
           : stageId // ignore: cast_nullable_to_non_nullable
               as int,
+      stageTitle: freezed == stageTitle
+          ? _value.stageTitle
+          : stageTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageId: null == imageId
           ? _value.imageId
           : imageId // ignore: cast_nullable_to_non_nullable
@@ -291,17 +369,23 @@ class _$PlantEntityImpl extends _PlantEntity {
       required this.replacing,
       required this.description,
       required this.groupId,
+      this.groupName,
       required this.wateringNeedId,
+      this.wateringNeedTitle,
       required this.lightNeedId,
+      this.lightNeedTitle,
       required this.plantTypeId,
+      this.plantTypeTitle,
       required this.plantVarietyId,
+      this.plantVarietyTitle,
       required this.stageId,
+      this.stageTitle,
       required this.imageId,
       required this.ripeningPeriod})
       : super._();
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? title;
   @override
@@ -317,15 +401,27 @@ class _$PlantEntityImpl extends _PlantEntity {
   @override
   final int groupId;
   @override
+  final String? groupName;
+  @override
   final int wateringNeedId;
+  @override
+  final String? wateringNeedTitle;
   @override
   final int lightNeedId;
   @override
+  final String? lightNeedTitle;
+  @override
   final int plantTypeId;
+  @override
+  final String? plantTypeTitle;
   @override
   final int plantVarietyId;
   @override
+  final String? plantVarietyTitle;
+  @override
   final int stageId;
+  @override
+  final String? stageTitle;
   @override
   final int imageId;
   @override
@@ -349,38 +445,57 @@ class _$PlantEntityImpl extends _PlantEntity {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.groupId, groupId) || other.groupId == groupId) &&
+            (identical(other.groupName, groupName) ||
+                other.groupName == groupName) &&
             (identical(other.wateringNeedId, wateringNeedId) ||
                 other.wateringNeedId == wateringNeedId) &&
+            (identical(other.wateringNeedTitle, wateringNeedTitle) ||
+                other.wateringNeedTitle == wateringNeedTitle) &&
             (identical(other.lightNeedId, lightNeedId) ||
                 other.lightNeedId == lightNeedId) &&
+            (identical(other.lightNeedTitle, lightNeedTitle) ||
+                other.lightNeedTitle == lightNeedTitle) &&
             (identical(other.plantTypeId, plantTypeId) ||
                 other.plantTypeId == plantTypeId) &&
+            (identical(other.plantTypeTitle, plantTypeTitle) ||
+                other.plantTypeTitle == plantTypeTitle) &&
             (identical(other.plantVarietyId, plantVarietyId) ||
                 other.plantVarietyId == plantVarietyId) &&
+            (identical(other.plantVarietyTitle, plantVarietyTitle) ||
+                other.plantVarietyTitle == plantVarietyTitle) &&
             (identical(other.stageId, stageId) || other.stageId == stageId) &&
+            (identical(other.stageTitle, stageTitle) ||
+                other.stageTitle == stageTitle) &&
             (identical(other.imageId, imageId) || other.imageId == imageId) &&
             (identical(other.ripeningPeriod, ripeningPeriod) ||
                 other.ripeningPeriod == ripeningPeriod));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      biologyTitle,
-      fertilization,
-      toxicity,
-      replacing,
-      description,
-      groupId,
-      wateringNeedId,
-      lightNeedId,
-      plantTypeId,
-      plantVarietyId,
-      stageId,
-      imageId,
-      ripeningPeriod);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        title,
+        biologyTitle,
+        fertilization,
+        toxicity,
+        replacing,
+        description,
+        groupId,
+        groupName,
+        wateringNeedId,
+        wateringNeedTitle,
+        lightNeedId,
+        lightNeedTitle,
+        plantTypeId,
+        plantTypeTitle,
+        plantVarietyId,
+        plantVarietyTitle,
+        stageId,
+        stageTitle,
+        imageId,
+        ripeningPeriod
+      ]);
 
   /// Create a copy of PlantEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -393,7 +508,7 @@ class _$PlantEntityImpl extends _PlantEntity {
 
 abstract class _PlantEntity extends PlantEntity {
   const factory _PlantEntity(
-      {required final int id,
+      {required final int? id,
       required final String? title,
       required final String? biologyTitle,
       required final String? fertilization,
@@ -401,17 +516,23 @@ abstract class _PlantEntity extends PlantEntity {
       required final String? replacing,
       required final String? description,
       required final int groupId,
+      final String? groupName,
       required final int wateringNeedId,
+      final String? wateringNeedTitle,
       required final int lightNeedId,
+      final String? lightNeedTitle,
       required final int plantTypeId,
+      final String? plantTypeTitle,
       required final int plantVarietyId,
+      final String? plantVarietyTitle,
       required final int stageId,
+      final String? stageTitle,
       required final int imageId,
       required final int ripeningPeriod}) = _$PlantEntityImpl;
   const _PlantEntity._() : super._();
 
   @override
-  int get id;
+  int? get id;
   @override
   String? get title;
   @override
@@ -427,15 +548,27 @@ abstract class _PlantEntity extends PlantEntity {
   @override
   int get groupId;
   @override
+  String? get groupName;
+  @override
   int get wateringNeedId;
+  @override
+  String? get wateringNeedTitle;
   @override
   int get lightNeedId;
   @override
+  String? get lightNeedTitle;
+  @override
   int get plantTypeId;
+  @override
+  String? get plantTypeTitle;
   @override
   int get plantVarietyId;
   @override
+  String? get plantVarietyTitle;
+  @override
   int get stageId;
+  @override
+  String? get stageTitle;
   @override
   int get imageId;
   @override

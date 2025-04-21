@@ -50,32 +50,33 @@ mixin _$LightNeedState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,18 +104,18 @@ class _$LightNeedStateCopyWithImpl<$Res, $Val extends LightNeedState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$LightNeedInitialImplCopyWith<$Res> {
+  factory _$$LightNeedInitialImplCopyWith(_$LightNeedInitialImpl value,
+          $Res Function(_$LightNeedInitialImpl) then) =
+      __$$LightNeedInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LightNeedStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$LightNeedInitialImplCopyWithImpl<$Res>
+    extends _$LightNeedStateCopyWithImpl<$Res, _$LightNeedInitialImpl>
+    implements _$$LightNeedInitialImplCopyWith<$Res> {
+  __$$LightNeedInitialImplCopyWithImpl(_$LightNeedInitialImpl _value,
+      $Res Function(_$LightNeedInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LightNeedState
@@ -123,8 +124,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$LightNeedInitialImpl implements LightNeedInitial {
+  const _$LightNeedInitialImpl();
 
   @override
   String toString() {
@@ -134,7 +135,7 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$LightNeedInitialImpl);
   }
 
   @override
@@ -187,12 +188,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return initial(this);
   }
@@ -200,12 +202,12 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return initial?.call(this);
   }
@@ -213,12 +215,12 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -228,23 +230,23 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements LightNeedState {
-  const factory _Initial() = _$InitialImpl;
+abstract class LightNeedInitial implements LightNeedState {
+  const factory LightNeedInitial() = _$LightNeedInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$LightNeedLoadingImplCopyWith<$Res> {
+  factory _$$LightNeedLoadingImplCopyWith(_$LightNeedLoadingImpl value,
+          $Res Function(_$LightNeedLoadingImpl) then) =
+      __$$LightNeedLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LightNeedStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$LightNeedLoadingImplCopyWithImpl<$Res>
+    extends _$LightNeedStateCopyWithImpl<$Res, _$LightNeedLoadingImpl>
+    implements _$$LightNeedLoadingImplCopyWith<$Res> {
+  __$$LightNeedLoadingImplCopyWithImpl(_$LightNeedLoadingImpl _value,
+      $Res Function(_$LightNeedLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LightNeedState
@@ -253,8 +255,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$LightNeedLoadingImpl implements LightNeedLoading {
+  const _$LightNeedLoadingImpl();
 
   @override
   String toString() {
@@ -264,7 +266,7 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$LightNeedLoadingImpl);
   }
 
   @override
@@ -317,12 +319,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return loading(this);
   }
@@ -330,12 +333,12 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return loading?.call(this);
   }
@@ -343,12 +346,12 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -358,25 +361,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements LightNeedState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class LightNeedLoading implements LightNeedState {
+  const factory LightNeedLoading() = _$LightNeedLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$LightNeedSuccessImplCopyWith<$Res> {
+  factory _$$LightNeedSuccessImplCopyWith(_$LightNeedSuccessImpl value,
+          $Res Function(_$LightNeedSuccessImpl) then) =
+      __$$LightNeedSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<LightNeedEntity> plants});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$LightNeedStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$LightNeedSuccessImplCopyWithImpl<$Res>
+    extends _$LightNeedStateCopyWithImpl<$Res, _$LightNeedSuccessImpl>
+    implements _$$LightNeedSuccessImplCopyWith<$Res> {
+  __$$LightNeedSuccessImplCopyWithImpl(_$LightNeedSuccessImpl _value,
+      $Res Function(_$LightNeedSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LightNeedState
@@ -386,7 +389,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? plants = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$LightNeedSuccessImpl(
       null == plants
           ? _value._plants
           : plants // ignore: cast_nullable_to_non_nullable
@@ -397,8 +400,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<LightNeedEntity> plants) : _plants = plants;
+class _$LightNeedSuccessImpl implements LightNeedSuccess {
+  const _$LightNeedSuccessImpl(final List<LightNeedEntity> plants)
+      : _plants = plants;
 
   final List<LightNeedEntity> _plants;
   @override
@@ -417,7 +421,7 @@ class _$SuccessImpl implements _Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$LightNeedSuccessImpl &&
             const DeepCollectionEquality().equals(other._plants, _plants));
   }
 
@@ -430,8 +434,9 @@ class _$SuccessImpl implements _Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$LightNeedSuccessImplCopyWith<_$LightNeedSuccessImpl> get copyWith =>
+      __$$LightNeedSuccessImplCopyWithImpl<_$LightNeedSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -480,12 +485,13 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return success(this);
   }
@@ -493,12 +499,12 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return success?.call(this);
   }
@@ -506,12 +512,12 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -521,32 +527,34 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements LightNeedState {
-  const factory _Success(final List<LightNeedEntity> plants) = _$SuccessImpl;
+abstract class LightNeedSuccess implements LightNeedState {
+  const factory LightNeedSuccess(final List<LightNeedEntity> plants) =
+      _$LightNeedSuccessImpl;
 
   List<LightNeedEntity> get plants;
 
   /// Create a copy of LightNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$LightNeedSuccessImplCopyWith<_$LightNeedSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailImplCopyWith<$Res> {
-  factory _$$FailImplCopyWith(
-          _$FailImpl value, $Res Function(_$FailImpl) then) =
-      __$$FailImplCopyWithImpl<$Res>;
+abstract class _$$LightNeedFailImplCopyWith<$Res> {
+  factory _$$LightNeedFailImplCopyWith(
+          _$LightNeedFailImpl value, $Res Function(_$LightNeedFailImpl) then) =
+      __$$LightNeedFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailImplCopyWithImpl<$Res>
-    extends _$LightNeedStateCopyWithImpl<$Res, _$FailImpl>
-    implements _$$FailImplCopyWith<$Res> {
-  __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
+class __$$LightNeedFailImplCopyWithImpl<$Res>
+    extends _$LightNeedStateCopyWithImpl<$Res, _$LightNeedFailImpl>
+    implements _$$LightNeedFailImplCopyWith<$Res> {
+  __$$LightNeedFailImplCopyWithImpl(
+      _$LightNeedFailImpl _value, $Res Function(_$LightNeedFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LightNeedState
@@ -556,7 +564,7 @@ class __$$FailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailImpl(
+    return _then(_$LightNeedFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -567,8 +575,8 @@ class __$$FailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailImpl implements _Fail {
-  const _$FailImpl([this.message = "Unknown error"]);
+class _$LightNeedFailImpl implements LightNeedFail {
+  const _$LightNeedFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -583,7 +591,7 @@ class _$FailImpl implements _Fail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailImpl &&
+            other is _$LightNeedFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -595,8 +603,8 @@ class _$FailImpl implements _Fail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
-      __$$FailImplCopyWithImpl<_$FailImpl>(this, _$identity);
+  _$$LightNeedFailImplCopyWith<_$LightNeedFailImpl> get copyWith =>
+      __$$LightNeedFailImplCopyWithImpl<_$LightNeedFailImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -645,12 +653,13 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return fail(this);
   }
@@ -658,12 +667,12 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return fail?.call(this);
   }
@@ -671,12 +680,12 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (fail != null) {
@@ -686,33 +695,35 @@ class _$FailImpl implements _Fail {
   }
 }
 
-abstract class _Fail implements LightNeedState {
-  const factory _Fail([final String message]) = _$FailImpl;
+abstract class LightNeedFail implements LightNeedState {
+  const factory LightNeedFail([final String message]) = _$LightNeedFailImpl;
 
   String get message;
 
   /// Create a copy of LightNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
+  _$$LightNeedFailImplCopyWith<_$LightNeedFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingFailImplCopyWith<$Res> {
-  factory _$$LocalLoadingFailImplCopyWith(_$LocalLoadingFailImpl value,
-          $Res Function(_$LocalLoadingFailImpl) then) =
-      __$$LocalLoadingFailImplCopyWithImpl<$Res>;
+abstract class _$$LightNeedLocalLoadingFailImplCopyWith<$Res> {
+  factory _$$LightNeedLocalLoadingFailImplCopyWith(
+          _$LightNeedLocalLoadingFailImpl value,
+          $Res Function(_$LightNeedLocalLoadingFailImpl) then) =
+      __$$LightNeedLocalLoadingFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$LocalLoadingFailImplCopyWithImpl<$Res>
-    extends _$LightNeedStateCopyWithImpl<$Res, _$LocalLoadingFailImpl>
-    implements _$$LocalLoadingFailImplCopyWith<$Res> {
-  __$$LocalLoadingFailImplCopyWithImpl(_$LocalLoadingFailImpl _value,
-      $Res Function(_$LocalLoadingFailImpl) _then)
+class __$$LightNeedLocalLoadingFailImplCopyWithImpl<$Res>
+    extends _$LightNeedStateCopyWithImpl<$Res, _$LightNeedLocalLoadingFailImpl>
+    implements _$$LightNeedLocalLoadingFailImplCopyWith<$Res> {
+  __$$LightNeedLocalLoadingFailImplCopyWithImpl(
+      _$LightNeedLocalLoadingFailImpl _value,
+      $Res Function(_$LightNeedLocalLoadingFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LightNeedState
@@ -722,7 +733,7 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$LocalLoadingFailImpl(
+    return _then(_$LightNeedLocalLoadingFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -733,8 +744,8 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingFailImpl implements _LocalLoadingFail {
-  const _$LocalLoadingFailImpl([this.message = "Unknown error"]);
+class _$LightNeedLocalLoadingFailImpl implements LightNeedLocalLoadingFail {
+  const _$LightNeedLocalLoadingFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -749,7 +760,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingFailImpl &&
+            other is _$LightNeedLocalLoadingFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -761,9 +772,9 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      __$$LocalLoadingFailImplCopyWithImpl<_$LocalLoadingFailImpl>(
-          this, _$identity);
+  _$$LightNeedLocalLoadingFailImplCopyWith<_$LightNeedLocalLoadingFailImpl>
+      get copyWith => __$$LightNeedLocalLoadingFailImplCopyWithImpl<
+          _$LightNeedLocalLoadingFailImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -812,12 +823,13 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingFail(this);
   }
@@ -825,12 +837,12 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return localLoadingFail?.call(this);
   }
@@ -838,12 +850,12 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingFail != null) {
@@ -853,34 +865,37 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   }
 }
 
-abstract class _LocalLoadingFail implements LightNeedState {
-  const factory _LocalLoadingFail([final String message]) =
-      _$LocalLoadingFailImpl;
+abstract class LightNeedLocalLoadingFail implements LightNeedState {
+  const factory LightNeedLocalLoadingFail([final String message]) =
+      _$LightNeedLocalLoadingFailImpl;
 
   String get message;
 
   /// Create a copy of LightNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LightNeedLocalLoadingFailImplCopyWith<_$LightNeedLocalLoadingFailImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  factory _$$LocalLoadingSuccessImplCopyWith(_$LocalLoadingSuccessImpl value,
-          $Res Function(_$LocalLoadingSuccessImpl) then) =
-      __$$LocalLoadingSuccessImplCopyWithImpl<$Res>;
+abstract class _$$LightNeedLocalLoadingSuccessImplCopyWith<$Res> {
+  factory _$$LightNeedLocalLoadingSuccessImplCopyWith(
+          _$LightNeedLocalLoadingSuccessImpl value,
+          $Res Function(_$LightNeedLocalLoadingSuccessImpl) then) =
+      __$$LightNeedLocalLoadingSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<LightNeedEntity> departments});
 }
 
 /// @nodoc
-class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
-    extends _$LightNeedStateCopyWithImpl<$Res, _$LocalLoadingSuccessImpl>
-    implements _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  __$$LocalLoadingSuccessImplCopyWithImpl(_$LocalLoadingSuccessImpl _value,
-      $Res Function(_$LocalLoadingSuccessImpl) _then)
+class __$$LightNeedLocalLoadingSuccessImplCopyWithImpl<$Res>
+    extends _$LightNeedStateCopyWithImpl<$Res,
+        _$LightNeedLocalLoadingSuccessImpl>
+    implements _$$LightNeedLocalLoadingSuccessImplCopyWith<$Res> {
+  __$$LightNeedLocalLoadingSuccessImplCopyWithImpl(
+      _$LightNeedLocalLoadingSuccessImpl _value,
+      $Res Function(_$LightNeedLocalLoadingSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LightNeedState
@@ -890,7 +905,7 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? departments = null,
   }) {
-    return _then(_$LocalLoadingSuccessImpl(
+    return _then(_$LightNeedLocalLoadingSuccessImpl(
       null == departments
           ? _value._departments
           : departments // ignore: cast_nullable_to_non_nullable
@@ -901,8 +916,10 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
-  const _$LocalLoadingSuccessImpl(final List<LightNeedEntity> departments)
+class _$LightNeedLocalLoadingSuccessImpl
+    implements LightNeedLocalLoadingSuccess {
+  const _$LightNeedLocalLoadingSuccessImpl(
+      final List<LightNeedEntity> departments)
       : _departments = departments;
 
   final List<LightNeedEntity> _departments;
@@ -922,7 +939,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingSuccessImpl &&
+            other is _$LightNeedLocalLoadingSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._departments, _departments));
   }
@@ -936,9 +953,10 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      __$$LocalLoadingSuccessImplCopyWithImpl<_$LocalLoadingSuccessImpl>(
-          this, _$identity);
+  _$$LightNeedLocalLoadingSuccessImplCopyWith<
+          _$LightNeedLocalLoadingSuccessImpl>
+      get copyWith => __$$LightNeedLocalLoadingSuccessImplCopyWithImpl<
+          _$LightNeedLocalLoadingSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -987,12 +1005,13 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(LightNeedInitial value) initial,
+    required TResult Function(LightNeedLoading value) loading,
+    required TResult Function(LightNeedSuccess value) success,
+    required TResult Function(LightNeedFail value) fail,
+    required TResult Function(LightNeedLocalLoadingFail value) localLoadingFail,
+    required TResult Function(LightNeedLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingSuccess(this);
   }
@@ -1000,12 +1019,12 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(LightNeedInitial value)? initial,
+    TResult? Function(LightNeedLoading value)? loading,
+    TResult? Function(LightNeedSuccess value)? success,
+    TResult? Function(LightNeedFail value)? fail,
+    TResult? Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(this);
   }
@@ -1013,12 +1032,12 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(LightNeedInitial value)? initial,
+    TResult Function(LightNeedLoading value)? loading,
+    TResult Function(LightNeedSuccess value)? success,
+    TResult Function(LightNeedFail value)? fail,
+    TResult Function(LightNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(LightNeedLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingSuccess != null) {
@@ -1028,15 +1047,17 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   }
 }
 
-abstract class _LocalLoadingSuccess implements LightNeedState {
-  const factory _LocalLoadingSuccess(final List<LightNeedEntity> departments) =
-      _$LocalLoadingSuccessImpl;
+abstract class LightNeedLocalLoadingSuccess implements LightNeedState {
+  const factory LightNeedLocalLoadingSuccess(
+          final List<LightNeedEntity> departments) =
+      _$LightNeedLocalLoadingSuccessImpl;
 
   List<LightNeedEntity> get departments;
 
   /// Create a copy of LightNeedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LightNeedLocalLoadingSuccessImplCopyWith<
+          _$LightNeedLocalLoadingSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

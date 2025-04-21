@@ -37,11 +37,7 @@ class LoadPlant extends Usecase<PlantModel, int> {
       }
       return plants.fold(
         (error) => Left(error),
-        (succededPlants) => Right(
-          succededPlants.firstWhere(
-            (element) => element.id == request,
-          ),
-        ),
+        (succededPlants) => Right(succededPlants),
       );
     });
   }

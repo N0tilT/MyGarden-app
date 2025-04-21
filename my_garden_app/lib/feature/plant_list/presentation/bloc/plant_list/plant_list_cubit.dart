@@ -16,6 +16,7 @@ class PlantListCubit extends Cubit<PlantListState> {
       : super(const PlantListState.initial());
 
   Future<void> upload(PlantEntity plant) async {
+    emit(const PlantListState.loading());
     final result = await uploadPlant([plant]);
     plantList.add(plant);
     result.fold(
@@ -25,7 +26,8 @@ class PlantListCubit extends Cubit<PlantListState> {
   }
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const PlantListState.loading());
+    final plants = await loadPlants([], false);
     plants.fold(
       (error) => emit(PlantListState.fail(error.message)),
       (succededPlantList) {

@@ -50,32 +50,33 @@ mixin _$GrowStageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,18 +104,18 @@ class _$GrowStageStateCopyWithImpl<$Res, $Val extends GrowStageState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$GrowStageInitialImplCopyWith<$Res> {
+  factory _$$GrowStageInitialImplCopyWith(_$GrowStageInitialImpl value,
+          $Res Function(_$GrowStageInitialImpl) then) =
+      __$$GrowStageInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$GrowStageStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$GrowStageInitialImplCopyWithImpl<$Res>
+    extends _$GrowStageStateCopyWithImpl<$Res, _$GrowStageInitialImpl>
+    implements _$$GrowStageInitialImplCopyWith<$Res> {
+  __$$GrowStageInitialImplCopyWithImpl(_$GrowStageInitialImpl _value,
+      $Res Function(_$GrowStageInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GrowStageState
@@ -123,8 +124,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$GrowStageInitialImpl implements GrowStageInitial {
+  const _$GrowStageInitialImpl();
 
   @override
   String toString() {
@@ -134,7 +135,7 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$GrowStageInitialImpl);
   }
 
   @override
@@ -187,12 +188,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return initial(this);
   }
@@ -200,12 +202,12 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return initial?.call(this);
   }
@@ -213,12 +215,12 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -228,23 +230,23 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements GrowStageState {
-  const factory _Initial() = _$InitialImpl;
+abstract class GrowStageInitial implements GrowStageState {
+  const factory GrowStageInitial() = _$GrowStageInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$GrowStageLoadingImplCopyWith<$Res> {
+  factory _$$GrowStageLoadingImplCopyWith(_$GrowStageLoadingImpl value,
+          $Res Function(_$GrowStageLoadingImpl) then) =
+      __$$GrowStageLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$GrowStageStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$GrowStageLoadingImplCopyWithImpl<$Res>
+    extends _$GrowStageStateCopyWithImpl<$Res, _$GrowStageLoadingImpl>
+    implements _$$GrowStageLoadingImplCopyWith<$Res> {
+  __$$GrowStageLoadingImplCopyWithImpl(_$GrowStageLoadingImpl _value,
+      $Res Function(_$GrowStageLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GrowStageState
@@ -253,8 +255,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$GrowStageLoadingImpl implements GrowStageLoading {
+  const _$GrowStageLoadingImpl();
 
   @override
   String toString() {
@@ -264,7 +266,7 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$GrowStageLoadingImpl);
   }
 
   @override
@@ -317,12 +319,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return loading(this);
   }
@@ -330,12 +333,12 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return loading?.call(this);
   }
@@ -343,12 +346,12 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -358,25 +361,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements GrowStageState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class GrowStageLoading implements GrowStageState {
+  const factory GrowStageLoading() = _$GrowStageLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$GrowStageSuccessImplCopyWith<$Res> {
+  factory _$$GrowStageSuccessImplCopyWith(_$GrowStageSuccessImpl value,
+          $Res Function(_$GrowStageSuccessImpl) then) =
+      __$$GrowStageSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<GrowStageEntity> plants});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$GrowStageStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$GrowStageSuccessImplCopyWithImpl<$Res>
+    extends _$GrowStageStateCopyWithImpl<$Res, _$GrowStageSuccessImpl>
+    implements _$$GrowStageSuccessImplCopyWith<$Res> {
+  __$$GrowStageSuccessImplCopyWithImpl(_$GrowStageSuccessImpl _value,
+      $Res Function(_$GrowStageSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GrowStageState
@@ -386,7 +389,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? plants = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$GrowStageSuccessImpl(
       null == plants
           ? _value._plants
           : plants // ignore: cast_nullable_to_non_nullable
@@ -397,8 +400,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<GrowStageEntity> plants) : _plants = plants;
+class _$GrowStageSuccessImpl implements GrowStageSuccess {
+  const _$GrowStageSuccessImpl(final List<GrowStageEntity> plants)
+      : _plants = plants;
 
   final List<GrowStageEntity> _plants;
   @override
@@ -417,7 +421,7 @@ class _$SuccessImpl implements _Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$GrowStageSuccessImpl &&
             const DeepCollectionEquality().equals(other._plants, _plants));
   }
 
@@ -430,8 +434,9 @@ class _$SuccessImpl implements _Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$GrowStageSuccessImplCopyWith<_$GrowStageSuccessImpl> get copyWith =>
+      __$$GrowStageSuccessImplCopyWithImpl<_$GrowStageSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -480,12 +485,13 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return success(this);
   }
@@ -493,12 +499,12 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return success?.call(this);
   }
@@ -506,12 +512,12 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -521,32 +527,34 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements GrowStageState {
-  const factory _Success(final List<GrowStageEntity> plants) = _$SuccessImpl;
+abstract class GrowStageSuccess implements GrowStageState {
+  const factory GrowStageSuccess(final List<GrowStageEntity> plants) =
+      _$GrowStageSuccessImpl;
 
   List<GrowStageEntity> get plants;
 
   /// Create a copy of GrowStageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$GrowStageSuccessImplCopyWith<_$GrowStageSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailImplCopyWith<$Res> {
-  factory _$$FailImplCopyWith(
-          _$FailImpl value, $Res Function(_$FailImpl) then) =
-      __$$FailImplCopyWithImpl<$Res>;
+abstract class _$$GrowStageFailImplCopyWith<$Res> {
+  factory _$$GrowStageFailImplCopyWith(
+          _$GrowStageFailImpl value, $Res Function(_$GrowStageFailImpl) then) =
+      __$$GrowStageFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailImplCopyWithImpl<$Res>
-    extends _$GrowStageStateCopyWithImpl<$Res, _$FailImpl>
-    implements _$$FailImplCopyWith<$Res> {
-  __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
+class __$$GrowStageFailImplCopyWithImpl<$Res>
+    extends _$GrowStageStateCopyWithImpl<$Res, _$GrowStageFailImpl>
+    implements _$$GrowStageFailImplCopyWith<$Res> {
+  __$$GrowStageFailImplCopyWithImpl(
+      _$GrowStageFailImpl _value, $Res Function(_$GrowStageFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GrowStageState
@@ -556,7 +564,7 @@ class __$$FailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailImpl(
+    return _then(_$GrowStageFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -567,8 +575,8 @@ class __$$FailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailImpl implements _Fail {
-  const _$FailImpl([this.message = "Unknown error"]);
+class _$GrowStageFailImpl implements GrowStageFail {
+  const _$GrowStageFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -583,7 +591,7 @@ class _$FailImpl implements _Fail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailImpl &&
+            other is _$GrowStageFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -595,8 +603,8 @@ class _$FailImpl implements _Fail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
-      __$$FailImplCopyWithImpl<_$FailImpl>(this, _$identity);
+  _$$GrowStageFailImplCopyWith<_$GrowStageFailImpl> get copyWith =>
+      __$$GrowStageFailImplCopyWithImpl<_$GrowStageFailImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -645,12 +653,13 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return fail(this);
   }
@@ -658,12 +667,12 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return fail?.call(this);
   }
@@ -671,12 +680,12 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (fail != null) {
@@ -686,33 +695,35 @@ class _$FailImpl implements _Fail {
   }
 }
 
-abstract class _Fail implements GrowStageState {
-  const factory _Fail([final String message]) = _$FailImpl;
+abstract class GrowStageFail implements GrowStageState {
+  const factory GrowStageFail([final String message]) = _$GrowStageFailImpl;
 
   String get message;
 
   /// Create a copy of GrowStageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
+  _$$GrowStageFailImplCopyWith<_$GrowStageFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingFailImplCopyWith<$Res> {
-  factory _$$LocalLoadingFailImplCopyWith(_$LocalLoadingFailImpl value,
-          $Res Function(_$LocalLoadingFailImpl) then) =
-      __$$LocalLoadingFailImplCopyWithImpl<$Res>;
+abstract class _$$GrowStageLocalLoadingFailImplCopyWith<$Res> {
+  factory _$$GrowStageLocalLoadingFailImplCopyWith(
+          _$GrowStageLocalLoadingFailImpl value,
+          $Res Function(_$GrowStageLocalLoadingFailImpl) then) =
+      __$$GrowStageLocalLoadingFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$LocalLoadingFailImplCopyWithImpl<$Res>
-    extends _$GrowStageStateCopyWithImpl<$Res, _$LocalLoadingFailImpl>
-    implements _$$LocalLoadingFailImplCopyWith<$Res> {
-  __$$LocalLoadingFailImplCopyWithImpl(_$LocalLoadingFailImpl _value,
-      $Res Function(_$LocalLoadingFailImpl) _then)
+class __$$GrowStageLocalLoadingFailImplCopyWithImpl<$Res>
+    extends _$GrowStageStateCopyWithImpl<$Res, _$GrowStageLocalLoadingFailImpl>
+    implements _$$GrowStageLocalLoadingFailImplCopyWith<$Res> {
+  __$$GrowStageLocalLoadingFailImplCopyWithImpl(
+      _$GrowStageLocalLoadingFailImpl _value,
+      $Res Function(_$GrowStageLocalLoadingFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GrowStageState
@@ -722,7 +733,7 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$LocalLoadingFailImpl(
+    return _then(_$GrowStageLocalLoadingFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -733,8 +744,8 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingFailImpl implements _LocalLoadingFail {
-  const _$LocalLoadingFailImpl([this.message = "Unknown error"]);
+class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
+  const _$GrowStageLocalLoadingFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -749,7 +760,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingFailImpl &&
+            other is _$GrowStageLocalLoadingFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -761,9 +772,9 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      __$$LocalLoadingFailImplCopyWithImpl<_$LocalLoadingFailImpl>(
-          this, _$identity);
+  _$$GrowStageLocalLoadingFailImplCopyWith<_$GrowStageLocalLoadingFailImpl>
+      get copyWith => __$$GrowStageLocalLoadingFailImplCopyWithImpl<
+          _$GrowStageLocalLoadingFailImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -812,12 +823,13 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingFail(this);
   }
@@ -825,12 +837,12 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return localLoadingFail?.call(this);
   }
@@ -838,12 +850,12 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingFail != null) {
@@ -853,34 +865,37 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   }
 }
 
-abstract class _LocalLoadingFail implements GrowStageState {
-  const factory _LocalLoadingFail([final String message]) =
-      _$LocalLoadingFailImpl;
+abstract class GrowStageLocalLoadingFail implements GrowStageState {
+  const factory GrowStageLocalLoadingFail([final String message]) =
+      _$GrowStageLocalLoadingFailImpl;
 
   String get message;
 
   /// Create a copy of GrowStageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GrowStageLocalLoadingFailImplCopyWith<_$GrowStageLocalLoadingFailImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  factory _$$LocalLoadingSuccessImplCopyWith(_$LocalLoadingSuccessImpl value,
-          $Res Function(_$LocalLoadingSuccessImpl) then) =
-      __$$LocalLoadingSuccessImplCopyWithImpl<$Res>;
+abstract class _$$GrowStageLocalLoadingSuccessImplCopyWith<$Res> {
+  factory _$$GrowStageLocalLoadingSuccessImplCopyWith(
+          _$GrowStageLocalLoadingSuccessImpl value,
+          $Res Function(_$GrowStageLocalLoadingSuccessImpl) then) =
+      __$$GrowStageLocalLoadingSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<GrowStageEntity> departments});
 }
 
 /// @nodoc
-class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
-    extends _$GrowStageStateCopyWithImpl<$Res, _$LocalLoadingSuccessImpl>
-    implements _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  __$$LocalLoadingSuccessImplCopyWithImpl(_$LocalLoadingSuccessImpl _value,
-      $Res Function(_$LocalLoadingSuccessImpl) _then)
+class __$$GrowStageLocalLoadingSuccessImplCopyWithImpl<$Res>
+    extends _$GrowStageStateCopyWithImpl<$Res,
+        _$GrowStageLocalLoadingSuccessImpl>
+    implements _$$GrowStageLocalLoadingSuccessImplCopyWith<$Res> {
+  __$$GrowStageLocalLoadingSuccessImplCopyWithImpl(
+      _$GrowStageLocalLoadingSuccessImpl _value,
+      $Res Function(_$GrowStageLocalLoadingSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GrowStageState
@@ -890,7 +905,7 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? departments = null,
   }) {
-    return _then(_$LocalLoadingSuccessImpl(
+    return _then(_$GrowStageLocalLoadingSuccessImpl(
       null == departments
           ? _value._departments
           : departments // ignore: cast_nullable_to_non_nullable
@@ -901,8 +916,10 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
-  const _$LocalLoadingSuccessImpl(final List<GrowStageEntity> departments)
+class _$GrowStageLocalLoadingSuccessImpl
+    implements GrowStageLocalLoadingSuccess {
+  const _$GrowStageLocalLoadingSuccessImpl(
+      final List<GrowStageEntity> departments)
       : _departments = departments;
 
   final List<GrowStageEntity> _departments;
@@ -922,7 +939,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingSuccessImpl &&
+            other is _$GrowStageLocalLoadingSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._departments, _departments));
   }
@@ -936,9 +953,10 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      __$$LocalLoadingSuccessImplCopyWithImpl<_$LocalLoadingSuccessImpl>(
-          this, _$identity);
+  _$$GrowStageLocalLoadingSuccessImplCopyWith<
+          _$GrowStageLocalLoadingSuccessImpl>
+      get copyWith => __$$GrowStageLocalLoadingSuccessImplCopyWithImpl<
+          _$GrowStageLocalLoadingSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -987,12 +1005,13 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(GrowStageInitial value) initial,
+    required TResult Function(GrowStageLoading value) loading,
+    required TResult Function(GrowStageSuccess value) success,
+    required TResult Function(GrowStageFail value) fail,
+    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingSuccess(this);
   }
@@ -1000,12 +1019,12 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(GrowStageInitial value)? initial,
+    TResult? Function(GrowStageLoading value)? loading,
+    TResult? Function(GrowStageSuccess value)? success,
+    TResult? Function(GrowStageFail value)? fail,
+    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(this);
   }
@@ -1013,12 +1032,12 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(GrowStageInitial value)? initial,
+    TResult Function(GrowStageLoading value)? loading,
+    TResult Function(GrowStageSuccess value)? success,
+    TResult Function(GrowStageFail value)? fail,
+    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingSuccess != null) {
@@ -1028,15 +1047,17 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   }
 }
 
-abstract class _LocalLoadingSuccess implements GrowStageState {
-  const factory _LocalLoadingSuccess(final List<GrowStageEntity> departments) =
-      _$LocalLoadingSuccessImpl;
+abstract class GrowStageLocalLoadingSuccess implements GrowStageState {
+  const factory GrowStageLocalLoadingSuccess(
+          final List<GrowStageEntity> departments) =
+      _$GrowStageLocalLoadingSuccessImpl;
 
   List<GrowStageEntity> get departments;
 
   /// Create a copy of GrowStageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GrowStageLocalLoadingSuccessImplCopyWith<
+          _$GrowStageLocalLoadingSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

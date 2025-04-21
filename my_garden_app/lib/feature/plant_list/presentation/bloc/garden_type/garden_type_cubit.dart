@@ -14,6 +14,7 @@ class GardenTypeCubit extends Cubit<GardenTypeState> {
       : super(const GardenTypeState.initial());
 
   Future<void> load() async {
+    emit(const GardenTypeState.loading());
     final plants = await loadPlants([]);
     plants.fold(
       (error) => emit(GardenTypeState.fail(error.message)),

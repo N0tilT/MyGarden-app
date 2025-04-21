@@ -2,25 +2,29 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/group_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_groups.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_group.dart';
 
 part 'group_cubit.freezed.dart';
 part 'group_state.dart';
 
 class GroupCubit extends Cubit<GroupState> {
-  final LoadGroups loadPlants;
-  List<GroupEntity> plantList = [];
+  final LoadGroups loadGroups;
+  final UploadGroup uploadGroups;
+  List<GroupEntity> groupList = [];
 
-  GroupCubit({required this.loadPlants}) : super(const GroupState.initial());
+  GroupCubit({required this.loadGroups, required this.uploadGroups})
+      : super(const GroupState.initial());
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const GroupState.loading());
+    final plants = await loadGroups([]);
     plants.fold(
       (error) => emit(GroupState.fail(error.message)),
       (succededPlantList) {
-        plantList = succededPlantList;
+        groupList = succededPlantList;
         emit(
           GroupState.success(
-            plantList,
+            groupList,
           ),
         );
       },
@@ -29,17 +33,27 @@ class GroupCubit extends Cubit<GroupState> {
 
   Future<void> loadLocally() async {
     emit(const GroupState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadGroups([], false);
     plants.fold(
       (error) => emit(GroupState.fail(error.message)),
       (succededPlantList) {
-        plantList = succededPlantList;
+        groupList = succededPlantList;
         emit(
           GroupState.success(
-            plantList,
+            groupList,
           ),
         );
       },
+    );
+  }
+
+  Future<void> upload(GroupEntity group) async {
+    emit(const GroupState.loading());
+    final result = await uploadGroups([group]);
+    groupList.add(group);
+    result.fold(
+      (error) => emit(GroupState.fail(error.message)),
+      (success) => emit(GroupState.success(groupList)),
     );
   }
 }

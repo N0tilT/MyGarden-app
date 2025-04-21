@@ -22,7 +22,7 @@ PlantModel _$PlantModelFromJson(Map<String, dynamic> json) {
 mixin _$PlantModel {
   @JsonKey(name: 'id')
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   @HiveField(1)
   String? get title => throw _privateConstructorUsedError;
@@ -108,7 +108,7 @@ class _$PlantModelImpl extends _PlantModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'title')
   @HiveField(1)
@@ -239,7 +239,7 @@ class _$PlantModelImpl extends _PlantModel {
 
 abstract class _PlantModel extends PlantModel {
   factory _PlantModel(
-      {@JsonKey(name: 'id') @HiveField(0) required final int id,
+      {@JsonKey(name: 'id') @HiveField(0) required final int? id,
       @JsonKey(name: 'title') @HiveField(1) required final String? title,
       @JsonKey(name: 'biologyTitle')
       @HiveField(2)
@@ -281,7 +281,7 @@ abstract class _PlantModel extends PlantModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'title')
   @HiveField(1)

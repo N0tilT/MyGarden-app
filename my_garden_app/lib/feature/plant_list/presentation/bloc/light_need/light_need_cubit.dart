@@ -7,14 +7,15 @@ part 'light_need_cubit.freezed.dart';
 part 'light_need_state.dart';
 
 class LightNeedCubit extends Cubit<LightNeedState> {
-  final LoadLightNeeds loadPlants;
+  final LoadLightNeeds loadLightNeeds;
   List<LightNeedEntity> plantList = [];
 
-  LightNeedCubit({required this.loadPlants})
+  LightNeedCubit({required this.loadLightNeeds})
       : super(const LightNeedState.initial());
 
   Future<void> load() async {
-    final plants = await loadPlants([]);
+    emit(const LightNeedState.loading());
+    final plants = await loadLightNeeds([]);
     plants.fold(
       (error) => emit(LightNeedState.fail(error.message)),
       (succededPlantList) {
@@ -30,7 +31,7 @@ class LightNeedCubit extends Cubit<LightNeedState> {
 
   Future<void> loadLocally() async {
     emit(const LightNeedState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadLightNeeds([], false);
     plants.fold(
       (error) => emit(LightNeedState.fail(error.message)),
       (succededPlantList) {

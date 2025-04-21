@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GroupEntity {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
 
   /// Create a copy of GroupEntity
@@ -32,7 +32,7 @@ abstract class $GroupEntityCopyWith<$Res> {
           GroupEntity value, $Res Function(GroupEntity) then) =
       _$GroupEntityCopyWithImpl<$Res, GroupEntity>;
   @useResult
-  $Res call({int id, String? title});
+  $Res call({int? id, String? title});
 }
 
 /// @nodoc
@@ -50,14 +50,14 @@ class _$GroupEntityCopyWithImpl<$Res, $Val extends GroupEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -74,7 +74,7 @@ abstract class _$$GroupEntityImplCopyWith<$Res>
       __$$GroupEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? title});
+  $Res call({int? id, String? title});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$GroupEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
   }) {
     return _then(_$GroupEntityImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ class _$GroupEntityImpl extends _GroupEntity {
   const _$GroupEntityImpl({required this.id, required this.title}) : super._();
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? title;
 
@@ -139,12 +139,12 @@ class _$GroupEntityImpl extends _GroupEntity {
 
 abstract class _GroupEntity extends GroupEntity {
   const factory _GroupEntity(
-      {required final int id,
+      {required final int? id,
       required final String? title}) = _$GroupEntityImpl;
   const _GroupEntity._() : super._();
 
   @override
-  int get id;
+  int? get id;
   @override
   String? get title;
 

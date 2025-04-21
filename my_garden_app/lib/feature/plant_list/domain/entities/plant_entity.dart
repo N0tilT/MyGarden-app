@@ -9,7 +9,7 @@ part 'plant_entity.freezed.dart';
 )
 class PlantEntity with _$PlantEntity implements ICommonEntity {
   const factory PlantEntity({
-    required int id,
+    required int? id,
     required String? title,
     required String? biologyTitle,
     required String? fertilization,
@@ -17,11 +17,17 @@ class PlantEntity with _$PlantEntity implements ICommonEntity {
     required String? replacing,
     required String? description,
     required int groupId,
+    String? groupName,
     required int wateringNeedId,
+    String? wateringNeedTitle,
     required int lightNeedId,
+    String? lightNeedTitle,
     required int plantTypeId,
+    String? plantTypeTitle,
     required int plantVarietyId,
+    String? plantVarietyTitle,
     required int stageId,
+    String? stageTitle,
     required int imageId,
     required int ripeningPeriod,
   }) = _PlantEntity;

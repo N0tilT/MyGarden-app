@@ -2,16 +2,17 @@ part of 'grow_stage_cubit.dart';
 
 @freezed
 class GrowStageState with _$GrowStageState {
-  const factory GrowStageState.initial() = _Initial;
-  const factory GrowStageState.loading() = _Loading;
-  const factory GrowStageState.success(List<GrowStageEntity> plants) = _Success;
+  const factory GrowStageState.initial() = GrowStageInitial;
+  const factory GrowStageState.loading() = GrowStageLoading;
+  const factory GrowStageState.success(List<GrowStageEntity> plants) =
+      GrowStageSuccess;
   const factory GrowStageState.fail([
     @Default("Unknown error") String message,
-  ]) = _Fail;
+  ]) = GrowStageFail;
   const factory GrowStageState.localLoadingFail([
     @Default("Unknown error") String message,
-  ]) = _LocalLoadingFail;
+  ]) = GrowStageLocalLoadingFail;
   const factory GrowStageState.localLoadingSuccess(
     List<GrowStageEntity> departments,
-  ) = _LocalLoadingSuccess;
+  ) = GrowStageLocalLoadingSuccess;
 }

@@ -1,9 +1,11 @@
 import 'package:hive/hive.dart';
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
+import 'package:my_garden_app/core/data/model/common_request_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/group_model.dart';
 
-class GroupLocalDataSource extends LocalDataSource<List<GroupModel>, void> {
+class GroupLocalDataSource
+    extends LocalDataSource<List<GroupModel>, CommonRequestModel> {
   Box<GroupModel> groupBox;
 
   GroupLocalDataSource({required this.groupBox});
@@ -16,8 +18,8 @@ class GroupLocalDataSource extends LocalDataSource<List<GroupModel>, void> {
         return;
       }
       await updateBox<GroupModel>(
-        {for (final item in groupList) item.id: item},
-        groupBox.values.map((e) => e.id).toList(),
+        {for (final item in groupList) item.id ?? -1: item},
+        groupBox.values.map((e) => e.id!).toList(),
         groupBox,
       );
     } catch (e) {

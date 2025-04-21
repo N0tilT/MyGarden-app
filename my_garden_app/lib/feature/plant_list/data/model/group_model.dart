@@ -14,7 +14,7 @@ class GroupModel extends HiveObject
     implements IHasUseridModel<GroupEntity> {
   @HiveType(typeId: 5, adapterName: 'GroupModelAdapter')
   factory GroupModel({
-    @JsonKey(name: 'id') @HiveField(0) required int id,
+    @JsonKey(name: 'id') @HiveField(0) required int? id,
     @JsonKey(name: 'title') @HiveField(1) required String? title,
     @JsonKey(name: 'userId') @HiveField(2) required String userId,
   }) = _GroupModel;

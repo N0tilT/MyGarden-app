@@ -2,17 +2,17 @@ part of 'watering_need_cubit.dart';
 
 @freezed
 class WateringNeedState with _$WateringNeedState {
-  const factory WateringNeedState.initial() = _Initial;
-  const factory WateringNeedState.loading() = _Loading;
+  const factory WateringNeedState.initial() = WateringNeedInitial;
+  const factory WateringNeedState.loading() = WateringNeedLoading;
   const factory WateringNeedState.success(List<WateringNeedEntity> plants) =
-      _Success;
+      WateringNeedSuccess;
   const factory WateringNeedState.fail([
     @Default("Unknown error") String message,
-  ]) = _Fail;
+  ]) = WateringNeedFail;
   const factory WateringNeedState.localLoadingFail([
     @Default("Unknown error") String message,
-  ]) = _LocalLoadingFail;
+  ]) = WateringNeedLocalLoadingFail;
   const factory WateringNeedState.localLoadingSuccess(
     List<WateringNeedEntity> departments,
-  ) = _LocalLoadingSuccess;
+  ) = WateringNeedLocalLoadingSuccess;
 }

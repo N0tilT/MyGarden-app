@@ -9,7 +9,7 @@ part 'group_entity.freezed.dart';
 )
 class GroupEntity with _$GroupEntity implements ICommonEntity {
   const factory GroupEntity({
-    required int id,
+    required int? id,
     required String? title,
   }) = _GroupEntity;
 

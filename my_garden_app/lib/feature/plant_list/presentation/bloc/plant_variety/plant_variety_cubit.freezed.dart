@@ -51,32 +51,36 @@ mixin _$PlantVarietyState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -104,18 +108,18 @@ class _$PlantVarietyStateCopyWithImpl<$Res, $Val extends PlantVarietyState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$PlantVarietyInitialImplCopyWith<$Res> {
+  factory _$$PlantVarietyInitialImplCopyWith(_$PlantVarietyInitialImpl value,
+          $Res Function(_$PlantVarietyInitialImpl) then) =
+      __$$PlantVarietyInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$PlantVarietyStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$PlantVarietyInitialImplCopyWithImpl<$Res>
+    extends _$PlantVarietyStateCopyWithImpl<$Res, _$PlantVarietyInitialImpl>
+    implements _$$PlantVarietyInitialImplCopyWith<$Res> {
+  __$$PlantVarietyInitialImplCopyWithImpl(_$PlantVarietyInitialImpl _value,
+      $Res Function(_$PlantVarietyInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PlantVarietyState
@@ -124,8 +128,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
+  const _$PlantVarietyInitialImpl();
 
   @override
   String toString() {
@@ -135,7 +139,8 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$PlantVarietyInitialImpl);
   }
 
   @override
@@ -189,12 +194,14 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return initial(this);
   }
@@ -202,12 +209,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return initial?.call(this);
   }
@@ -215,12 +223,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -230,23 +239,23 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements PlantVarietyState {
-  const factory _Initial() = _$InitialImpl;
+abstract class PlantVarietyInitial implements PlantVarietyState {
+  const factory PlantVarietyInitial() = _$PlantVarietyInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$PlantVarietyLoadingImplCopyWith<$Res> {
+  factory _$$PlantVarietyLoadingImplCopyWith(_$PlantVarietyLoadingImpl value,
+          $Res Function(_$PlantVarietyLoadingImpl) then) =
+      __$$PlantVarietyLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$PlantVarietyStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$PlantVarietyLoadingImplCopyWithImpl<$Res>
+    extends _$PlantVarietyStateCopyWithImpl<$Res, _$PlantVarietyLoadingImpl>
+    implements _$$PlantVarietyLoadingImplCopyWith<$Res> {
+  __$$PlantVarietyLoadingImplCopyWithImpl(_$PlantVarietyLoadingImpl _value,
+      $Res Function(_$PlantVarietyLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PlantVarietyState
@@ -255,8 +264,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
+  const _$PlantVarietyLoadingImpl();
 
   @override
   String toString() {
@@ -266,7 +275,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$PlantVarietyLoadingImpl);
   }
 
   @override
@@ -320,12 +330,14 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return loading(this);
   }
@@ -333,12 +345,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return loading?.call(this);
   }
@@ -346,12 +359,13 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -361,25 +375,25 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements PlantVarietyState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class PlantVarietyLoading implements PlantVarietyState {
+  const factory PlantVarietyLoading() = _$PlantVarietyLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$PlantVarietySuccessImplCopyWith<$Res> {
+  factory _$$PlantVarietySuccessImplCopyWith(_$PlantVarietySuccessImpl value,
+          $Res Function(_$PlantVarietySuccessImpl) then) =
+      __$$PlantVarietySuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<PlantVarietyEntity> plants});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$PlantVarietyStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$PlantVarietySuccessImplCopyWithImpl<$Res>
+    extends _$PlantVarietyStateCopyWithImpl<$Res, _$PlantVarietySuccessImpl>
+    implements _$$PlantVarietySuccessImplCopyWith<$Res> {
+  __$$PlantVarietySuccessImplCopyWithImpl(_$PlantVarietySuccessImpl _value,
+      $Res Function(_$PlantVarietySuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PlantVarietyState
@@ -389,7 +403,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? plants = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$PlantVarietySuccessImpl(
       null == plants
           ? _value._plants
           : plants // ignore: cast_nullable_to_non_nullable
@@ -400,8 +414,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<PlantVarietyEntity> plants) : _plants = plants;
+class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
+  const _$PlantVarietySuccessImpl(final List<PlantVarietyEntity> plants)
+      : _plants = plants;
 
   final List<PlantVarietyEntity> _plants;
   @override
@@ -420,7 +435,7 @@ class _$SuccessImpl implements _Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$PlantVarietySuccessImpl &&
             const DeepCollectionEquality().equals(other._plants, _plants));
   }
 
@@ -433,8 +448,9 @@ class _$SuccessImpl implements _Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$PlantVarietySuccessImplCopyWith<_$PlantVarietySuccessImpl> get copyWith =>
+      __$$PlantVarietySuccessImplCopyWithImpl<_$PlantVarietySuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -484,12 +500,14 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return success(this);
   }
@@ -497,12 +515,13 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return success?.call(this);
   }
@@ -510,12 +529,13 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -525,32 +545,34 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements PlantVarietyState {
-  const factory _Success(final List<PlantVarietyEntity> plants) = _$SuccessImpl;
+abstract class PlantVarietySuccess implements PlantVarietyState {
+  const factory PlantVarietySuccess(final List<PlantVarietyEntity> plants) =
+      _$PlantVarietySuccessImpl;
 
   List<PlantVarietyEntity> get plants;
 
   /// Create a copy of PlantVarietyState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$PlantVarietySuccessImplCopyWith<_$PlantVarietySuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailImplCopyWith<$Res> {
-  factory _$$FailImplCopyWith(
-          _$FailImpl value, $Res Function(_$FailImpl) then) =
-      __$$FailImplCopyWithImpl<$Res>;
+abstract class _$$PlantVarietyFailImplCopyWith<$Res> {
+  factory _$$PlantVarietyFailImplCopyWith(_$PlantVarietyFailImpl value,
+          $Res Function(_$PlantVarietyFailImpl) then) =
+      __$$PlantVarietyFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$FailImplCopyWithImpl<$Res>
-    extends _$PlantVarietyStateCopyWithImpl<$Res, _$FailImpl>
-    implements _$$FailImplCopyWith<$Res> {
-  __$$FailImplCopyWithImpl(_$FailImpl _value, $Res Function(_$FailImpl) _then)
+class __$$PlantVarietyFailImplCopyWithImpl<$Res>
+    extends _$PlantVarietyStateCopyWithImpl<$Res, _$PlantVarietyFailImpl>
+    implements _$$PlantVarietyFailImplCopyWith<$Res> {
+  __$$PlantVarietyFailImplCopyWithImpl(_$PlantVarietyFailImpl _value,
+      $Res Function(_$PlantVarietyFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PlantVarietyState
@@ -560,7 +582,7 @@ class __$$FailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$FailImpl(
+    return _then(_$PlantVarietyFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -571,8 +593,8 @@ class __$$FailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FailImpl implements _Fail {
-  const _$FailImpl([this.message = "Unknown error"]);
+class _$PlantVarietyFailImpl implements PlantVarietyFail {
+  const _$PlantVarietyFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -587,7 +609,7 @@ class _$FailImpl implements _Fail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailImpl &&
+            other is _$PlantVarietyFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -599,8 +621,9 @@ class _$FailImpl implements _Fail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
-      __$$FailImplCopyWithImpl<_$FailImpl>(this, _$identity);
+  _$$PlantVarietyFailImplCopyWith<_$PlantVarietyFailImpl> get copyWith =>
+      __$$PlantVarietyFailImplCopyWithImpl<_$PlantVarietyFailImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -650,12 +673,14 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return fail(this);
   }
@@ -663,12 +688,13 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return fail?.call(this);
   }
@@ -676,12 +702,13 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (fail != null) {
@@ -691,33 +718,37 @@ class _$FailImpl implements _Fail {
   }
 }
 
-abstract class _Fail implements PlantVarietyState {
-  const factory _Fail([final String message]) = _$FailImpl;
+abstract class PlantVarietyFail implements PlantVarietyState {
+  const factory PlantVarietyFail([final String message]) =
+      _$PlantVarietyFailImpl;
 
   String get message;
 
   /// Create a copy of PlantVarietyState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailImplCopyWith<_$FailImpl> get copyWith =>
+  _$$PlantVarietyFailImplCopyWith<_$PlantVarietyFailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingFailImplCopyWith<$Res> {
-  factory _$$LocalLoadingFailImplCopyWith(_$LocalLoadingFailImpl value,
-          $Res Function(_$LocalLoadingFailImpl) then) =
-      __$$LocalLoadingFailImplCopyWithImpl<$Res>;
+abstract class _$$PlantVarietyLocalLoadingFailImplCopyWith<$Res> {
+  factory _$$PlantVarietyLocalLoadingFailImplCopyWith(
+          _$PlantVarietyLocalLoadingFailImpl value,
+          $Res Function(_$PlantVarietyLocalLoadingFailImpl) then) =
+      __$$PlantVarietyLocalLoadingFailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$LocalLoadingFailImplCopyWithImpl<$Res>
-    extends _$PlantVarietyStateCopyWithImpl<$Res, _$LocalLoadingFailImpl>
-    implements _$$LocalLoadingFailImplCopyWith<$Res> {
-  __$$LocalLoadingFailImplCopyWithImpl(_$LocalLoadingFailImpl _value,
-      $Res Function(_$LocalLoadingFailImpl) _then)
+class __$$PlantVarietyLocalLoadingFailImplCopyWithImpl<$Res>
+    extends _$PlantVarietyStateCopyWithImpl<$Res,
+        _$PlantVarietyLocalLoadingFailImpl>
+    implements _$$PlantVarietyLocalLoadingFailImplCopyWith<$Res> {
+  __$$PlantVarietyLocalLoadingFailImplCopyWithImpl(
+      _$PlantVarietyLocalLoadingFailImpl _value,
+      $Res Function(_$PlantVarietyLocalLoadingFailImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PlantVarietyState
@@ -727,7 +758,7 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$LocalLoadingFailImpl(
+    return _then(_$PlantVarietyLocalLoadingFailImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -738,8 +769,9 @@ class __$$LocalLoadingFailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingFailImpl implements _LocalLoadingFail {
-  const _$LocalLoadingFailImpl([this.message = "Unknown error"]);
+class _$PlantVarietyLocalLoadingFailImpl
+    implements PlantVarietyLocalLoadingFail {
+  const _$PlantVarietyLocalLoadingFailImpl([this.message = "Unknown error"]);
 
   @override
   @JsonKey()
@@ -754,7 +786,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingFailImpl &&
+            other is _$PlantVarietyLocalLoadingFailImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -766,9 +798,10 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      __$$LocalLoadingFailImplCopyWithImpl<_$LocalLoadingFailImpl>(
-          this, _$identity);
+  _$$PlantVarietyLocalLoadingFailImplCopyWith<
+          _$PlantVarietyLocalLoadingFailImpl>
+      get copyWith => __$$PlantVarietyLocalLoadingFailImplCopyWithImpl<
+          _$PlantVarietyLocalLoadingFailImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -818,12 +851,14 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingFail(this);
   }
@@ -831,12 +866,13 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return localLoadingFail?.call(this);
   }
@@ -844,12 +880,13 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingFail != null) {
@@ -859,34 +896,38 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
   }
 }
 
-abstract class _LocalLoadingFail implements PlantVarietyState {
-  const factory _LocalLoadingFail([final String message]) =
-      _$LocalLoadingFailImpl;
+abstract class PlantVarietyLocalLoadingFail implements PlantVarietyState {
+  const factory PlantVarietyLocalLoadingFail([final String message]) =
+      _$PlantVarietyLocalLoadingFailImpl;
 
   String get message;
 
   /// Create a copy of PlantVarietyState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingFailImplCopyWith<_$LocalLoadingFailImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PlantVarietyLocalLoadingFailImplCopyWith<
+          _$PlantVarietyLocalLoadingFailImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  factory _$$LocalLoadingSuccessImplCopyWith(_$LocalLoadingSuccessImpl value,
-          $Res Function(_$LocalLoadingSuccessImpl) then) =
-      __$$LocalLoadingSuccessImplCopyWithImpl<$Res>;
+abstract class _$$PlantVarietyLocalLoadingSuccessImplCopyWith<$Res> {
+  factory _$$PlantVarietyLocalLoadingSuccessImplCopyWith(
+          _$PlantVarietyLocalLoadingSuccessImpl value,
+          $Res Function(_$PlantVarietyLocalLoadingSuccessImpl) then) =
+      __$$PlantVarietyLocalLoadingSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<PlantVarietyEntity> departments});
 }
 
 /// @nodoc
-class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
-    extends _$PlantVarietyStateCopyWithImpl<$Res, _$LocalLoadingSuccessImpl>
-    implements _$$LocalLoadingSuccessImplCopyWith<$Res> {
-  __$$LocalLoadingSuccessImplCopyWithImpl(_$LocalLoadingSuccessImpl _value,
-      $Res Function(_$LocalLoadingSuccessImpl) _then)
+class __$$PlantVarietyLocalLoadingSuccessImplCopyWithImpl<$Res>
+    extends _$PlantVarietyStateCopyWithImpl<$Res,
+        _$PlantVarietyLocalLoadingSuccessImpl>
+    implements _$$PlantVarietyLocalLoadingSuccessImplCopyWith<$Res> {
+  __$$PlantVarietyLocalLoadingSuccessImplCopyWithImpl(
+      _$PlantVarietyLocalLoadingSuccessImpl _value,
+      $Res Function(_$PlantVarietyLocalLoadingSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PlantVarietyState
@@ -896,7 +937,7 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? departments = null,
   }) {
-    return _then(_$LocalLoadingSuccessImpl(
+    return _then(_$PlantVarietyLocalLoadingSuccessImpl(
       null == departments
           ? _value._departments
           : departments // ignore: cast_nullable_to_non_nullable
@@ -907,8 +948,10 @@ class __$$LocalLoadingSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
-  const _$LocalLoadingSuccessImpl(final List<PlantVarietyEntity> departments)
+class _$PlantVarietyLocalLoadingSuccessImpl
+    implements PlantVarietyLocalLoadingSuccess {
+  const _$PlantVarietyLocalLoadingSuccessImpl(
+      final List<PlantVarietyEntity> departments)
       : _departments = departments;
 
   final List<PlantVarietyEntity> _departments;
@@ -928,7 +971,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalLoadingSuccessImpl &&
+            other is _$PlantVarietyLocalLoadingSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._departments, _departments));
   }
@@ -942,9 +985,10 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      __$$LocalLoadingSuccessImplCopyWithImpl<_$LocalLoadingSuccessImpl>(
-          this, _$identity);
+  _$$PlantVarietyLocalLoadingSuccessImplCopyWith<
+          _$PlantVarietyLocalLoadingSuccessImpl>
+      get copyWith => __$$PlantVarietyLocalLoadingSuccessImplCopyWithImpl<
+          _$PlantVarietyLocalLoadingSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -994,12 +1038,14 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Fail value) fail,
-    required TResult Function(_LocalLoadingFail value) localLoadingFail,
-    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+    required TResult Function(PlantVarietyInitial value) initial,
+    required TResult Function(PlantVarietyLoading value) loading,
+    required TResult Function(PlantVarietySuccess value) success,
+    required TResult Function(PlantVarietyFail value) fail,
+    required TResult Function(PlantVarietyLocalLoadingFail value)
+        localLoadingFail,
+    required TResult Function(PlantVarietyLocalLoadingSuccess value)
+        localLoadingSuccess,
   }) {
     return localLoadingSuccess(this);
   }
@@ -1007,12 +1053,13 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Fail value)? fail,
-    TResult? Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult? Function(PlantVarietyInitial value)? initial,
+    TResult? Function(PlantVarietyLoading value)? loading,
+    TResult? Function(PlantVarietySuccess value)? success,
+    TResult? Function(PlantVarietyFail value)? fail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(this);
   }
@@ -1020,12 +1067,13 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Fail value)? fail,
-    TResult Function(_LocalLoadingFail value)? localLoadingFail,
-    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    TResult Function(PlantVarietyInitial value)? initial,
+    TResult Function(PlantVarietyLoading value)? loading,
+    TResult Function(PlantVarietySuccess value)? success,
+    TResult Function(PlantVarietyFail value)? fail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyLocalLoadingSuccess value)?
+        localLoadingSuccess,
     required TResult orElse(),
   }) {
     if (localLoadingSuccess != null) {
@@ -1035,15 +1083,17 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
   }
 }
 
-abstract class _LocalLoadingSuccess implements PlantVarietyState {
-  const factory _LocalLoadingSuccess(
-      final List<PlantVarietyEntity> departments) = _$LocalLoadingSuccessImpl;
+abstract class PlantVarietyLocalLoadingSuccess implements PlantVarietyState {
+  const factory PlantVarietyLocalLoadingSuccess(
+          final List<PlantVarietyEntity> departments) =
+      _$PlantVarietyLocalLoadingSuccessImpl;
 
   List<PlantVarietyEntity> get departments;
 
   /// Create a copy of PlantVarietyState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalLoadingSuccessImplCopyWith<_$LocalLoadingSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PlantVarietyLocalLoadingSuccessImplCopyWith<
+          _$PlantVarietyLocalLoadingSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
