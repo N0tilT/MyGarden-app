@@ -7,14 +7,14 @@ import 'package:my_garden_app/core/domain/repositories/common_repository.dart';
 import 'package:my_garden_app/core/domain/usecases/usecase.dart';
 import 'package:my_garden_app/feature/auth/domain/repositories/auth_repository.dart';
 
-class DeleteHasuseridEntity<CommonEntityType extends ICommonEntity,
+class DeleteCommonEntity<CommonEntityType extends ICommonEntity,
         CommonModelType extends IHasUseridModel<ICommonEntity>>
     extends Usecase<void, int> {
   final CommonRepository<List<CommonModelType>, CommonRequestModel>
       commonRepository;
   final AuthRepository authRepository;
 
-  DeleteHasuseridEntity({
+  DeleteCommonEntity({
     required this.commonRepository,
     required this.authRepository,
   });

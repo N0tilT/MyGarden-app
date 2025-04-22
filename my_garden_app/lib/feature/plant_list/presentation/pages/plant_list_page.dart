@@ -232,14 +232,23 @@ class _PlantListWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final plantListCubit = context.watch<PlantListCubit>();
+    final groupCubit = context.watch<GroupCubit>();
     return Stack(
       children: [
-        Column(
-          children: plantList
-              .map(
-                (e) => PlantListItem(plant: e),
-              )
-              .toList(),
+        LayoutBuilder(
+          builder: (context, constraints) => RefreshIndicator(
+              onRefresh: () async {
+                plantListCubit.load();
+                groupCubit.load();
+              },
+              child: Column(
+                children: plantList
+                    .map(
+                      (e) => PlantListItem(plant: e),
+                    )
+                    .toList(),
+              )),
         ),
         Container(
           margin: const EdgeInsets.only(bottom: 20),

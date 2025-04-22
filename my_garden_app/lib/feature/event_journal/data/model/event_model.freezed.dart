@@ -38,132 +38,6 @@ mixin _$EventModel {
 
   /// Serializes this EventModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of EventModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $EventModelCopyWith<EventModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $EventModelCopyWith<$Res> {
-  factory $EventModelCopyWith(
-          EventModel value, $Res Function(EventModel) then) =
-      _$EventModelCopyWithImpl<$Res, EventModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int? id,
-      @JsonKey(name: 'title') @HiveField(1) String? title,
-      @JsonKey(name: 'plantId') @HiveField(2) int plantId,
-      @JsonKey(name: 'userId') @HiveField(4) String userId,
-      @JsonKey(name: 'date') @HiveField(3) DateTime date});
-}
-
-/// @nodoc
-class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
-    implements $EventModelCopyWith<$Res> {
-  _$EventModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of EventModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? plantId = null,
-    Object? userId = null,
-    Object? date = null,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      plantId: null == plantId
-          ? _value.plantId
-          : plantId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$EventModelImplCopyWith<$Res>
-    implements $EventModelCopyWith<$Res> {
-  factory _$$EventModelImplCopyWith(
-          _$EventModelImpl value, $Res Function(_$EventModelImpl) then) =
-      __$$EventModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int? id,
-      @JsonKey(name: 'title') @HiveField(1) String? title,
-      @JsonKey(name: 'plantId') @HiveField(2) int plantId,
-      @JsonKey(name: 'userId') @HiveField(4) String userId,
-      @JsonKey(name: 'date') @HiveField(3) DateTime date});
-}
-
-/// @nodoc
-class __$$EventModelImplCopyWithImpl<$Res>
-    extends _$EventModelCopyWithImpl<$Res, _$EventModelImpl>
-    implements _$$EventModelImplCopyWith<$Res> {
-  __$$EventModelImplCopyWithImpl(
-      _$EventModelImpl _value, $Res Function(_$EventModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of EventModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? plantId = null,
-    Object? userId = null,
-    Object? date = null,
-  }) {
-    return _then(_$EventModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      plantId: null == plantId
-          ? _value.plantId
-          : plantId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
 }
 
 /// @nodoc
@@ -224,14 +98,6 @@ class _$EventModelImpl extends _EventModel {
   int get hashCode =>
       Object.hash(runtimeType, id, title, plantId, userId, date);
 
-  /// Create a copy of EventModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$EventModelImplCopyWith<_$EventModelImpl> get copyWith =>
-      __$$EventModelImplCopyWithImpl<_$EventModelImpl>(this, _$identity);
-
   @override
   Map<String, dynamic> toJson() {
     return _$$EventModelImplToJson(
@@ -273,11 +139,4 @@ abstract class _EventModel extends EventModel {
   @JsonKey(name: 'date')
   @HiveField(3)
   DateTime get date;
-
-  /// Create a copy of EventModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EventModelImplCopyWith<_$EventModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

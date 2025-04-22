@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:my_garden_app/core/domain/entities/i_common_entity.dart';
 import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart';
 
 part 'event_entity.freezed.dart';
@@ -6,7 +7,7 @@ part 'event_entity.freezed.dart';
 @Freezed(
   toStringOverride: false,
 )
-class EventEntity with _$EventEntity {
+class EventEntity with _$EventEntity implements ICommonEntity {
   const factory EventEntity({
     required int? id,
     required String? title,

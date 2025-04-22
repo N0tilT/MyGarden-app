@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/model/common_request_model.dart';
+import 'package:my_garden_app/core/data/model/has_plantId_request_model.dart';
 import 'package:my_garden_app/core/domain/repositories/common_repository.dart';
 import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/auth/data/datasources/auth_local_data_source.dart';
@@ -20,8 +21,9 @@ import 'package:my_garden_app/feature/event_journal/data/datasource/local/event_
 import 'package:my_garden_app/feature/event_journal/data/datasource/remote/event_remote_data_source.dart';
 import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart';
 import 'package:my_garden_app/feature/event_journal/data/repository/event_repository_impl.dart';
-import 'package:my_garden_app/feature/event_journal/domain/repositories/event_repository.dart';
+import 'package:my_garden_app/feature/event_journal/domain/entities/event_entity.dart';
 import 'package:my_garden_app/feature/event_journal/domain/usecases/add_event.dart';
+import 'package:my_garden_app/feature/event_journal/domain/usecases/delete_event.dart';
 import 'package:my_garden_app/feature/event_journal/domain/usecases/load_events.dart';
 import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/event_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/data/datasource/flower_bed_local_data_source.dart';
@@ -43,9 +45,6 @@ import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_flowe
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_garden.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
-import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_events.dart';
-import 'package:my_garden_app/feature/plant_card/domain/usecases/load_plant_card_info.dart';
-import 'package:my_garden_app/feature/plant_card/presentation/bloc/cubit/plant_card_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/group_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/grow_stage_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/light_need_local_data_source.dart';
@@ -492,26 +491,37 @@ Future<void> init() async {
       .isReady<LocalDataSource<List<PlantVarietyModel>, CommonRequestModel>>();
   //! Events
   sl.registerFactory(
-    () => EventCubit(
-      loadEvents: sl(),
-      uploadEvent: sl(),
-    ),
+    () => EventCubit(loadEvents: sl(), uploadEvent: sl(), deleteEvent: sl()),
   );
 
   sl.registerLazySingleton(
     () => LoadEvents(
-      eventRepository: sl(),
+      commonRepository: sl(),
       authRepository: sl(),
+      fromModelConverter: (e) {
+        return EventEntity.fromModel(e);
+      },
     ),
   );
   sl.registerLazySingleton(
     () => UploadEvent(
-      eventRepository: sl(),
+      commonRepository: sl(),
+      authRepository: sl(),
+      fromEntityConverter: (e) {
+        return EventModel.fromEntity(e, "-1", -1);
+      },
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => DeleteEvent(
+      commonRepository: sl(),
       authRepository: sl(),
     ),
   );
 
-  sl.registerLazySingleton<EventRepository>(
+  sl.registerLazySingleton<
+      CommonRepository<List<EventModel>, HasPlantidRequestModel>>(
     () => EventRepositoryImpl(
       remoteDataSource: sl(),
       localDataSource: sl(),
@@ -519,19 +529,21 @@ Future<void> init() async {
     ),
   );
 
-  sl.registerLazySingleton<EventRemoteDataSource>(
+  sl.registerLazySingleton<
+      RemoteDataSource<List<EventModel>, HasPlantidRequestModel>>(
     () => EventRemoteDataSource(
       client: sl(),
     ),
   );
 
-  sl.registerLazySingletonAsync<EventLocalDataSource>(() async {
+  sl.registerLazySingletonAsync<
+      LocalDataSource<List<EventModel>, HasPlantidRequestModel>>(() async {
     return EventLocalDataSource(
       eventBox: await Hive.openBox<EventModel>('EventBox'),
     );
   });
 
-  await sl.isReady<EventLocalDataSource>();
+  await sl.isReady<LocalDataSource<List<EventModel>, CommonRequestModel>>();
 
 //! FlowerBeds
   sl.registerFactory(
@@ -573,26 +585,6 @@ Future<void> init() async {
 
   await sl.isReady<FlowerBedLocalDataSource>();
 
-  //! PlantCard
-  sl.registerFactory(
-    () => PlantCardCubit(
-      loadPlant: sl(),
-      loadPlantEvents: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton(
-    () => LoadPlant(
-      plantRepository: sl(),
-      authRepository: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
-    () => LoadPlantEvents(
-      eventRepository: sl(),
-      authRepository: sl(),
-    ),
-  );
   //! Gardens
   sl.registerFactory(
     () => GardenCubit(

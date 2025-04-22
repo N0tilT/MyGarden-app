@@ -51,8 +51,8 @@ class _CalendarWidget extends StatelessWidget {
       fail: (message) => Center(
         child: GardenDefaultLabelWidget(text: message, fontSize: 18),
       ),
-      localLoadingFail: (message) {
-        eventCubit.load();
+      remoteFail: (message) {
+        eventCubit.loadLocally();
         return Center(
           child: GardenDefaultLabelWidget(text: message, fontSize: 18),
         );

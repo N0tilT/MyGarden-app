@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_garden_app/feature/calendar/presentation/page/calendar_page.dart';
+import 'package:my_garden_app/feature/event_journal/presentation/pages/calendar_page.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/page/garden_visual_page.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_list_page.dart';
 

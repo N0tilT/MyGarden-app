@@ -1,9 +1,11 @@
 import 'package:hive/hive.dart';
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
+import 'package:my_garden_app/core/data/model/has_plantId_request_model.dart';
 import 'package:my_garden_app/feature/event_journal/data/model/event_model.dart';
 
-class EventLocalDataSource extends LocalDataSource<List<EventModel>, void> {
+class EventLocalDataSource
+    extends LocalDataSource<List<EventModel>, HasPlantidRequestModel> {
   Box<EventModel> eventBox;
 
   EventLocalDataSource({
