@@ -39,21 +39,29 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, SecurityResponseModel>> getUserData() async {
+  Future<Either<Failure, SecurityResponseModel>> getUserData(
+    bool needValidate,
+  ) async {
     try {
       SecurityResponseModel userData = await localDataSource.loadUserData();
       if (userData.token.isEmpty) throw CacheException();
-      if (!await remoteDataSource.validateToken(
-        userData.user?.userName ?? "",
-        userData.token,
-      )) {
-        try {
-          userData = await remoteDataSource.refreshToken(userData);
-        } on ServerException {
-          return const Left(CacheFailure(message: "Ошибка получения токена"));
+      if (!needValidate) return Right(userData);
+
+      if (await networkInfo.isConnected) {
+        if (!await remoteDataSource.validateToken(
+          userData.user?.userName ?? "",
+          userData.token,
+        )) {
+          try {
+            userData = await remoteDataSource.refreshToken(userData);
+          } on ServerException {
+            return const Left(ServerFailure(message: "Сервер не доступен"));
+          }
         }
+        return Right(userData);
+      } else {
+        return const Left(ServerFailure(message: "Сервер не доступен"));
       }
-      return Right(userData);
     } on CacheException {
       return const Left(CacheFailure(message: "Ошибка получения токена"));
     }

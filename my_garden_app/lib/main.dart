@@ -74,6 +74,7 @@ class __SplashScreenState extends State<_SplashScreen> {
     FlutterNativeSplash.remove();
     Future.delayed(const Duration(seconds: 3, milliseconds: 500)).then((_) {
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(builder: (context) => const Initializer()),
       );
@@ -109,7 +110,10 @@ class _InitializerState extends State<Initializer> {
       initial: () => const Center(child: GardenLoadingWidget()),
       authorized: (token) => const Center(child: GardenLoadingWidget()),
       fail: (l) => const MainAuthPage(),
-      unauthorized: () => const MainAuthPage(),
+      unauthorized: () {
+        tokenCubit.passValidation();
+        return const Center(child: GardenLoadingWidget());
+      },
       tokenSuccess: (token) {
         return const MainNavigatorWidget();
       },

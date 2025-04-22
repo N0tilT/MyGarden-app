@@ -16,7 +16,7 @@ class UploadEvent extends Usecase<void, List<EventModel>> {
     List<EventModel> request, [
     bool remote = true,
   ]) async {
-    final token = await authRepository.getUserData();
+    final token = await authRepository.getUserData(remote);
     return token.fold((l) {
       return Left(l);
     }, (r) async {

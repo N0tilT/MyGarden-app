@@ -28,25 +28,25 @@ class _PlantListPageState extends State<PlantListPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<GroupCubit>(
-          create: (context) => sl<GroupCubit>()..loadLocally(),
+          create: (context) => sl<GroupCubit>()..load(),
         ),
         BlocProvider<GrowStageCubit>(
-          create: (context) => sl<GrowStageCubit>()..loadLocally(),
+          create: (context) => sl<GrowStageCubit>()..load(),
         ),
         BlocProvider<LightNeedCubit>(
-          create: (context) => sl<LightNeedCubit>()..loadLocally(),
+          create: (context) => sl<LightNeedCubit>()..load(),
         ),
         BlocProvider<WateringNeedCubit>(
-          create: (context) => sl<WateringNeedCubit>()..loadLocally(),
+          create: (context) => sl<WateringNeedCubit>()..load(),
         ),
         BlocProvider<PlantTypeCubit>(
-          create: (context) => sl<PlantTypeCubit>()..loadLocally(),
+          create: (context) => sl<PlantTypeCubit>()..load(),
         ),
         BlocProvider<PlantVarietyCubit>(
-          create: (context) => sl<PlantVarietyCubit>()..loadLocally(),
+          create: (context) => sl<PlantVarietyCubit>()..load(),
         ),
         BlocProvider<PlantListCubit>(
-          create: (context) => sl<PlantListCubit>()..loadLocally(),
+          create: (context) => sl<PlantListCubit>()..load(),
         ),
       ],
       child: const Scaffold(
@@ -76,220 +76,144 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
     final plantListCubit = context.watch<PlantListCubit>();
     final groupCubit = context.watch<GroupCubit>();
 
-    if (groupCubit.state is GroupSuccess) {
-      if (groupCubit.groupList.isEmpty) {
-        groupCubit.load();
-      }
-    }
-
-    if (growStageCubit.state is GrowStageSuccess &&
-        lightNeedCubit.state is LightNeedSuccess &&
-        wateringNeedCubit.state is WateringNeedSuccess &&
-        plantTypeCubit.state is PlantTypeSuccess &&
-        plantVarietyCubit.state is PlantVarietySuccess) {
-      if (growStageCubit.growStages.isEmpty) {
-        growStageCubit.load();
-      }
-      if (lightNeedCubit.plantList.isEmpty) {
-        lightNeedCubit.load();
-      }
-      if (wateringNeedCubit.wateringNeeds.isEmpty) {
-        wateringNeedCubit.load();
-      }
-      if (plantTypeCubit.plantList.isEmpty) {
-        plantTypeCubit.load();
-      }
-      if (plantVarietyCubit.plantList.isEmpty) {
-        plantVarietyCubit.load();
-      }
-    }
     return groupCubit.state.maybeWhen(
       success: (groups) {
         if (groups.isEmpty) {
           groupCubit.upload(const GroupEntity(id: null, title: "Без группы"));
         }
-        return plantListCubit.state.when(
-          initial: () => const Center(
-            child: GardenLoadingWidget(),
-          ),
-          loading: () => const Center(
-            child: GardenLoadingWidget(),
+        return plantListCubit.state.maybeWhen(
+          success: (plantList) => growStageCubit.state.maybeWhen(
+            success: (growStages) => lightNeedCubit.state.maybeWhen(
+              success: (lightNeeds) => wateringNeedCubit.state.maybeWhen(
+                success: (wateringNeeds) => plantTypeCubit.state.maybeWhen(
+                  success: (plantTypes) => plantVarietyCubit.state.maybeWhen(
+                    success: (plantVarieties) => _PlantListWrapper(
+                      plantList: plantList.map((x) {
+                        return x.copyWith(
+                          stageTitle: growStages
+                                  .firstWhere((y) => y.id == x.stageId)
+                                  .title ??
+                              "",
+                          lightNeedTitle: lightNeeds
+                                  .firstWhere(
+                                    (y) => y.id == x.lightNeedId,
+                                  )
+                                  .title ??
+                              "",
+                          wateringNeedTitle: wateringNeeds
+                                  .firstWhere(
+                                    (y) => y.id == x.wateringNeedId,
+                                  )
+                                  .title ??
+                              "",
+                          plantTypeTitle: plantTypes
+                                  .firstWhere(
+                                    (y) => y.id == x.plantTypeId,
+                                  )
+                                  .title ??
+                              "",
+                          plantVarietyTitle: plantVarieties
+                                  .firstWhere(
+                                    (y) => y.id == x.plantVarietyId,
+                                  )
+                                  .title ??
+                              "",
+                        );
+                      }).toList(),
+                    ),
+                    fail: (message) => Center(
+                      child:
+                          GardenDefaultLabelWidget(text: message, fontSize: 18),
+                    ),
+                    remoteFail: (message) {
+                      plantVarietyCubit.loadLocally();
+                      return Center(
+                        child: GardenDefaultLabelWidget(
+                          text: message,
+                          fontSize: 18,
+                        ),
+                      );
+                    },
+                    orElse: () => const Center(
+                      child: GardenLoadingWidget(),
+                    ),
+                  ),
+                  fail: (message) => Center(
+                    child:
+                        GardenDefaultLabelWidget(text: message, fontSize: 18),
+                  ),
+                  remoteFail: (message) {
+                    plantTypeCubit.loadLocally();
+                    return Center(
+                      child:
+                          GardenDefaultLabelWidget(text: message, fontSize: 18),
+                    );
+                  },
+                  orElse: () => const Center(
+                    child: GardenLoadingWidget(),
+                  ),
+                ),
+                fail: (message) => Center(
+                  child: GardenDefaultLabelWidget(text: message, fontSize: 18),
+                ),
+                remoteFail: (message) {
+                  wateringNeedCubit.loadLocally();
+                  return Center(
+                    child:
+                        GardenDefaultLabelWidget(text: message, fontSize: 18),
+                  );
+                },
+                orElse: () => const Center(
+                  child: GardenLoadingWidget(),
+                ),
+              ),
+              fail: (message) => Center(
+                child: GardenDefaultLabelWidget(text: message, fontSize: 18),
+              ),
+              remoteFail: (message) {
+                lightNeedCubit.loadLocally();
+                return Center(
+                  child: GardenDefaultLabelWidget(text: message, fontSize: 18),
+                );
+              },
+              orElse: () => const Center(
+                child: GardenLoadingWidget(),
+              ),
+            ),
+            fail: (message) => Center(
+              child: GardenDefaultLabelWidget(text: message, fontSize: 18),
+            ),
+            remoteFail: (message) {
+              growStageCubit.loadLocally();
+              return Center(
+                child: GardenDefaultLabelWidget(text: message, fontSize: 18),
+              );
+            },
+            orElse: () => const Center(
+              child: GardenLoadingWidget(),
+            ),
           ),
           fail: (message) => Center(
             child: GardenDefaultLabelWidget(text: message, fontSize: 18),
           ),
-          localLoadingFail: (message) {
-            plantListCubit.load();
+          remoteFail: (message) {
+            plantListCubit.loadLocally();
             return Center(
               child: GardenDefaultLabelWidget(text: message, fontSize: 18),
             );
           },
-          success: (plantList) {
-            if (plantList.isEmpty) {
-              plantListCubit.load();
-            }
-            if (growStageCubit.state is GrowStageSuccess &&
-                lightNeedCubit.state is LightNeedSuccess &&
-                wateringNeedCubit.state is WateringNeedSuccess &&
-                plantTypeCubit.state is PlantTypeSuccess &&
-                plantVarietyCubit.state is PlantVarietySuccess) {
-              if (growStageCubit.growStages.isEmpty) {
-                growStageCubit.load();
-              }
-              if (lightNeedCubit.plantList.isEmpty) {
-                lightNeedCubit.load();
-              }
-              if (wateringNeedCubit.wateringNeeds.isEmpty) {
-                wateringNeedCubit.load();
-              }
-              if (plantTypeCubit.plantList.isEmpty) {
-                plantTypeCubit.load();
-              }
-              if (plantVarietyCubit.plantList.isEmpty) {
-                plantVarietyCubit.load();
-              }
-
-              return growStageCubit.state.maybeWhen(
-                success: (growStages) => lightNeedCubit.state.maybeWhen(
-                  success: (lightNeeds) => wateringNeedCubit.state.maybeWhen(
-                    success: (wateringNeeds) => plantTypeCubit.state.maybeWhen(
-                      success: (plantTypes) =>
-                          plantVarietyCubit.state.maybeWhen(
-                        success: (plantVarieties) => _PlantListWrapper(
-                          plantList: plantList.map((x) {
-                            return x.copyWith(
-                              stageTitle: growStages
-                                      .firstWhere((y) => y.id == x.stageId)
-                                      .title ??
-                                  "",
-                              lightNeedTitle: lightNeeds
-                                      .firstWhere(
-                                        (y) => y.id == x.lightNeedId,
-                                      )
-                                      .title ??
-                                  "",
-                              wateringNeedTitle: wateringNeeds
-                                      .firstWhere(
-                                        (y) => y.id == x.wateringNeedId,
-                                      )
-                                      .title ??
-                                  "",
-                              plantTypeTitle: plantTypes
-                                      .firstWhere(
-                                        (y) => y.id == x.plantTypeId,
-                                      )
-                                      .title ??
-                                  "",
-                              plantVarietyTitle: plantVarieties
-                                      .firstWhere(
-                                        (y) => y.id == x.plantVarietyId,
-                                      )
-                                      .title ??
-                                  "",
-                            );
-                          }).toList(),
-                        ),
-                        orElse: () => const Center(
-                          child: GardenLoadingWidget(),
-                        ),
-                      ),
-                      orElse: () => const Center(
-                        child: GardenLoadingWidget(),
-                      ),
-                    ),
-                    orElse: () => const Center(
-                      child: GardenLoadingWidget(),
-                    ),
-                  ),
-                  orElse: () => const Center(
-                    child: GardenLoadingWidget(),
-                  ),
-                ),
-                orElse: () => const Center(
-                  child: GardenLoadingWidget(),
-                ),
-              );
-            } else {
-              return const Center(
-                child: GardenLoadingWidget(),
-              );
-            }
-          },
-          localLoadingSuccess: (plantList) {
-            if (plantList.isEmpty) {
-              plantListCubit.load();
-            }
-            if (growStageCubit.state is GrowStageSuccess &&
-                lightNeedCubit.state is LightNeedSuccess &&
-                wateringNeedCubit.state is WateringNeedSuccess &&
-                plantTypeCubit.state is PlantTypeSuccess &&
-                plantVarietyCubit.state is PlantVarietySuccess) {
-              return growStageCubit.state.maybeWhen(
-                success: (growStages) => lightNeedCubit.state.maybeWhen(
-                  success: (lightNeeds) => wateringNeedCubit.state.maybeWhen(
-                    success: (wateringNeeds) => plantTypeCubit.state.maybeWhen(
-                      success: (plantTypes) =>
-                          plantVarietyCubit.state.maybeWhen(
-                        success: (plantVarieties) => _PlantListWrapper(
-                          plantList: plantList.map((x) {
-                            return x.copyWith(
-                              stageTitle: growStages
-                                      .firstWhere((y) => y.id == x.stageId)
-                                      .title ??
-                                  "",
-                              lightNeedTitle: lightNeeds
-                                      .firstWhere(
-                                        (y) => y.id == x.lightNeedId,
-                                      )
-                                      .title ??
-                                  "",
-                              wateringNeedTitle: wateringNeeds
-                                      .firstWhere(
-                                        (y) => y.id == x.wateringNeedId,
-                                      )
-                                      .title ??
-                                  "",
-                              plantTypeTitle: plantTypes
-                                      .firstWhere(
-                                        (y) => y.id == x.plantTypeId,
-                                      )
-                                      .title ??
-                                  "",
-                              plantVarietyTitle: plantVarieties
-                                      .firstWhere(
-                                        (y) => y.id == x.plantVarietyId,
-                                      )
-                                      .title ??
-                                  "",
-                            );
-                          }).toList(),
-                        ),
-                        orElse: () => const Center(
-                          child: GardenLoadingWidget(),
-                        ),
-                      ),
-                      orElse: () => const Center(
-                        child: GardenLoadingWidget(),
-                      ),
-                    ),
-                    orElse: () => const Center(
-                      child: GardenLoadingWidget(),
-                    ),
-                  ),
-                  orElse: () => const Center(
-                    child: GardenLoadingWidget(),
-                  ),
-                ),
-                orElse: () => const Center(
-                  child: GardenLoadingWidget(),
-                ),
-              );
-            } else {
-              return const Center(
-                child: GardenLoadingWidget(),
-              );
-            }
-          },
+          orElse: () => const Center(
+            child: GardenLoadingWidget(),
+          ),
+        );
+      },
+      fail: (message) => Center(
+        child: GardenDefaultLabelWidget(text: message, fontSize: 18),
+      ),
+      remoteFail: (message) {
+        groupCubit.loadLocally();
+        return Center(
+          child: GardenDefaultLabelWidget(text: message, fontSize: 18),
         );
       },
       orElse: () => const Center(

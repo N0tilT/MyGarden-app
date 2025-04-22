@@ -21,8 +21,8 @@ mixin _$WateringNeedState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) =>
@@ -32,8 +32,8 @@ mixin _$WateringNeedState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) =>
@@ -43,8 +43,8 @@ mixin _$WateringNeedState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
@@ -54,9 +54,8 @@ mixin _$WateringNeedState {
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) =>
@@ -66,8 +65,8 @@ mixin _$WateringNeedState {
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) =>
@@ -77,8 +76,8 @@ mixin _$WateringNeedState {
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -152,8 +151,8 @@ class _$WateringNeedInitialImpl implements WateringNeedInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) {
@@ -166,8 +165,8 @@ class _$WateringNeedInitialImpl implements WateringNeedInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -180,8 +179,8 @@ class _$WateringNeedInitialImpl implements WateringNeedInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -197,9 +196,8 @@ class _$WateringNeedInitialImpl implements WateringNeedInitial {
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -212,8 +210,8 @@ class _$WateringNeedInitialImpl implements WateringNeedInitial {
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -226,8 +224,8 @@ class _$WateringNeedInitialImpl implements WateringNeedInitial {
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -288,8 +286,8 @@ class _$WateringNeedLoadingImpl implements WateringNeedLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) {
@@ -302,8 +300,8 @@ class _$WateringNeedLoadingImpl implements WateringNeedLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -316,8 +314,8 @@ class _$WateringNeedLoadingImpl implements WateringNeedLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -333,9 +331,8 @@ class _$WateringNeedLoadingImpl implements WateringNeedLoading {
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -348,8 +345,8 @@ class _$WateringNeedLoadingImpl implements WateringNeedLoading {
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -362,8 +359,8 @@ class _$WateringNeedLoadingImpl implements WateringNeedLoading {
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -458,8 +455,8 @@ class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) {
@@ -472,8 +469,8 @@ class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -486,8 +483,8 @@ class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -503,9 +500,8 @@ class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -518,8 +514,8 @@ class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -532,8 +528,8 @@ class _$WateringNeedSuccessImpl implements WateringNeedSuccess {
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -602,7 +598,7 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
 
   @override
   String toString() {
-    return 'WateringNeedState.fail(message: $message)';
+    return 'WateringNeedState.remoteFail(message: $message)';
   }
 
   @override
@@ -631,12 +627,12 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) {
-    return fail(message);
+    return remoteFail(message);
   }
 
   @override
@@ -645,12 +641,12 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) {
-    return fail?.call(message);
+    return remoteFail?.call(message);
   }
 
   @override
@@ -659,13 +655,13 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(message);
+    if (remoteFail != null) {
+      return remoteFail(message);
     }
     return orElse();
   }
@@ -676,13 +672,12 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return fail(this);
+    return remoteFail(this);
   }
 
   @override
@@ -691,12 +686,12 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
-    return fail?.call(this);
+    return remoteFail?.call(this);
   }
 
   @override
@@ -705,14 +700,14 @@ class _$WateringNeedFailImpl implements WateringNeedFail {
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(this);
+    if (remoteFail != null) {
+      return remoteFail(this);
     }
     return orElse();
   }
@@ -779,7 +774,7 @@ class _$WateringNeedLocalLoadingFailImpl
 
   @override
   String toString() {
-    return 'WateringNeedState.localLoadingFail(message: $message)';
+    return 'WateringNeedState.fail(message: $message)';
   }
 
   @override
@@ -809,12 +804,12 @@ class _$WateringNeedLocalLoadingFailImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(message);
+    return fail(message);
   }
 
   @override
@@ -823,12 +818,12 @@ class _$WateringNeedLocalLoadingFailImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(message);
+    return fail?.call(message);
   }
 
   @override
@@ -837,13 +832,13 @@ class _$WateringNeedLocalLoadingFailImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(message);
+    if (fail != null) {
+      return fail(message);
     }
     return orElse();
   }
@@ -854,13 +849,12 @@ class _$WateringNeedLocalLoadingFailImpl
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(this);
+    return fail(this);
   }
 
   @override
@@ -869,12 +863,12 @@ class _$WateringNeedLocalLoadingFailImpl
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(this);
+    return fail?.call(this);
   }
 
   @override
@@ -883,14 +877,14 @@ class _$WateringNeedLocalLoadingFailImpl
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(this);
+    if (fail != null) {
+      return fail(this);
     }
     return orElse();
   }
@@ -996,8 +990,8 @@ class _$WateringNeedLocalLoadingSuccessImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<WateringNeedEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<WateringNeedEntity> departments)
         localLoadingSuccess,
   }) {
@@ -1010,8 +1004,8 @@ class _$WateringNeedLocalLoadingSuccessImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<WateringNeedEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<WateringNeedEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -1024,8 +1018,8 @@ class _$WateringNeedLocalLoadingSuccessImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<WateringNeedEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<WateringNeedEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -1041,9 +1035,8 @@ class _$WateringNeedLocalLoadingSuccessImpl
     required TResult Function(WateringNeedInitial value) initial,
     required TResult Function(WateringNeedLoading value) loading,
     required TResult Function(WateringNeedSuccess value) success,
-    required TResult Function(WateringNeedFail value) fail,
-    required TResult Function(WateringNeedLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(WateringNeedFail value) remoteFail,
+    required TResult Function(WateringNeedLocalLoadingFail value) fail,
     required TResult Function(WateringNeedLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -1056,8 +1049,8 @@ class _$WateringNeedLocalLoadingSuccessImpl
     TResult? Function(WateringNeedInitial value)? initial,
     TResult? Function(WateringNeedLoading value)? loading,
     TResult? Function(WateringNeedSuccess value)? success,
-    TResult? Function(WateringNeedFail value)? fail,
-    TResult? Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(WateringNeedFail value)? remoteFail,
+    TResult? Function(WateringNeedLocalLoadingFail value)? fail,
     TResult? Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -1070,8 +1063,8 @@ class _$WateringNeedLocalLoadingSuccessImpl
     TResult Function(WateringNeedInitial value)? initial,
     TResult Function(WateringNeedLoading value)? loading,
     TResult Function(WateringNeedSuccess value)? success,
-    TResult Function(WateringNeedFail value)? fail,
-    TResult Function(WateringNeedLocalLoadingFail value)? localLoadingFail,
+    TResult Function(WateringNeedFail value)? remoteFail,
+    TResult Function(WateringNeedLocalLoadingFail value)? fail,
     TResult Function(WateringNeedLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),

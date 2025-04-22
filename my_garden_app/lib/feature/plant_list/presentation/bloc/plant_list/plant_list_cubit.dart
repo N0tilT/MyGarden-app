@@ -20,16 +20,16 @@ class PlantListCubit extends Cubit<PlantListState> {
     final result = await uploadPlant([plant]);
     plantList.add(plant);
     result.fold(
-      (error) => emit(PlantListState.fail(error.message)),
+      (error) => emit(PlantListState.remoteFail(error.message)),
       (success) => emit(PlantListState.success(plantList)),
     );
   }
 
   Future<void> load() async {
     emit(const PlantListState.loading());
-    final plants = await loadPlants([], false);
+    final plants = await loadPlants([]);
     plants.fold(
-      (error) => emit(PlantListState.fail(error.message)),
+      (error) => emit(PlantListState.remoteFail(error.message)),
       (succededPlantList) {
         plantList = succededPlantList;
         emit(
@@ -43,9 +43,9 @@ class PlantListCubit extends Cubit<PlantListState> {
 
   Future<void> loadLocally() async {
     emit(const PlantListState.loading());
-    final plants = await loadPlants([]);
+    final plants = await loadPlants([], false);
     plants.fold(
-      (error) => emit(PlantListState.fail(error.message)),
+      (error) => emit(PlantListState.remoteFail(error.message)),
       (succededPlantList) {
         plantList = succededPlantList;
         emit(

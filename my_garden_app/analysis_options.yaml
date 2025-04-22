@@ -29,6 +29,7 @@ analyzer:
 
     # Reassignment should be treated as warning (not a hint)
     parameter_assignments: warning
+    file_names: ignore
 
   exclude:
     # Generated for Flutter web apps. Since it is auto-generated, errors should be ignored

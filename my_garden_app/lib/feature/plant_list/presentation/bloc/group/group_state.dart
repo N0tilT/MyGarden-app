@@ -5,10 +5,10 @@ class GroupState with _$GroupState {
   const factory GroupState.initial() = GroupInitial;
   const factory GroupState.loading() = GroupLoading;
   const factory GroupState.success(List<GroupEntity> plants) = GroupSuccess;
-  const factory GroupState.fail([
+  const factory GroupState.remoteFail([
     @Default("Unknown error") String message,
   ]) = GroupFail;
-  const factory GroupState.localLoadingFail([
+  const factory GroupState.fail([
     @Default("Unknown error") String message,
   ]) = GroupLocalLoadingFail;
   const factory GroupState.localLoadingSuccess(

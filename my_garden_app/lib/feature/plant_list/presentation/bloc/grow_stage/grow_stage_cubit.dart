@@ -17,7 +17,7 @@ class GrowStageCubit extends Cubit<GrowStageState> {
     emit(const GrowStageState.loading());
     final plants = await loadGrowStages([]);
     plants.fold(
-      (error) => emit(GrowStageState.fail(error.message)),
+      (error) => emit(GrowStageState.remoteFail(error.message)),
       (succededPlantList) {
         growStages = succededPlantList;
         emit(
@@ -33,7 +33,7 @@ class GrowStageCubit extends Cubit<GrowStageState> {
     emit(const GrowStageState.loading());
     final plants = await loadGrowStages([], false);
     plants.fold(
-      (error) => emit(GrowStageState.fail(error.message)),
+      (error) => emit(GrowStageState.remoteFail(error.message)),
       (succededPlantList) {
         growStages = succededPlantList;
         emit(

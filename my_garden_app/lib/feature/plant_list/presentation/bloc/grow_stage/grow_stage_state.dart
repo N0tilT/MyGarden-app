@@ -6,10 +6,10 @@ class GrowStageState with _$GrowStageState {
   const factory GrowStageState.loading() = GrowStageLoading;
   const factory GrowStageState.success(List<GrowStageEntity> plants) =
       GrowStageSuccess;
-  const factory GrowStageState.fail([
+  const factory GrowStageState.remoteFail([
     @Default("Unknown error") String message,
   ]) = GrowStageFail;
-  const factory GrowStageState.localLoadingFail([
+  const factory GrowStageState.fail([
     @Default("Unknown error") String message,
   ]) = GrowStageLocalLoadingFail;
   const factory GrowStageState.localLoadingSuccess(

@@ -21,8 +21,8 @@ mixin _$GrowStageState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) =>
@@ -32,8 +32,8 @@ mixin _$GrowStageState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,8 +42,8 @@ mixin _$GrowStageState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
@@ -53,8 +53,8 @@ mixin _$GrowStageState {
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) =>
@@ -64,8 +64,8 @@ mixin _$GrowStageState {
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,8 +74,8 @@ mixin _$GrowStageState {
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
@@ -147,8 +147,8 @@ class _$GrowStageInitialImpl implements GrowStageInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) {
@@ -161,8 +161,8 @@ class _$GrowStageInitialImpl implements GrowStageInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) {
     return initial?.call();
@@ -174,8 +174,8 @@ class _$GrowStageInitialImpl implements GrowStageInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -191,8 +191,8 @@ class _$GrowStageInitialImpl implements GrowStageInitial {
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -205,8 +205,8 @@ class _$GrowStageInitialImpl implements GrowStageInitial {
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return initial?.call(this);
@@ -218,8 +218,8 @@ class _$GrowStageInitialImpl implements GrowStageInitial {
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -278,8 +278,8 @@ class _$GrowStageLoadingImpl implements GrowStageLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) {
@@ -292,8 +292,8 @@ class _$GrowStageLoadingImpl implements GrowStageLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) {
     return loading?.call();
@@ -305,8 +305,8 @@ class _$GrowStageLoadingImpl implements GrowStageLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -322,8 +322,8 @@ class _$GrowStageLoadingImpl implements GrowStageLoading {
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -336,8 +336,8 @@ class _$GrowStageLoadingImpl implements GrowStageLoading {
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return loading?.call(this);
@@ -349,8 +349,8 @@ class _$GrowStageLoadingImpl implements GrowStageLoading {
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -444,8 +444,8 @@ class _$GrowStageSuccessImpl implements GrowStageSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) {
@@ -458,8 +458,8 @@ class _$GrowStageSuccessImpl implements GrowStageSuccess {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) {
     return success?.call(plants);
@@ -471,8 +471,8 @@ class _$GrowStageSuccessImpl implements GrowStageSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -488,8 +488,8 @@ class _$GrowStageSuccessImpl implements GrowStageSuccess {
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -502,8 +502,8 @@ class _$GrowStageSuccessImpl implements GrowStageSuccess {
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return success?.call(this);
@@ -515,8 +515,8 @@ class _$GrowStageSuccessImpl implements GrowStageSuccess {
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -584,7 +584,7 @@ class _$GrowStageFailImpl implements GrowStageFail {
 
   @override
   String toString() {
-    return 'GrowStageState.fail(message: $message)';
+    return 'GrowStageState.remoteFail(message: $message)';
   }
 
   @override
@@ -612,12 +612,12 @@ class _$GrowStageFailImpl implements GrowStageFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) {
-    return fail(message);
+    return remoteFail(message);
   }
 
   @override
@@ -626,11 +626,11 @@ class _$GrowStageFailImpl implements GrowStageFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) {
-    return fail?.call(message);
+    return remoteFail?.call(message);
   }
 
   @override
@@ -639,13 +639,13 @@ class _$GrowStageFailImpl implements GrowStageFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(message);
+    if (remoteFail != null) {
+      return remoteFail(message);
     }
     return orElse();
   }
@@ -656,12 +656,12 @@ class _$GrowStageFailImpl implements GrowStageFail {
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return fail(this);
+    return remoteFail(this);
   }
 
   @override
@@ -670,11 +670,11 @@ class _$GrowStageFailImpl implements GrowStageFail {
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
-    return fail?.call(this);
+    return remoteFail?.call(this);
   }
 
   @override
@@ -683,13 +683,13 @@ class _$GrowStageFailImpl implements GrowStageFail {
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(this);
+    if (remoteFail != null) {
+      return remoteFail(this);
     }
     return orElse();
   }
@@ -753,7 +753,7 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
 
   @override
   String toString() {
-    return 'GrowStageState.localLoadingFail(message: $message)';
+    return 'GrowStageState.fail(message: $message)';
   }
 
   @override
@@ -782,12 +782,12 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(message);
+    return fail(message);
   }
 
   @override
@@ -796,11 +796,11 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(message);
+    return fail?.call(message);
   }
 
   @override
@@ -809,13 +809,13 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(message);
+    if (fail != null) {
+      return fail(message);
     }
     return orElse();
   }
@@ -826,12 +826,12 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(this);
+    return fail(this);
   }
 
   @override
@@ -840,11 +840,11 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(this);
+    return fail?.call(this);
   }
 
   @override
@@ -853,13 +853,13 @@ class _$GrowStageLocalLoadingFailImpl implements GrowStageLocalLoadingFail {
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(this);
+    if (fail != null) {
+      return fail(this);
     }
     return orElse();
   }
@@ -964,8 +964,8 @@ class _$GrowStageLocalLoadingSuccessImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GrowStageEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GrowStageEntity> departments)
         localLoadingSuccess,
   }) {
@@ -978,8 +978,8 @@ class _$GrowStageLocalLoadingSuccessImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GrowStageEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GrowStageEntity> departments)? localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(departments);
@@ -991,8 +991,8 @@ class _$GrowStageLocalLoadingSuccessImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GrowStageEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GrowStageEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -1008,8 +1008,8 @@ class _$GrowStageLocalLoadingSuccessImpl
     required TResult Function(GrowStageInitial value) initial,
     required TResult Function(GrowStageLoading value) loading,
     required TResult Function(GrowStageSuccess value) success,
-    required TResult Function(GrowStageFail value) fail,
-    required TResult Function(GrowStageLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GrowStageFail value) remoteFail,
+    required TResult Function(GrowStageLocalLoadingFail value) fail,
     required TResult Function(GrowStageLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -1022,8 +1022,8 @@ class _$GrowStageLocalLoadingSuccessImpl
     TResult? Function(GrowStageInitial value)? initial,
     TResult? Function(GrowStageLoading value)? loading,
     TResult? Function(GrowStageSuccess value)? success,
-    TResult? Function(GrowStageFail value)? fail,
-    TResult? Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GrowStageFail value)? remoteFail,
+    TResult? Function(GrowStageLocalLoadingFail value)? fail,
     TResult? Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(this);
@@ -1035,8 +1035,8 @@ class _$GrowStageLocalLoadingSuccessImpl
     TResult Function(GrowStageInitial value)? initial,
     TResult Function(GrowStageLoading value)? loading,
     TResult Function(GrowStageSuccess value)? success,
-    TResult Function(GrowStageFail value)? fail,
-    TResult Function(GrowStageLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GrowStageFail value)? remoteFail,
+    TResult Function(GrowStageLocalLoadingFail value)? fail,
     TResult Function(GrowStageLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {

@@ -17,7 +17,7 @@ class PlantTypeCubit extends Cubit<PlantTypeState> {
     emit(const PlantTypeState.loading());
     final plants = await loadPlantTypes([]);
     plants.fold(
-      (error) => emit(PlantTypeState.fail(error.message)),
+      (error) => emit(PlantTypeState.remoteFail(error.message)),
       (succededPlantList) {
         plantList = succededPlantList;
         emit(
@@ -33,7 +33,7 @@ class PlantTypeCubit extends Cubit<PlantTypeState> {
     emit(const PlantTypeState.loading());
     final plants = await loadPlantTypes([], false);
     plants.fold(
-      (error) => emit(PlantTypeState.fail(error.message)),
+      (error) => emit(PlantTypeState.remoteFail(error.message)),
       (succededPlantList) {
         plantList = succededPlantList;
         emit(

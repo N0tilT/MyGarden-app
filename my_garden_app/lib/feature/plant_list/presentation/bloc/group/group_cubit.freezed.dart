@@ -21,8 +21,8 @@ mixin _$GroupState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) =>
@@ -32,8 +32,8 @@ mixin _$GroupState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,8 +42,8 @@ mixin _$GroupState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
@@ -53,8 +53,8 @@ mixin _$GroupState {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) =>
@@ -64,8 +64,8 @@ mixin _$GroupState {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,8 +74,8 @@ mixin _$GroupState {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
@@ -147,8 +147,8 @@ class _$GroupInitialImpl implements GroupInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) {
@@ -161,8 +161,8 @@ class _$GroupInitialImpl implements GroupInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) {
     return initial?.call();
@@ -174,8 +174,8 @@ class _$GroupInitialImpl implements GroupInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -191,8 +191,8 @@ class _$GroupInitialImpl implements GroupInitial {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -205,8 +205,8 @@ class _$GroupInitialImpl implements GroupInitial {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return initial?.call(this);
@@ -218,8 +218,8 @@ class _$GroupInitialImpl implements GroupInitial {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -278,8 +278,8 @@ class _$GroupLoadingImpl implements GroupLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) {
@@ -292,8 +292,8 @@ class _$GroupLoadingImpl implements GroupLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) {
     return loading?.call();
@@ -305,8 +305,8 @@ class _$GroupLoadingImpl implements GroupLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -322,8 +322,8 @@ class _$GroupLoadingImpl implements GroupLoading {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -336,8 +336,8 @@ class _$GroupLoadingImpl implements GroupLoading {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return loading?.call(this);
@@ -349,8 +349,8 @@ class _$GroupLoadingImpl implements GroupLoading {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -442,8 +442,8 @@ class _$GroupSuccessImpl implements GroupSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) {
@@ -456,8 +456,8 @@ class _$GroupSuccessImpl implements GroupSuccess {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) {
     return success?.call(plants);
@@ -469,8 +469,8 @@ class _$GroupSuccessImpl implements GroupSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -486,8 +486,8 @@ class _$GroupSuccessImpl implements GroupSuccess {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -500,8 +500,8 @@ class _$GroupSuccessImpl implements GroupSuccess {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return success?.call(this);
@@ -513,8 +513,8 @@ class _$GroupSuccessImpl implements GroupSuccess {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -582,7 +582,7 @@ class _$GroupFailImpl implements GroupFail {
 
   @override
   String toString() {
-    return 'GroupState.fail(message: $message)';
+    return 'GroupState.remoteFail(message: $message)';
   }
 
   @override
@@ -610,12 +610,12 @@ class _$GroupFailImpl implements GroupFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) {
-    return fail(message);
+    return remoteFail(message);
   }
 
   @override
@@ -624,11 +624,11 @@ class _$GroupFailImpl implements GroupFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) {
-    return fail?.call(message);
+    return remoteFail?.call(message);
   }
 
   @override
@@ -637,13 +637,13 @@ class _$GroupFailImpl implements GroupFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(message);
+    if (remoteFail != null) {
+      return remoteFail(message);
     }
     return orElse();
   }
@@ -654,12 +654,12 @@ class _$GroupFailImpl implements GroupFail {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return fail(this);
+    return remoteFail(this);
   }
 
   @override
@@ -668,11 +668,11 @@ class _$GroupFailImpl implements GroupFail {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
-    return fail?.call(this);
+    return remoteFail?.call(this);
   }
 
   @override
@@ -681,13 +681,13 @@ class _$GroupFailImpl implements GroupFail {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(this);
+    if (remoteFail != null) {
+      return remoteFail(this);
     }
     return orElse();
   }
@@ -750,7 +750,7 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
 
   @override
   String toString() {
-    return 'GroupState.localLoadingFail(message: $message)';
+    return 'GroupState.fail(message: $message)';
   }
 
   @override
@@ -779,12 +779,12 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(message);
+    return fail(message);
   }
 
   @override
@@ -793,11 +793,11 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(message);
+    return fail?.call(message);
   }
 
   @override
@@ -806,13 +806,13 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(message);
+    if (fail != null) {
+      return fail(message);
     }
     return orElse();
   }
@@ -823,12 +823,12 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(this);
+    return fail(this);
   }
 
   @override
@@ -837,11 +837,11 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(this);
+    return fail?.call(this);
   }
 
   @override
@@ -850,13 +850,13 @@ class _$GroupLocalLoadingFailImpl implements GroupLocalLoadingFail {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(this);
+    if (fail != null) {
+      return fail(this);
     }
     return orElse();
   }
@@ -957,8 +957,8 @@ class _$GroupLocalLoadingSuccessImpl implements GroupLocalLoadingSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<GroupEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<GroupEntity> departments)
         localLoadingSuccess,
   }) {
@@ -971,8 +971,8 @@ class _$GroupLocalLoadingSuccessImpl implements GroupLocalLoadingSuccess {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<GroupEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<GroupEntity> departments)? localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(departments);
@@ -984,8 +984,8 @@ class _$GroupLocalLoadingSuccessImpl implements GroupLocalLoadingSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<GroupEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<GroupEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -1001,8 +1001,8 @@ class _$GroupLocalLoadingSuccessImpl implements GroupLocalLoadingSuccess {
     required TResult Function(GroupInitial value) initial,
     required TResult Function(GroupLoading value) loading,
     required TResult Function(GroupSuccess value) success,
-    required TResult Function(GroupFail value) fail,
-    required TResult Function(GroupLocalLoadingFail value) localLoadingFail,
+    required TResult Function(GroupFail value) remoteFail,
+    required TResult Function(GroupLocalLoadingFail value) fail,
     required TResult Function(GroupLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -1015,8 +1015,8 @@ class _$GroupLocalLoadingSuccessImpl implements GroupLocalLoadingSuccess {
     TResult? Function(GroupInitial value)? initial,
     TResult? Function(GroupLoading value)? loading,
     TResult? Function(GroupSuccess value)? success,
-    TResult? Function(GroupFail value)? fail,
-    TResult? Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(GroupFail value)? remoteFail,
+    TResult? Function(GroupLocalLoadingFail value)? fail,
     TResult? Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
   }) {
     return localLoadingSuccess?.call(this);
@@ -1028,8 +1028,8 @@ class _$GroupLocalLoadingSuccessImpl implements GroupLocalLoadingSuccess {
     TResult Function(GroupInitial value)? initial,
     TResult Function(GroupLoading value)? loading,
     TResult Function(GroupSuccess value)? success,
-    TResult Function(GroupFail value)? fail,
-    TResult Function(GroupLocalLoadingFail value)? localLoadingFail,
+    TResult Function(GroupFail value)? remoteFail,
+    TResult Function(GroupLocalLoadingFail value)? fail,
     TResult Function(GroupLocalLoadingSuccess value)? localLoadingSuccess,
     required TResult orElse(),
   }) {

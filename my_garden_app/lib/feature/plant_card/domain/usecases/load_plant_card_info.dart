@@ -19,7 +19,7 @@ class LoadPlant extends Usecase<PlantModel, int> {
     int request, [
     bool remote = true,
   ]) async {
-    final getUserData = await authRepository.getUserData();
+    final getUserData = await authRepository.getUserData(remote);
     return getUserData.fold((l) {
       return Left(l);
     }, (r) async {

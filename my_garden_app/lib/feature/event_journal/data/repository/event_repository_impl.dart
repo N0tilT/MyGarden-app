@@ -46,6 +46,7 @@ class EventRepositoryImpl implements EventRepository {
       localDataSource,
       remoteDataSource,
       remote,
+      // ignore: void_checks
       request,
       networkInfo,
       token,

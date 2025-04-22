@@ -17,7 +17,7 @@ class WateringNeedCubit extends Cubit<WateringNeedState> {
     emit(const WateringNeedState.loading());
     final plants = await loadWateringNeeds([]);
     plants.fold(
-      (error) => emit(WateringNeedState.fail(error.message)),
+      (error) => emit(WateringNeedState.remoteFail(error.message)),
       (succededPlantList) {
         wateringNeeds = succededPlantList;
         emit(
@@ -33,7 +33,7 @@ class WateringNeedCubit extends Cubit<WateringNeedState> {
     emit(const WateringNeedState.loading());
     final plants = await loadWateringNeeds([], false);
     plants.fold(
-      (error) => emit(WateringNeedState.fail(error.message)),
+      (error) => emit(WateringNeedState.remoteFail(error.message)),
       (succededPlantList) {
         wateringNeeds = succededPlantList;
         emit(

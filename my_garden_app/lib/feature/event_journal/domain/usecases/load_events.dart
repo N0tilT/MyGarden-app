@@ -16,7 +16,7 @@ class LoadEvents extends Usecase<List<EventModel>, void> {
     void request, [
     bool remote = true,
   ]) async {
-    final token = await authRepository.getUserData();
+    final token = await authRepository.getUserData(remote);
     return token.fold((l) {
       return Left(l);
     }, (r) async {

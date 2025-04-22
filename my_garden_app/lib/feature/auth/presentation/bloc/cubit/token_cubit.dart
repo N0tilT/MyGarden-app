@@ -8,14 +8,14 @@ part 'token_cubit.freezed.dart';
 part 'token_state.dart';
 
 class TokenCubit extends Cubit<TokenState> {
-  final GetUserData getTokenUseCase;
+  final GetUserData getUserData;
   final Logout logoutUseCase;
   SecurityResponseModel token =
       const SecurityResponseModel(token: "", refreshToken: "");
 
   TokenCubit({
     required this.logoutUseCase,
-    required this.getTokenUseCase,
+    required this.getUserData,
   }) : super(const TokenState.initial());
 
   Future<void> logout() async {
@@ -30,7 +30,18 @@ class TokenCubit extends Cubit<TokenState> {
 
   Future<void> getToken() async {
     // ignore: void_checks
-    final tokenRes = await getTokenUseCase.call(() {});
+    final tokenRes = await getUserData.call(true);
+    tokenRes.fold((l) => emit(const TokenState.unauthorized()), (r) {
+      token = r;
+      emit(
+        TokenState.tokenSuccess(token),
+      );
+    });
+  }
+
+  Future<void> passValidation() async {
+    // ignore: void_checks
+    final tokenRes = await getUserData.call(false);
     tokenRes.fold((l) => emit(TokenState.fail(l.message)), (r) {
       token = r;
       emit(

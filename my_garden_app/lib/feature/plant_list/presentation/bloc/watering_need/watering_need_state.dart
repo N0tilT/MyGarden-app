@@ -6,10 +6,10 @@ class WateringNeedState with _$WateringNeedState {
   const factory WateringNeedState.loading() = WateringNeedLoading;
   const factory WateringNeedState.success(List<WateringNeedEntity> plants) =
       WateringNeedSuccess;
-  const factory WateringNeedState.fail([
+  const factory WateringNeedState.remoteFail([
     @Default("Unknown error") String message,
   ]) = WateringNeedFail;
-  const factory WateringNeedState.localLoadingFail([
+  const factory WateringNeedState.fail([
     @Default("Unknown error") String message,
   ]) = WateringNeedLocalLoadingFail;
   const factory WateringNeedState.localLoadingSuccess(

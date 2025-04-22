@@ -17,7 +17,7 @@ class LightNeedCubit extends Cubit<LightNeedState> {
     emit(const LightNeedState.loading());
     final plants = await loadLightNeeds([]);
     plants.fold(
-      (error) => emit(LightNeedState.fail(error.message)),
+      (error) => emit(LightNeedState.remoteFail(error.message)),
       (succededPlantList) {
         plantList = succededPlantList;
         emit(
@@ -33,7 +33,7 @@ class LightNeedCubit extends Cubit<LightNeedState> {
     emit(const LightNeedState.loading());
     final plants = await loadLightNeeds([], false);
     plants.fold(
-      (error) => emit(LightNeedState.fail(error.message)),
+      (error) => emit(LightNeedState.remoteFail(error.message)),
       (succededPlantList) {
         plantList = succededPlantList;
         emit(

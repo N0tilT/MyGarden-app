@@ -26,7 +26,7 @@ class UploadHasuseridEntity<CommonEntityType extends ICommonEntity,
     List<CommonEntityType> request, [
     bool remote = true,
   ]) async {
-    final userData = await authRepository.getUserData();
+    final userData = await authRepository.getUserData(remote);
     return userData.fold((l) {
       return Left(l);
     }, (r) async {

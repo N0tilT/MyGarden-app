@@ -7,6 +7,6 @@ abstract class AuthRepository {
   Future<Either<Failure, SecurityResponseModel>> auth(
     SecurityRequestModel request,
   );
-  Future<Either<Failure, SecurityResponseModel>> getUserData();
+  Future<Either<Failure, SecurityResponseModel>> getUserData(bool needValidate);
   Future<Either<Failure, void>> logout();
 }

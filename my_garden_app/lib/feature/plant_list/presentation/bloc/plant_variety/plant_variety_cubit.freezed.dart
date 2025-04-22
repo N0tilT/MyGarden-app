@@ -21,8 +21,8 @@ mixin _$PlantVarietyState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) =>
@@ -32,8 +32,8 @@ mixin _$PlantVarietyState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) =>
@@ -43,8 +43,8 @@ mixin _$PlantVarietyState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) =>
@@ -54,9 +54,8 @@ mixin _$PlantVarietyState {
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) =>
@@ -66,8 +65,8 @@ mixin _$PlantVarietyState {
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) =>
@@ -77,8 +76,8 @@ mixin _$PlantVarietyState {
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -152,8 +151,8 @@ class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) {
@@ -166,8 +165,8 @@ class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -180,8 +179,8 @@ class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -197,9 +196,8 @@ class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -212,8 +210,8 @@ class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -226,8 +224,8 @@ class _$PlantVarietyInitialImpl implements PlantVarietyInitial {
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -288,8 +286,8 @@ class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) {
@@ -302,8 +300,8 @@ class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -316,8 +314,8 @@ class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -333,9 +331,8 @@ class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -348,8 +345,8 @@ class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -362,8 +359,8 @@ class _$PlantVarietyLoadingImpl implements PlantVarietyLoading {
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -458,8 +455,8 @@ class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) {
@@ -472,8 +469,8 @@ class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -486,8 +483,8 @@ class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -503,9 +500,8 @@ class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -518,8 +514,8 @@ class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -532,8 +528,8 @@ class _$PlantVarietySuccessImpl implements PlantVarietySuccess {
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
@@ -602,7 +598,7 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
 
   @override
   String toString() {
-    return 'PlantVarietyState.fail(message: $message)';
+    return 'PlantVarietyState.remoteFail(message: $message)';
   }
 
   @override
@@ -631,12 +627,12 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) {
-    return fail(message);
+    return remoteFail(message);
   }
 
   @override
@@ -645,12 +641,12 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) {
-    return fail?.call(message);
+    return remoteFail?.call(message);
   }
 
   @override
@@ -659,13 +655,13 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(message);
+    if (remoteFail != null) {
+      return remoteFail(message);
     }
     return orElse();
   }
@@ -676,13 +672,12 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return fail(this);
+    return remoteFail(this);
   }
 
   @override
@@ -691,12 +686,12 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
-    return fail?.call(this);
+    return remoteFail?.call(this);
   }
 
   @override
@@ -705,14 +700,14 @@ class _$PlantVarietyFailImpl implements PlantVarietyFail {
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (fail != null) {
-      return fail(this);
+    if (remoteFail != null) {
+      return remoteFail(this);
     }
     return orElse();
   }
@@ -779,7 +774,7 @@ class _$PlantVarietyLocalLoadingFailImpl
 
   @override
   String toString() {
-    return 'PlantVarietyState.localLoadingFail(message: $message)';
+    return 'PlantVarietyState.fail(message: $message)';
   }
 
   @override
@@ -809,12 +804,12 @@ class _$PlantVarietyLocalLoadingFailImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(message);
+    return fail(message);
   }
 
   @override
@@ -823,12 +818,12 @@ class _$PlantVarietyLocalLoadingFailImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(message);
+    return fail?.call(message);
   }
 
   @override
@@ -837,13 +832,13 @@ class _$PlantVarietyLocalLoadingFailImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(message);
+    if (fail != null) {
+      return fail(message);
     }
     return orElse();
   }
@@ -854,13 +849,12 @@ class _$PlantVarietyLocalLoadingFailImpl
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
-    return localLoadingFail(this);
+    return fail(this);
   }
 
   @override
@@ -869,12 +863,12 @@ class _$PlantVarietyLocalLoadingFailImpl
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
-    return localLoadingFail?.call(this);
+    return fail?.call(this);
   }
 
   @override
@@ -883,14 +877,14 @@ class _$PlantVarietyLocalLoadingFailImpl
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),
   }) {
-    if (localLoadingFail != null) {
-      return localLoadingFail(this);
+    if (fail != null) {
+      return fail(this);
     }
     return orElse();
   }
@@ -996,8 +990,8 @@ class _$PlantVarietyLocalLoadingSuccessImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantVarietyEntity> plants) success,
+    required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
-    required TResult Function(String message) localLoadingFail,
     required TResult Function(List<PlantVarietyEntity> departments)
         localLoadingSuccess,
   }) {
@@ -1010,8 +1004,8 @@ class _$PlantVarietyLocalLoadingSuccessImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantVarietyEntity> plants)? success,
+    TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
-    TResult? Function(String message)? localLoadingFail,
     TResult? Function(List<PlantVarietyEntity> departments)?
         localLoadingSuccess,
   }) {
@@ -1024,8 +1018,8 @@ class _$PlantVarietyLocalLoadingSuccessImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantVarietyEntity> plants)? success,
+    TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
-    TResult Function(String message)? localLoadingFail,
     TResult Function(List<PlantVarietyEntity> departments)? localLoadingSuccess,
     required TResult orElse(),
   }) {
@@ -1041,9 +1035,8 @@ class _$PlantVarietyLocalLoadingSuccessImpl
     required TResult Function(PlantVarietyInitial value) initial,
     required TResult Function(PlantVarietyLoading value) loading,
     required TResult Function(PlantVarietySuccess value) success,
-    required TResult Function(PlantVarietyFail value) fail,
-    required TResult Function(PlantVarietyLocalLoadingFail value)
-        localLoadingFail,
+    required TResult Function(PlantVarietyFail value) remoteFail,
+    required TResult Function(PlantVarietyLocalLoadingFail value) fail,
     required TResult Function(PlantVarietyLocalLoadingSuccess value)
         localLoadingSuccess,
   }) {
@@ -1056,8 +1049,8 @@ class _$PlantVarietyLocalLoadingSuccessImpl
     TResult? Function(PlantVarietyInitial value)? initial,
     TResult? Function(PlantVarietyLoading value)? loading,
     TResult? Function(PlantVarietySuccess value)? success,
-    TResult? Function(PlantVarietyFail value)? fail,
-    TResult? Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult? Function(PlantVarietyFail value)? remoteFail,
+    TResult? Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult? Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
   }) {
@@ -1070,8 +1063,8 @@ class _$PlantVarietyLocalLoadingSuccessImpl
     TResult Function(PlantVarietyInitial value)? initial,
     TResult Function(PlantVarietyLoading value)? loading,
     TResult Function(PlantVarietySuccess value)? success,
-    TResult Function(PlantVarietyFail value)? fail,
-    TResult Function(PlantVarietyLocalLoadingFail value)? localLoadingFail,
+    TResult Function(PlantVarietyFail value)? remoteFail,
+    TResult Function(PlantVarietyLocalLoadingFail value)? fail,
     TResult Function(PlantVarietyLocalLoadingSuccess value)?
         localLoadingSuccess,
     required TResult orElse(),

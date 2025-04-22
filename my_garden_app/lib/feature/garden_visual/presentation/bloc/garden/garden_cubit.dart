@@ -111,6 +111,7 @@ class GardenCubit extends Cubit<GardenState> {
   }
 
   Future<void> getSelected() async {
+    // ignore: void_checks
     final result = await getSelectedGarden.call(() {});
     result.fold(
       (error) => emit(GardenState.setSelectedFail(error.message)),

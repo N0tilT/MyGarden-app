@@ -19,7 +19,7 @@ class GroupCubit extends Cubit<GroupState> {
     emit(const GroupState.loading());
     final plants = await loadGroups([]);
     plants.fold(
-      (error) => emit(GroupState.fail(error.message)),
+      (error) => emit(GroupState.remoteFail(error.message)),
       (succededPlantList) {
         groupList = succededPlantList;
         emit(
@@ -35,7 +35,7 @@ class GroupCubit extends Cubit<GroupState> {
     emit(const GroupState.loading());
     final plants = await loadGroups([], false);
     plants.fold(
-      (error) => emit(GroupState.fail(error.message)),
+      (error) => emit(GroupState.remoteFail(error.message)),
       (succededPlantList) {
         groupList = succededPlantList;
         emit(
@@ -52,7 +52,7 @@ class GroupCubit extends Cubit<GroupState> {
     final result = await uploadGroups([group]);
     groupList.add(group);
     result.fold(
-      (error) => emit(GroupState.fail(error.message)),
+      (error) => emit(GroupState.remoteFail(error.message)),
       (success) => emit(GroupState.success(groupList)),
     );
   }

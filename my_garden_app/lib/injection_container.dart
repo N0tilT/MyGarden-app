@@ -128,7 +128,7 @@ Future<void> init() async {
 
   sl.registerFactory(
     () => TokenCubit(
-      getTokenUseCase: sl(),
+      getUserData: sl(),
       logoutUseCase: sl(),
     ),
   );
