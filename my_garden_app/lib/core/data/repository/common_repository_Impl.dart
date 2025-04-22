@@ -37,6 +37,23 @@ class CommonRepositoryImpl<CommonResponseType, CommonRequestType>
   }
 
   @override
+  Future<Either<Failure, void>> delete(
+    int request,
+    String token, [
+    bool remote = true,
+  ]) async {
+    return await deleteData<LocalDataSource, RemoteDataSource>(
+      localDataSource,
+      remoteDataSource,
+      remote,
+      // ignore: void_checks
+      request,
+      networkInfo,
+      token,
+    );
+  }
+
+  @override
   Future<Either<Failure, CommonResponseType>> load(
     CommonRequestType request,
     String token, [

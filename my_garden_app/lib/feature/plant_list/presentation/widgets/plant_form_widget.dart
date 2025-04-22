@@ -154,7 +154,7 @@ class _PlantFormWidgetState extends State<PlantFormWidget> {
                         ? plantListCubit.upload(
                             plantEntity,
                           )
-                        : plantListCubit.update(
+                        : plantListCubit.upload(
                             plantEntity,
                           );
                   }

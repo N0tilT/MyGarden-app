@@ -17,9 +17,10 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$EventModelImpl(
-      id: fields[0] as int,
+      id: fields[0] as int?,
       title: fields[1] as String?,
       plantId: fields[2] as int,
+      userId: fields[4] as String,
       date: fields[3] as DateTime,
     );
   }
@@ -27,13 +28,15 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
   @override
   void write(BinaryWriter writer, _$EventModelImpl obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.title)
       ..writeByte(2)
       ..write(obj.plantId)
+      ..writeByte(4)
+      ..write(obj.userId)
       ..writeByte(3)
       ..write(obj.date);
   }
@@ -55,9 +58,10 @@ class EventModelAdapter extends TypeAdapter<_$EventModelImpl> {
 
 _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
     _$EventModelImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       plantId: (json['plantId'] as num).toInt(),
+      userId: json['userId'] as String,
       date: DateTime.parse(json['date'] as String),
     );
 
@@ -66,5 +70,6 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'id': instance.id,
       'title': instance.title,
       'plantId': instance.plantId,
+      'userId': instance.userId,
       'date': instance.date.toIso8601String(),
     };

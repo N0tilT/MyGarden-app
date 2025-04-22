@@ -35,4 +35,13 @@ class GroupLocalDataSource
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> delete(int id) async {
+    try {
+      await groupBox.delete(id);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }

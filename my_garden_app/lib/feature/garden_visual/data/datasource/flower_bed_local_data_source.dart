@@ -36,4 +36,10 @@ class FlowerBedLocalDataSource
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> delete(int id) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
 }

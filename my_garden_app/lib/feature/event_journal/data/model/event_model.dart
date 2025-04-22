@@ -10,9 +10,10 @@ part 'event_model.g.dart';
 class EventModel extends HiveObject with _$EventModel {
   @HiveType(typeId: 2, adapterName: 'EventModelAdapter')
   factory EventModel({
-    @JsonKey(name: 'id') @HiveField(0) required int id,
+    @JsonKey(name: 'id') @HiveField(0) required int? id,
     @JsonKey(name: 'title') @HiveField(1) required String? title,
     @JsonKey(name: 'plantId') @HiveField(2) required int plantId,
+    @JsonKey(name: 'userId') @HiveField(4) required String userId,
     @JsonKey(name: 'date') @HiveField(3) required DateTime date,
   }) = _EventModel;
 

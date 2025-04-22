@@ -35,4 +35,10 @@ class GardenLocalDataSource extends LocalDataSource<List<GardenModel>, void> {
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> delete(int id) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
 }

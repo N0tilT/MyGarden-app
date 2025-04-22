@@ -35,4 +35,13 @@ class LightNeedLocalDataSource
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> delete(int id) async {
+    try {
+      await lightNeedBox.delete(id);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }

@@ -107,4 +107,10 @@ class AuthRemoteDataSource
     // TODO: implement upload
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> delete(int id, String token) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
 }

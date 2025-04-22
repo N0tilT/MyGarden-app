@@ -13,4 +13,10 @@ abstract class CommonRepository<CommonResponseType, CommonRequestType> {
     String token, [
     bool remote = true,
   ]);
+
+  Future<Either<Failure, void>> delete(
+    int request,
+    String token, [
+    bool remote = true,
+  ]);
 }

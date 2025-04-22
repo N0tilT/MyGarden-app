@@ -35,4 +35,13 @@ class PlantVarietyLocalDataSource
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> delete(int id) async {
+    try {
+      await plantVarietyBox.delete(id);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }

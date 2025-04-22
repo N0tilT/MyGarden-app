@@ -35,4 +35,13 @@ class WateringNeedLocalDataSource
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> delete(int id) async {
+    try {
+      await wateringNeedBox.delete(id);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }

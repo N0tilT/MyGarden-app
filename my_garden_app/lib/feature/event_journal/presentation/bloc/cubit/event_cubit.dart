@@ -22,10 +22,11 @@ class EventCubit extends Cubit<EventState> {
       eventList
           .map(
             (e) => EventModel(
-              id: e.id,
+              id: null,
               title: e.title,
               date: e.date,
               plantId: e.plantId,
+              userId: '',
             ),
           )
           .toList(),

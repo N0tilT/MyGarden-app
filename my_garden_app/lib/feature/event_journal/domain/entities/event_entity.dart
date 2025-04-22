@@ -8,7 +8,7 @@ part 'event_entity.freezed.dart';
 )
 class EventEntity with _$EventEntity {
   const factory EventEntity({
-    required int id,
+    required int? id,
     required String? title,
     required int plantId,
     required DateTime date,

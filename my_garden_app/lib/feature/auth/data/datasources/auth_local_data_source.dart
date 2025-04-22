@@ -41,11 +41,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
         key: 'jwt_refresh_token',
         value: token.refreshToken,
       );
-      await userStorage.write(
-        key: 'userName',
-        value: token.user?.userName ?? "",
-      );
-      await userStorage.write(key: 'userId', value: token.user?.id ?? "");
     } catch (e) {
       throw CacheException();
     }

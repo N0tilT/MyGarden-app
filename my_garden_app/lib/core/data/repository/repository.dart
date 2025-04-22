@@ -64,3 +64,33 @@ Future<Either<Failure, bool>> uploadData<Local extends LocalDataSource,
     }
   }
 }
+
+Future<Either<Failure, bool>>
+    deleteData<Local extends LocalDataSource, Remote extends RemoteDataSource>(
+  Local localDataSource,
+  Remote remoteDataSource,
+  bool remote,
+  int request,
+  NetworkInfo networkInfo,
+  String token,
+) async {
+  if (!(await networkInfo.isConnected && remote)) {
+    try {
+      await localDataSource.delete(request);
+      return const Right(true);
+    } on CacheException {
+      return const Left(
+        CacheFailure(message: "Ошибка локального хранилища"),
+      );
+    }
+  } else {
+    try {
+      await remoteDataSource.delete(request, token);
+      return const Right(true);
+    } on ServerException {
+      return const Left(ServerFailure(message: "Ошибка сервера"));
+    } on AuthException {
+      return const Left(AuthFailure(message: "Ошибка авторизации"));
+    }
+  }
+}

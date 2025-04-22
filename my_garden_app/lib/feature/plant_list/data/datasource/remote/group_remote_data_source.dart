@@ -73,4 +73,10 @@ class GroupRemoteDataSource
       throw ServerException();
     }
   }
+
+  @override
+  Future<void> delete(int id, String token) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
 }

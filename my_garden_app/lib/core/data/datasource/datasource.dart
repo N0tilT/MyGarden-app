@@ -3,11 +3,13 @@ import 'package:hive/hive.dart';
 abstract class LocalDataSource<ResponseType, RequestType> {
   Future<ResponseType> load(RequestType request);
   Future<void> update(ResponseType remoteLoad);
+  Future<void> delete(int id);
 }
 
 abstract class RemoteDataSource<ResponseType, RequestType> {
   Future<ResponseType> load(RequestType request, String token);
   Future<void> upload(ResponseType remoteLoad, String token);
+  Future<void> delete(int id, String token);
 }
 
 Future<void> updateBox<ModelType>(

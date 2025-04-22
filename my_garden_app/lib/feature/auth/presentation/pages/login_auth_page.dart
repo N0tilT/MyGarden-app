@@ -149,7 +149,7 @@ class _EmailFieldWidgetState extends State<_EmailFieldWidget> {
   @override
   void initState() {
     super.initState();
-
+    widget.controller.text = "admin2@mail.ru";
     widget.controller.addListener(onListen);
   }
 
@@ -190,6 +190,7 @@ class _PasswordFieldWidgetState extends State<_PasswordFieldWidget> {
   @override
   void initState() {
     super.initState();
+    widget.controller.text = "Admin_123";
 
     widget.controller.addListener(onListen);
   }

@@ -82,6 +82,7 @@ import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.da
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_type_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_variety_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/watering_need_entity.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/delete/delete_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_groups.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_grow_stages.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_light_needs.dart';
@@ -181,6 +182,7 @@ Future<void> init() async {
     () => PlantListCubit(
       loadPlants: sl(),
       uploadPlant: sl(),
+      deletePlant: sl(),
     ),
   );
 
@@ -200,6 +202,12 @@ Future<void> init() async {
       fromEntityConverter: (e) {
         return PlantModel.fromEntity(e, "-1");
       },
+    ),
+  );
+  sl.registerLazySingleton(
+    () => DeletePlant(
+      commonRepository: sl(),
+      authRepository: sl(),
     ),
   );
 

@@ -73,4 +73,27 @@ class PlantRemoteDataSource
       throw ServerException();
     }
   }
+
+  @override
+  Future<void> delete(int id, String token) async {
+    try {
+      final uri = Uri.parse('$BASE_URL/plant');
+
+      final response = await client.delete(
+        uri,
+        body: json.encode([id]),
+        headers: {
+          "Authorization": "Bearer $token",
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      throw ServerException();
+    }
+  }
 }

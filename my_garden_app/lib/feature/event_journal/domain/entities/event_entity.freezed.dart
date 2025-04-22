@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EventEntity {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   int get plantId => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $EventEntityCopyWith<$Res> {
           EventEntity value, $Res Function(EventEntity) then) =
       _$EventEntityCopyWithImpl<$Res, EventEntity>;
   @useResult
-  $Res call({int id, String? title, int plantId, DateTime date});
+  $Res call({int? id, String? title, int plantId, DateTime date});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$EventEntityCopyWithImpl<$Res, $Val extends EventEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
     Object? plantId = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -86,7 +86,7 @@ abstract class _$$EventEntityImplCopyWith<$Res>
       __$$EventEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? title, int plantId, DateTime date});
+  $Res call({int? id, String? title, int plantId, DateTime date});
 }
 
 /// @nodoc
@@ -102,16 +102,16 @@ class __$$EventEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
     Object? plantId = null,
     Object? date = null,
   }) {
     return _then(_$EventEntityImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ class _$EventEntityImpl extends _EventEntity {
       : super._();
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? title;
   @override
@@ -172,14 +172,14 @@ class _$EventEntityImpl extends _EventEntity {
 
 abstract class _EventEntity extends EventEntity {
   const factory _EventEntity(
-      {required final int id,
+      {required final int? id,
       required final String? title,
       required final int plantId,
       required final DateTime date}) = _$EventEntityImpl;
   const _EventEntity._() : super._();
 
   @override
-  int get id;
+  int? get id;
   @override
   String? get title;
   @override

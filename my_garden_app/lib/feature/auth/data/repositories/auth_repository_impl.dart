@@ -54,6 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
         )) {
           try {
             userData = await remoteDataSource.refreshToken(userData);
+            localDataSource.updateToken(userData);
           } on ServerException {
             return const Left(ServerFailure(message: "Сервер не доступен"));
           }

@@ -30,24 +30,28 @@ class EventRemoteDataSource extends RemoteDataSource<List<EventModel>, void> {
           title: "Полить",
           date: DateTime.now(),
           plantId: 0,
+          userId: '',
         ),
         EventModel(
           id: 1,
           title: "Подкормка",
           date: DateTime.now(),
           plantId: 0,
+          userId: '',
         ),
         EventModel(
           id: 2,
           title: "Полить",
           date: DateTime.now(),
           plantId: 1,
+          userId: '',
         ),
         EventModel(
           id: 3,
           title: "Пересадить",
           date: DateTime.now(),
           plantId: 1,
+          userId: '',
         ),
       ];
     } catch (e) {
@@ -59,5 +63,11 @@ class EventRemoteDataSource extends RemoteDataSource<List<EventModel>, void> {
   Future<void> upload(List<EventModel> remoteLoad, String token) {
     // ignore: void_checks
     return Future.value(remoteLoad);
+  }
+
+  @override
+  Future<void> delete(int id, String token) {
+    // TODO: implement delete
+    throw UnimplementedError();
   }
 }

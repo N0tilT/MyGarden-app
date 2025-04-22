@@ -53,4 +53,10 @@ class GardenTypeRemoteDataSource
 
   @override
   Future<void> upload(List<GardenTypeModel> remoteLoad, String token) async {}
+
+  @override
+  Future<void> delete(int id, String token) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
 }

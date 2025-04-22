@@ -22,13 +22,16 @@ EventModel _$EventModelFromJson(Map<String, dynamic> json) {
 mixin _$EventModel {
   @JsonKey(name: 'id')
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   @HiveField(1)
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'plantId')
   @HiveField(2)
   int get plantId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userId')
+  @HiveField(4)
+  String get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
   @HiveField(3)
   DateTime get date => throw _privateConstructorUsedError;
@@ -50,9 +53,10 @@ abstract class $EventModelCopyWith<$Res> {
       _$EventModelCopyWithImpl<$Res, EventModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int id,
+      {@JsonKey(name: 'id') @HiveField(0) int? id,
       @JsonKey(name: 'title') @HiveField(1) String? title,
       @JsonKey(name: 'plantId') @HiveField(2) int plantId,
+      @JsonKey(name: 'userId') @HiveField(4) String userId,
       @JsonKey(name: 'date') @HiveField(3) DateTime date});
 }
 
@@ -71,16 +75,17 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
     Object? plantId = null,
+    Object? userId = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -89,6 +94,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.plantId
           : plantId // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -106,9 +115,10 @@ abstract class _$$EventModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int id,
+      {@JsonKey(name: 'id') @HiveField(0) int? id,
       @JsonKey(name: 'title') @HiveField(1) String? title,
       @JsonKey(name: 'plantId') @HiveField(2) int plantId,
+      @JsonKey(name: 'userId') @HiveField(4) String userId,
       @JsonKey(name: 'date') @HiveField(3) DateTime date});
 }
 
@@ -125,16 +135,17 @@ class __$$EventModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = freezed,
     Object? plantId = null,
+    Object? userId = null,
     Object? date = null,
   }) {
     return _then(_$EventModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -143,6 +154,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value.plantId
           : plantId // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -159,6 +174,7 @@ class _$EventModelImpl extends _EventModel {
       {@JsonKey(name: 'id') @HiveField(0) required this.id,
       @JsonKey(name: 'title') @HiveField(1) required this.title,
       @JsonKey(name: 'plantId') @HiveField(2) required this.plantId,
+      @JsonKey(name: 'userId') @HiveField(4) required this.userId,
       @JsonKey(name: 'date') @HiveField(3) required this.date})
       : super._();
 
@@ -168,7 +184,7 @@ class _$EventModelImpl extends _EventModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'title')
   @HiveField(1)
@@ -178,13 +194,17 @@ class _$EventModelImpl extends _EventModel {
   @HiveField(2)
   final int plantId;
   @override
+  @JsonKey(name: 'userId')
+  @HiveField(4)
+  final String userId;
+  @override
   @JsonKey(name: 'date')
   @HiveField(3)
   final DateTime date;
 
   @override
   String toString() {
-    return 'EventModel(id: $id, title: $title, plantId: $plantId, date: $date)';
+    return 'EventModel(id: $id, title: $title, plantId: $plantId, userId: $userId, date: $date)';
   }
 
   @override
@@ -195,12 +215,14 @@ class _$EventModelImpl extends _EventModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.plantId, plantId) || other.plantId == plantId) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, plantId, date);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, plantId, userId, date);
 
   /// Create a copy of EventModel
   /// with the given fields replaced by the non-null parameter values.
@@ -220,9 +242,10 @@ class _$EventModelImpl extends _EventModel {
 
 abstract class _EventModel extends EventModel {
   factory _EventModel(
-          {@JsonKey(name: 'id') @HiveField(0) required final int id,
+          {@JsonKey(name: 'id') @HiveField(0) required final int? id,
           @JsonKey(name: 'title') @HiveField(1) required final String? title,
           @JsonKey(name: 'plantId') @HiveField(2) required final int plantId,
+          @JsonKey(name: 'userId') @HiveField(4) required final String userId,
           @JsonKey(name: 'date') @HiveField(3) required final DateTime date}) =
       _$EventModelImpl;
   _EventModel._() : super._();
@@ -233,7 +256,7 @@ abstract class _EventModel extends EventModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'title')
   @HiveField(1)
@@ -242,6 +265,10 @@ abstract class _EventModel extends EventModel {
   @JsonKey(name: 'plantId')
   @HiveField(2)
   int get plantId;
+  @override
+  @JsonKey(name: 'userId')
+  @HiveField(4)
+  String get userId;
   @override
   @JsonKey(name: 'date')
   @HiveField(3)
