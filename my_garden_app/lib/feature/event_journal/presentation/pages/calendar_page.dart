@@ -7,6 +7,7 @@ import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
 import 'package:my_garden_app/feature/event_journal/domain/entities/event_entity.dart';
 import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/event_cubit.dart';
+import 'package:my_garden_app/feature/event_journal/presentation/pages/event_adding_page.dart';
 import 'package:my_garden_app/injection_container.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -80,24 +81,45 @@ class _CalendarWrapper extends StatelessWidget {
               .map((e) => CalendarEventData(title: e.title ?? "", date: e.date))
               .toList(),
         );
-    return MonthView(
-      controller: CalendarControllerProvider.of(context).controller,
-      minMonth: DateTime(1990),
-      maxMonth: DateTime(2050),
-      cellAspectRatio: 1,
-      onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
-      onCellTap: (events, date) {
-        // Implement callback when user taps on a cell.
-        print(events);
-      },
-      // This callback will only work if cellBuilder is null.
-      onEventTap: (event, date) => print(event),
-      onEventDoubleTap: (events, date) => print(events),
-      onEventLongTap: (event, date) => print(event),
-      onDateLongPress: (date) => print(date),
-      hideDaysNotInMonth:
-          true, // To hide days or cell that are not in current month
-    );
+    return Stack(children: [
+      MonthView(
+        controller: CalendarControllerProvider.of(context).controller,
+        minMonth: DateTime(1990),
+        maxMonth: DateTime(2050),
+        cellAspectRatio: 1,
+        onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
+        onCellTap: (events, date) {
+          // Implement callback when user taps on a cell.
+          print(events);
+        },
+        // This callback will only work if cellBuilder is null.
+        onEventTap: (event, date) => print(event),
+        onEventDoubleTap: (events, date) => print(events),
+        onEventLongTap: (event, date) => print(event),
+        onDateLongPress: (date) => print(date),
+        hideDaysNotInMonth:
+            true, // To hide days or cell that are not in current month
+      ),
+      Container(
+        margin: const EdgeInsets.only(bottom: 20),
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (context) => const EventAddingPage(),
+                ),
+              );
+            },
+            child: const Text(
+              "+",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+      ),
+    ]);
   }
 }
 

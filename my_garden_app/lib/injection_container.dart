@@ -543,7 +543,7 @@ Future<void> init() async {
     );
   });
 
-  await sl.isReady<LocalDataSource<List<EventModel>, CommonRequestModel>>();
+  await sl.isReady<LocalDataSource<List<EventModel>, HasPlantidRequestModel>>();
 
 //! FlowerBeds
   sl.registerFactory(

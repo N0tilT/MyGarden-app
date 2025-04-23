@@ -58,19 +58,7 @@ class _EventAddingWidgetState extends State<_EventAddingWidget> {
     _Controller(
       controller: TextEditingController(),
       name: "title",
-      label: "Название",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(),
-      name: "bioTitle",
-      label: "Биологическое название",
-      type: TextInputType.text,
-    ),
-    _Controller(
-      controller: TextEditingController(),
-      name: "fertilizationTitle",
-      label: "Удобрение",
+      label: "Название работы",
       type: TextInputType.text,
     ),
   ];
@@ -121,10 +109,11 @@ class _EventAddingWidgetState extends State<_EventAddingWidget> {
                     final eventListCubit = context.read<EventCubit>();
                     eventListCubit.upload(
                       EventEntity(
-                        id: 0,
+                        id: null,
                         title: inputs[0],
-                        date: DateTime.now(),
-                        plantId: 0,
+                        date:
+                            DateTime.now().add(const Duration(days: 1)).toUtc(),
+                        plantId: 1,
                       ),
                     );
                   }
