@@ -25,6 +25,19 @@ class _CalendarPageState extends State<CalendarPage> {
         create: (context) => sl<EventCubit>()..load(),
         child: const _CalendarWidget(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (context) => const EventAddingPage(),
+            ),
+          );
+        },
+        child: const Text(
+          "+",
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
     );
   }
 }
@@ -81,45 +94,42 @@ class _CalendarWrapper extends StatelessWidget {
               .map((e) => CalendarEventData(title: e.title ?? "", date: e.date))
               .toList(),
         );
-    return Stack(children: [
-      MonthView(
-        controller: CalendarControllerProvider.of(context).controller,
-        minMonth: DateTime(1990),
-        maxMonth: DateTime(2050),
-        cellAspectRatio: 1,
-        onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
-        onCellTap: (events, date) {
-          // Implement callback when user taps on a cell.
-          print(events);
-        },
-        // This callback will only work if cellBuilder is null.
-        onEventTap: (event, date) => print(event),
-        onEventDoubleTap: (events, date) => print(events),
-        onEventLongTap: (event, date) => print(event),
-        onDateLongPress: (date) => print(date),
-        hideDaysNotInMonth:
-            true, // To hide days or cell that are not in current month
-      ),
-      Container(
-        margin: const EdgeInsets.only(bottom: 20),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => const EventAddingPage(),
-                ),
-              );
-            },
-            child: const Text(
-              "+",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        ),
-      ),
-    ]);
+    return MonthView(
+      controller: CalendarControllerProvider.of(context).controller,
+      headerStringBuilder: (date, {secondaryDate}) {
+        final monthNames = [
+          "Январь",
+          "Февраль",
+          "Март",
+          "Апрель",
+          "Май",
+          "Июнь",
+          "Июль",
+          "Август",
+          "Сентябрь",
+          "Октябрь",
+          "Ноябрь",
+          "Декабрь",
+        ];
+        return "${monthNames[date.month - 1]} ${date.year}";
+      },
+      weekDayStringBuilder: (p0) {
+        final weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+        return weekdays[p0];
+      },
+      minMonth: DateTime(1990),
+      maxMonth: DateTime(2050),
+      cellAspectRatio: 1,
+      onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
+      onCellTap: (events, date) {
+        print(events);
+      },
+      onEventTap: (event, date) => print(event),
+      onEventDoubleTap: (events, date) => print(events),
+      onEventLongTap: (event, date) => print(event),
+      onDateLongPress: (date) => print(date),
+      hideDaysNotInMonth: true,
+    );
   }
 }
 

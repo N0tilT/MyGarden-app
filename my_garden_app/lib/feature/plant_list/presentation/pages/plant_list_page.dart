@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
+import 'package:my_garden_app/core/presentation/UI/unversal_refresh_list.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/group_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
@@ -11,7 +12,7 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/pl
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_adding_page.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_card_bottom_sheet_widget.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:my_garden_app/injection_container.dart';
 
@@ -49,10 +50,68 @@ class _PlantListPageState extends State<PlantListPage> {
           create: (context) => sl<PlantListCubit>()..load(),
         ),
       ],
-      child: const Scaffold(
-        backgroundColor: Color.fromARGB(255, 240, 241, 245),
-        appBar: PlantListAppBarWidget(),
-        body: _PlantListWidget(),
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 240, 241, 245),
+        appBar: const PlantListAppBarWidget(),
+        body: const _PlantListWidget(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => MultiBlocProvider(
+                providers: [
+                  BlocProvider<GroupCubit>(
+                    create: (context) => sl<GroupCubit>(),
+                  ),
+                  BlocProvider<GrowStageCubit>(
+                    create: (context) => sl<GrowStageCubit>(),
+                  ),
+                  BlocProvider<LightNeedCubit>(
+                    create: (context) => sl<LightNeedCubit>(),
+                  ),
+                  BlocProvider<WateringNeedCubit>(
+                    create: (context) => sl<WateringNeedCubit>(),
+                  ),
+                  BlocProvider<PlantTypeCubit>(
+                    create: (context) => sl<PlantTypeCubit>(),
+                  ),
+                  BlocProvider<PlantVarietyCubit>(
+                    create: (context) => sl<PlantVarietyCubit>(),
+                  ),
+                  BlocProvider<PlantListCubit>(
+                    create: (context) => sl<PlantListCubit>(),
+                  ),
+                ],
+                child: Builder(
+                  builder: (context) => const PlantCardBottomSheet(
+                    plant: PlantEntity(
+                      id: null,
+                      title: "",
+                      biologyTitle: "",
+                      fertilization: "",
+                      toxicity: "",
+                      replacing: "",
+                      description: "",
+                      groupId: 1,
+                      wateringNeedId: 1,
+                      lightNeedId: 1,
+                      plantTypeId: 1,
+                      plantVarietyId: 1,
+                      stageId: 1,
+                      imageId: 0,
+                      ripeningPeriod: 0,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+          child: const Text(
+            "+",
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
       ),
     );
   }
@@ -87,8 +146,8 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
               success: (lightNeeds) => wateringNeedCubit.state.maybeWhen(
                 success: (wateringNeeds) => plantTypeCubit.state.maybeWhen(
                   success: (plantTypes) => plantVarietyCubit.state.maybeWhen(
-                    success: (plantVarieties) => _PlantListWrapper(
-                      plantList: plantList.map((x) {
+                    success: (plantVarieties) => UniversalRefreshList(
+                      items: plantList.map((x) {
                         return x.copyWith(
                           stageTitle: growStages
                                   .firstWhere((y) => y.id == x.stageId)
@@ -120,6 +179,12 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
                               "",
                         );
                       }).toList(),
+                      itemBuilder: (context, plant, index) =>
+                          PlantListItem(plant: plant),
+                      onRefresh: () async {
+                        await plantListCubit.load();
+                        await groupCubit.load();
+                      },
                     ),
                     fail: (message) => Center(
                       child:
@@ -219,57 +284,6 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
       orElse: () => const Center(
         child: GardenLoadingWidget(),
       ),
-    );
-  }
-}
-
-class _PlantListWrapper extends StatelessWidget {
-  final List<PlantEntity> plantList;
-
-  const _PlantListWrapper({
-    required this.plantList,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final plantListCubit = context.watch<PlantListCubit>();
-    final groupCubit = context.watch<GroupCubit>();
-    return Stack(
-      children: [
-        LayoutBuilder(
-          builder: (context, constraints) => RefreshIndicator(
-              onRefresh: () async {
-                plantListCubit.load();
-                groupCubit.load();
-              },
-              child: Column(
-                children: plantList
-                    .map(
-                      (e) => PlantListItem(plant: e),
-                    )
-                    .toList(),
-              )),
-        ),
-        Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: FloatingActionButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (context) => const PlantAddingPage(),
-                  ),
-                );
-              },
-              child: const Text(
-                "+",
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
