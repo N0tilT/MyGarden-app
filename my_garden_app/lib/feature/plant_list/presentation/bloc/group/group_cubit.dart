@@ -50,6 +50,7 @@ class GroupCubit extends Cubit<GroupState> {
   Future<void> upload(GroupEntity group) async {
     emit(const GroupState.loading());
     final result = await uploadGroups([group]);
+    await load();
     groupList.add(group);
     result.fold(
       (error) => emit(GroupState.remoteFail(error.message)),

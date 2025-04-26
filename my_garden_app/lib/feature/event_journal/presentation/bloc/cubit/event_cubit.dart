@@ -14,11 +14,11 @@ class EventCubit extends Cubit<EventState> {
   final DeleteEvent deleteEvent;
   List<EventEntity> eventList = [];
 
-  EventCubit(
-      {required this.loadEvents,
-      required this.uploadEvent,
-      required this.deleteEvent})
-      : super(const EventState.initial());
+  EventCubit({
+    required this.loadEvents,
+    required this.uploadEvent,
+    required this.deleteEvent,
+  }) : super(const EventState.initial());
 
   Future<void> upload(EventEntity event) async {
     final result = await uploadEvent([event], true, event.plantId);

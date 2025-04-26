@@ -14,16 +14,16 @@ class PlantListCubit extends Cubit<PlantListState> {
   final DeletePlant deletePlant;
   List<PlantEntity> plantList = [];
 
-  PlantListCubit(
-      {required this.loadPlants,
-      required this.uploadPlant,
-      required this.deletePlant})
-      : super(const PlantListState.initial());
+  PlantListCubit({
+    required this.loadPlants,
+    required this.uploadPlant,
+    required this.deletePlant,
+  }) : super(const PlantListState.initial());
 
   Future<void> upload(PlantEntity plant) async {
     emit(const PlantListState.loading());
     final result = await uploadPlant([plant]);
-    plantList.add(plant);
+    await load();
     result.fold(
       (error) => emit(PlantListState.remoteFail(error.message)),
       (success) => emit(PlantListState.success(plantList)),

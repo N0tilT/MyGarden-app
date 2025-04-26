@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_garden_app/core/presentation/button_widget.dart';
+import 'package:my_garden_app/core/constant_values/routes.dart';
+import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
+import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/group_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/grow_stage_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/light_need_entity.dart';
@@ -143,6 +145,7 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
                     _saveChanges();
                   } else {
                     Navigator.pop(context);
+                    context.read<PlantListCubit>().load();
                   }
                 },
               ),
@@ -169,127 +172,171 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
   Widget _buildContent() {
     return MultiBlocProvider(
       providers: [
+        BlocProvider.value(value: context.read<TokenCubit>()..getToken()),
         BlocProvider.value(value: context.read<GroupCubit>()..loadLocally()),
         BlocProvider.value(
-            value: context.read<WateringNeedCubit>()..loadLocally()),
+          value: context.read<WateringNeedCubit>()..loadLocally(),
+        ),
         BlocProvider.value(
-            value: context.read<LightNeedCubit>()..loadLocally()),
+          value: context.read<LightNeedCubit>()..loadLocally(),
+        ),
         BlocProvider.value(
-            value: context.read<PlantTypeCubit>()..loadLocally()),
+          value: context.read<PlantTypeCubit>()..loadLocally(),
+        ),
         BlocProvider.value(
-            value: context.read<PlantVarietyCubit>()..loadLocally()),
+          value: context.read<PlantVarietyCubit>()..loadLocally(),
+        ),
         BlocProvider.value(
-            value: context.read<GrowStageCubit>()..loadLocally()),
+          value: context.read<GrowStageCubit>()..loadLocally(),
+        ),
       ],
       child: Builder(
         builder: (context) {
-          final groups = context.watch<GroupCubit>().state.maybeWhen(
-                success: (data) => data,
-                orElse: () => <GroupEntity>[],
-              );
-
-          final wateringNeeds =
-              context.watch<WateringNeedCubit>().state.maybeWhen(
+          return context.watch<TokenCubit>().state.when(
+            initial: () {
+              return const Center(child: GardenLoadingWidget());
+            },
+            authorized: (token) {
+              return const Center(child: GardenLoadingWidget());
+            },
+            fail: (l) {
+              Navigator.of(context).pushReplacementNamed(authRoute);
+              return const Center(child: GardenLoadingWidget());
+            },
+            unauthorized: () {
+              context.watch<TokenCubit>().passValidation();
+              return const Center(child: GardenLoadingWidget());
+            },
+            tokenSuccess: (token) {
+              final groups = context.watch<GroupCubit>().state.maybeWhen(
                     success: (data) => data,
-                    orElse: () => <WateringNeedEntity>[],
+                    orElse: () => <GroupEntity>[],
                   );
 
-          final lightNeeds = context.watch<LightNeedCubit>().state.maybeWhen(
-                success: (data) => data,
-                orElse: () => <LightNeedEntity>[],
+              final wateringNeeds =
+                  context.watch<WateringNeedCubit>().state.maybeWhen(
+                        success: (data) => data,
+                        orElse: () => <WateringNeedEntity>[],
+                      );
+
+              final lightNeeds =
+                  context.watch<LightNeedCubit>().state.maybeWhen(
+                        success: (data) => data,
+                        orElse: () => <LightNeedEntity>[],
+                      );
+
+              final plantTypes =
+                  context.watch<PlantTypeCubit>().state.maybeWhen(
+                        success: (data) => data,
+                        orElse: () => <PlantTypeEntity>[],
+                      );
+
+              final plantVarieties =
+                  context.watch<PlantVarietyCubit>().state.maybeWhen(
+                        success: (data) => data,
+                        orElse: () => <PlantVarietyEntity>[],
+                      );
+
+              final growStages =
+                  context.watch<GrowStageCubit>().state.maybeWhen(
+                        success: (data) => data,
+                        orElse: () => <GrowStageEntity>[],
+                      );
+
+              return SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildEditableField('Название', 'title'),
+                      _buildEditableField(
+                        'Биологическое название',
+                        'biologyTitle',
+                        isRequired: false,
+                      ),
+                      _buildEditableField(
+                        'Удобрение',
+                        'fertilization',
+                        isRequired: false,
+                      ),
+                      _buildEditableField(
+                        'Токсичность',
+                        'toxicity',
+                        isRequired: false,
+                      ),
+                      _buildEditableField(
+                        'Пересадка',
+                        'replacing',
+                        isRequired: false,
+                      ),
+                      _buildEditableField(
+                        'Описание',
+                        'description',
+                        isRequired: false,
+                      ),
+                      _buildEditableField(
+                        'Период созревания (дни)',
+                        'ripeningPeriod',
+                        isRequired: false,
+                        isNumber: true,
+                      ),
+                      const SizedBox(height: 20),
+                      _buildDropdown<GroupEntity>(
+                        label: 'Группа',
+                        items: groups,
+                        currentId: _editedPlant.groupId,
+                        displayText: (item) => item.title ?? "Без названия",
+                        onChanged: (value) =>
+                            _updateField('groupId', value?.id),
+                      ),
+                      _buildDropdown<WateringNeedEntity>(
+                        label: 'Полив',
+                        items: wateringNeeds,
+                        currentId: _editedPlant.wateringNeedId,
+                        displayText: (item) => item.title ?? "Без названия",
+                        onChanged: (value) =>
+                            _updateField('wateringNeedId', value?.id),
+                      ),
+                      _buildDropdown<LightNeedEntity>(
+                        label: 'Освещение',
+                        items: lightNeeds,
+                        currentId: _editedPlant.lightNeedId,
+                        displayText: (item) => item.title ?? "Без названия",
+                        onChanged: (value) =>
+                            _updateField('lightNeedId', value?.id),
+                      ),
+                      _buildDropdown<PlantTypeEntity>(
+                        label: 'Тип растения',
+                        items: plantTypes,
+                        currentId: _editedPlant.plantTypeId,
+                        displayText: (item) => item.title ?? "Без названия",
+                        onChanged: (value) =>
+                            _updateField('plantTypeId', value?.id),
+                      ),
+                      _buildDropdown<PlantVarietyEntity>(
+                        label: 'Разновидность',
+                        items: plantVarieties,
+                        currentId: _editedPlant.plantVarietyId,
+                        displayText: (item) => item.title ?? "Без названия",
+                        onChanged: (value) =>
+                            _updateField('plantVarietyId', value?.id),
+                      ),
+                      _buildDropdown<GrowStageEntity>(
+                        label: 'Стадия роста',
+                        items: growStages,
+                        currentId: _editedPlant.stageId,
+                        displayText: (item) => item.title ?? "Без названия",
+                        onChanged: (value) =>
+                            _updateField('stageId', value?.id),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
               );
-
-          final plantTypes = context.watch<PlantTypeCubit>().state.maybeWhen(
-                success: (data) => data,
-                orElse: () => <PlantTypeEntity>[],
-              );
-
-          final plantVarieties =
-              context.watch<PlantVarietyCubit>().state.maybeWhen(
-                    success: (data) => data,
-                    orElse: () => <PlantVarietyEntity>[],
-                  );
-
-          final growStages = context.watch<GrowStageCubit>().state.maybeWhen(
-                success: (data) => data,
-                orElse: () => <GrowStageEntity>[],
-              );
-
-          return SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildEditableField('Название', 'title'),
-                  _buildEditableField('Биологическое название', 'biologyTitle',
-                      isRequired: false),
-                  _buildEditableField('Удобрение', 'fertilization',
-                      isRequired: false),
-                  _buildEditableField('Токсичность', 'toxicity',
-                      isRequired: false),
-                  _buildEditableField('Пересадка', 'replacing',
-                      isRequired: false),
-                  _buildEditableField('Описание', 'description',
-                      isRequired: false),
-                  _buildEditableField(
-                    'Период созревания (дни)',
-                    'ripeningPeriod',
-                    isRequired: false,
-                    isNumber: true,
-                  ),
-                  const SizedBox(height: 20),
-                  _buildDropdown<GroupEntity>(
-                    label: 'Группа',
-                    items: groups,
-                    currentId: _editedPlant.groupId,
-                    displayText: (item) => item.title ?? "Без названия",
-                    onChanged: (value) => _updateField('groupId', value?.id),
-                  ),
-                  _buildDropdown<WateringNeedEntity>(
-                    label: 'Полив',
-                    items: wateringNeeds,
-                    currentId: _editedPlant.wateringNeedId,
-                    displayText: (item) => item.title ?? "Без названия",
-                    onChanged: (value) =>
-                        _updateField('wateringNeedId', value?.id),
-                  ),
-                  _buildDropdown<LightNeedEntity>(
-                    label: 'Освещение',
-                    items: lightNeeds,
-                    currentId: _editedPlant.lightNeedId,
-                    displayText: (item) => item.title ?? "Без названия",
-                    onChanged: (value) =>
-                        _updateField('lightNeedId', value?.id),
-                  ),
-                  _buildDropdown<PlantTypeEntity>(
-                    label: 'Тип растения',
-                    items: plantTypes,
-                    currentId: _editedPlant.plantTypeId,
-                    displayText: (item) => item.title ?? "Без названия",
-                    onChanged: (value) =>
-                        _updateField('plantTypeId', value?.id),
-                  ),
-                  _buildDropdown<PlantVarietyEntity>(
-                    label: 'Разновидность',
-                    items: plantVarieties,
-                    currentId: _editedPlant.plantVarietyId,
-                    displayText: (item) => item.title ?? "Без названия",
-                    onChanged: (value) =>
-                        _updateField('plantVarietyId', value?.id),
-                  ),
-                  _buildDropdown<GrowStageEntity>(
-                    label: 'Стадия роста',
-                    items: growStages,
-                    currentId: _editedPlant.stageId,
-                    displayText: (item) => item.title ?? "Без названия",
-                    onChanged: (value) => _updateField('stageId', value?.id),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
-            ),
+            },
           );
         },
       ),

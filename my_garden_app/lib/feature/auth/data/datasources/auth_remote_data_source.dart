@@ -65,6 +65,7 @@ class AuthRemoteDataSource
       if (response.statusCode == 200) {
         final decoded = json.decode(response.body) as Map<String, dynamic>;
         final responseModel = SecurityResponseModel.fromJson(decoded);
+        print(responseModel);
         return responseModel;
       } else {
         throw ServerException();

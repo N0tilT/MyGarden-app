@@ -27,7 +27,10 @@ class EventModel extends HiveObject
       _$EventModelFromJson(json);
 
   factory EventModel.fromEntity(
-          EventEntity entity, String userId, int plantId) =>
+    EventEntity entity,
+    String userId,
+    int plantId,
+  ) =>
       EventModel(
         id: entity.id,
         title: entity.title,
@@ -37,8 +40,10 @@ class EventModel extends HiveObject
       );
 
   @override
-  IHasUserIdPlantIdModel<EventEntity> copyWith(
-          {String? userId, int? plantId}) =>
+  IHasUserIdPlantIdModel<EventEntity> copyWith({
+    String? userId,
+    int? plantId,
+  }) =>
       EventModel(
         id: id,
         title: title,

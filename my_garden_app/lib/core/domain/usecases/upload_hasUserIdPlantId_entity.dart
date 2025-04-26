@@ -22,9 +22,12 @@ class UploadHasUserIdPlantIdEntity<CommonEntityType extends ICommonEntity,
   });
 
   @override
-  Future<Either<Failure, void>> call(List<CommonEntityType> request,
-      [bool remote = true, int plantId = -1]) async {
-    final userData = await authRepository.getUserData(remote);
+  Future<Either<Failure, void>> call(
+    List<CommonEntityType> request, [
+    bool remote = true,
+    int plantId = -1,
+  ]) async {
+    final userData = await authRepository.getUserData(false);
     return userData.fold((l) {
       return Left(l);
     }, (r) async {
