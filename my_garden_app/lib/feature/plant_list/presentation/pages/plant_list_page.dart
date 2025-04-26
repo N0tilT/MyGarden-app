@@ -69,27 +69,33 @@ class _PlantListPageState extends State<PlantListPage> {
                   builder: (modal) => MultiBlocProvider(
                     providers: [
                       BlocProvider.value(
-                          value: BlocProvider.of<TokenCubit>(parentContext)),
+                        value: BlocProvider.of<TokenCubit>(parentContext),
+                      ),
                       BlocProvider.value(
-                          value: BlocProvider.of<GroupCubit>(parentContext)),
+                        value: BlocProvider.of<GroupCubit>(parentContext),
+                      ),
                       BlocProvider.value(
-                          value:
-                              BlocProvider.of<GrowStageCubit>(parentContext)),
+                        value: BlocProvider.of<GrowStageCubit>(parentContext),
+                      ),
                       BlocProvider.value(
-                          value:
-                              BlocProvider.of<LightNeedCubit>(parentContext)),
+                        value: BlocProvider.of<LightNeedCubit>(parentContext),
+                      ),
                       BlocProvider.value(
-                          value: BlocProvider.of<WateringNeedCubit>(
-                              parentContext)),
+                        value: BlocProvider.of<WateringNeedCubit>(
+                          parentContext,
+                        ),
+                      ),
                       BlocProvider.value(
-                          value:
-                              BlocProvider.of<PlantTypeCubit>(parentContext)),
+                        value: BlocProvider.of<PlantTypeCubit>(parentContext),
+                      ),
                       BlocProvider.value(
-                          value: BlocProvider.of<PlantVarietyCubit>(
-                              parentContext)),
+                        value: BlocProvider.of<PlantVarietyCubit>(
+                          parentContext,
+                        ),
+                      ),
                       BlocProvider.value(
-                          value:
-                              BlocProvider.of<PlantListCubit>(parentContext)),
+                        value: BlocProvider.of<PlantListCubit>(parentContext),
+                      ),
                     ],
                     child: const PlantCardBottomSheet(
                       plant: PlantEntity(

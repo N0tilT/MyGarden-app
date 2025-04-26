@@ -143,8 +143,12 @@ class _CalendarWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     CalendarControllerProvider.of(context).controller.addAll(
           eventList
-              .map((e) => CalendarEventData(
-                  title: e.title ?? "", date: e.date.toLocal()))
+              .map(
+                (e) => CalendarEventData(
+                  title: e.title ?? "",
+                  date: e.date.toLocal(),
+                ),
+              )
               .toList(),
         );
     return MonthView(

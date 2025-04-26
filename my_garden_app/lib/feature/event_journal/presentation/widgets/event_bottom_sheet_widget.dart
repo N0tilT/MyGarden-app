@@ -341,7 +341,8 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
                       Text(
                         formFieldState.errorText!,
                         style: TextStyle(
-                            color: Theme.of(context).colorScheme.error),
+                          color: Theme.of(context).colorScheme.error,
+                        ),
                       ),
                   ],
                 );
@@ -349,9 +350,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
             )
           else
             Text(
-              _editedEvent.date != null
-                  ? '${_editedEvent.date!.day}/${_editedEvent.date!.month}/${_editedEvent.date!.year}'
-                  : 'Дата не указана',
+              '${_editedEvent.date.day}/${_editedEvent.date.month}/${_editedEvent.date.year}',
               style: const TextStyle(fontSize: 16),
             ),
           const Divider(),
