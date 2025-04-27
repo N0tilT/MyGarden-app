@@ -1,9 +1,11 @@
 import 'package:hive/hive.dart';
 import 'package:my_garden_app/core/data/datasource/datasource.dart';
 import 'package:my_garden_app/core/data/error/exception.dart';
+import 'package:my_garden_app/core/data/model/common_request_model.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/garden_model.dart';
 
-class GardenLocalDataSource extends LocalDataSource<List<GardenModel>, void> {
+class GardenLocalDataSource
+    extends LocalDataSource<List<GardenModel>, CommonRequestModel> {
   Box<GardenModel> gardenBox;
 
   GardenLocalDataSource({
@@ -18,8 +20,8 @@ class GardenLocalDataSource extends LocalDataSource<List<GardenModel>, void> {
         return;
       }
       await updateBox<GardenModel>(
-        {for (final item in gardenList) item.id: item},
-        gardenBox.values.map((e) => e.id).toList(),
+        {for (final item in gardenList) item.id ?? -1: item},
+        gardenBox.values.map((e) => e.id!).toList(),
         gardenBox,
       );
     } catch (e) {
@@ -37,8 +39,11 @@ class GardenLocalDataSource extends LocalDataSource<List<GardenModel>, void> {
   }
 
   @override
-  Future<void> delete(int id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(int id) async {
+    try {
+      await gardenBox.delete(id);
+    } catch (e) {
+      throw CacheException();
+    }
   }
 }

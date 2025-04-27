@@ -762,6 +762,8 @@ abstract class _$$GetSelectedSuccessImplCopyWith<$Res> {
       __$$GetSelectedSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({GardenEntity departments});
+
+  $GardenEntityCopyWith<$Res> get departments;
 }
 
 /// @nodoc
@@ -785,6 +787,16 @@ class __$$GetSelectedSuccessImplCopyWithImpl<$Res>
           : departments // ignore: cast_nullable_to_non_nullable
               as GardenEntity,
     ));
+  }
+
+  /// Create a copy of GardenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GardenEntityCopyWith<$Res> get departments {
+    return $GardenEntityCopyWith<$Res>(_value.departments, (value) {
+      return _then(_value.copyWith(departments: value));
+    });
   }
 }
 

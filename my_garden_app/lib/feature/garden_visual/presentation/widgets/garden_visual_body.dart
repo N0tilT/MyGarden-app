@@ -442,7 +442,6 @@ class _GardenVisualAppBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     final gardenCubit = context.watch<GardenCubit>();
-    gardenCubit.getSelected();
     return AppBar(
       titleSpacing: 0,
       automaticallyImplyLeading: false,

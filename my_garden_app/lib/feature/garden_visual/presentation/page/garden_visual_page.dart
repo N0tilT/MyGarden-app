@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_garden_app/feature/garden_visual/domain/entities/garden_entity.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/widgets/garden_visual_body.dart';
@@ -17,10 +16,7 @@ class GardenVisualPage extends StatelessWidget {
         BlocProvider(create: (context) => sl<FlowerBedCubit>()..load(1)),
         BlocProvider(create: (context) => sl<PlantListCubit>()..load()),
         BlocProvider(
-          create: (context) => sl<GardenCubit>()
-            ..load()
-            ..upload(GardenEntity(id: 1, title: "Основной"))
-            ..upload(GardenEntity(id: 2, title: "Дополнительный")),
+          create: (context) => sl<GardenCubit>()..load(),
         ),
       ],
       child: const GardenVisualBody(),

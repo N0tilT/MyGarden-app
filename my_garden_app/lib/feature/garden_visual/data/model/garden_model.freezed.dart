@@ -22,103 +22,22 @@ GardenModel _$GardenModelFromJson(Map<String, dynamic> json) {
 mixin _$GardenModel {
   @JsonKey(name: 'id')
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   @HiveField(1)
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'flowerBeds')
+  @HiveField(2)
+  List<FlowerBedModel> get flowerBeds => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gardenTypeId')
+  @HiveField(3)
+  int get gardenTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userId')
+  @HiveField(4)
+  String get userId => throw _privateConstructorUsedError;
 
   /// Serializes this GardenModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of GardenModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GardenModelCopyWith<GardenModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GardenModelCopyWith<$Res> {
-  factory $GardenModelCopyWith(
-          GardenModel value, $Res Function(GardenModel) then) =
-      _$GardenModelCopyWithImpl<$Res, GardenModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int id,
-      @JsonKey(name: 'title') @HiveField(1) String title});
-}
-
-/// @nodoc
-class _$GardenModelCopyWithImpl<$Res, $Val extends GardenModel>
-    implements $GardenModelCopyWith<$Res> {
-  _$GardenModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of GardenModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$GardenModelImplCopyWith<$Res>
-    implements $GardenModelCopyWith<$Res> {
-  factory _$$GardenModelImplCopyWith(
-          _$GardenModelImpl value, $Res Function(_$GardenModelImpl) then) =
-      __$$GardenModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int id,
-      @JsonKey(name: 'title') @HiveField(1) String title});
-}
-
-/// @nodoc
-class __$$GardenModelImplCopyWithImpl<$Res>
-    extends _$GardenModelCopyWithImpl<$Res, _$GardenModelImpl>
-    implements _$$GardenModelImplCopyWith<$Res> {
-  __$$GardenModelImplCopyWithImpl(
-      _$GardenModelImpl _value, $Res Function(_$GardenModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GardenModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-  }) {
-    return _then(_$GardenModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
@@ -127,8 +46,14 @@ class __$$GardenModelImplCopyWithImpl<$Res>
 class _$GardenModelImpl extends _GardenModel {
   _$GardenModelImpl(
       {@JsonKey(name: 'id') @HiveField(0) required this.id,
-      @JsonKey(name: 'title') @HiveField(1) required this.title})
-      : super._();
+      @JsonKey(name: 'title') @HiveField(1) required this.title,
+      @JsonKey(name: 'flowerBeds')
+      @HiveField(2)
+      required final List<FlowerBedModel> flowerBeds,
+      @JsonKey(name: 'gardenTypeId') @HiveField(3) required this.gardenTypeId,
+      @JsonKey(name: 'userId') @HiveField(4) required this.userId})
+      : _flowerBeds = flowerBeds,
+        super._();
 
   factory _$GardenModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$GardenModelImplFromJson(json);
@@ -136,15 +61,33 @@ class _$GardenModelImpl extends _GardenModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'title')
   @HiveField(1)
   final String title;
+  final List<FlowerBedModel> _flowerBeds;
+  @override
+  @JsonKey(name: 'flowerBeds')
+  @HiveField(2)
+  List<FlowerBedModel> get flowerBeds {
+    if (_flowerBeds is EqualUnmodifiableListView) return _flowerBeds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_flowerBeds);
+  }
+
+  @override
+  @JsonKey(name: 'gardenTypeId')
+  @HiveField(3)
+  final int gardenTypeId;
+  @override
+  @JsonKey(name: 'userId')
+  @HiveField(4)
+  final String userId;
 
   @override
   String toString() {
-    return 'GardenModel(id: $id, title: $title)';
+    return 'GardenModel(id: $id, title: $title, flowerBeds: $flowerBeds, gardenTypeId: $gardenTypeId, userId: $userId)';
   }
 
   @override
@@ -153,20 +96,18 @@ class _$GardenModelImpl extends _GardenModel {
         (other.runtimeType == runtimeType &&
             other is _$GardenModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality()
+                .equals(other._flowerBeds, _flowerBeds) &&
+            (identical(other.gardenTypeId, gardenTypeId) ||
+                other.gardenTypeId == gardenTypeId) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title);
-
-  /// Create a copy of GardenModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GardenModelImplCopyWith<_$GardenModelImpl> get copyWith =>
-      __$$GardenModelImplCopyWithImpl<_$GardenModelImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, id, title,
+      const DeepCollectionEquality().hash(_flowerBeds), gardenTypeId, userId);
 
   @override
   Map<String, dynamic> toJson() {
@@ -178,9 +119,17 @@ class _$GardenModelImpl extends _GardenModel {
 
 abstract class _GardenModel extends GardenModel {
   factory _GardenModel(
-          {@JsonKey(name: 'id') @HiveField(0) required final int id,
-          @JsonKey(name: 'title') @HiveField(1) required final String title}) =
-      _$GardenModelImpl;
+      {@JsonKey(name: 'id') @HiveField(0) required final int? id,
+      @JsonKey(name: 'title') @HiveField(1) required final String title,
+      @JsonKey(name: 'flowerBeds')
+      @HiveField(2)
+      required final List<FlowerBedModel> flowerBeds,
+      @JsonKey(name: 'gardenTypeId')
+      @HiveField(3)
+      required final int gardenTypeId,
+      @JsonKey(name: 'userId')
+      @HiveField(4)
+      required final String userId}) = _$GardenModelImpl;
   _GardenModel._() : super._();
 
   factory _GardenModel.fromJson(Map<String, dynamic> json) =
@@ -189,16 +138,21 @@ abstract class _GardenModel extends GardenModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'title')
   @HiveField(1)
   String get title;
-
-  /// Create a copy of GardenModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GardenModelImplCopyWith<_$GardenModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @JsonKey(name: 'flowerBeds')
+  @HiveField(2)
+  List<FlowerBedModel> get flowerBeds;
+  @override
+  @JsonKey(name: 'gardenTypeId')
+  @HiveField(3)
+  int get gardenTypeId;
+  @override
+  @JsonKey(name: 'userId')
+  @HiveField(4)
+  String get userId;
 }

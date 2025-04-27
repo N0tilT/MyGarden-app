@@ -112,9 +112,7 @@ class __GardenDropdownWidgetState extends State<_GardenDropdownWidget> {
             alignedDropdown: true,
             child: DropdownButton<GardenEntity>(
               onChanged: (GardenEntity? value) {
-                setState(() {
-                  gardenCubit.setSelected(value!);
-                });
+                setState(() {});
               },
               value: gardenCubit.selectedGarden,
               padding: const EdgeInsets.only(left: 12),
