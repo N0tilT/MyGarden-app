@@ -17,7 +17,7 @@ class GardenModel extends HiveObject
   factory GardenModel({
     @JsonKey(name: 'id') @HiveField(0) required int? id,
     @JsonKey(name: 'title') @HiveField(1) required String title,
-    @JsonKey(name: 'flowerBeds')
+    @JsonKey(name: 'beds')
     @HiveField(2)
     required List<FlowerBedModel> flowerBeds,
     @JsonKey(name: 'gardenTypeId') @HiveField(3) required int gardenTypeId,
@@ -41,9 +41,8 @@ class GardenModel extends HiveObject
       GardenModel(
         id: entity.id,
         title: entity.title,
-        flowerBeds: entity.flowerBeds
-            .map((e) => FlowerBedModel.fromEntity(e, userId))
-            .toList(),
+        flowerBeds:
+            entity.flowerBeds.map((e) => FlowerBedModel.fromEntity(e)).toList(),
         gardenTypeId: entity.gardenTypeId,
         userId: userId,
       );

@@ -26,24 +26,15 @@ import 'package:my_garden_app/feature/event_journal/domain/usecases/add_event.da
 import 'package:my_garden_app/feature/event_journal/domain/usecases/delete_event.dart';
 import 'package:my_garden_app/feature/event_journal/domain/usecases/load_events.dart';
 import 'package:my_garden_app/feature/event_journal/presentation/bloc/cubit/event_cubit.dart';
-import 'package:my_garden_app/feature/garden_visual/data/datasource/local/flower_bed_local_data_source.dart';
 import 'package:my_garden_app/feature/garden_visual/data/datasource/local/garden_local_data_source.dart';
-import 'package:my_garden_app/feature/garden_visual/data/datasource/local/selected_garden_datasource.dart';
-import 'package:my_garden_app/feature/garden_visual/data/datasource/remote/plant_remote_data_source.dart';
+import 'package:my_garden_app/feature/garden_visual/data/datasource/remote/garden_remote_data_source.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/flower_bed_model.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/garden_model.dart';
-import 'package:my_garden_app/feature/garden_visual/data/repository/flower_bed_repository_impl.dart';
 import 'package:my_garden_app/feature/garden_visual/data/repository/garden_repository_impl.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/entities/garden_entity.dart';
-import 'package:my_garden_app/feature/garden_visual/domain/repositories/flower_bed_repository.dart';
-import 'package:my_garden_app/feature/garden_visual/domain/repositories/garden_repository.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/delete_garden.dart';
-import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_flower_beds.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/load_gardens.dart';
-import 'package:my_garden_app/feature/garden_visual/domain/usecases/remove_flower_bed.dart';
-import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_flower_bed.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/usecases/upload_garden.dart';
-import 'package:my_garden_app/feature/garden_visual/presentation/bloc/flower_bed/flower_bed_cubit.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/bloc/garden/garden_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/group_local_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/local/grow_stage_local_data_source.dart';
@@ -544,46 +535,6 @@ Future<void> init() async {
   });
 
   await sl.isReady<LocalDataSource<List<EventModel>, HasPlantidRequestModel>>();
-
-//! FlowerBeds
-  sl.registerFactory(
-    () => FlowerBedCubit(
-      removeFlowerBed: sl(),
-      loadFlowerBeds: sl(),
-      uploadFlowerBed: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton(
-    () => LoadFlowerBeds(
-      flowerBedRepository: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
-    () => UploadFlowerBed(
-      flowerBedRepository: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
-    () => RemoveFlowerBed(
-      flowerBedRepository: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton<FlowerBedRepository>(
-    () => FlowerBedRepositoryImpl(
-      localDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
-
-  sl.registerLazySingletonAsync<FlowerBedLocalDataSource>(() async {
-    return FlowerBedLocalDataSource(
-      flowerBedBox: await Hive.openBox<FlowerBedModel>('FlowerBedBox'),
-    );
-  });
-
-  await sl.isReady<FlowerBedLocalDataSource>();
 
   //! Gardens
   sl.registerFactory(

@@ -20,6 +20,7 @@ mixin _$GardenEntity {
   String get title => throw _privateConstructorUsedError;
   List<FlowerBedEntity> get flowerBeds => throw _privateConstructorUsedError;
   int get gardenTypeId => throw _privateConstructorUsedError;
+  String? get gardenTypeTitle => throw _privateConstructorUsedError;
 
   /// Create a copy of GardenEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +39,8 @@ abstract class $GardenEntityCopyWith<$Res> {
       {int? id,
       String title,
       List<FlowerBedEntity> flowerBeds,
-      int gardenTypeId});
+      int gardenTypeId,
+      String? gardenTypeTitle});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$GardenEntityCopyWithImpl<$Res, $Val extends GardenEntity>
     Object? title = null,
     Object? flowerBeds = null,
     Object? gardenTypeId = null,
+    Object? gardenTypeTitle = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -78,6 +81,10 @@ class _$GardenEntityCopyWithImpl<$Res, $Val extends GardenEntity>
           ? _value.gardenTypeId
           : gardenTypeId // ignore: cast_nullable_to_non_nullable
               as int,
+      gardenTypeTitle: freezed == gardenTypeTitle
+          ? _value.gardenTypeTitle
+          : gardenTypeTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -94,7 +101,8 @@ abstract class _$$GardenEntityImplCopyWith<$Res>
       {int? id,
       String title,
       List<FlowerBedEntity> flowerBeds,
-      int gardenTypeId});
+      int gardenTypeId,
+      String? gardenTypeTitle});
 }
 
 /// @nodoc
@@ -114,6 +122,7 @@ class __$$GardenEntityImplCopyWithImpl<$Res>
     Object? title = null,
     Object? flowerBeds = null,
     Object? gardenTypeId = null,
+    Object? gardenTypeTitle = freezed,
   }) {
     return _then(_$GardenEntityImpl(
       id: freezed == id
@@ -132,6 +141,10 @@ class __$$GardenEntityImplCopyWithImpl<$Res>
           ? _value.gardenTypeId
           : gardenTypeId // ignore: cast_nullable_to_non_nullable
               as int,
+      gardenTypeTitle: freezed == gardenTypeTitle
+          ? _value.gardenTypeTitle
+          : gardenTypeTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -143,7 +156,8 @@ class _$GardenEntityImpl implements _GardenEntity {
       {required this.id,
       required this.title,
       required final List<FlowerBedEntity> flowerBeds,
-      required this.gardenTypeId})
+      required this.gardenTypeId,
+      this.gardenTypeTitle})
       : _flowerBeds = flowerBeds;
 
   @override
@@ -160,6 +174,8 @@ class _$GardenEntityImpl implements _GardenEntity {
 
   @override
   final int gardenTypeId;
+  @override
+  final String? gardenTypeTitle;
 
   @override
   bool operator ==(Object other) {
@@ -171,12 +187,19 @@ class _$GardenEntityImpl implements _GardenEntity {
             const DeepCollectionEquality()
                 .equals(other._flowerBeds, _flowerBeds) &&
             (identical(other.gardenTypeId, gardenTypeId) ||
-                other.gardenTypeId == gardenTypeId));
+                other.gardenTypeId == gardenTypeId) &&
+            (identical(other.gardenTypeTitle, gardenTypeTitle) ||
+                other.gardenTypeTitle == gardenTypeTitle));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title,
-      const DeepCollectionEquality().hash(_flowerBeds), gardenTypeId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      const DeepCollectionEquality().hash(_flowerBeds),
+      gardenTypeId,
+      gardenTypeTitle);
 
   /// Create a copy of GardenEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -192,7 +215,8 @@ abstract class _GardenEntity implements GardenEntity {
       {required final int? id,
       required final String title,
       required final List<FlowerBedEntity> flowerBeds,
-      required final int gardenTypeId}) = _$GardenEntityImpl;
+      required final int gardenTypeId,
+      final String? gardenTypeTitle}) = _$GardenEntityImpl;
 
   @override
   int? get id;
@@ -202,6 +226,8 @@ abstract class _GardenEntity implements GardenEntity {
   List<FlowerBedEntity> get flowerBeds;
   @override
   int get gardenTypeId;
+  @override
+  String? get gardenTypeTitle;
 
   /// Create a copy of GardenEntity
   /// with the given fields replaced by the non-null parameter values.

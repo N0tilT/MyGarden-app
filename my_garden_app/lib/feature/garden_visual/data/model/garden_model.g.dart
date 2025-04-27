@@ -60,7 +60,7 @@ _$GardenModelImpl _$$GardenModelImplFromJson(Map<String, dynamic> json) =>
     _$GardenModelImpl(
       id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String,
-      flowerBeds: (json['flowerBeds'] as List<dynamic>)
+      flowerBeds: (json['beds'] as List<dynamic>)
           .map((e) => FlowerBedModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       gardenTypeId: (json['gardenTypeId'] as num).toInt(),
@@ -71,7 +71,7 @@ Map<String, dynamic> _$$GardenModelImplToJson(_$GardenModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'flowerBeds': instance.flowerBeds,
+      'beds': instance.flowerBeds,
       'gardenTypeId': instance.gardenTypeId,
       'userId': instance.userId,
     };

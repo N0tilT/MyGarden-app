@@ -47,6 +47,11 @@ class GardenCubit extends Cubit<GardenState> {
     );
   }
 
+  void selectGarden(GardenEntity garden) {
+    selectedGarden = garden;
+    emit(GardenState.success(gardens));
+  }
+
   Future<void> loadLocally() async {
     emit(const GardenState.loading());
     final result = await loadGardens([], false);

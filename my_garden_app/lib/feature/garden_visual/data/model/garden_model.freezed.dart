@@ -26,7 +26,7 @@ mixin _$GardenModel {
   @JsonKey(name: 'title')
   @HiveField(1)
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'flowerBeds')
+  @JsonKey(name: 'beds')
   @HiveField(2)
   List<FlowerBedModel> get flowerBeds => throw _privateConstructorUsedError;
   @JsonKey(name: 'gardenTypeId')
@@ -47,7 +47,7 @@ class _$GardenModelImpl extends _GardenModel {
   _$GardenModelImpl(
       {@JsonKey(name: 'id') @HiveField(0) required this.id,
       @JsonKey(name: 'title') @HiveField(1) required this.title,
-      @JsonKey(name: 'flowerBeds')
+      @JsonKey(name: 'beds')
       @HiveField(2)
       required final List<FlowerBedModel> flowerBeds,
       @JsonKey(name: 'gardenTypeId') @HiveField(3) required this.gardenTypeId,
@@ -68,7 +68,7 @@ class _$GardenModelImpl extends _GardenModel {
   final String title;
   final List<FlowerBedModel> _flowerBeds;
   @override
-  @JsonKey(name: 'flowerBeds')
+  @JsonKey(name: 'beds')
   @HiveField(2)
   List<FlowerBedModel> get flowerBeds {
     if (_flowerBeds is EqualUnmodifiableListView) return _flowerBeds;
@@ -121,7 +121,7 @@ abstract class _GardenModel extends GardenModel {
   factory _GardenModel(
       {@JsonKey(name: 'id') @HiveField(0) required final int? id,
       @JsonKey(name: 'title') @HiveField(1) required final String title,
-      @JsonKey(name: 'flowerBeds')
+      @JsonKey(name: 'beds')
       @HiveField(2)
       required final List<FlowerBedModel> flowerBeds,
       @JsonKey(name: 'gardenTypeId')
@@ -144,7 +144,7 @@ abstract class _GardenModel extends GardenModel {
   @HiveField(1)
   String get title;
   @override
-  @JsonKey(name: 'flowerBeds')
+  @JsonKey(name: 'beds')
   @HiveField(2)
   List<FlowerBedModel> get flowerBeds;
   @override

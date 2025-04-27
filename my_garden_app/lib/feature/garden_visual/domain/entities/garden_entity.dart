@@ -15,6 +15,7 @@ class GardenEntity with _$GardenEntity implements ICommonEntity {
     required String title,
     required List<FlowerBedEntity> flowerBeds,
     required int gardenTypeId,
+    String? gardenTypeTitle,
   }) = _GardenEntity;
 
   factory GardenEntity.fromModel(GardenModel model) => GardenEntity(
@@ -26,5 +27,17 @@ class GardenEntity with _$GardenEntity implements ICommonEntity {
             )
             .toList(),
         gardenTypeId: model.gardenTypeId,
+      );
+
+  factory GardenEntity.copyWith(
+    GardenEntity entity,
+    List<FlowerBedEntity> flowerBeds,
+  ) =>
+      GardenEntity(
+        id: entity.id,
+        title: entity.title,
+        flowerBeds: flowerBeds,
+        gardenTypeId: entity.gardenTypeId,
+        gardenTypeTitle: entity.gardenTypeTitle,
       );
 }

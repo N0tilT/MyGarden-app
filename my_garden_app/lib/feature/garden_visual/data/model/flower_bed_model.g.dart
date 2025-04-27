@@ -17,16 +17,16 @@ class FlowerBedModelAdapter extends TypeAdapter<_$FlowerBedModelImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$FlowerBedModelImpl(
-      id: fields[0] as int,
+      id: fields[0] as int?,
       width: fields[1] as int,
       height: fields[2] as int,
       trueDx: fields[3] as double,
       trueDy: fields[4] as double,
-      dx: fields[5] as double,
-      dy: fields[6] as double,
+      dx: fields[5] as double?,
+      dy: fields[6] as double?,
       rotation: fields[7] as double,
       plantIds: (fields[8] as List).cast<int>(),
-      gardenId: fields[9] as int,
+      gardenId: fields[9] as int?,
     );
   }
 
@@ -73,18 +73,18 @@ class FlowerBedModelAdapter extends TypeAdapter<_$FlowerBedModelImpl> {
 
 _$FlowerBedModelImpl _$$FlowerBedModelImplFromJson(Map<String, dynamic> json) =>
     _$FlowerBedModelImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       width: (json['width'] as num).toInt(),
       height: (json['height'] as num).toInt(),
-      trueDx: (json['trueDx'] as num).toDouble(),
-      trueDy: (json['trueDy'] as num).toDouble(),
-      dx: (json['dx'] as num).toDouble(),
-      dy: (json['dy'] as num).toDouble(),
-      rotation: (json['rotation'] as num).toDouble(),
-      plantIds: (json['plantIds'] as List<dynamic>)
+      trueDx: (json['x'] as num).toDouble(),
+      trueDy: (json['y'] as num).toDouble(),
+      dx: (json['dx'] as num?)?.toDouble(),
+      dy: (json['dy'] as num?)?.toDouble(),
+      rotation: (json['rotationAngle'] as num).toDouble(),
+      plantIds: (json['plants'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
-      gardenId: (json['gardenId'] as num).toInt(),
+      gardenId: (json['gardenId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$FlowerBedModelImplToJson(
@@ -93,11 +93,11 @@ Map<String, dynamic> _$$FlowerBedModelImplToJson(
       'id': instance.id,
       'width': instance.width,
       'height': instance.height,
-      'trueDx': instance.trueDx,
-      'trueDy': instance.trueDy,
+      'x': instance.trueDx,
+      'y': instance.trueDy,
       'dx': instance.dx,
       'dy': instance.dy,
-      'rotation': instance.rotation,
-      'plantIds': instance.plantIds,
+      'rotationAngle': instance.rotation,
+      'plants': instance.plantIds,
       'gardenId': instance.gardenId,
     };

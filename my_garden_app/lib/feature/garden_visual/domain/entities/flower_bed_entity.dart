@@ -2,40 +2,37 @@
 
 import 'dart:ui';
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:my_garden_app/core/domain/entities/i_common_entity.dart';
 import 'package:my_garden_app/feature/garden_visual/data/model/flower_bed_model.dart';
 
-class FlowerBedEntity {
-  int id;
-  int width;
-  int height;
-  Offset truePosition;
-  Offset position;
-  double rotation;
-  List<int> plantIds;
-  int gardenId;
-  bool isMoving;
+part 'flower_bed_entity.freezed.dart';
 
-  FlowerBedEntity({
-    required this.id,
-    required this.width,
-    required this.height,
-    required this.truePosition,
-    required this.position,
-    required this.rotation,
-    required this.plantIds,
-    required this.gardenId,
-    required this.isMoving,
-  });
+@Freezed(
+  toStringOverride: false,
+)
+class FlowerBedEntity with _$FlowerBedEntity implements ICommonEntity {
+  const factory FlowerBedEntity({
+    required int? id,
+    required int width,
+    required int height,
+    required Offset truePosition,
+    required Offset position,
+    required double rotation,
+    required List<int> plantIds,
+    required int gardenId,
+    required bool isMoving,
+  }) = _FlowerBedEntity;
 
   factory FlowerBedEntity.fromModel(FlowerBedModel model) => FlowerBedEntity(
         id: model.id,
         width: model.width,
         height: model.height,
         truePosition: Offset(model.trueDx, model.trueDy),
-        position: Offset(model.dx, model.dy),
+        position: Offset(model.trueDx, model.trueDy),
         rotation: model.rotation,
         plantIds: model.plantIds,
-        gardenId: model.gardenId,
+        gardenId: model.gardenId ?? -1,
         isMoving: false,
       );
 }
