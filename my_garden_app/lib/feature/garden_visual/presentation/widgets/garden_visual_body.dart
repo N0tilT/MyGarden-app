@@ -42,10 +42,15 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
         -50.0 * (offset.dx ~/ 50 - 3),
         -50.0 * (offset.dy ~/ 50 - 6),
       );
-
       if (currentRectangle == null) {
+        final int nextId = gardenCubit.selectedGarden!.flowerBeds.isEmpty
+            ? 1
+            : (gardenCubit.selectedGarden!.flowerBeds
+                    .map((e) => e.id)
+                    .reduce(max) +
+                1);
         currentRectangle = FlowerBedEntity(
-          id: null,
+          id: nextId,
           width: width,
           height: height,
           truePosition: newPosition,
@@ -258,7 +263,7 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                 final updatedGarden = GardenEntity.copyWith(
                   gardenCubit.selectedGarden!,
                   gardenCubit.selectedGarden!.flowerBeds
-                      .where((e) => e.id != currentRectangle!.id!)
+                      .where((e) => e.id != currentRectangle!.id)
                       .toList(),
                 );
                 gardenCubit.upload(updatedGarden);

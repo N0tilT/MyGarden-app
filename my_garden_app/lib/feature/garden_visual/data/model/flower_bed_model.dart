@@ -14,7 +14,7 @@ class FlowerBedModel extends HiveObject
     implements ICommonModel {
   @HiveType(typeId: 3, adapterName: 'FlowerBedModelAdapter')
   factory FlowerBedModel({
-    @JsonKey(name: 'id') @HiveField(0) required int? id,
+    @JsonKey(name: 'id') @HiveField(0) required int id,
     @JsonKey(name: 'width') @HiveField(1) required int width,
     @JsonKey(name: 'height') @HiveField(2) required int height,
     @JsonKey(name: 'x') @HiveField(3) required double trueDx,

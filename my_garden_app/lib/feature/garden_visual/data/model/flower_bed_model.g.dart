@@ -17,7 +17,7 @@ class FlowerBedModelAdapter extends TypeAdapter<_$FlowerBedModelImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$FlowerBedModelImpl(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       width: fields[1] as int,
       height: fields[2] as int,
       trueDx: fields[3] as double,
@@ -73,7 +73,7 @@ class FlowerBedModelAdapter extends TypeAdapter<_$FlowerBedModelImpl> {
 
 _$FlowerBedModelImpl _$$FlowerBedModelImplFromJson(Map<String, dynamic> json) =>
     _$FlowerBedModelImpl(
-      id: (json['id'] as num?)?.toInt(),
+      id: (json['id'] as num).toInt(),
       width: (json['width'] as num).toInt(),
       height: (json['height'] as num).toInt(),
       trueDx: (json['x'] as num).toDouble(),

@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FlowerBedEntity {
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   int get width => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
   Offset get truePosition => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $FlowerBedEntityCopyWith<$Res> {
       _$FlowerBedEntityCopyWithImpl<$Res, FlowerBedEntity>;
   @useResult
   $Res call(
-      {int? id,
+      {int id,
       int width,
       int height,
       Offset truePosition,
@@ -66,7 +66,7 @@ class _$FlowerBedEntityCopyWithImpl<$Res, $Val extends FlowerBedEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? width = null,
     Object? height = null,
     Object? truePosition = null,
@@ -77,10 +77,10 @@ class _$FlowerBedEntityCopyWithImpl<$Res, $Val extends FlowerBedEntity>
     Object? isMoving = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ abstract class _$$FlowerBedEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {int id,
       int width,
       int height,
       Offset truePosition,
@@ -150,7 +150,7 @@ class __$$FlowerBedEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? width = null,
     Object? height = null,
     Object? truePosition = null,
@@ -161,10 +161,10 @@ class __$$FlowerBedEntityImplCopyWithImpl<$Res>
     Object? isMoving = null,
   }) {
     return _then(_$FlowerBedEntityImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -217,7 +217,7 @@ class _$FlowerBedEntityImpl implements _FlowerBedEntity {
       : _plantIds = plantIds;
 
   @override
-  final int? id;
+  final int id;
   @override
   final int width;
   @override
@@ -287,7 +287,7 @@ class _$FlowerBedEntityImpl implements _FlowerBedEntity {
 
 abstract class _FlowerBedEntity implements FlowerBedEntity {
   const factory _FlowerBedEntity(
-      {required final int? id,
+      {required final int id,
       required final int width,
       required final int height,
       required final Offset truePosition,
@@ -298,7 +298,7 @@ abstract class _FlowerBedEntity implements FlowerBedEntity {
       required final bool isMoving}) = _$FlowerBedEntityImpl;
 
   @override
-  int? get id;
+  int get id;
   @override
   int get width;
   @override

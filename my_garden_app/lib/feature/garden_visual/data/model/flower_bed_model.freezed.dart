@@ -22,7 +22,7 @@ FlowerBedModel _$FlowerBedModelFromJson(Map<String, dynamic> json) {
 mixin _$FlowerBedModel {
   @JsonKey(name: 'id')
   @HiveField(0)
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'width')
   @HiveField(1)
   int get width => throw _privateConstructorUsedError;
@@ -68,7 +68,7 @@ abstract class $FlowerBedModelCopyWith<$Res> {
       _$FlowerBedModelCopyWithImpl<$Res, FlowerBedModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int? id,
+      {@JsonKey(name: 'id') @HiveField(0) int id,
       @JsonKey(name: 'width') @HiveField(1) int width,
       @JsonKey(name: 'height') @HiveField(2) int height,
       @JsonKey(name: 'x') @HiveField(3) double trueDx,
@@ -95,7 +95,7 @@ class _$FlowerBedModelCopyWithImpl<$Res, $Val extends FlowerBedModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? width = null,
     Object? height = null,
     Object? trueDx = null,
@@ -107,10 +107,10 @@ class _$FlowerBedModelCopyWithImpl<$Res, $Val extends FlowerBedModel>
     Object? gardenId = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ abstract class _$$FlowerBedModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int? id,
+      {@JsonKey(name: 'id') @HiveField(0) int id,
       @JsonKey(name: 'width') @HiveField(1) int width,
       @JsonKey(name: 'height') @HiveField(2) int height,
       @JsonKey(name: 'x') @HiveField(3) double trueDx,
@@ -185,7 +185,7 @@ class __$$FlowerBedModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? width = null,
     Object? height = null,
     Object? trueDx = null,
@@ -197,10 +197,10 @@ class __$$FlowerBedModelImplCopyWithImpl<$Res>
     Object? gardenId = freezed,
   }) {
     return _then(_$FlowerBedModelImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -265,7 +265,7 @@ class _$FlowerBedModelImpl extends _FlowerBedModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  final int? id;
+  final int id;
   @override
   @JsonKey(name: 'width')
   @HiveField(1)
@@ -367,7 +367,7 @@ class _$FlowerBedModelImpl extends _FlowerBedModel {
 
 abstract class _FlowerBedModel extends FlowerBedModel {
   factory _FlowerBedModel(
-      {@JsonKey(name: 'id') @HiveField(0) required final int? id,
+      {@JsonKey(name: 'id') @HiveField(0) required final int id,
       @JsonKey(name: 'width') @HiveField(1) required final int width,
       @JsonKey(name: 'height') @HiveField(2) required final int height,
       @JsonKey(name: 'x') @HiveField(3) required final double trueDx,
@@ -389,7 +389,7 @@ abstract class _FlowerBedModel extends FlowerBedModel {
   @override
   @JsonKey(name: 'id')
   @HiveField(0)
-  int? get id;
+  int get id;
   @override
   @JsonKey(name: 'width')
   @HiveField(1)

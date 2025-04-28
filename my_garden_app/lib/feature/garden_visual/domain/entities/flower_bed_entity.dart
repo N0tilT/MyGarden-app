@@ -13,7 +13,7 @@ part 'flower_bed_entity.freezed.dart';
 )
 class FlowerBedEntity with _$FlowerBedEntity implements ICommonEntity {
   const factory FlowerBedEntity({
-    required int? id,
+    required int id,
     required int width,
     required int height,
     required Offset truePosition,
