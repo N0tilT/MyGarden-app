@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:my_garden_app/core/constant_values/routes.dart';
+import 'package:my_garden_app/core/network/api_config.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/group_entity.dart';
@@ -17,6 +22,7 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/pl
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
+import 'package:http_parser/http_parser.dart';
 
 class PlantCardBottomSheet extends StatefulWidget {
   final PlantEntity plant;
@@ -97,6 +103,46 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
     }
   }
 
+  File? _selectedImage;
+  String _serverResponse = '';
+
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<void> _uploadImage() async {
+    if (_selectedImage == null) return;
+
+    final uri = Uri.parse('$BASE_URL/recognize');
+    final request = http.MultipartRequest('POST', uri);
+
+    request.files.add(await http.MultipartFile.fromPath(
+      'image',
+      _selectedImage!.path,
+      contentType: MediaType('image', 'jpeg'),
+    ));
+
+    try {
+      final response = await request.send();
+      final responseBody = await response.stream.bytesToString();
+
+      setState(() {
+        _serverResponse = responseBody;
+      });
+    } catch (e) {
+      setState(() {
+        _serverResponse = 'Ошибка: $e';
+      });
+    }
+  }
+
   @override
   void dispose() {
     for (final controller in _controllers.values) {
@@ -136,8 +182,22 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
                     : _editedPlant.title ?? "Без названия",
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          Row(
+          Column(
             children: [
+              IconButton(
+                icon: const Icon(Icons.camera),
+                onPressed: () async {
+                  await _pickImage(ImageSource.camera);
+                  await _uploadImage();
+                },
+              ),
+              IconButton(
+                onPressed: () async {
+                  await _pickImage(ImageSource.gallery);
+                  await _uploadImage();
+                },
+                icon: const Icon(Icons.folder),
+              ),
               IconButton(
                 icon: Icon(_isEditing ? Icons.save : Icons.close),
                 onPressed: () {
