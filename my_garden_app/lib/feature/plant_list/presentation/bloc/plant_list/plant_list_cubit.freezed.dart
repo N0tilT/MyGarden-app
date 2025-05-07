@@ -21,6 +21,8 @@ mixin _$PlantListState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -32,6 +34,7 @@ mixin _$PlantListState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -42,6 +45,7 @@ mixin _$PlantListState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -53,6 +57,7 @@ mixin _$PlantListState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -63,6 +68,7 @@ mixin _$PlantListState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -73,6 +79,7 @@ mixin _$PlantListState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -146,6 +153,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -160,6 +169,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -173,6 +183,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -190,6 +201,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -203,6 +215,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -216,6 +229,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -276,6 +290,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -290,6 +306,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -303,6 +320,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -320,6 +338,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -333,6 +352,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -346,6 +366,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -439,6 +460,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -453,6 +476,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -466,6 +490,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -483,6 +508,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -496,6 +522,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -509,6 +536,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -530,6 +558,193 @@ abstract class _Success implements PlantListState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RecognizeSuccessImplCopyWith<$Res> {
+  factory _$$RecognizeSuccessImplCopyWith(_$RecognizeSuccessImpl value,
+          $Res Function(_$RecognizeSuccessImpl) then) =
+      __$$RecognizeSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PlantRecognitionResponseEntity plants});
+
+  $PlantRecognitionResponseEntityCopyWith<$Res> get plants;
+}
+
+/// @nodoc
+class __$$RecognizeSuccessImplCopyWithImpl<$Res>
+    extends _$PlantListStateCopyWithImpl<$Res, _$RecognizeSuccessImpl>
+    implements _$$RecognizeSuccessImplCopyWith<$Res> {
+  __$$RecognizeSuccessImplCopyWithImpl(_$RecognizeSuccessImpl _value,
+      $Res Function(_$RecognizeSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PlantListState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? plants = null,
+  }) {
+    return _then(_$RecognizeSuccessImpl(
+      null == plants
+          ? _value.plants
+          : plants // ignore: cast_nullable_to_non_nullable
+              as PlantRecognitionResponseEntity,
+    ));
+  }
+
+  /// Create a copy of PlantListState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PlantRecognitionResponseEntityCopyWith<$Res> get plants {
+    return $PlantRecognitionResponseEntityCopyWith<$Res>(_value.plants,
+        (value) {
+      return _then(_value.copyWith(plants: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$RecognizeSuccessImpl implements _RecognizeSuccess {
+  const _$RecognizeSuccessImpl(this.plants);
+
+  @override
+  final PlantRecognitionResponseEntity plants;
+
+  @override
+  String toString() {
+    return 'PlantListState.recognizeSuccess(plants: $plants)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecognizeSuccessImpl &&
+            (identical(other.plants, plants) || other.plants == plants));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, plants);
+
+  /// Create a copy of PlantListState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecognizeSuccessImplCopyWith<_$RecognizeSuccessImpl> get copyWith =>
+      __$$RecognizeSuccessImplCopyWithImpl<_$RecognizeSuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
+    required TResult Function(String message) remoteFail,
+    required TResult Function(String message) fail,
+    required TResult Function(List<PlantEntity> departments)
+        localLoadingSuccess,
+  }) {
+    return recognizeSuccess(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
+    TResult? Function(String message)? remoteFail,
+    TResult? Function(String message)? fail,
+    TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
+  }) {
+    return recognizeSuccess?.call(plants);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
+    TResult Function(String message)? remoteFail,
+    TResult Function(String message)? fail,
+    TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
+    required TResult orElse(),
+  }) {
+    if (recognizeSuccess != null) {
+      return recognizeSuccess(plants);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
+    required TResult Function(_Fail value) remoteFail,
+    required TResult Function(_LocalLoadingFail value) fail,
+    required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
+  }) {
+    return recognizeSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
+    TResult? Function(_Fail value)? remoteFail,
+    TResult? Function(_LocalLoadingFail value)? fail,
+    TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+  }) {
+    return recognizeSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
+    TResult Function(_Fail value)? remoteFail,
+    TResult Function(_LocalLoadingFail value)? fail,
+    TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
+    required TResult orElse(),
+  }) {
+    if (recognizeSuccess != null) {
+      return recognizeSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RecognizeSuccess implements PlantListState {
+  const factory _RecognizeSuccess(final PlantRecognitionResponseEntity plants) =
+      _$RecognizeSuccessImpl;
+
+  PlantRecognitionResponseEntity get plants;
+
+  /// Create a copy of PlantListState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RecognizeSuccessImplCopyWith<_$RecognizeSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -604,6 +819,8 @@ class _$FailImpl implements _Fail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -618,6 +835,7 @@ class _$FailImpl implements _Fail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -631,6 +849,7 @@ class _$FailImpl implements _Fail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -648,6 +867,7 @@ class _$FailImpl implements _Fail {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -661,6 +881,7 @@ class _$FailImpl implements _Fail {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -674,6 +895,7 @@ class _$FailImpl implements _Fail {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -771,6 +993,8 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -785,6 +1009,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -798,6 +1023,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -815,6 +1041,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -828,6 +1055,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -841,6 +1069,7 @@ class _$LocalLoadingFailImpl implements _LocalLoadingFail {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -946,6 +1175,8 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<PlantEntity> plants) success,
+    required TResult Function(PlantRecognitionResponseEntity plants)
+        recognizeSuccess,
     required TResult Function(String message) remoteFail,
     required TResult Function(String message) fail,
     required TResult Function(List<PlantEntity> departments)
@@ -960,6 +1191,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<PlantEntity> plants)? success,
+    TResult? Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult? Function(String message)? remoteFail,
     TResult? Function(String message)? fail,
     TResult? Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -973,6 +1205,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<PlantEntity> plants)? success,
+    TResult Function(PlantRecognitionResponseEntity plants)? recognizeSuccess,
     TResult Function(String message)? remoteFail,
     TResult Function(String message)? fail,
     TResult Function(List<PlantEntity> departments)? localLoadingSuccess,
@@ -990,6 +1223,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_RecognizeSuccess value) recognizeSuccess,
     required TResult Function(_Fail value) remoteFail,
     required TResult Function(_LocalLoadingFail value) fail,
     required TResult Function(_LocalLoadingSuccess value) localLoadingSuccess,
@@ -1003,6 +1237,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult? Function(_Fail value)? remoteFail,
     TResult? Function(_LocalLoadingFail value)? fail,
     TResult? Function(_LocalLoadingSuccess value)? localLoadingSuccess,
@@ -1016,6 +1251,7 @@ class _$LocalLoadingSuccessImpl implements _LocalLoadingSuccess {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_RecognizeSuccess value)? recognizeSuccess,
     TResult Function(_Fail value)? remoteFail,
     TResult Function(_LocalLoadingFail value)? fail,
     TResult Function(_LocalLoadingSuccess value)? localLoadingSuccess,

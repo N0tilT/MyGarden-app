@@ -49,6 +49,7 @@ import 'package:my_garden_app/feature/plant_list/data/datasource/remote/light_ne
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_type_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/plant_variety_remote_data_source.dart';
+import 'package:my_garden_app/feature/plant_list/data/datasource/remote/recognzie_plant_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/watering_need_remote_data_source.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/garden_type_model.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/group_model.dart';
@@ -61,6 +62,7 @@ import 'package:my_garden_app/feature/plant_list/data/model/watering_need_model.
 import 'package:my_garden_app/feature/plant_list/data/repository/group_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/grow_stage_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/light_need_repository_impl.dart';
+import 'package:my_garden_app/feature/plant_list/data/repository/plant_recognition_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/plant_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/plant_type_repository_impl.dart';
 import 'package:my_garden_app/feature/plant_list/data/repository/plant_variety_repository_impl.dart';
@@ -80,6 +82,7 @@ import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plant
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plant_varieties.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plants.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_watering_needs.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/recognize/recognize_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_group.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_plant.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_cubit.dart';
@@ -170,9 +173,17 @@ Future<void> init() async {
   //! PlantList
   sl.registerFactory(
     () => PlantListCubit(
+      recognizePlant: sl(),
       loadPlants: sl(),
       uploadPlant: sl(),
       deletePlant: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => RecognizePlant(
+      recognitionRepository: sl(),
+      authRepository: sl(),
     ),
   );
 
@@ -201,12 +212,25 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerLazySingleton(
+    () => PlantRecognitionRepositoryImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
   sl.registerLazySingleton<
       CommonRepository<List<PlantModel>, CommonRequestModel>>(
     () => PlantRepositoryImpl(
       remoteDataSource: sl(),
       localDataSource: sl(),
       networkInfo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => RecognziePlantRemoteDataSource(
+      client: sl(),
     ),
   );
 

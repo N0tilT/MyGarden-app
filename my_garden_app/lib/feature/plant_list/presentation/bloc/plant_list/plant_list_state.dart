@@ -5,6 +5,7 @@ class PlantListState with _$PlantListState {
   const factory PlantListState.initial() = _Initial;
   const factory PlantListState.loading() = _Loading;
   const factory PlantListState.success(List<PlantEntity> plants) = _Success;
+  const factory PlantListState.recognizeSuccess(PlantRecognitionResponseEntity plants) = _RecognizeSuccess;
   const factory PlantListState.remoteFail([
     @Default("Unknown error") String message,
   ]) = _Fail;
