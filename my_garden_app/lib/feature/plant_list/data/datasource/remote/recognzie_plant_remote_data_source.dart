@@ -11,26 +11,31 @@ class RecognziePlantRemoteDataSource {
   final http.Client client;
 
   RecognziePlantRemoteDataSource({required this.client});
-  Future<PlantRecognitionResponseModel> recognize(File remoteLoad, String token) async {
+  Future<PlantRecognitionResponseModel> recognize(
+    File remoteLoad,
+    String token,
+  ) async {
     try {
       final uri = Uri.parse('$BASE_URL/recognize');
       final request = http.MultipartRequest('POST', uri);
 
-      request.files.add(await http.MultipartFile.fromPath(
-        'image',
-        remoteLoad!.path,
-        contentType: MediaType('image', 'jpeg'),
-      ),);
-      final response = await client.get(
-        uri,
-        headers: {
-          "Authorization": "Bearer $token",
-          'Content-type': 'application/json; charset=UTF-8',
-        },
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'image',
+          remoteLoad.path,
+          contentType: MediaType('image', 'jpeg'),
+        ),
       );
+      request.headers.addAll({
+        "Authorization": "Bearer $token",
+        'Content-type': 'application/json; charset=UTF-8',
+      });
+      final response = await request.send();
       if (response.statusCode == 200) {
-        final responseModel = 
-                  PlantRecognitionResponseModel.fromJson(json.decode(response.body) as Map<String, dynamic>);
+        final responseBody = await response.stream.bytesToString();
+        final responseModel = PlantRecognitionResponseModel.fromJson(
+          json.decode(responseBody) as Map<String, dynamic>,
+        );
         return responseModel;
       } else {
         throw ServerException();

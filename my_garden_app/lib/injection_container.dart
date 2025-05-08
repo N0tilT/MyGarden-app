@@ -74,6 +74,7 @@ import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.da
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_type_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_variety_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/watering_need_entity.dart';
+import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_recognition_repositroy.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/delete/delete_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_groups.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_grow_stages.dart';
@@ -89,6 +90,7 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_c
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/light_need/light_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition.dart/plant_recognition_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
@@ -173,17 +175,9 @@ Future<void> init() async {
   //! PlantList
   sl.registerFactory(
     () => PlantListCubit(
-      recognizePlant: sl(),
       loadPlants: sl(),
       uploadPlant: sl(),
       deletePlant: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton(
-    () => RecognizePlant(
-      recognitionRepository: sl(),
-      authRepository: sl(),
     ),
   );
 
@@ -211,14 +205,6 @@ Future<void> init() async {
       authRepository: sl(),
     ),
   );
-
-  sl.registerLazySingleton(
-    () => PlantRecognitionRepositoryImpl(
-      remoteDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
-
   sl.registerLazySingleton<
       CommonRepository<List<PlantModel>, CommonRequestModel>>(
     () => PlantRepositoryImpl(
@@ -227,13 +213,6 @@ Future<void> init() async {
       networkInfo: sl(),
     ),
   );
-
-  sl.registerLazySingleton(
-    () => RecognziePlantRemoteDataSource(
-      client: sl(),
-    ),
-  );
-
   sl.registerLazySingleton<
       RemoteDataSource<List<PlantModel>, CommonRequestModel>>(
     () => PlantRemoteDataSource(
@@ -249,6 +228,31 @@ Future<void> init() async {
   });
 
   await sl.isReady<LocalDataSource<List<PlantModel>, CommonRequestModel>>();
+  //! PlantRecognition
+  sl.registerFactory(
+    () => PlantRecognitionCubit(
+      recognizePlant: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => RecognizePlant(
+      recognitionRepository: sl(),
+      authRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton<PlantRecognitionRepository>(
+    () => PlantRecognitionRepositoryImpl(
+      remoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => RecognziePlantRemoteDataSource(
+      client: sl(),
+    ),
+  );
+
   //! Groups
   sl.registerFactory(
     () => GroupCubit(

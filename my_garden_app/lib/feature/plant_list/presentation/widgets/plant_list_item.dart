@@ -5,6 +5,7 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_c
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/light_need/light_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition.dart/plant_recognition_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
@@ -44,6 +45,9 @@ class PlantListItem extends StatelessWidget {
             ),
             BlocProvider<PlantListCubit>(
               create: (context) => sl<PlantListCubit>(),
+            ),
+            BlocProvider<PlantRecognitionCubit>(
+              create: (context) => sl<PlantRecognitionCubit>(),
             ),
           ],
           child: Builder(
