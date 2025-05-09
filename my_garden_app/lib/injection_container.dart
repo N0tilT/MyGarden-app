@@ -94,13 +94,12 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recogni
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   const secureStorage = FlutterSecureStorage();
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // final SharedPreferences prefs = await SharedPreferences.getInstance();
   Hive.registerAdapter(PlantModelAdapter());
   Hive.registerAdapter(EventModelAdapter());
   Hive.registerAdapter(FlowerBedModelAdapter());

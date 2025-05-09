@@ -7,17 +7,22 @@ part 'plant_recognition_response_entity.freezed.dart';
   toStringOverride: false,
 )
 class PlantRecognitionResponseEntity with _$PlantRecognitionResponseEntity {
-  const factory PlantRecognitionResponseEntity(
-      {required int id,
-      required String? title,
-      required String? description,}) = _PlantRecognitionResponseEntity;
+  const factory PlantRecognitionResponseEntity({
+    required int id,
+    required String? title,
+    required String? description,
+  }) = _PlantRecognitionResponseEntity;
 
   const PlantRecognitionResponseEntity._();
 
   factory PlantRecognitionResponseEntity.fromModel(
-          PlantRecognitionResponseModel model,) =>
+    PlantRecognitionResponseModel model,
+  ) =>
       PlantRecognitionResponseEntity(
-          id: model.id, title: model.title, description: model.description,);
+        id: model.id,
+        title: model.title,
+        description: model.description,
+      );
 
   @override
   String toString() {

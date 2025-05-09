@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/core/constant_values/routes.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
-import 'package:my_garden_app/core/presentation/UI/unversal_refresh_list.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
 import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/group_entity.dart';
@@ -15,8 +14,8 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recogni
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/widgets/group_list_widget.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_card_bottom_sheet_widget.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:my_garden_app/injection_container.dart';
 
 class PlantListPage extends StatefulWidget {
@@ -102,7 +101,8 @@ class _PlantListPageState extends State<PlantListPage> {
                       ),
                       BlocProvider.value(
                         value: BlocProvider.of<PlantRecognitionCubit>(
-                            parentContext,),
+                          parentContext,
+                        ),
                       ),
                     ],
                     child: const PlantCardBottomSheet(
@@ -187,45 +187,20 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
                     success: (wateringNeeds) => plantTypeCubit.state.maybeWhen(
                       success: (plantTypes) =>
                           plantVarietyCubit.state.maybeWhen(
-                        success: (plantVarieties) => UniversalRefreshList(
-                          items: plantList.map((x) {
-                            return x.copyWith(
-                              stageTitle: growStages
-                                      .firstWhere((y) => y.id == x.stageId)
-                                      .title ??
-                                  "",
-                              lightNeedTitle: lightNeeds
-                                      .firstWhere(
-                                        (y) => y.id == x.lightNeedId,
-                                      )
-                                      .title ??
-                                  "",
-                              wateringNeedTitle: wateringNeeds
-                                      .firstWhere(
-                                        (y) => y.id == x.wateringNeedId,
-                                      )
-                                      .title ??
-                                  "",
-                              plantTypeTitle: plantTypes
-                                      .firstWhere(
-                                        (y) => y.id == x.plantTypeId,
-                                      )
-                                      .title ??
-                                  "",
-                              plantVarietyTitle: plantVarieties
-                                      .firstWhere(
-                                        (y) => y.id == x.plantVarietyId,
-                                      )
-                                      .title ??
-                                  "",
+                        success: (plantVarieties) => GroupList(
+                          groups: groups.map((group) {
+                            return Group(
+                              name: group.title ?? "Без названи",
+                              plants: plantList.map((x) {
+                                return x.title ?? "Без названия";
+                              }).toList(),
                             );
                           }).toList(),
-                          itemBuilder: (context, plant, index) =>
-                              PlantListItem(plant: plant),
                           onRefresh: () async {
                             await plantListCubit.load();
                             await groupCubit.load();
                           },
+                          onAddGroup: () async {},
                         ),
                         fail: (message) => Center(
                           child: GardenDefaultLabelWidget(

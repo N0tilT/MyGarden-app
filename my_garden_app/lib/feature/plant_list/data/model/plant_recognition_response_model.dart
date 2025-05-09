@@ -25,7 +25,11 @@ class PlantRecognitionResponseModel extends HiveObject
       _$PlantRecognitionResponseModelFromJson(json);
 
   factory PlantRecognitionResponseModel.fromEntity(
-          PlantRecognitionResponseEntity entity,) =>
+    PlantRecognitionResponseEntity entity,
+  ) =>
       PlantRecognitionResponseModel(
-          id: entity.id, title: entity.title, description: entity.description,);
+        id: entity.id,
+        title: entity.title,
+        description: entity.description,
+      );
 }

@@ -15,7 +15,6 @@ class RecognizePlant {
     required this.authRepository,
   });
 
-  @override
   Future<Either<Failure, PlantRecognitionResponseEntity>> call(
     File request, [
     bool remote = true,
