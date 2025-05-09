@@ -1,6 +1,8 @@
 // group_list.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class GroupList extends StatefulWidget {
@@ -38,11 +40,15 @@ class _GroupListState extends State<GroupList> {
                       sliver: group.isExpanded
                           ? SliverList(
                               delegate: SliverChildBuilderDelegate(
-                                (context, index) => ListTile(
-                                  title: Text(group.plants[index]),
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 40),
-                                ),
+                                (context, index) {
+                                  return PlantListItem(
+                                      plant: group.plants[index]);
+                                  return ListTile(
+                                    title: Text(group.plants[index]),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 40),
+                                  );
+                                },
                                 childCount: group.plants.length,
                               ),
                             )
@@ -68,7 +74,7 @@ class _GroupListState extends State<GroupList> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Colors.black,
           ),
         ),
       ),

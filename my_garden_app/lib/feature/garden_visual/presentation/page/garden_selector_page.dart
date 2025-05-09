@@ -147,7 +147,7 @@ class GardenSelectorAppBarWidget extends StatelessWidget
       centerTitle: true,
       title: const Text(
         'Выбор сада',
-        style: TextStyle(color: Colors.white, fontSize: 25),
+        style: TextStyle( fontSize: 25),
       ),
     );
   }

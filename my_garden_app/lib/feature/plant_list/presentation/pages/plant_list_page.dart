@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:my_garden_app/core/constant_values/routes.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
 import 'package:my_garden_app/core/presentation/label/garden_default_label_widget.dart';
@@ -26,6 +27,7 @@ class PlantListPage extends StatefulWidget {
 }
 
 class _PlantListPageState extends State<PlantListPage> {
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -190,7 +192,7 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
                         success: (plantVarieties) => GroupList(
                           groups: groups.map((group) {
                             return Group(
-                              name: group.title ?? "Без названи",
+                              name: group.title ?? "Без названия",
                               plants: plantList.map((x) {
                                 return x.title ?? "Без названия";
                               }).toList(),
@@ -332,7 +334,7 @@ class PlantListAppBarWidget extends StatelessWidget
       centerTitle: true,
       title: const Text(
         'Мои растения',
-        style: TextStyle(color: Colors.white, fontSize: 25),
+        style: TextStyle(fontSize: 25),
       ),
     );
   }

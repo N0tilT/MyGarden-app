@@ -11,6 +11,7 @@ import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.d
 import 'package:my_garden_app/feature/auth/presentation/pages/main_auth_widget.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/page/garden_selector_page.dart';
 import 'package:my_garden_app/feature/garden_visual/presentation/page/garden_visual_page.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_card_page.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_list_page.dart';
 import 'package:my_garden_app/injection_container.dart' as di;
 import 'package:my_garden_app/injection_container.dart';
@@ -40,7 +41,14 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             appBarTheme: const AppBarTheme(
-              backgroundColor: Color.fromARGB(255, 101, 59, 159),
+                backgroundColor: Color.fromARGB(255, 216, 243, 203),
+                foregroundColor: Colors.black),
+            floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+            ),
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              selectedItemColor: Color.fromARGB(255, 22, 81, 41),
             ),
             fontFamily: 'Inter',
           ),
@@ -104,7 +112,6 @@ class _InitializerState extends State<Initializer> {
   @override
   Widget build(BuildContext context) {
     final tokenCubit = context.watch<TokenCubit>();
-    // return PlantListPage();
     return tokenCubit.state.when(
       initial: () => const Center(child: GardenLoadingWidget()),
       authorized: (token) => const Center(child: GardenLoadingWidget()),

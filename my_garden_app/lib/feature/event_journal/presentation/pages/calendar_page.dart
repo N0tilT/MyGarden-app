@@ -337,7 +337,7 @@ class CalendarAppBarWidget extends StatelessWidget
       centerTitle: true,
       title: const Text(
         'Календарь',
-        style: TextStyle(color: Colors.white, fontSize: 25),
+        style: TextStyle(fontSize: 25),
       ),
     );
   }

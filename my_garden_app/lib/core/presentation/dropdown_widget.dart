@@ -63,7 +63,7 @@ class GardenDropdownState<T> extends State<GardenDropdown<T>> {
 }
 
 final dropdownBoxDecoration = BoxDecoration(
-  border: Border.all(color: const Color(0xFFAA8DD3), width: 1.5),
+  border: Border.all(color: const Color.fromARGB(255, 177, 245, 218), width: 1.5),
   borderRadius: const BorderRadius.all(Radius.circular(5)),
   color: Colors.white,
 );

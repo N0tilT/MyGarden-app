@@ -5,7 +5,7 @@ final gardenInputStyle = InputDecoration(
   enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(5),
     borderSide: const BorderSide(
-      color: Color.fromARGB(255, 170, 141, 211),
+      color: Color.fromARGB(255, 150, 211, 163),
     ),
   ),
 );
