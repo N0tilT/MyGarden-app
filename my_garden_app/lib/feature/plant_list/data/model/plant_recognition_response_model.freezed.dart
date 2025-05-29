@@ -21,15 +21,12 @@ PlantRecognitionResponseModel _$PlantRecognitionResponseModelFromJson(
 
 /// @nodoc
 mixin _$PlantRecognitionResponseModel {
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'message')
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'title')
+  String get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'filename')
   @HiveField(1)
-  String? get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  @HiveField(2)
-  String? get description => throw _privateConstructorUsedError;
+  String get filename => throw _privateConstructorUsedError;
 
   /// Serializes this PlantRecognitionResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,9 +47,8 @@ abstract class $PlantRecognitionResponseModelCopyWith<$Res> {
           PlantRecognitionResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int id,
-      @JsonKey(name: 'title') @HiveField(1) String? title,
-      @JsonKey(name: 'description') @HiveField(2) String? description});
+      {@JsonKey(name: 'message') @HiveField(0) String message,
+      @JsonKey(name: 'filename') @HiveField(1) String filename});
 }
 
 /// @nodoc
@@ -71,23 +67,18 @@ class _$PlantRecognitionResponseModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = freezed,
-    Object? description = freezed,
+    Object? message = null,
+    Object? filename = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      filename: null == filename
+          ? _value.filename
+          : filename // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -102,9 +93,8 @@ abstract class _$$PlantRecognitionResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @HiveField(0) int id,
-      @JsonKey(name: 'title') @HiveField(1) String? title,
-      @JsonKey(name: 'description') @HiveField(2) String? description});
+      {@JsonKey(name: 'message') @HiveField(0) String message,
+      @JsonKey(name: 'filename') @HiveField(1) String filename});
 }
 
 /// @nodoc
@@ -122,36 +112,30 @@ class __$$PlantRecognitionResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = freezed,
-    Object? description = freezed,
+    Object? message = null,
+    Object? filename = null,
   }) {
     return _then(_$PlantRecognitionResponseModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      filename: null == filename
+          ? _value.filename
+          : filename // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 11, adapterName: 'PlantRecognitionResponseModelAdapter')
+@HiveType(typeId: 13, adapterName: 'PlantRecognitionResponseModelAdapter')
 class _$PlantRecognitionResponseModelImpl
     extends _PlantRecognitionResponseModel {
   _$PlantRecognitionResponseModelImpl(
-      {@JsonKey(name: 'id') @HiveField(0) required this.id,
-      @JsonKey(name: 'title') @HiveField(1) required this.title,
-      @JsonKey(name: 'description') @HiveField(2) required this.description})
+      {@JsonKey(name: 'message') @HiveField(0) required this.message,
+      @JsonKey(name: 'filename') @HiveField(1) required this.filename})
       : super._();
 
   factory _$PlantRecognitionResponseModelImpl.fromJson(
@@ -159,21 +143,17 @@ class _$PlantRecognitionResponseModelImpl
       _$$PlantRecognitionResponseModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'message')
   @HiveField(0)
-  final int id;
+  final String message;
   @override
-  @JsonKey(name: 'title')
+  @JsonKey(name: 'filename')
   @HiveField(1)
-  final String? title;
-  @override
-  @JsonKey(name: 'description')
-  @HiveField(2)
-  final String? description;
+  final String filename;
 
   @override
   String toString() {
-    return 'PlantRecognitionResponseModel(id: $id, title: $title, description: $description)';
+    return 'PlantRecognitionResponseModel(message: $message, filename: $filename)';
   }
 
   @override
@@ -181,15 +161,14 @@ class _$PlantRecognitionResponseModelImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlantRecognitionResponseModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.filename, filename) ||
+                other.filename == filename));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description);
+  int get hashCode => Object.hash(runtimeType, message, filename);
 
   /// Create a copy of PlantRecognitionResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -212,29 +191,23 @@ class _$PlantRecognitionResponseModelImpl
 abstract class _PlantRecognitionResponseModel
     extends PlantRecognitionResponseModel {
   factory _PlantRecognitionResponseModel(
-          {@JsonKey(name: 'id') @HiveField(0) required final int id,
-          @JsonKey(name: 'title') @HiveField(1) required final String? title,
-          @JsonKey(name: 'description')
-          @HiveField(2)
-          required final String? description}) =
-      _$PlantRecognitionResponseModelImpl;
+      {@JsonKey(name: 'message') @HiveField(0) required final String message,
+      @JsonKey(name: 'filename')
+      @HiveField(1)
+      required final String filename}) = _$PlantRecognitionResponseModelImpl;
   _PlantRecognitionResponseModel._() : super._();
 
   factory _PlantRecognitionResponseModel.fromJson(Map<String, dynamic> json) =
       _$PlantRecognitionResponseModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'message')
   @HiveField(0)
-  int get id;
+  String get message;
   @override
-  @JsonKey(name: 'title')
+  @JsonKey(name: 'filename')
   @HiveField(1)
-  String? get title;
-  @override
-  @JsonKey(name: 'description')
-  @HiveField(2)
-  String? get description;
+  String get filename;
 
   /// Create a copy of PlantRecognitionResponseModel
   /// with the given fields replaced by the non-null parameter values.

@@ -3,14 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_card_page.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_modal_bottom_sheet_widget.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_detail_bottom_sheet_widget.dart';
 import 'package:path_provider/path_provider.dart';
 
 class PlantListItem extends StatelessWidget {
   const PlantListItem({super.key, required this.plant});
 
   final String plant;
-  
 
   @override
   Widget build(BuildContext context) {

@@ -83,6 +83,7 @@ import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plant
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plant_varieties.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_plants.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/load/load_watering_needs.dart';
+import 'package:my_garden_app/feature/plant_list/domain/usecases/prefill/prefill_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/recognize/recognize_plant.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_group.dart';
 import 'package:my_garden_app/feature/plant_list/domain/usecases/upload/upload_plant.dart';
@@ -90,7 +91,8 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_c
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/light_need/light_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition.dart/plant_recognition_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_prefill/plant_prefill_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition/plant_recognition_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
@@ -249,6 +251,18 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => RecognziePlantRemoteDataSource(
       client: sl(),
+    ),
+  );
+//! PlantPrefill
+  sl.registerFactory(
+    () => PlantPrefillCubit(
+      prefillPlant: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => PrefillPlant(
+      recognitionRepository: sl(),
+      authRepository: sl(),
     ),
   );
 

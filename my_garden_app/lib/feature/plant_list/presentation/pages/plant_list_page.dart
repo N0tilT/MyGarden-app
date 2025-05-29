@@ -11,7 +11,8 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_c
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/light_need/light_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition.dart/plant_recognition_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_prefill/plant_prefill_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition/plant_recognition_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
@@ -27,7 +28,6 @@ class PlantListPage extends StatefulWidget {
 }
 
 class _PlantListPageState extends State<PlantListPage> {
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -58,6 +58,9 @@ class _PlantListPageState extends State<PlantListPage> {
         ),
         BlocProvider<PlantRecognitionCubit>(
           create: (context) => sl<PlantRecognitionCubit>(),
+        ),
+        BlocProvider<PlantPrefillCubit>(
+          create: (context) => sl<PlantPrefillCubit>(),
         ),
       ],
       child: Scaffold(
@@ -103,6 +106,11 @@ class _PlantListPageState extends State<PlantListPage> {
                       ),
                       BlocProvider.value(
                         value: BlocProvider.of<PlantRecognitionCubit>(
+                          parentContext,
+                        ),
+                      ),
+                      BlocProvider.value(
+                        value: BlocProvider.of<PlantPrefillCubit>(
                           parentContext,
                         ),
                       ),

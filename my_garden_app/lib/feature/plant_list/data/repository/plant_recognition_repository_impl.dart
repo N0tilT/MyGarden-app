@@ -5,6 +5,7 @@ import 'package:my_garden_app/core/data/error/exception.dart';
 import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/core/network/network_info.dart';
 import 'package:my_garden_app/feature/plant_list/data/datasource/remote/recognzie_plant_remote_data_source.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_prefill_response_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_recognition_response_entity.dart';
 import 'package:my_garden_app/feature/plant_list/domain/repositories/plant_recognition_repositroy.dart';
 
@@ -31,6 +32,26 @@ class PlantRecognitionRepositoryImpl implements PlantRecognitionRepository {
       try {
         final remoteLoad = await remoteDataSource.recognize(request, token);
         return Right(PlantRecognitionResponseEntity.fromModel(remoteLoad));
+      } on ServerException {
+        return const Left(ServerFailure(message: "Ошибка сервера"));
+      } on AuthException {
+        return const Left(AuthFailure(message: "Ошибка авторизации"));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, PlantPrefillResponseEntity>> prefill(
+      String request, String token,
+      [bool remote = true]) async {
+    if (!(await networkInfo.isConnected && remote)) {
+      return const Left(
+        CacheFailure(message: "Ошибка подключения к сети"),
+      );
+    } else {
+      try {
+        final remoteLoad = await remoteDataSource.prefill(request, token);
+        return Right(PlantPrefillResponseEntity.fromModel(remoteLoad));
       } on ServerException {
         return const Left(ServerFailure(message: "Ошибка сервера"));
       } on AuthException {

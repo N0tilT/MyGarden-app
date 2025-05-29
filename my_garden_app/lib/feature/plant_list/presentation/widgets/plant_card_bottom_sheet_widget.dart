@@ -17,7 +17,8 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_c
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/light_need/light_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_list/plant_list_cubit.dart';
-import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition.dart/plant_recognition_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_prefill/plant_prefill_cubit.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_recognition/plant_recognition_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_type/plant_type_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety/plant_variety_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
@@ -207,6 +208,9 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
     );
   }
 
+  final watering = ["Редкий полив", "Регулярный полив", "Постоянная влажность"];
+  final light = ["Теневыносливое", "Полутень", "Яркое солнце"];
+
   Widget _buildContent() {
     return MultiBlocProvider(
       providers: [
@@ -230,181 +234,312 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
         BlocProvider.value(
           value: context.read<PlantRecognitionCubit>(),
         ),
+        BlocProvider.value(
+          value: context.read<PlantPrefillCubit>(),
+        ),
       ],
       child: Builder(
         builder: (context) {
-          return context.watch<TokenCubit>().state.when(
-            initial: () {
-              return const Center(child: GardenLoadingWidget());
-            },
-            authorized: (token) {
-              return const Center(child: GardenLoadingWidget());
-            },
-            fail: (l) {
-              Navigator.of(context).pushReplacementNamed(authRoute);
-              return const Center(child: GardenLoadingWidget());
-            },
-            unauthorized: () {
-              context.watch<TokenCubit>().passValidation();
-              return const Center(child: GardenLoadingWidget());
-            },
-            tokenSuccess: (token) {
-              final groups = context.watch<GroupCubit>().state.maybeWhen(
-                    success: (data) => data,
-                    orElse: () => <GroupEntity>[],
-                  );
-
-              final wateringNeeds =
-                  context.watch<WateringNeedCubit>().state.maybeWhen(
-                        success: (data) => data,
-                        orElse: () => <WateringNeedEntity>[],
-                      );
-
-              final lightNeeds =
-                  context.watch<LightNeedCubit>().state.maybeWhen(
-                        success: (data) => data,
-                        orElse: () => <LightNeedEntity>[],
-                      );
-
-              final plantTypes =
-                  context.watch<PlantTypeCubit>().state.maybeWhen(
-                        success: (data) => data,
-                        orElse: () => <PlantTypeEntity>[],
-                      );
-
-              final plantVarieties =
-                  context.watch<PlantVarietyCubit>().state.maybeWhen(
-                        success: (data) => data,
-                        orElse: () => <PlantVarietyEntity>[],
-                      );
-
-              final growStages =
-                  context.watch<GrowStageCubit>().state.maybeWhen(
-                        success: (data) => data,
-                        orElse: () => <GrowStageEntity>[],
-                      );
-
-              context.watch<PlantRecognitionCubit>().state.maybeWhen(
+          return MultiBlocListener(
+            listeners: [
+              BlocListener<PlantPrefillCubit, PlantPrefillState>(
+                listener: (context, state) {
+                  state.maybeWhen(
                     recognizeSuccess: (plant) {
-                      _editedPlant = _editedPlant.copyWith(
-                        title: plant.title,
-                        description: plant.description,
-                      );
-                      _controllers['title']!.value =
-                          TextEditingValue(text: _editedPlant.title ?? "");
-                      _controllers['description']!.value = TextEditingValue(
-                        text: _editedPlant.description ?? "",
-                      );
-                      _isRecognitionLoading = false;
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (mounted) {
+                          setState(() {
+                            _editedPlant = _editedPlant.copyWith(
+                              title: plant.type,
+                              description:
+                                  "//${plant.summary ?? " "} \n Статьи о растении:${plant.articles.map((x) => "${x.title}\n${x.link}").join("\n\n")}",
+                              wateringNeedId:
+                                  watering.indexOf(plant.wateringNeed),
+                              lightNeedId: light.indexOf(plant.lightNeed),
+                              fertilization: plant.fertilizer.join(","),
+                            );
+
+                            _controllers['title']!.text = plant.type;
+                            _controllers['description']!.text =
+                                plant.summary ?? "";
+                            _isRecognitionLoading = false;
+                          });
+                        }
+                      });
+                    },
+                    loading: () {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (mounted) {
+                          setState(() => _isRecognitionLoading = true);
+                        }
+                      });
+                    },
+                    orElse: () {},
+                  );
+                },
+              ),
+              BlocListener<PlantRecognitionCubit, PlantRecognitionState>(
+                listener: (context, state) {
+                  state.maybeWhen(
+                    recognizeSuccess: (plant) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (mounted) {
+                          setState(() {
+                            _editedPlant = _editedPlant.copyWith(
+                              title: plant.name,
+                              description: plant.message,
+                            );
+                            _controllers['title']!.value = TextEditingValue(
+                                text: _editedPlant.title ?? "");
+                            _controllers['description']!.value =
+                                TextEditingValue(
+                              text: _editedPlant.description ?? "",
+                            );
+                            _isRecognitionLoading = false;
+                          });
+                        }
+                      });
                     },
                     loading: () => _isRecognitionLoading = true,
                     orElse: () => {},
                   );
-
-              return _isRecognitionLoading
-                  ? const GardenLoadingWidget()
-                  : SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildEditableField('Название', 'title'),
-                            _buildEditableField(
-                              'Биологическое название',
-                              'biologyTitle',
-                              isRequired: false,
-                            ),
-                            _buildEditableField(
-                              'Удобрение',
-                              'fertilization',
-                              isRequired: false,
-                            ),
-                            _buildEditableField(
-                              'Токсичность',
-                              'toxicity',
-                              isRequired: false,
-                            ),
-                            _buildEditableField(
-                              'Пересадка',
-                              'replacing',
-                              isRequired: false,
-                            ),
-                            _buildEditableField(
-                              'Описание',
-                              'description',
-                              isRequired: false,
-                            ),
-                            _buildEditableField(
-                              'Период созревания (дни)',
-                              'ripeningPeriod',
-                              isRequired: false,
-                              isNumber: true,
-                            ),
-                            const SizedBox(height: 20),
-                            _buildDropdown<GroupEntity>(
-                              label: 'Группа',
-                              items: groups,
-                              currentId: _editedPlant.groupId,
-                              displayText: (item) =>
-                                  item.title ?? "Без названия",
-                              onChanged: (value) =>
-                                  _updateField('groupId', value?.id),
-                            ),
-                            _buildDropdown<WateringNeedEntity>(
-                              label: 'Полив',
-                              items: wateringNeeds,
-                              currentId: _editedPlant.wateringNeedId,
-                              displayText: (item) =>
-                                  item.title ?? "Без названия",
-                              onChanged: (value) =>
-                                  _updateField('wateringNeedId', value?.id),
-                            ),
-                            _buildDropdown<LightNeedEntity>(
-                              label: 'Освещение',
-                              items: lightNeeds,
-                              currentId: _editedPlant.lightNeedId,
-                              displayText: (item) =>
-                                  item.title ?? "Без названия",
-                              onChanged: (value) =>
-                                  _updateField('lightNeedId', value?.id),
-                            ),
-                            _buildDropdown<PlantTypeEntity>(
-                              label: 'Тип растения',
-                              items: plantTypes,
-                              currentId: _editedPlant.plantTypeId,
-                              displayText: (item) =>
-                                  item.title ?? "Без названия",
-                              onChanged: (value) =>
-                                  _updateField('plantTypeId', value?.id),
-                            ),
-                            _buildDropdown<PlantVarietyEntity>(
-                              label: 'Разновидность',
-                              items: plantVarieties,
-                              currentId: _editedPlant.plantVarietyId,
-                              displayText: (item) =>
-                                  item.title ?? "Без названия",
-                              onChanged: (value) =>
-                                  _updateField('plantVarietyId', value?.id),
-                            ),
-                            _buildDropdown<GrowStageEntity>(
-                              label: 'Стадия роста',
-                              items: growStages,
-                              currentId: _editedPlant.stageId,
-                              displayText: (item) =>
-                                  item.title ?? "Без названия",
-                              onChanged: (value) =>
-                                  _updateField('stageId', value?.id),
-                            ),
-                            const SizedBox(height: 20),
-                          ],
-                        ),
-                      ),
+                },
+              ),
+            ],
+            child: context.watch<TokenCubit>().state.when(
+              initial: () {
+                return const Center(child: GardenLoadingWidget());
+              },
+              authorized: (token) {
+                return const Center(child: GardenLoadingWidget());
+              },
+              fail: (l) {
+                Navigator.of(context).pushReplacementNamed(authRoute);
+                return const Center(child: GardenLoadingWidget());
+              },
+              unauthorized: () {
+                context.watch<TokenCubit>().passValidation();
+                return const Center(child: GardenLoadingWidget());
+              },
+              tokenSuccess: (token) {
+                final groups = context.watch<GroupCubit>().state.maybeWhen(
+                      success: (data) => data,
+                      orElse: () => <GroupEntity>[],
                     );
-            },
+
+                final wateringNeeds =
+                    context.watch<WateringNeedCubit>().state.maybeWhen(
+                          success: (data) => data,
+                          orElse: () => <WateringNeedEntity>[],
+                        );
+
+                final lightNeeds =
+                    context.watch<LightNeedCubit>().state.maybeWhen(
+                          success: (data) => data,
+                          orElse: () => <LightNeedEntity>[],
+                        );
+
+                final plantTypes =
+                    context.watch<PlantTypeCubit>().state.maybeWhen(
+                          success: (data) => data,
+                          orElse: () => <PlantTypeEntity>[],
+                        );
+
+                final plantVarieties =
+                    context.watch<PlantVarietyCubit>().state.maybeWhen(
+                          success: (data) => data,
+                          orElse: () => <PlantVarietyEntity>[],
+                        );
+
+                final growStages =
+                    context.watch<GrowStageCubit>().state.maybeWhen(
+                          success: (data) => data,
+                          orElse: () => <GrowStageEntity>[],
+                        );
+
+                return _isRecognitionLoading
+                    ? const GardenLoadingWidget()
+                    : SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildEditableField(
+                                'Название',
+                                'title',
+                                suffix: _isEditing
+                                    ? IconButton(
+                                        icon: const Icon(
+                                          Icons.auto_awesome,
+                                          size: 20,
+                                        ),
+                                        onPressed: () {
+                                          final title =
+                                              _controllers['title']?.text;
+                                          if (title != null &&
+                                              title.isNotEmpty) {
+                                            context
+                                                .read<PlantPrefillCubit>()
+                                                .prefill(title);
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                content: Text(
+                                                  "Введите название растения",
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      )
+                                    : null,
+                              ),
+                              _buildDescriptionField(),
+                              _buildEditableField(
+                                'Биологическое название',
+                                'biologyTitle',
+                                isRequired: false,
+                              ),
+                              _buildEditableField(
+                                'Удобрение',
+                                'fertilization',
+                                isRequired: false,
+                              ),
+                              _buildEditableField(
+                                'Токсичность',
+                                'toxicity',
+                                isRequired: false,
+                              ),
+                              _buildEditableField(
+                                'Пересадка',
+                                'replacing',
+                                isRequired: false,
+                              ),
+                              _buildEditableField(
+                                'Период созревания (дни)',
+                                'ripeningPeriod',
+                                isRequired: false,
+                                isNumber: true,
+                              ),
+                              const SizedBox(height: 20),
+                              _buildDropdown<GroupEntity>(
+                                label: 'Группа',
+                                items: groups,
+                                currentId: _editedPlant.groupId,
+                                displayText: (item) =>
+                                    item.title ?? "Без названия",
+                                onChanged: (value) =>
+                                    _updateField('groupId', value?.id),
+                              ),
+                              _buildDropdown<WateringNeedEntity>(
+                                label: 'Полив',
+                                items: wateringNeeds,
+                                currentId: _editedPlant.wateringNeedId,
+                                displayText: (item) =>
+                                    item.title ?? "Без названия",
+                                onChanged: (value) =>
+                                    _updateField('wateringNeedId', value?.id),
+                              ),
+                              _buildDropdown<LightNeedEntity>(
+                                label: 'Освещение',
+                                items: lightNeeds,
+                                currentId: _editedPlant.lightNeedId,
+                                displayText: (item) =>
+                                    item.title ?? "Без названия",
+                                onChanged: (value) =>
+                                    _updateField('lightNeedId', value?.id),
+                              ),
+                              _buildDropdown<PlantTypeEntity>(
+                                label: 'Тип растения',
+                                items: plantTypes,
+                                currentId: _editedPlant.plantTypeId,
+                                displayText: (item) =>
+                                    item.title ?? "Без названия",
+                                onChanged: (value) =>
+                                    _updateField('plantTypeId', value?.id),
+                              ),
+                              _buildDropdown<PlantVarietyEntity>(
+                                label: 'Разновидность',
+                                items: plantVarieties,
+                                currentId: _editedPlant.plantVarietyId,
+                                displayText: (item) =>
+                                    item.title ?? "Без названия",
+                                onChanged: (value) =>
+                                    _updateField('plantVarietyId', value?.id),
+                              ),
+                              _buildDropdown<GrowStageEntity>(
+                                label: 'Стадия роста',
+                                items: growStages,
+                                currentId: _editedPlant.stageId,
+                                displayText: (item) =>
+                                    item.title ?? "Без названия",
+                                onChanged: (value) =>
+                                    _updateField('stageId', value?.id),
+                              ),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
+                        ),
+                      );
+              },
+            ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildDescriptionField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Описание',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          if (_isEditing)
+            SizedBox(
+              height: 200, // Фиксированная высота для редактирования
+              child: TextFormField(
+                controller: _controllers['description'],
+                keyboardType: TextInputType.multiline,
+                maxLines: null, // Неограниченное количество строк
+                expands: true, // Заполняет все доступное пространство
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(12),
+                ),
+                validator: (value) {
+                  // Убрали обязательность поля
+                  return null;
+                },
+              ),
+            )
+          else
+            Container(
+              height: 200, // Фиксированная высота для просмотра
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: SingleChildScrollView(
+                // Прокрутка для длинного текста
+                padding: const EdgeInsets.all(12),
+                child: Text(
+                  _controllers['description']!.text.isNotEmpty
+                      ? _controllers['description']!.text
+                      : 'Не указано',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
+          const Divider(),
+        ],
       ),
     );
   }
@@ -414,6 +549,7 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
     String fieldKey, {
     bool isRequired = true,
     bool isNumber = false,
+    Widget? suffix, // Новый параметр
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -429,9 +565,11 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
               controller: _controllers[fieldKey],
               keyboardType:
                   isNumber ? TextInputType.number : TextInputType.text,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
+                // Изменено на InputDecoration
                 isDense: true,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
+                suffix: suffix, // Добавлено
               ),
               validator: (value) {
                 if (isRequired && (value == null || value.isEmpty)) {

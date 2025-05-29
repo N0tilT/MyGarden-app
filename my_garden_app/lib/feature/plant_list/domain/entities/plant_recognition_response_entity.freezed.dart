@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PlantRecognitionResponseEntity {
-  int get id => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
 
   /// Create a copy of PlantRecognitionResponseEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -35,7 +34,7 @@ abstract class $PlantRecognitionResponseEntityCopyWith<$Res> {
       _$PlantRecognitionResponseEntityCopyWithImpl<$Res,
           PlantRecognitionResponseEntity>;
   @useResult
-  $Res call({int id, String? title, String? description});
+  $Res call({String name, String message});
 }
 
 /// @nodoc
@@ -54,23 +53,18 @@ class _$PlantRecognitionResponseEntityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = freezed,
-    Object? description = freezed,
+    Object? name = null,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -84,7 +78,7 @@ abstract class _$$PlantRecognitionResponseEntityImplCopyWith<$Res>
       __$$PlantRecognitionResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? title, String? description});
+  $Res call({String name, String message});
 }
 
 /// @nodoc
@@ -102,23 +96,18 @@ class __$$PlantRecognitionResponseEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = freezed,
-    Object? description = freezed,
+    Object? name = null,
+    Object? message = null,
   }) {
     return _then(_$PlantRecognitionResponseEntityImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -128,29 +117,25 @@ class __$$PlantRecognitionResponseEntityImplCopyWithImpl<$Res>
 class _$PlantRecognitionResponseEntityImpl
     extends _PlantRecognitionResponseEntity {
   const _$PlantRecognitionResponseEntityImpl(
-      {required this.id, required this.title, required this.description})
+      {required this.name, required this.message})
       : super._();
 
   @override
-  final int id;
+  final String name;
   @override
-  final String? title;
-  @override
-  final String? description;
+  final String message;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlantRecognitionResponseEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description);
+  int get hashCode => Object.hash(runtimeType, name, message);
 
   /// Create a copy of PlantRecognitionResponseEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -166,18 +151,14 @@ class _$PlantRecognitionResponseEntityImpl
 abstract class _PlantRecognitionResponseEntity
     extends PlantRecognitionResponseEntity {
   const factory _PlantRecognitionResponseEntity(
-          {required final int id,
-          required final String? title,
-          required final String? description}) =
-      _$PlantRecognitionResponseEntityImpl;
+      {required final String name,
+      required final String message}) = _$PlantRecognitionResponseEntityImpl;
   const _PlantRecognitionResponseEntity._() : super._();
 
   @override
-  int get id;
+  String get name;
   @override
-  String? get title;
-  @override
-  String? get description;
+  String get message;
 
   /// Create a copy of PlantRecognitionResponseEntity
   /// with the given fields replaced by the non-null parameter values.

@@ -93,7 +93,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
         children: [
           Text(
             _editedEvent.id == null
-                ? 'Новое растение'
+                ? 'Новое событие'
                 : _isEditing
                     ? 'Редактирование'
                     : _editedEvent.title ?? "Без названия",

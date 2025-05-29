@@ -12,11 +12,10 @@ part 'plant_recognition_response_model.g.dart';
 class PlantRecognitionResponseModel extends HiveObject
     with _$PlantRecognitionResponseModel
     implements ICommonModel {
-  @HiveType(typeId: 11, adapterName: 'PlantRecognitionResponseModelAdapter')
+  @HiveType(typeId: 13, adapterName: 'PlantRecognitionResponseModelAdapter')
   factory PlantRecognitionResponseModel({
-    @JsonKey(name: 'id') @HiveField(0) required int id,
-    @JsonKey(name: 'title') @HiveField(1) required String? title,
-    @JsonKey(name: 'description') @HiveField(2) required String? description,
+    @JsonKey(name: 'message') @HiveField(0) required String message,
+    @JsonKey(name: 'filename') @HiveField(1) required String filename,
   }) = _PlantRecognitionResponseModel;
 
   PlantRecognitionResponseModel._();
@@ -28,8 +27,7 @@ class PlantRecognitionResponseModel extends HiveObject
     PlantRecognitionResponseEntity entity,
   ) =>
       PlantRecognitionResponseModel(
-        id: entity.id,
-        title: entity.title,
-        description: entity.description,
+        filename: entity.name,
+        message: entity.message,
       );
 }
