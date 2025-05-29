@@ -159,6 +159,44 @@ class _PlantListWidget extends StatefulWidget {
 class _PlantListWidgetState extends State<_PlantListWidget> {
   @override
   Widget build(BuildContext context) {
+    void _addGroup() {
+      String groupName = '';
+
+      showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Название группы',
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) => groupName = value,
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    if (groupName.isNotEmpty) {
+                      Navigator.pop(context);
+                      context.read<GroupCubit>().upload(
+                            GroupEntity(id: null, title: groupName),
+                          );
+                    }
+                  },
+                  child: const Text('Добавить группу'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+
     final tokenCubit = context.watch<TokenCubit>();
     final growStageCubit = context.watch<GrowStageCubit>();
     final lightNeedCubit = context.watch<LightNeedCubit>();
@@ -210,7 +248,7 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
                             await plantListCubit.load();
                             await groupCubit.load();
                           },
-                          onAddGroup: () async {},
+                          onAddGroup: _addGroup,
                         ),
                         fail: (message) => Center(
                           child: GardenDefaultLabelWidget(

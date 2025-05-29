@@ -36,13 +36,8 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Секция с фотографиями
             _buildPhotoSlider(),
-            
-            // Индикатор страниц
             _buildPageIndicator(),
-            
-            // Информация о растении
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -195,8 +190,7 @@ class _PlantDetailPageState extends State<PlantDetailPage> {
     );
 
     setState(() {
-
-    widget.plant.photos.add(newPhoto);
+      widget.plant.photos.add(newPhoto);
     });
   }
 

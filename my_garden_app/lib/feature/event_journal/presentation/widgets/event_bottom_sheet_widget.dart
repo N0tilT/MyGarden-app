@@ -104,12 +104,14 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
               IconButton(
                 icon: Icon(_isEditing ? Icons.save : Icons.close),
                 onPressed: () {
-                  if (_isEditing) {
-                    _saveChanges();
-                  } else {
-                    Navigator.pop(context);
-                    context.read<EventCubit>().load();
-                  }
+                  setState(() {
+                    if (_isEditing) {
+                      _saveChanges();
+                    } else {
+                      Navigator.pop(context);
+                      context.read<EventCubit>().load();
+                    }
+                  });
                 },
               ),
               if (!_isEditing)
@@ -257,25 +259,42 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           if (_isEditing)
-            DropdownButtonFormField<T>(
-              value: items.isNotEmpty
-                  ? items.firstWhere(
-                      (item) => (item as dynamic).id == currentId,
-                      orElse: () => items.first,
-                    )
-                  : null,
-              items: items.map((T item) {
-                return DropdownMenuItem<T>(
-                  value: item,
-                  child: Text(displayText(item)),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return SizedBox(
+                  width: constraints.maxWidth, // Занимаем всю доступную ширину
+                  child: DropdownButtonFormField<T>(
+                    isExpanded: true, // Ключевое свойство для растягивания
+                    value: items.isNotEmpty
+                        ? items.firstWhere(
+                            (item) => (item as dynamic).id == currentId,
+                            orElse: () => items.first,
+                          )
+                        : null,
+                    items: items.map((T item) {
+                      return DropdownMenuItem<T>(
+                        value: item,
+                        child: Text(
+                          displayText(item),
+                          overflow:
+                              TextOverflow.ellipsis, // Обрезаем длинный текст
+                          maxLines: 1, // Ограничиваем в одну строку
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: onChanged,
+                    decoration: const InputDecoration(
+                      isDense: true,
+                      border: OutlineInputBorder(),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                    ),
+                    validator: (value) =>
+                        value == null ? 'Обязательное поле' : null,
+                    menuMaxHeight: 300, // Ограничиваем высоту меню
+                  ),
                 );
-              }).toList(),
-              onChanged: onChanged,
-              decoration: const InputDecoration(
-                isDense: true,
-                border: OutlineInputBorder(),
-              ),
-              validator: (value) => value == null ? 'Обязательное поле' : null,
+              },
             )
           else
             Text(
@@ -288,6 +307,9 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
                     )
                   : 'Не указано',
               style: const TextStyle(fontSize: 16),
+              overflow: TextOverflow
+                  .ellipsis, // Добавляем для нередактируемого режима
+              maxLines: 1,
             ),
           const Divider(),
         ],

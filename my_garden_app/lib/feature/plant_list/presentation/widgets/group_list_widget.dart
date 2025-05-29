@@ -7,7 +7,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 class GroupList extends StatefulWidget {
   final List<Group> groups;
-  final Future<void> Function() onAddGroup;
+  final void Function() onAddGroup;
   final Future<void> Function() onRefresh;
 
   const GroupList({
