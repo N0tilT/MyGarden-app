@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_garden_app/core/domain/entities/i_common_entity.dart';
 import 'package:my_garden_app/feature/plant_list/data/model/plant_model.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/pages/plant_card_page.dart';
 
 part 'plant_entity.freezed.dart';
 
@@ -10,6 +11,7 @@ part 'plant_entity.freezed.dart';
 class PlantEntity with _$PlantEntity implements ICommonEntity {
   const factory PlantEntity({
     required int? id,
+    required List<Photo> photos,
     required String? title,
     required String? biologyTitle,
     required String? fertilization,
@@ -49,6 +51,7 @@ class PlantEntity with _$PlantEntity implements ICommonEntity {
         plantVarietyId: model.plantVarietyId,
         stageId: model.stageId,
         imageId: model.imageId,
+        photos: [],
         ripeningPeriod: model.ripeningPeriod,
       );
 

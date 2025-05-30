@@ -1,0 +1,2 @@
+D:/Prog/MyGarden-app/my_garden_app/android/app/.cxx/RelWithDebInfo/4u264319/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Prog/MyGarden-app/my_garden_app/android/app/.cxx/RelWithDebInfo/4u264319/armeabi-v7a/CMakeFiles/rebuild_cache.dir

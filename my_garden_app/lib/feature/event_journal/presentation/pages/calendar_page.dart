@@ -223,16 +223,15 @@ class _CalendarWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CalendarControllerProvider.of(context).controller.addAll(
-          eventList
-              .map(
-                (e) => CalendarEventData(
-                  title: e.title ?? "",
-                  date: e.date.toLocal(),
-                ),
-              )
-              .toList(),
-        );
+    final events = eventList
+        .map(
+          (e) => CalendarEventData(
+            title: e.title ?? "",
+            date: e.date,
+          ),
+        )
+        .toList();
+    CalendarControllerProvider.of(context).controller.addAll(events);
 
     switch (currentViewType) {
       case CalendarViewType.month:
@@ -301,6 +300,10 @@ class _CalendarWrapper extends StatelessWidget {
           onEventDoubleTap: (events, date) => print(events),
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
+          timeLineBuilder: (date) => Stack(
+            alignment: Alignment.topCenter,
+            children: [Text("${date.hour.toString().padLeft(2, '0')}:00")],
+          ),
         );
       case CalendarViewType.day:
         return DayView(

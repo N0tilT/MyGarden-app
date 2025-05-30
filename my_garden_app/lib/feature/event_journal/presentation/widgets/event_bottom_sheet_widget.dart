@@ -318,13 +318,18 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
   }
 
   Widget _buildDateField() {
+    // Вспомогательная функция для форматирования даты и времени
+    String _formatDateTime(DateTime date) {
+      return '${date.day}.${date.month}.${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Дата',
+            'Дата и время',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           if (_isEditing)
@@ -332,7 +337,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
               initialValue: _editedEvent.date,
               validator: (value) {
                 if (value == null) {
-                  return 'Пожалуйста, выберите дату';
+                  return 'Пожалуйста, выберите дату и время';
                 }
                 return null;
               },
@@ -342,21 +347,41 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
                   children: [
                     TextButton(
                       onPressed: () async {
+                        // Получаем текущую дату из состояния
+                        final currentDate =
+                            formFieldState.value ?? DateTime.now();
+
+                        // Выбор даты
                         final selectedDate = await showDatePicker(
                           context: context,
-                          initialDate: formFieldState.value ?? DateTime.now(),
+                          initialDate: currentDate,
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2100),
                         );
-                        if (selectedDate != null) {
-                          formFieldState.didChange(selectedDate);
-                          _updateField('date', selectedDate);
-                        }
+                        if (selectedDate == null) return;
+
+                        // Выбор времени
+                        final selectedTime = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.fromDateTime(currentDate),
+                        );
+                        if (selectedTime == null) return;
+
+                        // Комбинируем выбранные дату и время
+                        final newDateTime = DateTime(
+                          selectedDate.year,
+                          selectedDate.month,
+                          selectedDate.day,
+                          selectedTime.hour,
+                          selectedTime.minute,
+                        );
+
+                        // Обновляем состояние формы и виджета
+                        formFieldState.didChange(newDateTime);
+                        _updateField('date', newDateTime);
                       },
                       child: Text(
-                        formFieldState.value != null
-                            ? '${formFieldState.value!.day}/${formFieldState.value!.month}/${formFieldState.value!.year}'
-                            : 'Выберите дату',
+                        _formatDateTime(formFieldState.value!),
                       ),
                     ),
                     if (formFieldState.hasError)
@@ -372,7 +397,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
             )
           else
             Text(
-              '${_editedEvent.date.day}/${_editedEvent.date.month}/${_editedEvent.date.year}',
+              _formatDateTime(_editedEvent.date),
               style: const TextStyle(fontSize: 16),
             ),
           const Divider(),

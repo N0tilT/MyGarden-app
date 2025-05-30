@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PlantEntity {
   int? get id => throw _privateConstructorUsedError;
+  List<Photo> get photos => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get biologyTitle => throw _privateConstructorUsedError;
   String? get fertilization => throw _privateConstructorUsedError;
@@ -53,6 +54,7 @@ abstract class $PlantEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      List<Photo> photos,
       String? title,
       String? biologyTitle,
       String? fertilization,
@@ -91,6 +93,7 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
   @override
   $Res call({
     Object? id = freezed,
+    Object? photos = null,
     Object? title = freezed,
     Object? biologyTitle = freezed,
     Object? fertilization = freezed,
@@ -117,6 +120,10 @@ class _$PlantEntityCopyWithImpl<$Res, $Val extends PlantEntity>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      photos: null == photos
+          ? _value.photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<Photo>,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -211,6 +218,7 @@ abstract class _$$PlantEntityImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
+      List<Photo> photos,
       String? title,
       String? biologyTitle,
       String? fertilization,
@@ -247,6 +255,7 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? photos = null,
     Object? title = freezed,
     Object? biologyTitle = freezed,
     Object? fertilization = freezed,
@@ -273,6 +282,10 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      photos: null == photos
+          ? _value._photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<Photo>,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -362,6 +375,7 @@ class __$$PlantEntityImplCopyWithImpl<$Res>
 class _$PlantEntityImpl extends _PlantEntity {
   const _$PlantEntityImpl(
       {required this.id,
+      required final List<Photo> photos,
       required this.title,
       required this.biologyTitle,
       required this.fertilization,
@@ -382,10 +396,19 @@ class _$PlantEntityImpl extends _PlantEntity {
       this.stageTitle,
       required this.imageId,
       required this.ripeningPeriod})
-      : super._();
+      : _photos = photos,
+        super._();
 
   @override
   final int? id;
+  final List<Photo> _photos;
+  @override
+  List<Photo> get photos {
+    if (_photos is EqualUnmodifiableListView) return _photos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_photos);
+  }
+
   @override
   final String? title;
   @override
@@ -433,6 +456,7 @@ class _$PlantEntityImpl extends _PlantEntity {
         (other.runtimeType == runtimeType &&
             other is _$PlantEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other._photos, _photos) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.biologyTitle, biologyTitle) ||
                 other.biologyTitle == biologyTitle) &&
@@ -475,6 +499,7 @@ class _$PlantEntityImpl extends _PlantEntity {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
+        const DeepCollectionEquality().hash(_photos),
         title,
         biologyTitle,
         fertilization,
@@ -509,6 +534,7 @@ class _$PlantEntityImpl extends _PlantEntity {
 abstract class _PlantEntity extends PlantEntity {
   const factory _PlantEntity(
       {required final int? id,
+      required final List<Photo> photos,
       required final String? title,
       required final String? biologyTitle,
       required final String? fertilization,
@@ -533,6 +559,8 @@ abstract class _PlantEntity extends PlantEntity {
 
   @override
   int? get id;
+  @override
+  List<Photo> get photos;
   @override
   String? get title;
   @override

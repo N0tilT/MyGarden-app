@@ -18,6 +18,7 @@ import 'package:my_garden_app/feature/plant_list/presentation/bloc/plant_variety
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/watering_need/watering_need_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/group_list_widget.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_card_bottom_sheet_widget.dart';
+import 'package:my_garden_app/feature/plant_list/presentation/widgets/super_widget.dart';
 import 'package:my_garden_app/injection_container.dart';
 
 class PlantListPage extends StatefulWidget {
@@ -115,7 +116,7 @@ class _PlantListPageState extends State<PlantListPage> {
                         ),
                       ),
                     ],
-                    child: const PlantCardBottomSheet(
+                    child: const PlantDetailCardSheet(
                       plant: PlantEntity(
                         id: null,
                         title: "",
@@ -130,6 +131,7 @@ class _PlantListPageState extends State<PlantListPage> {
                         plantTypeId: 1,
                         plantVarietyId: 1,
                         stageId: 1,
+                        photos: [],
                         imageId: 0,
                         ripeningPeriod: 0,
                       ),
@@ -159,39 +161,38 @@ class _PlantListWidget extends StatefulWidget {
 class _PlantListWidgetState extends State<_PlantListWidget> {
   @override
   Widget build(BuildContext context) {
-    void _addGroup() {
+    void addGroup() {
       String groupName = '';
 
-      showModalBottomSheet(
+      showDialog(
         context: context,
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Название группы',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (value) => groupName = value,
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (groupName.isNotEmpty) {
-                      Navigator.pop(context);
-                      context.read<GroupCubit>().upload(
-                            GroupEntity(id: null, title: groupName),
-                          );
-                    }
-                  },
-                  child: const Text('Добавить группу'),
-                ),
-              ],
+        builder: (dialogContext) {
+          return AlertDialog(
+            title: const Text('Новая группа'),
+            content: TextField(
+              autofocus: true,
+              decoration: const InputDecoration(
+                labelText: 'Название группы',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) => groupName = value,
             ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: const Text('Отмена'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (groupName.isNotEmpty) {
+                    final groupCubit = BlocProvider.of<GroupCubit>(context);
+                    groupCubit.upload(GroupEntity(id: null, title: groupName));
+                    Navigator.pop(dialogContext);
+                  }
+                },
+                child: const Text('Добавить'),
+              ),
+            ],
           );
         },
       );
@@ -239,7 +240,11 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
                           groups: groups.map((group) {
                             return Group(
                               name: group.title ?? "Без названия",
-                              plants: plantList.map((x) {
+                              plants: plantList
+                                  .where(
+                                (element) => element.groupId == group.id,
+                              )
+                                  .map((x) {
                                 return x.title ?? "Без названия";
                               }).toList(),
                             );
@@ -248,7 +253,7 @@ class _PlantListWidgetState extends State<_PlantListWidget> {
                             await plantListCubit.load();
                             await groupCubit.load();
                           },
-                          onAddGroup: _addGroup,
+                          onAddGroup: addGroup,
                         ),
                         fail: (message) => Center(
                           child: GardenDefaultLabelWidget(
