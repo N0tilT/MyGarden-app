@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -213,6 +211,26 @@ class _CalendarWidget extends StatelessWidget {
   }
 }
 
+Widget _buildEventTile(CalendarEventData event) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+    decoration: BoxDecoration(
+      color: event.color ?? Colors.blue,
+      borderRadius: BorderRadius.circular(4),
+    ),
+    child: FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Text(
+        event.title,
+        style: const TextStyle(
+          fontSize: 12,
+          color: Colors.white,
+        ),
+      ),
+    ),
+  );
+}
+
 class _CalendarWrapper extends StatelessWidget {
   final List<EventEntity> eventList;
   final CalendarViewType currentViewType;
@@ -223,15 +241,29 @@ class _CalendarWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final events = eventList
-        .map(
-          (e) => CalendarEventData(
-            title: e.title ?? "",
-            date: e.date,
+    final events = eventList.map(
+      (e) {
+        final date = e.date.toLocal();
+        return CalendarEventData(
+          title: e.title ?? "",
+          date: DateTime(
+            date.year,
+            date.month,
+            date.day,
+            date.hour,
+            date.minute,
           ),
-        )
-        .toList();
+          startTime: date,
+          endTime: date.add(const Duration(hours: 1)),
+        );
+      },
+    ).toList();
     CalendarControllerProvider.of(context).controller.addAll(events);
+
+    // Обработчик событий для WeekView и DayView
+    void eventTapHandler(List<CalendarEventData> event, DateTime date) {
+      print(event);
+    }
 
     switch (currentViewType) {
       case CalendarViewType.month:
@@ -270,6 +302,32 @@ class _CalendarWrapper extends StatelessWidget {
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
           hideDaysNotInMonth: true,
+          cellBuilder: (date, events, boundry, startDuration, endDuration) {
+            int maxEvents = 4;
+            List<CalendarEventData> visibleEvents = events;
+            int extraCount = 0;
+            if (events.length > maxEvents) {
+              visibleEvents = events.take(maxEvents).toList();
+              extraCount = events.length - maxEvents;
+            }
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ...visibleEvents.map((e) => ScaledEventTile(event: e)),
+                if (extraCount > 0)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2.0),
+                    child: Text(
+                      "+ еще $extraCount",
+                      style:
+                          const TextStyle(fontSize: 10.0, color: Colors.grey),
+                    ),
+                  ),
+              ],
+            );
+          },
         );
       case CalendarViewType.week:
         return WeekView(
@@ -296,7 +354,7 @@ class _CalendarWrapper extends StatelessWidget {
             return weekdays[p0];
           },
           onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
-          onEventTap: (event, date) => print(event),
+          onEventTap: eventTapHandler,
           onEventDoubleTap: (events, date) => print(events),
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
@@ -304,15 +362,47 @@ class _CalendarWrapper extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: [Text("${date.hour.toString().padLeft(2, '0')}:00")],
           ),
+          eventTileBuilder:
+              (date, events, boundary, startDuration, endDuration) {
+            return Stack(
+              children: events.asMap().entries.map((entry) {
+                final index = entry.key;
+                final event = entry.value;
+                final width = boundary.width / events.length;
+                final left = index * width;
+
+                return Positioned(
+                  left: left,
+                  top: 0,
+                  width: width,
+                  height: boundary.height,
+                  child: _buildEventTile(event),
+                );
+              }).toList(),
+            );
+          },
         );
       case CalendarViewType.day:
         return DayView(
           controller: CalendarControllerProvider.of(context).controller,
           onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
-          onEventTap: (event, date) => print(event),
+          onEventTap: (events, date) => eventTapHandler(events, date),
           onEventDoubleTap: (events, date) => print(events),
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
+          // Кастомизация карточки события для DayView
+          eventTileBuilder:
+              (date, events, boundary, startDuration, endDuration) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: events.map((event) {
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 2),
+                  child: _buildEventTile(event),
+                );
+              }).toList(),
+            );
+          },
         );
       case CalendarViewType.list:
         return Column(
@@ -323,6 +413,39 @@ class _CalendarWrapper extends StatelessWidget {
               .toList(),
         );
     }
+  }
+}
+
+// Новый виджет для масштабирования текста события
+class ScaledEventTile extends StatelessWidget {
+  final CalendarEventData event;
+
+  const ScaledEventTile({
+    super.key,
+    required this.event,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 1.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.0),
+      decoration: BoxDecoration(
+        color: event.color ?? Colors.blue,
+        borderRadius: BorderRadius.circular(2.0),
+      ),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Text(
+          event.title,
+          style: const TextStyle(
+            fontSize: 12.0,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
   }
 }
 
