@@ -1,5 +1,6 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garden_app/core/constant_values/routes.dart';
 import 'package:my_garden_app/core/presentation/UI/garden_loading_widget.dart';
@@ -231,7 +232,7 @@ Widget _buildEventTile(CalendarEventData event) {
   );
 }
 
-class _CalendarWrapper extends StatelessWidget {
+class _CalendarWrapper extends StatefulWidget {
   final List<EventEntity> eventList;
   final CalendarViewType currentViewType;
   const _CalendarWrapper({
@@ -240,34 +241,118 @@ class _CalendarWrapper extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final events = eventList.map(
-      (e) {
-        final date = e.date.toLocal();
-        return CalendarEventData(
-          title: e.title ?? "",
-          date: DateTime(
-            date.year,
-            date.month,
-            date.day,
-            date.hour,
-            date.minute,
-          ),
-          startTime: date,
-          endTime: date.add(const Duration(hours: 1)),
-        );
-      },
-    ).toList();
-    CalendarControllerProvider.of(context).controller.addAll(events);
+  State<_CalendarWrapper> createState() => _CalendarWrapperState();
+}
 
-    // Обработчик событий для WeekView и DayView
+class _CalendarWrapperState extends State<_CalendarWrapper> {
+  late GlobalKey<WeekViewState> _weekViewKey;
+  late GlobalKey<MonthViewState> _monthViewKey;
+  late GlobalKey<DayViewState> _dayViewKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _weekViewKey = GlobalKey();
+    _monthViewKey = GlobalKey();
+    _dayViewKey = GlobalKey();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _scrollToCurrentTime();
+      }
+    });
+  }
+
+  void _scrollToCurrentTime() {
+    WidgetsBinding.instance.endOfFrame.then((_) {
+      if (!mounted) return;
+      switch (widget.currentViewType) {
+        case CalendarViewType.week:
+          final event = _weekViewKey.currentState!.controller.allEvents.reduce(
+              (current, next) =>
+                  current.date.isBefore(next.date) ? current : next);
+          _weekViewKey.currentState?.animateToEvent(event);
+          break;
+        case CalendarViewType.day:
+          _dayViewKey.currentState?.animateToDate(DateTime.now());
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  void _showEditEventBottomSheet(EventEntity eventEntity) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (modal) => MultiBlocProvider(
+        providers: [
+          BlocProvider.value(
+            value: BlocProvider.of<TokenCubit>(context),
+          ),
+          BlocProvider.value(
+            value: BlocProvider.of<EventCubit>(context),
+          ),
+          BlocProvider.value(
+            value: BlocProvider.of<PlantListCubit>(context),
+          ),
+        ],
+        child: EventCardBottomSheet(event: eventEntity),
+      ),
+    );
+  }
+
+  @override
+  void didUpdateWidget(_CalendarWrapper oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.eventList != widget.eventList) {
+      _updateCalendarEvents();
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _scrollToCurrentTime();
+        }
+      });
+    }
+  }
+
+  void _updateCalendarEvents() {
+    final controller = CalendarControllerProvider.of(context).controller;
+    final events = widget.eventList.map(_convertToCalendarEvent).toList();
+
+    controller.removeWhere((_) => true);
+    controller.addAll(events);
+  }
+
+  CalendarEventData _convertToCalendarEvent(EventEntity e) {
+    final date = e.date.toLocal();
+    return CalendarEventData(
+      title: e.title ?? "",
+      date: DateTime(date.year, date.month, date.day),
+      startTime: date,
+      endTime: date.add(const Duration(hours: 1)),
+      event: e,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateCalendarEvents();
+    });
+
     void eventTapHandler(List<CalendarEventData> event, DateTime date) {
       print(event);
     }
 
-    switch (currentViewType) {
+    switch (widget.currentViewType) {
       case CalendarViewType.month:
         return MonthView(
+          key: _monthViewKey,
+          onEventTap: (event, date) {
+            final eventEntity = event.event! as EventEntity;
+            _showEditEventBottomSheet(eventEntity);
+          },
           controller: CalendarControllerProvider.of(context).controller,
           headerStringBuilder: (date, {secondaryDate}) {
             final monthNames = [
@@ -297,7 +382,6 @@ class _CalendarWrapper extends StatelessWidget {
           onCellTap: (events, date) {
             print(events);
           },
-          onEventTap: (event, date) => print(event),
           onEventDoubleTap: (events, date) => print(events),
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
@@ -331,6 +415,7 @@ class _CalendarWrapper extends StatelessWidget {
         );
       case CalendarViewType.week:
         return WeekView(
+          key: _weekViewKey,
           controller: CalendarControllerProvider.of(context).controller,
           headerStringBuilder: (date, {secondaryDate}) {
             final monthNames = [
@@ -354,7 +439,6 @@ class _CalendarWrapper extends StatelessWidget {
             return weekdays[p0];
           },
           onPageChange: (date, pageIndex) => print("$date, $pageIndex"),
-          onEventTap: eventTapHandler,
           onEventDoubleTap: (events, date) => print(events),
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
@@ -376,7 +460,12 @@ class _CalendarWrapper extends StatelessWidget {
                   top: 0,
                   width: width,
                   height: boundary.height,
-                  child: _buildEventTile(event),
+                  child: GestureDetector(
+                      onTap: () {
+                        final eventEntity = event.event! as EventEntity;
+                        _showEditEventBottomSheet(eventEntity);
+                      },
+                      child: _buildEventTile(event)),
                 );
               }).toList(),
             );
@@ -390,7 +479,10 @@ class _CalendarWrapper extends StatelessWidget {
           onEventDoubleTap: (events, date) => print(events),
           onEventLongTap: (event, date) => print(event),
           onDateLongPress: (date) => print(date),
-          // Кастомизация карточки события для DayView
+          timeLineBuilder: (date) => Stack(
+            alignment: Alignment.topCenter,
+            children: [Text("${date.hour.toString().padLeft(2, '0')}:00")],
+          ),
           eventTileBuilder:
               (date, events, boundary, startDuration, endDuration) {
             return Column(
@@ -398,7 +490,12 @@ class _CalendarWrapper extends StatelessWidget {
               children: events.map((event) {
                 return Container(
                   margin: const EdgeInsets.only(bottom: 2),
-                  child: _buildEventTile(event),
+                  child: GestureDetector(
+                      onTap: () {
+                        final eventEntity = event.event! as EventEntity;
+                        _showEditEventBottomSheet(eventEntity);
+                      },
+                      child: _buildEventTile(event)),
                 );
               }).toList(),
             );
@@ -406,9 +503,14 @@ class _CalendarWrapper extends StatelessWidget {
         );
       case CalendarViewType.list:
         return Column(
-          children: eventList
+          children: widget.eventList
               .map(
-                (e) => EventListItem(event: e),
+                (e) => GestureDetector(
+                    onTap: () {
+                      final eventEntity = e;
+                      _showEditEventBottomSheet(eventEntity);
+                    },
+                    child: EventListItem(event: e)),
               )
               .toList(),
         );
@@ -416,7 +518,6 @@ class _CalendarWrapper extends StatelessWidget {
   }
 }
 
-// Новый виджет для масштабирования текста события
 class ScaledEventTile extends StatelessWidget {
   final CalendarEventData event;
 

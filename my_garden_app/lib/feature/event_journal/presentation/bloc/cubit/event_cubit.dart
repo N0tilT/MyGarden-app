@@ -21,7 +21,9 @@ class EventCubit extends Cubit<EventState> {
   }) : super(const EventState.initial());
 
   Future<void> upload(EventEntity event) async {
+    emit(const EventState.loading());
     final result = await uploadEvent([event], true, event.plantId);
+    await load();
     result.fold(
       (error) => emit(EventState.fail(error.message)),
       (success) => emit(EventState.success(eventList)),

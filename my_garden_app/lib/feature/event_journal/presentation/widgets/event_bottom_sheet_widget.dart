@@ -44,20 +44,16 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
     });
   }
 
-  void _saveChanges() {
+  void _saveChanges() async {
     if (_formKey.currentState!.validate()) {
       final eventToSave = _editedEvent.copyWith(
         title: _controllers['title']!.text,
         date: _editedEvent.date.toUtc(),
       );
+      await context.read<EventCubit>().upload(eventToSave);
 
-      if (eventToSave.id == null) {
-        context.read<EventCubit>().upload(eventToSave);
-      } else {
-        context.read<EventCubit>().upload(eventToSave);
-      }
-      context.read<EventCubit>().load();
       Navigator.pop(context);
+      context.read<EventCubit>().load();
     }
   }
 
