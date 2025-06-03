@@ -56,6 +56,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
       } else {
         context.read<EventCubit>().upload(eventToSave);
       }
+      context.read<EventCubit>().load();
       Navigator.pop(context);
     }
   }
@@ -122,8 +123,9 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
               if (_editedEvent.id != null)
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    context.read<EventCubit>().delete(_editedEvent.id!);
+                  onPressed: () async {
+                    await context.read<EventCubit>().delete(_editedEvent.id!);
+                    context.read<EventCubit>().load();
                     Navigator.pop(context);
                   },
                 ),
@@ -249,160 +251,175 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
     required String Function(T) displayText,
     required void Function(T?) onChanged,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          if (_isEditing)
-            LayoutBuilder(
-              builder: (context, constraints) {
-                return SizedBox(
-                  width: constraints.maxWidth, // Занимаем всю доступную ширину
-                  child: DropdownButtonFormField<T>(
-                    isExpanded: true, // Ключевое свойство для растягивания
-                    value: items.isNotEmpty
-                        ? items.firstWhere(
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              if (_isEditing)
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SizedBox(
+                      width:
+                          constraints.maxWidth, // Занимаем всю доступную ширину
+                      child: DropdownButtonFormField<T>(
+                        isExpanded: true, // Ключевое свойство для растягивания
+                        value: items.isNotEmpty
+                            ? items.firstWhere(
+                                (item) => (item as dynamic).id == currentId,
+                                orElse: () => items.first,
+                              )
+                            : null,
+                        items: items.map((T item) {
+                          return DropdownMenuItem<T>(
+                            value: item,
+                            child: Text(
+                              displayText(item),
+                              overflow: TextOverflow
+                                  .ellipsis, // Обрезаем длинный текст
+                              maxLines: 1, // Ограничиваем в одну строку
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (value) => {
+                          setState(() {
+                            onChanged(value);
+                          })
+                        },
+                        decoration: const InputDecoration(
+                          isDense: true,
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 14),
+                        ),
+                        validator: (value) =>
+                            value == null ? 'Обязательное поле' : null,
+                        menuMaxHeight: 300, // Ограничиваем высоту меню
+                      ),
+                    );
+                  },
+                )
+              else
+                Text(
+                  items.isNotEmpty
+                      ? displayText(
+                          items.firstWhere(
                             (item) => (item as dynamic).id == currentId,
                             orElse: () => items.first,
-                          )
-                        : null,
-                    items: items.map((T item) {
-                      return DropdownMenuItem<T>(
-                        value: item,
-                        child: Text(
-                          displayText(item),
-                          overflow:
-                              TextOverflow.ellipsis, // Обрезаем длинный текст
-                          maxLines: 1, // Ограничиваем в одну строку
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: onChanged,
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      border: OutlineInputBorder(),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-                    ),
-                    validator: (value) =>
-                        value == null ? 'Обязательное поле' : null,
-                    menuMaxHeight: 300, // Ограничиваем высоту меню
-                  ),
-                );
-              },
-            )
-          else
-            Text(
-              items.isNotEmpty
-                  ? displayText(
-                      items.firstWhere(
-                        (item) => (item as dynamic).id == currentId,
-                        orElse: () => items.first,
-                      ),
-                    )
-                  : 'Не указано',
-              style: const TextStyle(fontSize: 16),
-              overflow: TextOverflow
-                  .ellipsis, // Добавляем для нередактируемого режима
-              maxLines: 1,
-            ),
-          const Divider(),
-        ],
-      ),
+                          ),
+                        )
+                      : 'Не указано',
+                  style: const TextStyle(fontSize: 16),
+                  overflow: TextOverflow
+                      .ellipsis, // Добавляем для нередактируемого режима
+                  maxLines: 1,
+                ),
+              const Divider(),
+            ],
+          ),
+        );
+      },
     );
   }
 
   Widget _buildDateField() {
-    // Вспомогательная функция для форматирования даты и времени
-    String _formatDateTime(DateTime date) {
-      return '${date.day}.${date.month}.${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
-    }
+    return StatefulBuilder(
+      builder: (context, setState) {
+        String _formatDateTime(DateTime date) {
+          return '${date.day}.${date.month}.${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
+        }
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Дата и время',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          if (_isEditing)
-            FormField<DateTime>(
-              initialValue: _editedEvent.date,
-              validator: (value) {
-                if (value == null) {
-                  return 'Пожалуйста, выберите дату и время';
-                }
-                return null;
-              },
-              builder: (formFieldState) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextButton(
-                      onPressed: () async {
-                        // Получаем текущую дату из состояния
-                        final currentDate =
-                            formFieldState.value ?? DateTime.now();
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Дата и время',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              if (_isEditing)
+                FormField<DateTime>(
+                  initialValue: _editedEvent.date,
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Пожалуйста, выберите дату и время';
+                    }
+                    return null;
+                  },
+                  builder: (formFieldState) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () async {
+                            // Получаем текущую дату из состояния
+                            final currentDate =
+                                formFieldState.value ?? DateTime.now();
 
-                        // Выбор даты
-                        final selectedDate = await showDatePicker(
-                          context: context,
-                          initialDate: currentDate,
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2100),
-                        );
-                        if (selectedDate == null) return;
+                            // Выбор даты
+                            final selectedDate = await showDatePicker(
+                              context: context,
+                              initialDate: currentDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                            );
+                            if (selectedDate == null) return;
 
-                        // Выбор времени
-                        final selectedTime = await showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay.fromDateTime(currentDate),
-                        );
-                        if (selectedTime == null) return;
+                            // Выбор времени
+                            final selectedTime = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.fromDateTime(currentDate),
+                            );
+                            if (selectedTime == null) return;
 
-                        // Комбинируем выбранные дату и время
-                        final newDateTime = DateTime(
-                          selectedDate.year,
-                          selectedDate.month,
-                          selectedDate.day,
-                          selectedTime.hour,
-                          selectedTime.minute,
-                        );
+                            // Комбинируем выбранные дату и время
+                            final newDateTime = DateTime(
+                              selectedDate.year,
+                              selectedDate.month,
+                              selectedDate.day,
+                              selectedTime.hour,
+                              selectedTime.minute,
+                            );
 
-                        // Обновляем состояние формы и виджета
-                        formFieldState.didChange(newDateTime);
-                        _updateField('date', newDateTime);
-                      },
-                      child: Text(
-                        _formatDateTime(formFieldState.value!),
-                      ),
-                    ),
-                    if (formFieldState.hasError)
-                      Text(
-                        formFieldState.errorText!,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
+                            // Обновляем состояние формы и виджета
+                            formFieldState.didChange(newDateTime);
+                            setState(() {
+                              _updateField('date', newDateTime);
+                            });
+                          },
+                          child: Text(
+                            _formatDateTime(formFieldState.value!),
+                          ),
                         ),
-                      ),
-                  ],
-                );
-              },
-            )
-          else
-            Text(
-              _formatDateTime(_editedEvent.date),
-              style: const TextStyle(fontSize: 16),
-            ),
-          const Divider(),
-        ],
-      ),
+                        if (formFieldState.hasError)
+                          Text(
+                            formFieldState.errorText!,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                )
+              else
+                Text(
+                  _formatDateTime(_editedEvent.date),
+                  style: const TextStyle(fontSize: 16),
+                ),
+              const Divider(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
