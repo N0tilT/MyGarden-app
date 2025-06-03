@@ -7,6 +7,6 @@ class GardenLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Загрузка"));
+    return const Center(child: CircularProgressIndicator(color: Colors.green));
   }
 }
