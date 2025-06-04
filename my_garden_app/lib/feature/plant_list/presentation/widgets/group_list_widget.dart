@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -42,11 +43,7 @@ class _GroupListState extends State<GroupList> {
                               delegate: SliverChildBuilderDelegate(
                                 (context, index) {
                                   return PlantListItem(
-                                      plant: group.plants[index]);
-                                  return ListTile(
-                                    title: Text(group.plants[index]),
-                                    contentPadding:
-                                        const EdgeInsets.only(left: 40),
+                                    plant: group.plants[index],
                                   );
                                 },
                                 childCount: group.plants.length,
@@ -115,7 +112,7 @@ class _GroupListState extends State<GroupList> {
 
 class Group {
   String name;
-  List<String> plants;
+  List<PlantEntity> plants;
   bool isExpanded;
 
   Group({

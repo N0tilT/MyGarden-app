@@ -39,6 +39,10 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
   final Map<String, TextEditingController> _controllers = {};
   final ImagePicker _picker = ImagePicker();
   int _currentPhotoIndex = 0;
+  bool _isRecognitionLoading = false;
+
+  final watering = ["Редкий полив", "Регулярный полив", "Постоянная влажность"];
+  final light = ["Теневыносливое", "Полутень", "Яркое солнце"];
 
   @override
   void initState() {
@@ -129,7 +133,9 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
       } else {
         context.read<PlantListCubit>().upload(plantToSave);
       }
-      Navigator.pop(context);
+      if (mounted) {
+        Navigator.pop(context);
+      }
     }
   }
 
@@ -143,18 +149,82 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.85,
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 240, 241, 245),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: Column(
-        children: [
-          _buildTopIndicator(),
-          _buildHeader(),
-          Expanded(child: _buildContent()),
-        ],
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<PlantPrefillCubit, PlantPrefillState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              recognizeSuccess: (plant) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) {
+                    setState(() {
+                      _editedPlant = _editedPlant.copyWith(
+                        title: plant.type,
+                        description:
+                            "//${plant.summary ?? " "} \n Статьи о растении:${plant.articles.map((x) => "${x.title}\n${x.link}").join("\n\n")}",
+                        wateringNeedId: watering.indexOf(plant.wateringNeed),
+                        lightNeedId: light.indexOf(plant.lightNeed),
+                        fertilization: plant.fertilizer.join(","),
+                      );
+
+                      _controllers['title']!.text = plant.type;
+                      _controllers['description']!.text = plant.summary ?? "";
+                      _isRecognitionLoading = false;
+                    });
+                  }
+                });
+              },
+              loading: () {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) {
+                    setState(() => _isRecognitionLoading = true);
+                  }
+                });
+              },
+              orElse: () {},
+            );
+          },
+        ),
+        BlocListener<PlantRecognitionCubit, PlantRecognitionState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              recognizeSuccess: (plant) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) {
+                    setState(() {
+                      _editedPlant = _editedPlant.copyWith(
+                        title: plant.name,
+                        description: plant.message,
+                      );
+                      _controllers['title']!.value =
+                          TextEditingValue(text: _editedPlant.title ?? "");
+                      _controllers['description']!.value = TextEditingValue(
+                        text: _editedPlant.description ?? "",
+                      );
+                      _isRecognitionLoading = false;
+                    });
+                  }
+                });
+              },
+              loading: () => _isRecognitionLoading = true,
+              orElse: () => {},
+            );
+          },
+        ),
+      ],
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.85,
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 240, 241, 245),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          children: [
+            _buildTopIndicator(),
+            _buildHeader(),
+            Expanded(child: _buildContent()),
+          ],
+        ),
       ),
     );
   }
@@ -329,54 +399,30 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
   }
 
   Widget _buildContent() {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: context.read<TokenCubit>()..getToken()),
-        BlocProvider.value(value: context.read<GroupCubit>()..loadLocally()),
-        BlocProvider.value(
-          value: context.read<WateringNeedCubit>()..loadLocally(),
-        ),
-        BlocProvider.value(
-          value: context.read<LightNeedCubit>()..loadLocally(),
-        ),
-        BlocProvider.value(
-          value: context.read<PlantTypeCubit>()..loadLocally(),
-        ),
-        BlocProvider.value(
-          value: context.read<PlantVarietyCubit>()..loadLocally(),
-        ),
-        BlocProvider.value(
-          value: context.read<GrowStageCubit>()..loadLocally(),
-        ),
-        BlocProvider.value(
-          value: context.read<PlantRecognitionCubit>(),
-        ),
-        BlocProvider.value(
-          value: context.read<PlantPrefillCubit>(),
-        ),
-      ],
-      child: Builder(
-        builder: (context) {
-          return BlocConsumer<TokenCubit, TokenState>(
-            listener: (context, state) {
-              state.when(
-                fail: (l) =>
-                    Navigator.of(context).pushReplacementNamed(authRoute),
-                unauthorized: () => context.read<TokenCubit>().passValidation(),
-                tokenSuccess: (token) {},
-                initial: () {},
-                authorized: (token) {},
-              );
-            },
-            builder: (context, state) {
-              return state.maybeWhen(
-                tokenSuccess: (token) => _buildMainContent(context),
-                orElse: () => const Center(child: GardenLoadingWidget()),
-              );
-            },
-          );
-        },
-      ),
+    return BlocConsumer<TokenCubit, TokenState>(
+      listener: (context, state) {
+        state.when(
+          fail: (l) {
+            if (mounted) {
+              Navigator.of(context).pushReplacementNamed(authRoute);
+            }
+          },
+          unauthorized: () {
+            if (mounted) {
+              context.read<TokenCubit>().passValidation();
+            }
+          },
+          tokenSuccess: (token) {},
+          initial: () {},
+          authorized: (token) {},
+        );
+      },
+      builder: (context, state) {
+        return state.maybeWhen(
+          tokenSuccess: (token) => _buildMainContent(context),
+          orElse: () => const Center(child: GardenLoadingWidget()),
+        );
+      },
     );
   }
 
@@ -486,7 +532,32 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildEditableField('Название', 'title'),
+          _buildEditableField(
+            'Название',
+            'title',
+            suffix: _isEditing
+                ? IconButton(
+                    icon: const Icon(
+                      Icons.auto_awesome,
+                      size: 20,
+                    ),
+                    onPressed: () {
+                      final title = _controllers['title']?.text;
+                      if (title != null && title.isNotEmpty) {
+                        context.read<PlantPrefillCubit>().prefill(title);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              "Введите название растения",
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                  )
+                : null,
+          ),
           _buildDescriptionField(),
           _buildEditableField(
             'Биологическое название',
@@ -581,6 +652,7 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
     String fieldKey, {
     bool isRequired = true,
     bool isNumber = false,
+    Widget? suffix,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -591,25 +663,35 @@ class _PlantDetailCardSheetState extends State<PlantDetailCardSheet> {
             label,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          TextFormField(
-            controller: _controllers[fieldKey],
-            keyboardType: isNumber ? TextInputType.number : TextInputType.text,
-            decoration: const InputDecoration(
-              isDense: true,
-              border: OutlineInputBorder(),
-            ),
-            validator: (value) {
-              if (isRequired && (value == null || value.isEmpty)) {
-                return 'Обязательное поле';
-              }
-              if (isNumber && value!.isNotEmpty) {
-                if (int.tryParse(value) == null) {
-                  return 'Введите число';
+          if (_isEditing)
+            TextFormField(
+              controller: _controllers[fieldKey],
+              keyboardType:
+                  isNumber ? TextInputType.number : TextInputType.text,
+              decoration: InputDecoration(
+                isDense: true,
+                border: const OutlineInputBorder(),
+                suffix: suffix,
+              ),
+              validator: (value) {
+                if (isRequired && (value == null || value.isEmpty)) {
+                  return 'Обязательное поле';
                 }
-              }
-              return null;
-            },
-          ),
+                if (isNumber && value!.isNotEmpty) {
+                  if (int.tryParse(value) == null) {
+                    return 'Введите число';
+                  }
+                }
+                return null;
+              },
+            )
+          else
+            Text(
+              _controllers[fieldKey]!.text.isNotEmpty
+                  ? _controllers[fieldKey]!.text
+                  : 'Не указано',
+              style: const TextStyle(fontSize: 16),
+            ),
           const Divider(),
         ],
       ),

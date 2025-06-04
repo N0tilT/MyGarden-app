@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,17 +76,27 @@ class _SplashScreen extends StatefulWidget {
 }
 
 class __SplashScreenState extends State<_SplashScreen> {
+  Timer? _timer; // Add a timer reference
+
   @override
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
-    Future.delayed(const Duration(seconds: 3, milliseconds: 500)).then((_) {
-      Navigator.pushReplacement(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(builder: (context) => const Initializer()),
-      );
+    _timer = Timer(const Duration(seconds: 3, milliseconds: 500), () {
+      if (mounted) {
+        // Check if widget is still mounted
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Initializer()),
+        );
+      }
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // Cancel the timer on dispose
+    super.dispose();
   }
 
   @override
