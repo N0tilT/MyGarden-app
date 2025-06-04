@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_garden_app/feature/auth/presentation/bloc/cubit/token_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/group/group_cubit.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/bloc/grow_stage/grow_stage_cubit.dart';
@@ -29,24 +28,32 @@ class PlantListItem extends StatelessWidget {
             builder: (modal) => MultiBlocProvider(
               providers: [
                 BlocProvider.value(
-                    value: BlocProvider.of<GroupCubit>(parentContext)),
+                  value: BlocProvider.of<GroupCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<PlantListCubit>(parentContext)),
+                  value: BlocProvider.of<PlantListCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<WateringNeedCubit>(parentContext)),
+                  value: BlocProvider.of<WateringNeedCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<LightNeedCubit>(parentContext)),
+                  value: BlocProvider.of<LightNeedCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<PlantTypeCubit>(parentContext)),
+                  value: BlocProvider.of<PlantTypeCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<PlantVarietyCubit>(parentContext)),
+                  value: BlocProvider.of<PlantVarietyCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<GrowStageCubit>(parentContext)),
+                  value: BlocProvider.of<GrowStageCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value: BlocProvider.of<PlantPrefillCubit>(parentContext)),
+                  value: BlocProvider.of<PlantPrefillCubit>(parentContext),
+                ),
                 BlocProvider.value(
-                    value:
-                        BlocProvider.of<PlantRecognitionCubit>(parentContext)),
+                  value: BlocProvider.of<PlantRecognitionCubit>(parentContext),
+                ),
               ],
               child: PlantDetailCardSheet(
                 plant: plant,

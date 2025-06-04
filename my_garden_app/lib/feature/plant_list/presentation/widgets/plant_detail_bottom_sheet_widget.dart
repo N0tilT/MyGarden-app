@@ -62,7 +62,6 @@ class _PlantDetailSheetState extends State<PlantDetailSheet> {
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
-
             _PhotoSlider(photos: widget.plant.photos),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -88,7 +87,6 @@ class _PlantDetailSheetState extends State<PlantDetailSheet> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -97,7 +95,9 @@ class _PlantDetailSheetState extends State<PlantDetailSheet> {
                   _InfoRow(title: 'Группа', value: widget.plant.group),
                   _InfoRow(title: 'Семейство', value: widget.plant.family),
                   _InfoRow(
-                      title: 'Дата посадки', value: widget.plant.plantingDate),
+                    title: 'Дата посадки',
+                    value: widget.plant.plantingDate,
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     'Описание',

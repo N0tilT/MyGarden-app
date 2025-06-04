@@ -24,6 +24,6 @@ class PlantRecognitionResponseEntity with _$PlantRecognitionResponseEntity {
 
   @override
   String toString() {
-    return message.toString();
+    return message;
   }
 }

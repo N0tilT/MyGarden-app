@@ -269,13 +269,12 @@ class _CalendarWrapperState extends State<_CalendarWrapper> {
       switch (widget.currentViewType) {
         case CalendarViewType.week:
           final event = _weekViewKey.currentState!.controller.allEvents.reduce(
-              (current, next) =>
-                  current.date.isBefore(next.date) ? current : next);
+            (current, next) =>
+                current.date.isBefore(next.date) ? current : next,
+          );
           _weekViewKey.currentState?.animateToEvent(event);
-          break;
         case CalendarViewType.day:
           _dayViewKey.currentState?.animateToDate(DateTime.now());
-          break;
         default:
           break;
       }
@@ -387,7 +386,7 @@ class _CalendarWrapperState extends State<_CalendarWrapper> {
           onDateLongPress: (date) => print(date),
           hideDaysNotInMonth: true,
           cellBuilder: (date, events, boundry, startDuration, endDuration) {
-            int maxEvents = 4;
+            const int maxEvents = 4;
             List<CalendarEventData> visibleEvents = events;
             int extraCount = 0;
             if (events.length > maxEvents) {
@@ -461,11 +460,12 @@ class _CalendarWrapperState extends State<_CalendarWrapper> {
                   width: width,
                   height: boundary.height,
                   child: GestureDetector(
-                      onTap: () {
-                        final eventEntity = event.event! as EventEntity;
-                        _showEditEventBottomSheet(eventEntity);
-                      },
-                      child: _buildEventTile(event)),
+                    onTap: () {
+                      final eventEntity = event.event! as EventEntity;
+                      _showEditEventBottomSheet(eventEntity);
+                    },
+                    child: _buildEventTile(event),
+                  ),
                 );
               }).toList(),
             );
@@ -491,11 +491,12 @@ class _CalendarWrapperState extends State<_CalendarWrapper> {
                 return Container(
                   margin: const EdgeInsets.only(bottom: 2),
                   child: GestureDetector(
-                      onTap: () {
-                        final eventEntity = event.event! as EventEntity;
-                        _showEditEventBottomSheet(eventEntity);
-                      },
-                      child: _buildEventTile(event)),
+                    onTap: () {
+                      final eventEntity = event.event! as EventEntity;
+                      _showEditEventBottomSheet(eventEntity);
+                    },
+                    child: _buildEventTile(event),
+                  ),
                 );
               }).toList(),
             );
@@ -506,11 +507,12 @@ class _CalendarWrapperState extends State<_CalendarWrapper> {
           children: widget.eventList
               .map(
                 (e) => GestureDetector(
-                    onTap: () {
-                      final eventEntity = e;
-                      _showEditEventBottomSheet(eventEntity);
-                    },
-                    child: EventListItem(event: e)),
+                  onTap: () {
+                    final eventEntity = e;
+                    _showEditEventBottomSheet(eventEntity);
+                  },
+                  child: EventListItem(event: e),
+                ),
               )
               .toList(),
         );

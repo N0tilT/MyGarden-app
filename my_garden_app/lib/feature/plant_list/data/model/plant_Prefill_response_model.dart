@@ -31,15 +31,16 @@ class PlantPrefillResponseModel extends HiveObject
     PlantPrefillResponseEntity entity,
   ) =>
       PlantPrefillResponseModel(
-          type: entity.type,
-          articles:
-              entity.articles.map((x) => ArticleModel.fromEntity(x)).toList(),
-          labels: LabelsModel(
-            wateringNeed: entity.wateringNeed,
-            lightNeed: entity.lightNeed,
-            fertilizer: entity.fertilizer,
-          ),
-          summary: entity.summary);
+        type: entity.type,
+        articles:
+            entity.articles.map((x) => ArticleModel.fromEntity(x)).toList(),
+        labels: LabelsModel(
+          wateringNeed: entity.wateringNeed,
+          lightNeed: entity.lightNeed,
+          fertilizer: entity.fertilizer,
+        ),
+        summary: entity.summary,
+      );
 }
 
 @freezed

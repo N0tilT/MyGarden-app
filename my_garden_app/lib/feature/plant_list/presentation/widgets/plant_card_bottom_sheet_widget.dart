@@ -290,7 +290,8 @@ class _PlantCardBottomSheetState extends State<PlantCardBottomSheet> {
                               description: plant.message,
                             );
                             _controllers['title']!.value = TextEditingValue(
-                                text: _editedPlant.title ?? "");
+                              text: _editedPlant.title ?? "",
+                            );
                             _controllers['description']!.value =
                                 TextEditingValue(
                               text: _editedPlant.description ?? "",

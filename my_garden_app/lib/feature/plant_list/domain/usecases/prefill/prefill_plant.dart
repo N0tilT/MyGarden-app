@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:my_garden_app/core/data/error/failure.dart';
 import 'package:my_garden_app/feature/auth/domain/repositories/auth_repository.dart';

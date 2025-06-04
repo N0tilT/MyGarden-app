@@ -1,7 +1,6 @@
 // group_list.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:my_garden_app/feature/plant_list/domain/entities/plant_entity.dart';
 import 'package:my_garden_app/feature/plant_list/presentation/widgets/plant_list_item.dart';
 import 'package:sliver_tools/sliver_tools.dart';

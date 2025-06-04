@@ -44,7 +44,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
     });
   }
 
-  void _saveChanges() async {
+  Future<void> _saveChanges() async {
     if (_formKey.currentState!.validate()) {
       final eventToSave = _editedEvent.copyWith(
         title: _controllers['title']!.text,
@@ -287,13 +287,15 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
                         onChanged: (value) => {
                           setState(() {
                             onChanged(value);
-                          })
+                          }),
                         },
                         decoration: const InputDecoration(
                           isDense: true,
                           border: OutlineInputBorder(),
                           contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 14),
+                            horizontal: 12,
+                            vertical: 14,
+                          ),
                         ),
                         validator: (value) =>
                             value == null ? 'Обязательное поле' : null,
@@ -328,7 +330,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
   Widget _buildDateField() {
     return StatefulBuilder(
       builder: (context, setState) {
-        String _formatDateTime(DateTime date) {
+        String formatDateTime(DateTime date) {
           return '${date.day}.${date.month}.${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
         }
 
@@ -392,7 +394,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
                             });
                           },
                           child: Text(
-                            _formatDateTime(formFieldState.value!),
+                            formatDateTime(formFieldState.value!),
                           ),
                         ),
                         if (formFieldState.hasError)
@@ -408,7 +410,7 @@ class _EventCardBottomSheetState extends State<EventCardBottomSheet> {
                 )
               else
                 Text(
-                  _formatDateTime(_editedEvent.date),
+                  formatDateTime(_editedEvent.date),
                   style: const TextStyle(fontSize: 16),
                 ),
               const Divider(),

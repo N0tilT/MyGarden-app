@@ -42,8 +42,10 @@ class PlantRecognitionRepositoryImpl implements PlantRecognitionRepository {
 
   @override
   Future<Either<Failure, PlantPrefillResponseEntity>> prefill(
-      String request, String token,
-      [bool remote = true]) async {
+    String request,
+    String token, [
+    bool remote = true,
+  ]) async {
     if (!(await networkInfo.isConnected && remote)) {
       return const Left(
         CacheFailure(message: "Ошибка подключения к сети"),
