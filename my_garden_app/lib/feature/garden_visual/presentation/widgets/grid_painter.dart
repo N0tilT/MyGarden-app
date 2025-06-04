@@ -7,9 +7,10 @@ class GardenVisualGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size.infinite,
-      painter: _GridPainter(offset: offset),
+    return SizedBox.expand(
+      child: CustomPaint(
+        painter: _GridPainter(offset: offset),
+      ),
     );
   }
 }
@@ -22,20 +23,25 @@ class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.grey
       ..strokeWidth = 0.5;
 
-    for (double i = 0; i < size.width; i += 50) {
+    // Calculate visible vertical lines
+    final startX = offset.dx % 50;
+    for (double x = startX; x < size.width; x += 50) {
       canvas.drawLine(
-        Offset(i + offset.dx, 0),
-        Offset(i + offset.dx, size.height),
+        Offset(x, 0),
+        Offset(x, size.height),
         paint,
       );
     }
-    for (double i = 0; i < size.height; i += 50) {
+
+    // Calculate visible horizontal lines
+    final startY = offset.dy % 50;
+    for (double y = startY; y < size.height; y += 50) {
       canvas.drawLine(
-        Offset(0, i + offset.dy),
-        Offset(size.width, i + offset.dy),
+        Offset(0, y),
+        Offset(size.width, y),
         paint,
       );
     }

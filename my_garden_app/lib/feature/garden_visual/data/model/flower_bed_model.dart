@@ -36,7 +36,7 @@ class FlowerBedModel extends HiveObject
         width: entity.width,
         height: entity.height,
         trueDx: entity.truePosition.dx,
-        trueDy: entity.truePosition.dx,
+        trueDy: entity.truePosition.dy,
         dx: entity.position.dx,
         dy: entity.position.dy,
         rotation: entity.rotation,

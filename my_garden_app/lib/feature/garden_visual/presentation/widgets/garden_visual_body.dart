@@ -94,6 +94,7 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
 
   Future<void> _showFlowerBedDialog(BuildContext context) async {
     final titleController = TextEditingController();
+    final gardenCubit = context.read<GardenCubit>();
     final plantListCubit = context.read<PlantListCubit>();
     final List<PlantEntity> allPlantList = plantListCubit.state.maybeWhen(
       success: (plants) => plants,
@@ -110,48 +111,52 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
 
     await showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Редактировать грядку'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: titleController,
-              decoration: const InputDecoration(labelText: 'Название'),
-            ),
-            const SizedBox(height: 10),
-            const Text('Растения в грядке:'),
-            SingleChildScrollView(
-              child: Column(
-                children: plantList.map((e) => Text(e.title ?? "")).toList(),
+      builder: (context) => MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: gardenCubit),
+          BlocProvider.value(value: plantListCubit),
+        ],
+        child: AlertDialog(
+          title: const Text('Редактировать грядку'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Название'),
               ),
-            ),
-            const SizedBox(height: 10),
-            FloatingActionButton(
-              onPressed: () => _showPlantSelectionDialog(
-                context,
-                allPlantList,
+              const SizedBox(height: 10),
+              const Text('Растения в грядке:'),
+              SingleChildScrollView(
+                child: Column(
+                  children: plantList.map((e) => Text(e.title ?? "")).toList(),
+                ),
               ),
-              child: const Text("+", style: TextStyle(fontSize: 20)),
+              const SizedBox(height: 10),
+              FloatingActionButton(
+                onPressed: () => _showPlantSelectionDialog(
+                    context, allPlantList, gardenCubit),
+                child: const Text("+", style: TextStyle(fontSize: 20)),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(
+                  () => currentRectangle =
+                      currentRectangle!.copyWith(isMoving: true),
+                );
+                Navigator.of(context).pop();
+              },
+              child: const Icon(Icons.edit),
+            ),
+            TextButton(
+              onPressed: () => _showDimensionDialog(context, gardenCubit),
+              child: const Text('Изменить размеры'),
             ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              setState(
-                () => currentRectangle =
-                    currentRectangle!.copyWith(isMoving: true),
-              );
-              Navigator.of(context).pop();
-            },
-            child: const Icon(Icons.edit),
-          ),
-          TextButton(
-            onPressed: () => _showDimensionDialog(context),
-            child: const Text('Изменить размеры'),
-          ),
-        ],
       ),
     );
   }
@@ -159,13 +164,13 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
   void _showPlantSelectionDialog(
     BuildContext context,
     List<PlantEntity> plantList,
+    GardenCubit gardenCubit,
   ) {
     int? selectedPlantId;
 
     showDialog(
       context: context,
       builder: (context) {
-        final gardenCubit = context.watch<GardenCubit>();
         return AlertDialog(
           title: const Text('Выберите растение'),
           content: SingleChildScrollView(
@@ -180,7 +185,11 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                     ),
                   )
                   .toList(),
-              onChanged: (value) => selectedPlantId = value,
+              onChanged: (value) {
+                setState(() {
+                  selectedPlantId = value;
+                });
+              },
             ),
           ),
           actions: [
@@ -189,7 +198,7 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                 if (selectedPlantId != null) {
                   final List<int> tmp = List.from(currentRectangle!.plantIds);
                   tmp.add(selectedPlantId!);
-                  currentRectangle = currentRectangle!.copyWith(plantIds: tmp);
+
                   final updatedGarden = GardenEntity.copyWith(
                     gardenCubit.selectedGarden!,
                     [
@@ -198,7 +207,10 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                     ],
                   );
                   gardenCubit.upload(updatedGarden);
-                  setState(() {});
+                  setState(() {
+                    currentRectangle =
+                        currentRectangle!.copyWith(plantIds: tmp);
+                  });
                   Navigator.of(context).pop();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -220,7 +232,10 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
     );
   }
 
-  Future<void> _showDimensionDialog(BuildContext context) async {
+  Future<void> _showDimensionDialog(
+    BuildContext context,
+    GardenCubit gardenCubit,
+  ) async {
     final values = List.generate(15, (index) => index + 1);
     await showDialog(
       context: context,
@@ -258,7 +273,6 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
         actions: [
           TextButton(
             onPressed: () {
-              final gardenCubit = context.read<GardenCubit>();
               if (currentRectangle != null) {
                 final updatedGarden = GardenEntity.copyWith(
                   gardenCubit.selectedGarden!,
@@ -267,6 +281,8 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                       .toList(),
                 );
                 gardenCubit.upload(updatedGarden);
+
+                setState(() {});
                 currentRectangle = null;
               }
               Navigator.of(context).pop();
@@ -280,6 +296,7 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                   selectedWidth < 16 &&
                   selectedHeight < 16) {
                 _addOrEditRectangle(selectedWidth, selectedHeight);
+                setState(() {});
                 Navigator.of(context).pop();
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -316,48 +333,69 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
         return const Center(child: GardenLoadingWidget());
       },
       tokenSuccess: (token) {
-        return gardenCubit.state.when(
-          initial: () => const GardenLoadingWidget(),
-          loading: () => const GardenLoadingWidget(),
-          success: (gardedns) {
-            if (gardedns.isEmpty) {
-              gardenCubit.upload(
-                const GardenEntity(
-                  id: null,
-                  title: "По умолчанию",
-                  flowerBeds: [],
-                  gardenTypeId: 1,
-                ),
-              );
-            }
-            return Scaffold(
-              backgroundColor: const Color.fromARGB(255, 240, 241, 245),
-              appBar: const _GardenVisualAppBarWidget(),
-              body: GestureDetector(
-                onPanUpdate: (details) {
-                  if (currentRectangle?.isMoving == true) {
-                    _moveRectangle(details.delta);
-                  } else {
-                    offset += details.delta;
-                    setState(() {});
+        return BlocListener<GardenCubit, GardenState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              success: (gardens) {
+                if (currentRectangle != null) {
+                  final selectedGarden = gardenCubit.selectedGarden;
+                  if (selectedGarden != null) {
+                    if (selectedGarden.flowerBeds
+                        .any((fb) => fb.id == currentRectangle!.id)) {
+                      setState(() => currentRectangle = null);
+                    }
                   }
-                },
-                child: Stack(
-                  children: [
-                    Container(color: Colors.lightGreen[100]),
-                    GardenVisualGrid(offset: offset),
-                    ...gardenCubit.selectedGarden?.flowerBeds
-                            .map((rectangle) => _buildRectangle(rectangle)) ??
-                        [],
-                    if (currentRectangle != null && currentRectangle!.isMoving)
-                      _buildResizingRectangle(currentRectangle!),
-                  ],
-                ),
-              ),
-              floatingActionButton: _buildFloatingActionButtons(context),
+                }
+              },
             );
           },
-          fail: (message) => Center(child: Text(message)),
+          child: gardenCubit.state.when(
+            initial: () => const GardenLoadingWidget(),
+            loading: () => const GardenLoadingWidget(),
+            success: (gardedns) {
+              if (gardedns.isEmpty) {
+                gardenCubit.upload(
+                  const GardenEntity(
+                    id: null,
+                    title: "По умолчанию",
+                    flowerBeds: [],
+                    gardenTypeId: 1,
+                  ),
+                );
+              }
+              return Scaffold(
+                backgroundColor: const Color.fromARGB(255, 240, 241, 245),
+                appBar: _GardenVisualAppBarWidget(
+                  selectedGardenTitle:
+                      gardenCubit.selectedGarden?.title ?? "Сад не выбран",
+                ),
+                body: GestureDetector(
+                  onPanUpdate: (details) {
+                    if (currentRectangle?.isMoving == true) {
+                      _moveRectangle(details.delta);
+                    } else {
+                      offset += details.delta;
+                      setState(() {});
+                    }
+                  },
+                  child: Stack(
+                    children: [
+                      Container(color: Colors.lightGreen[100]),
+                      GardenVisualGrid(offset: offset),
+                      ...gardenCubit.selectedGarden?.flowerBeds
+                              .map((rectangle) => _buildRectangle(rectangle)) ??
+                          [],
+                      if (currentRectangle != null &&
+                          currentRectangle!.isMoving)
+                        _buildResizingRectangle(currentRectangle!),
+                    ],
+                  ),
+                ),
+                floatingActionButton: _buildFloatingActionButtons(context),
+              );
+            },
+            fail: (message) => Center(child: Text(message)),
+          ),
         );
       },
     );
@@ -390,7 +428,10 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
         angle: rectangle.rotation * (pi / 180),
         alignment: Alignment.topLeft,
         child: GestureDetector(
-          onTap: () => _showDimensionDialog(context),
+          onTap: () {
+            final gardenCubit = context.read<GardenCubit>();
+            _showDimensionDialog(context, gardenCubit);
+          },
           child: _rectangleContainer(rectangle, Colors.red.withOpacity(0.5)),
         ),
       ),
@@ -411,6 +452,7 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
                     title: Text(garden.title),
                     onTap: () {
                       gardenCubit.selectGarden(garden);
+                      setState(() {});
                       Navigator.pop(context);
                     },
                   ),
@@ -432,32 +474,37 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
         ),
         const SizedBox(width: 16),
         FloatingActionButton(
-          onPressed: () => _showDimensionDialog(context),
+          onPressed: () {
+            final gardenCubit = context.read<GardenCubit>();
+            _showDimensionDialog(context, gardenCubit);
+          },
           child: const Icon(Icons.add),
         ),
         const SizedBox(width: 16),
         FloatingActionButton(
-          onPressed: () => _saveRectangle(context),
+          onPressed: () async {
+            await _saveRectangle(context);
+          },
           child: const Icon(Icons.check),
         ),
-        const SizedBox(width: 16),
-        FloatingActionButton(
-          onPressed: () {
-            if (currentRectangle != null) {
+        if (currentRectangle != null) ...[
+          const SizedBox(width: 16),
+          FloatingActionButton(
+            onPressed: () {
               setState(() {
                 currentRectangle = currentRectangle!.copyWith(
                   rotation: (currentRectangle!.rotation + 90) % 360,
                 );
               });
-            }
-          },
-          child: const Icon(Icons.rotate_right),
-        ),
+            },
+            child: const Icon(Icons.rotate_right),
+          ),
+        ],
       ],
     );
   }
 
-  void _saveRectangle(BuildContext context) {
+  Future<void> _saveRectangle(BuildContext context) async {
     if (currentRectangle == null) return;
     final flowerBedCubit = context.read<GardenCubit>();
     if (flowerBedCubit.selectedGarden == null) {
@@ -501,8 +548,10 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
       updatedFlowerBeds,
     );
 
-    flowerBedCubit.upload(updatedGarden);
-    setState(() => currentRectangle = null);
+    await flowerBedCubit.upload(updatedGarden);
+    setState(() {
+      currentRectangle = null;
+    });
   }
 
   Rect _getRotatedBounds(FlowerBedEntity rectangle) {
@@ -560,24 +609,16 @@ class _GardenVisualBodyState extends State<GardenVisualBody> {
 
 class _GardenVisualAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
-  const _GardenVisualAppBarWidget();
-
+  const _GardenVisualAppBarWidget({required this.selectedGardenTitle});
+  final String selectedGardenTitle;
   @override
   Widget build(BuildContext context) {
-    final gardenCubit = context.watch<GardenCubit>();
     return AppBar(
       titleSpacing: 0,
       automaticallyImplyLeading: false,
       centerTitle: true,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            gardenCubit.selectedGarden == null
-                ? "Выберите сад"
-                : gardenCubit.selectedGarden!.title,
-          ),
-        ],
+      title: Text(
+        selectedGardenTitle,
       ),
     );
   }

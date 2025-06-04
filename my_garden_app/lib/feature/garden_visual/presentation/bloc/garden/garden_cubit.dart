@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_garden_app/feature/garden_visual/domain/entities/garden_entity.dart';
@@ -37,7 +39,20 @@ class GardenCubit extends Cubit<GardenState> {
     result.fold(
       (error) => emit(GardenState.fail(error.message)),
       (succededGardenList) {
-        gardens = succededGardenList;
+        final updatedGardens = succededGardenList.map((garden) {
+          final updatedFlowerBeds = garden.flowerBeds.map((flowerBed) {
+            return flowerBed.copyWith(
+              position: Offset(
+                (flowerBed.truePosition.dx ~/ 50) * 50,
+                (flowerBed.truePosition.dy ~/ 50) * 50,
+              ),
+            );
+          }).toList();
+
+          return garden.copyWith(flowerBeds: updatedFlowerBeds);
+        }).toList();
+
+        gardens = updatedGardens;
         emit(
           GardenState.success(
             gardens,

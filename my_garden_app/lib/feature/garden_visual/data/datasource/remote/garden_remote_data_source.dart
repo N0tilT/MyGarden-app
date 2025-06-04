@@ -55,10 +55,10 @@ class GardenRemoteDataSource
   Future<void> upload(List<GardenModel> remoteLoad, String token) async {
     try {
       final uri = Uri.parse('$BASE_URL/garden');
-
+      final body = json.encode(remoteLoad);
       final response = await client.post(
         uri,
-        body: json.encode(remoteLoad),
+        body: body,
         headers: {
           "Authorization": "Bearer $token",
           'Content-type': 'application/json; charset=UTF-8',
